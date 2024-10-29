@@ -1,6 +1,14 @@
-#root {
-  max-width: 100%;
-  padding: 1.5vw;
-  text-align: center;
+.main {
+  max-width: 90%;
+  min-width: 92vh;
+  padding: 1vw;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 2fr;
 }
-
+.controls-section{
+  grid-area: 1/1/2/2;
+}
+.preview-section{
+  grid-area: 1/2/3/3;
+}

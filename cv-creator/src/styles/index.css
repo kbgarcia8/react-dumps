@@ -16,6 +16,10 @@ and tags w/o selector. Font styles and root styles are also here*/
   font-family: "Rubik";
   src: url(../fonts/Rubik-VariableFont_wght.ttf);
 }
+@font-face {
+  font-family: "DM Sans";
+  src: url(../fonts/DMSans-VariableFont.ttf);
+}
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +35,12 @@ and tags w/o selector. Font styles and root styles are also here*/
   --auxilarry1: #e5ddc5;
   --auxilarry2: #f3f3e0;
 }
-
-body {
+#root {
+  max-width: 100vw;
   min-height: 100vh;
+  padding: 1.5vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
