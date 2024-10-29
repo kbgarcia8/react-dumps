@@ -1,0 +1,37 @@
+/*{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}*/
+/* put styles here for top level tags such as body 
+and tags w/o selector. Font styles and root styles are also here*/
+@font-face {
+  font-family: "Rubik";
+  src: url(../fonts/Rubik-VariableFont_wght.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primary1: #133e87;
+  --primary2: #608bc1;
+  --primary3: #cbdceb;
+  --primary4: #b3c8cf;
+  --secondary: #bed7dc;
+  --teritiary: #f1eedc;
+  --auxilarry1: #e5ddc5;
+  --auxilarry2: #f3f3e0;
+}
+
+body {
+  min-height: 100vh;
+}
