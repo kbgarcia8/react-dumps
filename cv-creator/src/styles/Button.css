@@ -1,11 +1,12 @@
 button {
-    width: 80%;
+    width: 75%;
+    min-height: auto;
     display: flex;
     align-items: center;
-    justify-content: center;
     font-family: "Rubik";
+    font-size: 1rem;
   }
   button img {
-    width: 10%;
+    width: 25%;
   }
   
