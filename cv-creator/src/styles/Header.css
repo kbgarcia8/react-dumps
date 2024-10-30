@@ -1,27 +1,26 @@
 header {
-    width: 100vw;
-    min-height: 8vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .page-title {
-    width: 90%;
-    min-height: 8vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    background-color: var(--primary1);
-  }
-  .page-title-text {
-    font-family: "Rubik";
-    font-size: 2.5rem;
-    color: #ffff;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .page-title-text:hover {
-    filter: drop-shadow(2rem 0.75rem 0.25rem #ffff);
-  }
-  
+  width: 100vw;
+  min-height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-title {
+  width: 90%;
+  min-height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  background-color: var(--primary1);
+}
+.page-title-text {
+  font-family: "Rubik";
+  font-size: 2.5rem;
+  color: #ffff;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.page-title-text:hover {
+  filter: drop-shadow(2rem 0.75rem 0.25rem #ffff);
+}

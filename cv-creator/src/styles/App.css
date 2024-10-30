@@ -5,10 +5,28 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 2fr;
+  gap: 1rem;
 }
-.controls-section{
+.controls-section {
   grid-area: 1/1/2/2;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
-.preview-section{
+.edit-buttons {
+  border: 2px solid red;
+  width: 100%;
+  min-height: 50%;
+  padding: 5%;
+  border-radius: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
+  -moz-box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
+  box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
+}
+.preview-section {
   grid-area: 1/2/3/3;
 }
