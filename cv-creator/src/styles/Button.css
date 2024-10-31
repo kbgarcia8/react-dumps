@@ -1,6 +1,6 @@
 button {
-  max-width: fit-content;
-  min-height: auto;
+  width: 75%;
+  min-height: 75%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -8,7 +8,6 @@ button {
   font-family: "Rubik";
   font-size: 1.25vmin;
 }
-  button img {
-    width: 25%;
-  }
-  
+button img {
+  width: 25%;
+}
