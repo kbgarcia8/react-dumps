@@ -33,6 +33,9 @@
   box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
   overflow-y: auto;
 }
+.personal-info{
+  border: 2px solid red;
+}
 .preview-section {
   grid-area: 1 / 2 / 3 / 3;
   min-height: 40vh;
@@ -42,4 +45,19 @@
 fieldset{
   display: flex;
   flex-direction: column;
+  padding: 1vmax;
+  max-width: 100%;
+}
+label{
+  text-align: left;
+  font-size: 1vmax;
+  font-family: "Rubik";
+  border: 2px solid red;
+}
+input{
+  border: 2px rgb(185, 185, 185) solid;
+  border-radius: 0.25rem;
+  width: 75%;
+  line-height: 1.5vmax;
+  padding: 0.5vmin;
 }
