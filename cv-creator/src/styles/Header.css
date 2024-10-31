@@ -16,7 +16,7 @@ header {
 }
 .page-title-text {
   font-family: "Rubik";
-  font-size: 2.5rem;
+  font-size: 2.5vmax;
   color: #ffff;
   will-change: filter;
   transition: filter 300ms;

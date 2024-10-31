@@ -1,11 +1,13 @@
 button {
-    width: 75%;
-    min-height: auto;
-    display: flex;
-    align-items: center;
-    font-family: "Rubik";
-    font-size: 1rem;
-  }
+  max-width: fit-content;
+  min-height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  font-family: "Rubik";
+  font-size: 1.25vmin;
+}
   button img {
     width: 25%;
   }
