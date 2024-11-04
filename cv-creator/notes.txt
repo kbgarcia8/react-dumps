@@ -1,4 +1,5 @@
 Task: Make relationship of personal info details form and display
+Components: EditPersonalInfo, DisplayPersonalInfo 
 Needed Knowledge: useState render onChange of form
 
 Task: Make relationsship of Education Details form and details
