@@ -1,0 +1,5 @@
+Task: Make relationship of personal info details form and display
+Needed Knowledge: useState render onChange of form
+
+Task: Make relationsship of Education Details form and details
+Needed Knowledge: useState render onChange of form and useState render onSave/onSubmit of a form
