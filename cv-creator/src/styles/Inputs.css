@@ -1,0 +1,35 @@
+fieldset{
+    display: flex;
+    flex-direction: column;
+    padding: 1vmax;
+    max-width: 100%;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 95%;
+}
+label{
+    text-align: left;
+    font-size: 1vmax;
+    font-family: "Rubik";
+}
+input{
+    border: 2px rgb(185, 185, 185) solid;
+    border-radius: 0.25rem;
+    max-width: 90%;
+    line-height: 1.5vmax;
+    font-family: "Rubik";
+    padding: 0.5vmin;
+}
+textarea {
+    border: 2px rgb(185, 185, 185) solid;
+    border-radius: 0.25rem;
+    max-width: 90%;
+    line-height: 1.5vmax;
+    font-family: "Rubik";
+    padding: 0.5vmin;
+}
+  *::placeholder{
+    color: rgb(163, 161, 161);
+}

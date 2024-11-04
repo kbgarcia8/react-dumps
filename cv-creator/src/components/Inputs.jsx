@@ -1,3 +1,6 @@
+import { useState } from "react";
+import "../styles/Inputs.css"
+
 export function Inputs({
     inputType,
     id,
@@ -10,9 +13,7 @@ export function Inputs({
     cols = "30",
     onChange,
   }) {
-    const [required, setRequired] = useState({ required: true });
     return (
-      <>
         <div className="input-container">
           <label htmlFor={id}>{labelText}: </label>
           {inputType === "textarea" ? (
@@ -31,10 +32,9 @@ export function Inputs({
               onChange={onChange}
               value={value}
               type={type}
-              {...required}
+              required={isRequired ? "required" : ""}
             />
           )}
         </div>
-      </>
     );
   }
