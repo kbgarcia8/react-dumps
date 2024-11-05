@@ -12,6 +12,7 @@ export function Inputs({
     rows = "4",
     cols = "30",
     onChange,
+    dataKey
   }) {
     return (
         <div className="input-container">
@@ -24,6 +25,7 @@ export function Inputs({
               value={value}
               rows={rows}
               cols={cols}
+              data-key={dataKey}
             ></textarea>
           ) : (
             <input
@@ -33,6 +35,7 @@ export function Inputs({
               value={value}
               type={type}
               required={isRequired ? "required" : ""}
+              data-key={dataKey}
             />
           )}
         </div>

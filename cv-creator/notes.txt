@@ -1,8 +1,9 @@
 Task: Make relationship of personal info details form and display
 Components: EditPersonalInfo, DisplayPersonalInfo 
 Needed Knowledge: useState render onChange of form
-Left Off: For test if {firstName} can be passed and displayed thru DisplayPersonalInfo's props
-Next: Put keys on inputs as data-keys to make changing of data of object flexible as shown by reference
+Left Off: Create an object for Sample fill as shown by reference
+          Fix conditional return of p tags in DisplayPersonalInfo.jsx
+Next: 
 
 Task: Make relationsship of Education Details form and details
 Needed Knowledge: useState render onChange of form and useState render onSave/onSubmit of a form

@@ -9,9 +9,17 @@ import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPe
 export default function App() {
   //declare functions for logics to be passed to components
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [inputEmail, setInputEmail] = useState('');
 
   function handleFirstName(e) {
     setFirstName(e.target.value)
+  }
+  function handleLastName(e) {
+    setLastName(e.target.value)
+  }
+  function handleInputEmail(e) {
+    setInputEmail(e.target.value)
   }
   return (
     <>
@@ -26,19 +34,23 @@ export default function App() {
             <div className="edit-personal-info">
               <EditPersonalInfo 
                 firstName={firstName}
-                onChange={handleFirstName}
+                onChangeFirst={handleFirstName}
+                lastName={lastName}
+                onChangeLast={handleLastName}
+                email={inputEmail}
+                onChangeEmail={handleInputEmail}
               />
             </div>
           </div>
         </section>
         <section className="preview-section">
           <div className="personal-info-display">
-            <p>{firstName}</p>
-            <p>Software Engineer</p>
-            <p>mark-stanton@gmail.com</p>
-            <p>(+63)000-000-0000</p>
-            <p>123 ABC Sample Street, Country 0000</p>
-            <p>www.my-url.com</p>
+            <DisplayPersonalInfo 
+              lastName={lastName}
+              firstName={firstName}
+              jobTitle="Software Engineer"
+              inputEmail={inputEmail}
+            />
           </div>
         </section>
       </div>

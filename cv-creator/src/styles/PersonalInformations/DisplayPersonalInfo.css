@@ -1,0 +1,9 @@
+.personal-detail-entry{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.personal-detail-entry img {
+    width: 2.5%;
+    margin-right: 0.75vmin;
+}
