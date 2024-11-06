@@ -9,7 +9,7 @@ import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPe
 
 export default function App() {
   //declare functions for logics to be passed to components
-  console.log(cvData)
+  console.log(cvData.personalInformations)
   const [personalInformations, setFirstName] = useState(cvData.personalInformations);
 
   function processpersonalInfoChanges(e) {
@@ -35,11 +35,7 @@ export default function App() {
         </section>
         <section className="preview-section">
           <div className="personal-info-display">
-            <DisplayPersonalInfo 
-              lastName={lastName}
-              firstName={firstName}
-              jobTitle="Software Engineer"
-              inputEmail={inputEmail}
+            <DisplayPersonalInfo
             />
           </div>
         </section>

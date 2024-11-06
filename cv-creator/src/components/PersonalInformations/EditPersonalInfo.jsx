@@ -1,7 +1,8 @@
 import { Inputs } from "../Inputs.jsx";
 
-export function EditPersonalInfo (props) {
-    const {firstName, lastName, jobTitle, inputEmail, contactNumber, inputAddress, inputWebsite, handleChange} = props
+export function EditPersonalInfo ({props}) {
+    let {firstName, lastName, jobTitle, inputEmail, contactNumber, inputAddress, inputWebsite, handleChange} = props
+    console.log(props.firstName)
     return (
         <>
         <form>
