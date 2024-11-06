@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./styles/App.css";
+import { cvData } from "./components/data.js";
 import { Header } from "./components/Header.jsx";
 import { WebsiteInfo } from "./components/WebsiteInfo.jsx";
 import { Controls } from "./components/Controls.jsx";
@@ -8,18 +9,12 @@ import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPe
 
 export default function App() {
   //declare functions for logics to be passed to components
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [inputEmail, setInputEmail] = useState('');
+  console.log(cvData)
+  const [personalInformations, setFirstName] = useState(cvData.personalInformations);
 
-  function handleFirstName(e) {
+  function processpersonalInfoChanges(e) {
+    const { key } = e.target.dataset.key
     setFirstName(e.target.value)
-  }
-  function handleLastName(e) {
-    setLastName(e.target.value)
-  }
-  function handleInputEmail(e) {
-    setInputEmail(e.target.value)
   }
   return (
     <>
@@ -32,13 +27,8 @@ export default function App() {
         <section className="edit-section">
           <div className="edit-information">
             <div className="edit-personal-info">
-              <EditPersonalInfo 
-                firstName={firstName}
-                onChangeFirst={handleFirstName}
-                lastName={lastName}
-                onChangeLast={handleLastName}
-                email={inputEmail}
-                onChangeEmail={handleInputEmail}
+              <EditPersonalInfo
+                props={personalInformations}
               />
             </div>
           </div>
