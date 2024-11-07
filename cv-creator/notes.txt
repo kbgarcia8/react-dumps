@@ -1,9 +1,9 @@
-Task: Make relationship of personal info details form and display
-Components: EditPersonalInfo, DisplayPersonalInfo 
-Needed Knowledge: useState render onChange of form
-Left Off: Create an object for Sample fill as shown by reference
-          Fix conditional return of p tags in DisplayPersonalInfo.jsx
-Next: 
+Task: Education Section
+- Edit Section
+    -- Design of forms then when add button is clicked will popup form
+    -- Entry with Edit button at Edit Section
+        --- Make sample entry on data.js
+- Display Section
 
-Task: Make relationsship of Education Details form and details
-Needed Knowledge: useState render onChange of form and useState render onSave/onSubmit of a form
+Task: Slider
+- Do once have two edit sections already

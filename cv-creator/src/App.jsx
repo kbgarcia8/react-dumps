@@ -9,12 +9,14 @@ import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPe
 
 export default function App() {
   //declare functions for logics to be passed to components
-  console.log(cvData.personalInformations)
-  const [personalInformations, setFirstName] = useState(cvData.personalInformations);
+  const personalData = cvData.personalInformations;
+  const [personalInformations, setPersonalInformations] =
+    useState(personalData);
 
   function processpersonalInfoChanges(e) {
-    const { key } = e.target.dataset.key
-    setFirstName(e.target.value)
+    const { key } = e.target.dataset;
+
+    setPersonalInformations({ ...personalInformations, [key]: e.target.value });
   }
   return (
     <>
@@ -27,16 +29,26 @@ export default function App() {
         <section className="edit-section">
           <div className="edit-information">
             <div className="edit-personal-info">
+              <div className="edit-panel-opener">
+                <span>Personal Information</span>
+                <button>
+                  <img
+                    src="/src/assets/double-arrow.svg"
+                    alt="double-arrow-icon"
+                  />
+                </button>
+                <div className="edit-panel-divider"></div>
+              </div>
               <EditPersonalInfo
                 props={personalInformations}
+                handleChange={processpersonalInfoChanges}
               />
             </div>
           </div>
         </section>
         <section className="preview-section">
           <div className="personal-info-display">
-            <DisplayPersonalInfo
-            />
+            <DisplayPersonalInfo props={personalInformations} />
           </div>
         </section>
       </div>
