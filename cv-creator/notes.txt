@@ -1,9 +1,14 @@
+Task: Forms component
+- Include button for Delete, Cancel and Save
+
 Task: Education Section
 - Edit Section
-    -- Design of forms then when add button is clicked will popup form
+    -- Design of forms
+        --- Add button for adding of form
     -- Entry with Edit button at Edit Section
         --- Make sample entry on data.js
 - Display Section
 
 Task: Slider
 - Do once have two edit sections already
+- Animate display or transform: scale of div containing edit info forms
