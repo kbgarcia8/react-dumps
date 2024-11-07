@@ -6,6 +6,7 @@ import { WebsiteInfo } from "./components/WebsiteInfo.jsx";
 import { Controls } from "./components/Controls.jsx";
 import { EditPersonalInfo } from "./components/PersonalInformations/EditPersonalInfo.jsx";
 import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPersonalInfo.jsx";
+import { PanelOpener } from "./components/PanelOpener.jsx";
 
 export default function App() {
   //declare functions for logics to be passed to components
@@ -28,21 +29,16 @@ export default function App() {
         </section>
         <section className="edit-section">
           <div className="edit-information">
-            <div className="edit-personal-info">
-              <div className="edit-panel-opener">
-                <span>Personal Information</span>
-                <button>
-                  <img
-                    src="/src/assets/double-arrow.svg"
-                    alt="double-arrow-icon"
-                  />
-                </button>
-                <div className="edit-panel-divider"></div>
-              </div>
+            <div className="personal-info-form">
+              <PanelOpener text="Personal Information"/>
               <EditPersonalInfo
                 props={personalInformations}
                 handleChange={processpersonalInfoChanges}
               />
+            </div>
+            <div className="educational-info-form">
+              <PanelOpener text="Educational Background"/>
+              
             </div>
           </div>
         </section>

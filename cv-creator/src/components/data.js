@@ -2,7 +2,7 @@ export const cvData = {
     personalInformations: {
         firstName: 'John',
         lastName: 'Wick',
-        jobTitle: 'Software Engineer',
+        jobTitle: 'Web Developer',
         inputEmail: 'jonathan-wick@gmail.com',
         contactNumber: '(+63)912-345-6789',
         inputAddress: 'Tennessee(TN), 38369',

@@ -1,3 +1,6 @@
+Task: Slider
+- Animate display or transform: scale of div containing edit info forms
+    -- Try to apply logic of show and hide on state
 Task: Forms component
 - Include button for Delete, Cancel and Save
 
@@ -8,7 +11,3 @@ Task: Education Section
     -- Entry with Edit button at Edit Section
         --- Make sample entry on data.js
 - Display Section
-
-Task: Slider
-- Do once have two edit sections already
-- Animate display or transform: scale of div containing edit info forms
