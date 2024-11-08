@@ -44,6 +44,8 @@ export default function App() {
             // margin-top: -100% to 0% is not advisable*/
           });
     }
+    const openBtn = document.getElementById("edit-panel-btn-img");
+    openBtn.classList.toggle("rotated");
   }
   function stopPropagationonChild(e) {
     e.stopPropagation();
