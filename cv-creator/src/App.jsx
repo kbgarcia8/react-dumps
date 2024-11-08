@@ -9,16 +9,46 @@ import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPe
 import { PanelOpener } from "./components/PanelOpener.jsx";
 
 export default function App() {
-  //declare functions for logics to be passed to components
+  /* Variable/Function/States */
   const personalData = cvData.personalInformations;
   const [personalInformations, setPersonalInformations] =
     useState(personalData);
 
   function processpersonalInfoChanges(e) {
     const { key } = e.target.dataset;
-
     setPersonalInformations({ ...personalInformations, [key]: e.target.value });
   }
+
+  const formisClosed = {
+    display: "none",
+    transform: "scaleY(0)",
+  };
+  const [isOpen, setisOpen] = useState(formisClosed);
+
+  function editInfoToggle() {
+    {
+      isOpen.display === "none"
+        ? setisOpen({
+            ...isOpen,
+            display: "block",
+            transform: "scaleY(1)",
+            transformOrigin: "top",
+            animation: "expand 500ms ease-in-out 1",
+          })
+        : setisOpen({
+            ...isOpen,
+            display: "none",
+            transform: "scaleY(0)",
+            /*animation: "close 500ms ease-in-out 1",
+            //not working need to find a way to overwrite animation,
+            // margin-top: -100% to 0% is not advisable*/
+          });
+    }
+  }
+  function stopPropagationonChild(e) {
+    e.stopPropagation();
+  }
+
   return (
     <>
       <Header />
@@ -29,17 +59,15 @@ export default function App() {
         </section>
         <section className="edit-section">
           <div className="edit-information">
-            <div className="personal-info-form">
-              <PanelOpener text="Personal Information"/>
+            <PanelOpener text="Personal Information" onClick={editInfoToggle} />
+            <div id="personal-info-form" style={isOpen}>
               <EditPersonalInfo
                 props={personalInformations}
                 handleChange={processpersonalInfoChanges}
               />
             </div>
-            <div className="educational-info-form">
-              <PanelOpener text="Educational Background"/>
-              
-            </div>
+            <PanelOpener text="Educational Background" />
+            <div id="educational-info-form"></div>
           </div>
         </section>
         <section className="preview-section">

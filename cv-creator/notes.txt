@@ -1,6 +1,11 @@
 Task: Slider
 - Animate display or transform: scale of div containing edit info forms
-    -- Try to apply logic of show and hide on state
+    -- Function on opening form [DONE]
+    -- Animation and transition on opening [DONE]
+    -- Animation and transition on closing [NOT POSSIBLE for 2 switching animations]
+    -- Rotate arrow on click [ONGOING]
+    -- Try to apply logic of show and hide on state when two or more edit forms are available
+
 Task: Forms component
 - Include button for Delete, Cancel and Save
 
