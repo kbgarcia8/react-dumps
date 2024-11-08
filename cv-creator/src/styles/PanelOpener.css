@@ -5,12 +5,12 @@
     font-family: "Rubik";
     font-size: 1.25vmax;
     margin-top: 1vmin;
-  }
-  .edit-panel-opener span {
+}
+.edit-panel-opener span {
     text-align: left;
-  }
-  #edit-panel-btn,
-  #edit-panel-btn-img {
+}
+#edit-panel-btn,
+#edit-panel-btn-img {
     width: 30%;
     height: 20%;
     border: none;
@@ -18,16 +18,15 @@
     display: flex;
     justify-content: flex-end;
     will-change: transform;
-    transition: all 0.5s ease;
-  }
-  #edit-panel-btn-img.rotated {
+    transition: all 0.25s ease;
+}
+#edit-panel-btn-img.rotated {
     transform: rotate(90deg);
-  }
-  .edit-panel-divider {
+}
+.edit-panel-divider {
     width: 100%;
     height: 1%;
     border: 2px solid #000;
     background-color: #000;
-    margin-bottom: 1vmin;
-  }
-  
+    margin-bottom: 1.5vmin;
+}
