@@ -3,7 +3,7 @@ Task: Slider
     -- Function on opening form [DONE]
     -- Animation and transition on opening [DONE]
     -- Animation and transition on closing [NOT POSSIBLE for 2 switching animations]
-    -- Rotate arrow on click [ONGOING]
+    -- Rotate arrow on click [DONE]
     -- Try to apply logic of show and hide on state when two or more edit forms are available
 
 Task: Forms component
