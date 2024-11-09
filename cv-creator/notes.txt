@@ -14,7 +14,7 @@ Task: Education Section
         --- Include button for Delete, Cancel and Save [DONE]
         --- Add button for adding of form [DONE]
     -- Entry with Edit button at Edit Section
-        --- Make sample entry on data.js 
+        --- Make sample entry on data.js [ONGOING]
     -- Map entry (just like in todo) for each entry
     -- Functionality of Buttons
         --- 
