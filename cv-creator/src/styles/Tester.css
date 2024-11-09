@@ -1,0 +1,25 @@
+.new-form-buttons-space {
+    margin-top: 1vmin;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.form-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 30%;
+}
+.form-button span {
+    font-size: 1.25vmin;
+}
+.form-button img {
+    width: 35%;
+}
+#add-educ-info{
+    width: 25%;
+    border-radius: 50%;
+}
+#add-educ-info img{
+    width: 100%;
+}

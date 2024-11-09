@@ -1,4 +1,4 @@
-button {
+.button {
   width: 75%;
   min-height: 75%;
   display: flex;
@@ -8,6 +8,6 @@ button {
   font-family: "Rubik";
   font-size: 1.25vmin;
 }
-button img {
+.button img {
   width: 25%;
 }

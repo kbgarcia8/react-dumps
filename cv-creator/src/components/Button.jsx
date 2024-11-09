@@ -1,17 +1,20 @@
 import "../styles/Button.css";
 
 export function Button({
-  text = "Click Me!",
+  text,
   source = "/src/assets/no-image.svg",
   alt = "no-image",
+  className = "button",
+  id,
+  buttonType,
   processClick
 }) {
 
   return (
     <>
-      <button onClick={() => processClick()}>
+      <button onClick={processClick} className={className} id={id} type={buttonType}>
         <img src={source} alt={alt} />
-        <span>{text}</span>
+        {text && <span>{text}</span>}
       </button>
     </>
   );

@@ -8,14 +8,14 @@ Task: Slider
         --- Add data-index to panelOpeners [DONE]
         --- Arrow rotates one at a time based on index [DONE]
         --- Forms displays one at a time accordingly [DONE]
-
-Task: Forms component
-- Include button for Delete, Cancel and Save
-
 Task: Education Section
 - Edit Section
-    -- Design of forms
-        --- Add button for adding of form
+    -- Design of Forms
+        --- Include button for Delete, Cancel and Save [DONE]
+        --- Add button for adding of form [DONE]
     -- Entry with Edit button at Edit Section
-        --- Make sample entry on data.js
+        --- Make sample entry on data.js 
+    -- Map entry (just like in todo) for each entry
+    -- Functionality of Buttons
+        --- 
 - Display Section
