@@ -12,10 +12,13 @@ Task: Education Section
 - Edit Section
     -- Design of Forms
         --- Include button for Delete, Cancel and Save [DONE]
-        --- Add button for adding of form [DONE]
+        --- Add button for adding of form [ONGOING]
+        --- Hide form until edit is clicked 
     -- Entry with Edit button at Edit Section
-        --- Make sample entry on data.js [ONGOING]
-    -- Map entry (just like in todo) for each entry
+        --- Make sample entry on data.js [DONE]
+    -- Map object (just like in todo) for each entry [DONE]
+    -- Function to process onChange [DONE]
     -- Functionality of Buttons
-        --- 
-- Display Section
+        --- Delete Entry [ONGOING]
+        --- Add Entry 
+- Display Section 
