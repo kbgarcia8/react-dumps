@@ -69,12 +69,15 @@ export function EditEducInfo({
                             alt="delete-form"
                             className="form-button"
                             id={`delete-educ-info-${id}`}
+                            buttonType="button"
+                            processClick={EducInfoDeletion}
                         />
                         <Button 
                             text="Cancel"
                             source="/src/assets/handle-x.svg"
                             alt="cancel-edit"
                             className="form-button"
+                            buttonType="button"
                             id={`cancel-educ-info-${id}`}                        
                         />
                         <Button 
@@ -82,8 +85,8 @@ export function EditEducInfo({
                             source="/src/assets/check-one.svg"
                             alt="save-form"
                             className="form-button"
-                            id={`save-educ-info-${id}`}
-                            buttonType="submit"                
+                            buttonType="submit"  
+                            id={`save-educ-info-${id}`}                                        
                         />
                     </div>
                 </fieldset>                

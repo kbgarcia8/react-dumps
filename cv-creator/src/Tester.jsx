@@ -20,8 +20,9 @@ export default function Tester() {
         //educInformations.map(info => console.log(info))
     }
 
-    function deleteEducEntry() {
-        
+    function deleteEducEntry(e) {
+        console.log(`This is the delete button ${e.target.id}`)
+        //CONTINUE THIS
     }
     
     //console.log(crypto.randomUUID())
@@ -32,7 +33,7 @@ export default function Tester() {
                 key={educInformation.id}
                 props={educInformation}
                 handleEducInfoChange={processEducInfoChange}
-                
+                EducInfoDeletion={deleteEducEntry}
             />
             ))}
             <Button 
