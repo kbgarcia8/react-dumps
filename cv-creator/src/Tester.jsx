@@ -8,7 +8,7 @@ export default function Tester() {
   const educInfos = cvData.educationalInformations;
   const [educInformations, setEducInformations] = useState(educInfos);
   const [editingEducPanel, setEditingEducPanel] = useState(null);
-
+  //localStorage.setItem('savedEducInfos', JSON.stringify(educInformations))
   function processEducInfoChange(e) {
     const changedFormId = parseInt(e.target.closest("form").id);
     const { key } = e.target.dataset;
@@ -27,12 +27,12 @@ export default function Tester() {
 
 function deleteEducEntry(e) {
   const deletedFormId = parseInt(e.target.closest("form").id);
-  setEducInformations(
-    educInformations.filter(
-      (educInformation) => educInformation.id !== deletedFormId
-    )
-    );
-    localStorage.setItem('savedEducInfos', JSON.stringify(educInformations))
+  const filteredInfo = educInformations.filter(
+    (educInformation) => educInformation.id !== deletedFormId
+  )
+  setEducInformations(filteredInfo);
+    console.log(educInformations)
+    localStorage.setItem('savedEducInfos', JSON.stringify(filteredInfo))
 }
 
 function cancelEditEducEntry() {
