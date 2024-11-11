@@ -7,7 +7,8 @@ Task: Slider
     -- Logic of only 1 section is active per click
         --- Add data-index to panelOpeners [DONE]
         --- Arrow rotates one at a time based on index [DONE]
-        --- Forms displays one at a time accordingly [DONE]
+        --- Forms displays one at a time accordingly
+            ---- For fix of extra state issue causing need of double click [ONGOING]
 Task: Education Section
 - Edit Section
     -- Design of Forms
