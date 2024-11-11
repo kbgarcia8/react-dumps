@@ -19,7 +19,6 @@ export default function Tester() {
           : educInformation
       )
     );
-    console.log(educInformations)
   }
 
   function editEducEntryToggle(e) {
@@ -27,13 +26,13 @@ export default function Tester() {
   }
 
 function deleteEducEntry(e) {
-  console.log(`This is the delete button ${e.target.id}`);
   const deletedFormId = parseInt(e.target.closest("form").id);
   setEducInformations(
     educInformations.filter(
       (educInformation) => educInformation.id !== deletedFormId
     )
     );
+    localStorage.setItem('savedEducInfos', JSON.stringify(educInformations))
 }
 
 function cancelEditEducEntry() {
@@ -45,7 +44,12 @@ function cancelEditEducEntry() {
 
 function saveEditEducEntry(e) {
     e.preventDefault()
-    localStorage.setItem('savedEducInfos', JSON.stringify(educInfos))
+    setEditingEducPanel(null)
+    localStorage.setItem('savedEducInfos', JSON.stringify(educInformations))
+}
+
+function addEducEntry() {
+    console.log('entry has been added')
 }
 
   //console.log(crypto.randomUUID())
@@ -68,6 +72,7 @@ function saveEditEducEntry(e) {
         source="/src/assets/plus.svg"
         alt="add-educ-info"
         id="add-educ-info"
+        processClick={addEducEntry}
       />
     </div>
   );
