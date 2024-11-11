@@ -1,18 +1,39 @@
-.new-form-buttons-space {
+.educ-info-entry {
+	border: 2px solid #000;
+	border-radius: 0.25rem;
+	padding: 0.25rem;
+  }
+  #edit-educ-info-btn {
+	width: 5.5%;
+	border: none;
+	background-color: transparent;
+  }
+  #edit-educ-info-btn img {
+	width: 100%;
+  }
+  .educ-info-entry-header {
+	display: flex;
+	font-family: "Rubik";
+	font-size: 2vmin;
+	align-items: center;
+	justify-content: space-around;
+  }
+  .new-form-buttons-space {
 	margin-top: 1vmin;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-}
-.form-button {
+  }
+  .form-button {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	min-width: 30%;
-}
-.form-button span {
+  }
+  .form-button span {
 	font-size: 1.25vmin;
-}
-.form-button img {
+  }
+  .form-button img {
 	width: 35%;
-}
+  }
+  

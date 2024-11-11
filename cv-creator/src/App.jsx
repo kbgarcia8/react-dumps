@@ -19,14 +19,14 @@ export default function App() {
     setPersonalInformations({ ...personalInformations, [key]: e.target.value });
   }
 
-  const formVisibilityStyle = {
+  const panelVisibilityStyle = {
     display: "none",
     transform: "scaleY(0)",
   };
-  const [isFormVisible, setIsFormVisible] = useState(formVisibilityStyle);
-  const [openIndex, setOpenIndex] = useState(0)  
+  const [isPanelVisible, setIsPanelVisible] = useState(panelVisibilityStyle);
+  const [openIndex, setOpenIndex] = useState(null) 
 
-  function editInfoToggle(e) {
+  function panelToggle(e) {
     setOpenIndex(e.target.dataset.index)
     const openBtns = document.querySelectorAll("#edit-panel-btn-img");
     openBtns.forEach((openBtn,index) => {
@@ -37,21 +37,18 @@ export default function App() {
       }
     })
     {
-      isFormVisible.display === "none"
-        ? setIsFormVisible({
-            ...isFormVisible,
+      isPanelVisible.display === "none"
+        ? setIsPanelVisible({
+            ...isPanelVisible,
             display: "block",
             transform: "scaleY(1)",
             transformOrigin: "top",
             animation: "expand 500ms ease-in-out 1",
           })
-        : setIsFormVisible({
-            ...isFormVisible,
+        : setIsPanelVisible({
+            ...isPanelVisible,
             display: "none",
             transform: "scaleY(0)",
-            /*animation: "close 500ms ease-in-out 1",
-            //not working need to find a way to overwrite animation,
-            // margin-top: -100% to 0% is not advisable*/
           });
     }
   }
@@ -71,10 +68,10 @@ export default function App() {
           <div className="edit-information">
             <PanelOpener 
               text="Personal Information"
-              onClick={editInfoToggle}
+              onClick={panelToggle}
               dataIndex={0}
             />
-            <div id="personal-info-form" style={isFormVisible}>
+            <div id="personal-info-panel" style={isPanelVisible}>
               <EditPersonalInfo
                 props={personalInformations}
                 handleChange={processpersonalInfoChanges}
@@ -83,10 +80,10 @@ export default function App() {
             </div>
             <PanelOpener
               text="Educational Background"
-              onClick={editInfoToggle}
+              onClick={panelToggle}
               dataIndex={1}
             />
-            <div id="educational-info-form" style={isFormVisible}>
+            <div id="educational-info-panel" style={isPanelVisible}>
               
             </div>
           </div>
