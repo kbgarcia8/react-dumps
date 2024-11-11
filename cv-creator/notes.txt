@@ -19,7 +19,7 @@ Task: Education Section
     -- Map object (just like in todo) for each entry [DONE]
     -- Function to process onChange [DONE]
     -- Functionality of Buttons
-        --- Delete Entry [ONGOING]
+        --- Delete Entry, also save to local storage as basis if cancelled [DONE]
         --- Cancel Edit and revert back unsaved datas [DONE]
         --- Save data to local storage as basis if cancelled [DONE]
         --- Add Entry [ONGOING]
