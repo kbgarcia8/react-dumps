@@ -20,5 +20,7 @@ Task: Education Section
     -- Function to process onChange [DONE]
     -- Functionality of Buttons
         --- Delete Entry [ONGOING]
-        --- Add Entry 
+        --- Cancel Edit and revert back unsaved datas [DONE]
+        --- Save data to local storage as basis if cancelled [DONE]
+        --- Add Entry [ONGOING]
 - Display Section 
