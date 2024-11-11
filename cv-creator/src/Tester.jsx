@@ -7,13 +7,7 @@ import { useState, useEffect } from "react";
 export default function Tester() {
   const educInfos = cvData.educationalInformations;
   const [educInformations, setEducInformations] = useState(educInfos);
-  const [editingEducPanel, setEditingEducPanel] = useState({
-    activePanel: null,
-    panelVisibilityStyle: {
-      display: "none",
-      transform: "scaleY(0)",
-    },
-  });
+  const [editingEducPanel, setEditingEducPanel] = useState(null);
 
   function processEducInfoChange(e) {
     const changedFormId = parseInt(e.target.closest("form").id);
@@ -25,39 +19,34 @@ export default function Tester() {
           : educInformation
       )
     );
-  }
-
-  function deleteEducEntry(e) {
-    console.log(`This is the delete button ${e.target.id}`);
-    const deletedFormId = parseInt(e.target.closest("form").id);
-    setEducInformations(
-      educInformations.filter(
-        (educInformation) => educInformation.id !== deletedFormId
-      )
-    );
+    console.log(educInformations)
   }
 
   function editEducEntryToggle(e) {
-    setEditingEducPanel((prevEditingEducPanel) => ({
-      ...prevEditingEducPanel,
-      ["activePanel"]: parseInt(e.target.dataset.index),
-      ["panelVisibilityStyle"]: {
-        display:
-          prevEditingEducPanel["panelVisibilityStyle"].display === "none"
-            ? "block"
-            : "none",
-        transform:
-          prevEditingEducPanel["panelVisibilityStyle"].display === "none"
-            ? "scaleY(1)"
-            : "scaleY(0)",
-        transformOrigin: "top",
-        animation:
-          prevEditingEducPanel["panelVisibilityStyle"].display === "none"
-            ? "expand 500ms ease-in-out 1"
-            : "none",
-      },
-    }));
+    setEditingEducPanel(parseInt(e.target.dataset.index));
   }
+
+function deleteEducEntry(e) {
+  console.log(`This is the delete button ${e.target.id}`);
+  const deletedFormId = parseInt(e.target.closest("form").id);
+  setEducInformations(
+    educInformations.filter(
+      (educInformation) => educInformation.id !== deletedFormId
+    )
+    );
+}
+
+function cancelEditEducEntry() {
+    setEditingEducPanel(null)
+    const retrievedEducInfos = localStorage.getItem('savedEducInfos') || []
+    const parsedRetrievedData = JSON.parse(retrievedEducInfos)
+    setEducInformations(parsedRetrievedData)
+}
+
+function saveEditEducEntry(e) {
+    e.preventDefault()
+    localStorage.setItem('savedEducInfos', JSON.stringify(educInfos))
+}
 
   //console.log(crypto.randomUUID())
   return (
@@ -67,15 +56,16 @@ export default function Tester() {
           key={educInformation.id}
           props={educInformation}
           onClickEdit={editEducEntryToggle}
-          isEditing={editingEducPanel.activePanel === educInformation.id}
-          isFormVisible={editingEducPanel.panelVisibilityStyle}
+          isEditing={editingEducPanel === educInformation.id}
           handleEducInfoChange={processEducInfoChange}
           EducInfoDeletion={deleteEducEntry}
+          EducInfoCancelEdit={cancelEditEducEntry}
+          EducInfoSaveEdit={saveEditEducEntry}
         />
       ))}
       <Button
         text=""
-        source="assets/plus.svg"
+        source="/src/assets/plus.svg"
         alt="add-educ-info"
         id="add-educ-info"
       />
