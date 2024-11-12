@@ -21,7 +21,7 @@ export default function App() {
   const [openIndex, setOpenIndex] = useState(null);
 
   function panelToggle(e) {
-    setOpenIndex(e.target.dataset.index);
+    setOpenIndex(parseInt(e.target.dataset.index));
     const openBtns = document.querySelectorAll("#edit-panel-btn-img");
     openBtns.forEach((openBtn, index) => {
       if (openBtns[index] == openBtns[e.target.dataset.index]) {
