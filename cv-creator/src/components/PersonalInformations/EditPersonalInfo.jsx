@@ -1,6 +1,6 @@
 import { Inputs } from "../Inputs.jsx";
 
-export function EditPersonalInfo({ props, handleChange, isShown }) {
+export function EditPersonalInfo({ props, handleChange, isShown, formId }) {
   const {
     firstName,
     lastName,
@@ -12,8 +12,8 @@ export function EditPersonalInfo({ props, handleChange, isShown }) {
   } = props;
   return (
     <>
-      {isShown && 
-        (<form>
+      {isShown && (
+        <form id={formId}>
           <fieldset>
             <legend></legend>
             <Inputs
@@ -90,8 +90,8 @@ export function EditPersonalInfo({ props, handleChange, isShown }) {
               onChange={handleChange}
             />
           </fieldset>
-        </form>)
-      }
+        </form>
+      )}
     </>
   );
 }
