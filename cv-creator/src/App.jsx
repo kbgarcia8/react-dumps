@@ -55,7 +55,7 @@ export default function App() {
               <EditPersonalInfo
                 props={personalInformations}
                 handleChange={processpersonalInfoChanges}
-                isShown={openIndex == 0}
+                isShown={openIndex === 0}
                 formId="personal-info-panel"
               />
             </div>
