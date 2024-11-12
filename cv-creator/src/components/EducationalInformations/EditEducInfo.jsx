@@ -33,7 +33,7 @@ export function EditEducInfo({
         <div className="educ-info-entry-header">
           <span>{universityName}</span>
           <button id="edit-educ-info-btn" onClick={onClickEdit}>
-            <img src="assets/edit.svg" alt="edit-entry" data-index={id} />
+            <img src="src/assets/edit.svg" alt="edit-entry" data-index={id} />
           </button>
         </div>
         <p>
@@ -82,7 +82,7 @@ export function EditEducInfo({
             <div className="new-form-buttons-space">
               <Button
                 text="Delete"
-                source="assets/delete.svg"
+                source="src/assets/delete.svg"
                 alt="delete-form"
                 className="form-button"
                 id={`delete-educ-info-${id}`}
@@ -91,7 +91,7 @@ export function EditEducInfo({
               />
               <Button
                 text="Cancel"
-                source="assets/handle-x.svg"
+                source="src/assets/handle-x.svg"
                 alt="cancel-edit"
                 className="form-button"
                 id={`cancel-educ-info-${id}`}
@@ -100,7 +100,7 @@ export function EditEducInfo({
               />
               <Button
                 text="Save"
-                source="assets/check-one.svg"
+                source="src/assets/check-one.svg"
                 alt="save-form"
                 className="form-button"
                 id={`save-educ-info-${id}`}

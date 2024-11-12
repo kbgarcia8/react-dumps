@@ -3,25 +3,3 @@
   flex-direction: column;
   row-gap: 0.5vmin;
 }
-.educ-info-entry{
-  border: 2px solid #000;
-  border-radius: 0.25rem;
-  padding: 0.25rem;
-}
-.educ-info-entry img{
-  width: 5.5%;
-}
-.educ-info-entry-header{
-  display: flex;
-  font-family: "Rubik";
-  font-size: 2vmin;
-  align-items: center;
-  justify-content: space-around;
-}
-#add-educ-info{
-  width: 25%;
-  border-radius: 50%;
-}
-#add-educ-info img{
-  width: 100%;
-}

@@ -1,17 +1,26 @@
 .personal-detail-entry {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
+    font-size: 1vmax;    
   }
   .personal-detail-entry img {
     width: 2.5%;
     margin-right: 0.75vmin;
   }
-  #full-name {
+  #full-name-display {
     font-size: 2vmax;
     font-weight: 900;
+    justify-content: center;
   }
-  #job-title {
+  #job-title-display {
     font-size: 1.25vmax;
+    justify-content: center;
   }
-  
+  .contact-details-space{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    margin-left: 37.5%;
+  }

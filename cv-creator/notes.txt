@@ -8,20 +8,26 @@ Task: Slider
         --- Add data-index to panelOpeners [DONE]
         --- Arrow rotates one at a time based on index [DONE]
         --- Forms displays one at a time accordingly
-            ---- For fix of extra state issue causing need of double click [ONGOING]
+            ---- For fix of extra state issue causing need of double click [DONE]
+Task: Personal Info Section
+- Display Section
+    -- Restructure design [DONE]
+    -- Need to apply adaptive change of color for background
+    of personal info and svg icon colors [NOT STARTED]
+
 Task: Education Section
 - Edit Section
     -- Design of Forms
         --- Include button for Delete, Cancel and Save [DONE]
-        --- Add button for adding of form [ONGOING]
-        --- Hide form until edit is clicked 
+        --- useState to hide form until edit is clicked [DONE]
     -- Entry with Edit button at Edit Section
         --- Make sample entry on data.js [DONE]
     -- Map object (just like in todo) for each entry [DONE]
     -- Function to process onChange [DONE]
     -- Functionality of Buttons
-        --- Delete Entry, also save to local storage as basis if cancelled [DONE]
+        --- Delete Entry, save to local storage as basis if cancelled [DONE]
         --- Cancel Edit and revert back unsaved datas [DONE]
-        --- Save data to local storage as basis if cancelled [DONE]
-        --- Add Entry [ONGOING]
-- Display Section 
+        --- Save data also save to local storage as basis if cancelled [DONE]
+        --- Add Entry and save also to local storage [DONE]
+    -- Transfer Tester component to main App and debug if necessary [DONE]
+- Display Section [ONGOING]

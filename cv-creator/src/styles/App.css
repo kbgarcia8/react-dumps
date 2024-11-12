@@ -1,7 +1,7 @@
 .main {
   max-width: 90vw;
   min-height: 80vh;
-  padding: 1vw;
+  padding: 2vmax;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 2fr;
@@ -11,7 +11,7 @@
   grid-area: 1 / 1 / 2 / 2;
   display: flex;
   flex-direction: column;
-  row-gap: 3vmax;
+  row-gap: 2.5vmax;
   max-width: 80%;
   height: auto;
 }
@@ -23,7 +23,7 @@
   max-width: 100%;
   height: auto;
 }
-.edit-information {
+.edit-information-panels {
   max-width: 80%;
   height: 75vh;
   padding: 5%;
@@ -38,16 +38,33 @@
   max-width: 100%;
   animation: expand 250ms ease 1;
   transform-origin: top;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5vmin;
+}
+.add-educ-info-btn-space{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+#add-educ-info-btn{
+	width: 12.5%;
+	border-radius: 50%;
+}
+#add-educ-info-btn img{
+	width: 100%;
 }
 .preview-section {
   grid-area: 1 / 2 / 3 / 3;
   max-width: 100%;
   min-height: 50vh;
-  padding: 2.5%;
   -webkit-box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
   -moz-box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
   box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
   overflow-y: auto;
+}
+.personal-info-display {
+  background-color: var(--primary1);
 }
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
