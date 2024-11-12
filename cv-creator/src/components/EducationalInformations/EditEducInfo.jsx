@@ -27,7 +27,6 @@ export function EditEducInfo({
   const formattedEndDate = `${rawEndDate.toLocaleString("default", {
     month: "short",
   })} ${rawEndDate.getFullYear()}`;
-  console.log(isNaN(rawStartDate));
   return (
     <>
       <div className="educ-info-entry" id={id}>
