@@ -1,9 +1,17 @@
-.personal-detail-entry{
+.personal-detail-entry {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.personal-detail-entry img {
+  }
+  .personal-detail-entry img {
     width: 2.5%;
     margin-right: 0.75vmin;
-}
+  }
+  #full-name {
+    font-size: 2vmax;
+    font-weight: 900;
+  }
+  #job-title {
+    font-size: 1.25vmax;
+  }
+  
