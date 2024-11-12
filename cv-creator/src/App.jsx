@@ -18,40 +18,20 @@ export default function App() {
     const { key } = e.target.dataset;
     setPersonalInformations({ ...personalInformations, [key]: e.target.value });
   }
-
-  const panelVisibilityStyle = {
-    display: "none",
-    transform: "scaleY(0)",
-  };
-  const [isPanelVisible, setIsPanelVisible] = useState(panelVisibilityStyle);
-  const [openIndex, setOpenIndex] = useState(null) 
+  const [openIndex, setOpenIndex] = useState(null);
 
   function panelToggle(e) {
-    setOpenIndex(e.target.dataset.index)
+    setOpenIndex(e.target.dataset.index);
     const openBtns = document.querySelectorAll("#edit-panel-btn-img");
-    openBtns.forEach((openBtn,index) => {
-      if(openBtns[index]==openBtns[e.target.dataset.index]) {
-        openBtns[e.target.dataset.index].classList.toggle("rotated");                
+    openBtns.forEach((openBtn, index) => {
+      if (openBtns[index] == openBtns[e.target.dataset.index]) {
+        openBtns[e.target.dataset.index].classList.toggle("rotated");
       } else {
-        openBtns[index].classList.remove("rotated")
+        openBtns[index].classList.remove("rotated");
       }
-    })
-    {
-      isPanelVisible.display === "none"
-        ? setIsPanelVisible({
-            ...isPanelVisible,
-            display: "block",
-            transform: "scaleY(1)",
-            transformOrigin: "top",
-            animation: "expand 500ms ease-in-out 1",
-          })
-        : setIsPanelVisible({
-            ...isPanelVisible,
-            display: "none",
-            transform: "scaleY(0)",
-          });
-    }
+    });
   }
+
   function stopPropagationonChild(e) {
     e.stopPropagation();
   }
@@ -66,16 +46,17 @@ export default function App() {
         </section>
         <section className="edit-section">
           <div className="edit-information">
-            <PanelOpener 
+            <PanelOpener
               text="Personal Information"
               onClick={panelToggle}
               dataIndex={0}
             />
-            <div id="personal-info-panel" style={isPanelVisible}>
+            <div id="personal-info-panel">
               <EditPersonalInfo
                 props={personalInformations}
                 handleChange={processpersonalInfoChanges}
                 isShown={openIndex == 0}
+                formId="personal-info-panel"
               />
             </div>
             <PanelOpener
@@ -83,16 +64,12 @@ export default function App() {
               onClick={panelToggle}
               dataIndex={1}
             />
-            <div id="educational-info-panel" style={isPanelVisible}>
-              
-            </div>
+            <div id="educational-info-panel">Sample Text here</div>
           </div>
         </section>
         <section className="preview-section">
           <div className="personal-info-display">
-            <DisplayPersonalInfo
-              props={personalInformations}
-            />
+            <DisplayPersonalInfo props={personalInformations} />
           </div>
         </section>
       </div>
