@@ -31,7 +31,6 @@ export default function Tester() {
       (educInformation) => educInformation.id !== deletedFormId
     );
     setEducInformations(filteredInfo);
-    console.log(educInformations);
     localStorage.setItem("savedEducInfos", JSON.stringify(filteredInfo));
   }
 
@@ -67,7 +66,6 @@ export default function Tester() {
       "savedEducInfos",
       JSON.stringify([...educInformations, newEducInfoEntry])
     );
-    console.log(educInformations);
   }
   return (
     <div className="test-container">
