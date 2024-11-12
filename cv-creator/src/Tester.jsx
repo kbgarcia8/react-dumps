@@ -2,13 +2,13 @@ import { EditEducInfo } from "./components/EducationalInformations/EditEducInfo.
 import { Button } from "./components/Button.jsx";
 import "../src/styles/Tester.css";
 import { cvData } from "./components/data";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Tester() {
   const educInfos = cvData.educationalInformations;
   const [educInformations, setEducInformations] = useState(educInfos);
   const [editingEducPanel, setEditingEducPanel] = useState(null);
-  //localStorage.setItem('savedEducInfos', JSON.stringify(educInformations))
+
   function processEducInfoChange(e) {
     const changedFormId = parseInt(e.target.closest("form").id);
     const { key } = e.target.dataset;
@@ -25,34 +25,50 @@ export default function Tester() {
     setEditingEducPanel(parseInt(e.target.dataset.index));
   }
 
-function deleteEducEntry(e) {
-  const deletedFormId = parseInt(e.target.closest("form").id);
-  const filteredInfo = educInformations.filter(
-    (educInformation) => educInformation.id !== deletedFormId
-  )
-  setEducInformations(filteredInfo);
-    console.log(educInformations)
-    localStorage.setItem('savedEducInfos', JSON.stringify(filteredInfo))
-}
+  function deleteEducEntry(e) {
+    const deletedFormId = parseInt(e.target.closest("form").id);
+    const filteredInfo = educInformations.filter(
+      (educInformation) => educInformation.id !== deletedFormId
+    );
+    setEducInformations(filteredInfo);
+    console.log(educInformations);
+    localStorage.setItem("savedEducInfos", JSON.stringify(filteredInfo));
+  }
 
-function cancelEditEducEntry() {
-    setEditingEducPanel(null)
-    const retrievedEducInfos = localStorage.getItem('savedEducInfos') || []
-    const parsedRetrievedData = JSON.parse(retrievedEducInfos)
-    setEducInformations(parsedRetrievedData)
-}
+  function cancelEditEducEntry() {
+    setEditingEducPanel(null);
+    const retrievedEducInfos = localStorage.getItem("savedEducInfos") || [];
+    let parsedRetrievedData = null;
+    retrievedEducInfos === []
+      ? (parsedRetrievedData = JSON.parse(retrievedEducInfos))
+      : (parsedRetrievedData = educInformations);
+    setEducInformations(parsedRetrievedData);
+  }
 
-function saveEditEducEntry(e) {
-    e.preventDefault()
-    setEditingEducPanel(null)
-    localStorage.setItem('savedEducInfos', JSON.stringify(educInformations))
-}
+  function saveEditEducEntry(e) {
+    e.preventDefault();
+    setEditingEducPanel(null);
+    localStorage.setItem("savedEducInfos", JSON.stringify(educInformations));
+  }
 
-function addEducEntry() {
-    console.log('entry has been added')
-}
-
-  //console.log(crypto.randomUUID())
+  function addEducEntry() {
+    const newEducInfoEntry = {
+      id: Date.now(),
+      universityName: "",
+      degreeFinished: "",
+      educationStartDate: "",
+      educationEndDate: "",
+    };
+    setEducInformations((prevEducInformations) => [
+      ...prevEducInformations,
+      newEducInfoEntry,
+    ]);
+    localStorage.setItem(
+      "savedEducInfos",
+      JSON.stringify([...educInformations, newEducInfoEntry])
+    );
+    console.log(educInformations);
+  }
   return (
     <div className="test-container">
       {educInformations.map((educInformation) => (
@@ -69,7 +85,7 @@ function addEducEntry() {
       ))}
       <Button
         text=""
-        source="/src/assets/plus.svg"
+        source="assets/plus.svg"
         alt="add-educ-info"
         id="add-educ-info"
         processClick={addEducEntry}
