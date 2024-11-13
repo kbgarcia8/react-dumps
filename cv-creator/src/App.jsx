@@ -188,8 +188,7 @@ export default function App() {
                 <div className="education-info-additional-details">
                   <p>{educInformation.degreeFinished}</p>
                   <p>{!isNaN(new Date(educInformation.educationStartDate)) ? convertDate(educInformation.educationStartDate) : ""}-
-                  {!isNaN(new Date(educInformation.educationEndDate)) ? convertDate(educInformation.educationEndDate) : ""}</p>                  
-                  <p>{}</p>
+                  {!isNaN(new Date(educInformation.educationEndDate)) ? convertDate(educInformation.educationEndDate) : ""}</p>
                 </div>
               </div>
             ))}
