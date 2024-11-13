@@ -9,6 +9,7 @@ import { EditPersonalInfo } from "./components/PersonalInformations/EditPersonal
 import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPersonalInfo.jsx";
 import { PanelOpener } from "./components/PanelOpener.jsx";
 import { EditEducInfo } from "./components/EducationalInformations/EditEducInfo.jsx";
+import { convertDate } from "./components/misc.js";
 
 export default function App() {
   /* Main Editing Panels */
@@ -37,8 +38,9 @@ export default function App() {
   /*Educational Background Section*/
   const educInfos = cvData.educationalInformations;
   const [educInformations, setEducInformations] = useState(educInfos);
+  const [educInformationsBackup, setEducInformationsBackup] = useState(educInfos)
   const [editingEducPanel, setEditingEducPanel] = useState(null);
-
+  
   function processEducInfoChange(e) {
     const changedFormId = parseInt(e.target.closest("form").id);
     const { key } = e.target.dataset;
@@ -53,6 +55,7 @@ export default function App() {
 
   function editEducEntryToggle(e) {
     setEditingEducPanel(parseInt(e.target.dataset.index));
+    setEducInformationsBackup([...educInformations]);
   }
 
   function deleteEducEntry(e) {
@@ -65,18 +68,16 @@ export default function App() {
   }
 
   function cancelEditEducEntry() {
-    setEditingEducPanel(null);
-    const retrievedEducInfos = localStorage.getItem("savedEducInfos") || [];
-    let parsedRetrievedData = null;
-    retrievedEducInfos == []
-      ? (parsedRetrievedData = JSON.parse(retrievedEducInfos))
-      : (parsedRetrievedData = educInformations);
-    setEducInformations(parsedRetrievedData);
+    setEditingEducPanel(null)
+    const retrievedEducInfos = localStorage.getItem('savedEducInfos')
+    const parsedRetrievedData = JSON.parse(retrievedEducInfos) || educInformationsBackup
+    setEducInformations(parsedRetrievedData)
   }
 
   function saveEditEducEntry(e) {
     e.preventDefault();
     setEditingEducPanel(null);
+    setEducInformationsBackup([...educInformations]);
     localStorage.setItem("savedEducInfos", JSON.stringify(educInformations));
   }
 
@@ -103,12 +104,9 @@ export default function App() {
     color: "#FFF",
   };
   const [documentStyle, setDocumentStyle] = useState(documentPreviewStyle);
-  /*Miscellenous Functions/Variables*/
-  function stopPropagationonChild(e) {
-    e.stopPropagation();
-  }
 
   return (
+    
     <>
       <Header />
       <div className="main">
@@ -155,7 +153,7 @@ export default function App() {
                 <div className="add-educ-info-btn-space">
                   <Button
                     text=""
-                    source="assets/plus.svg"
+                    source="src/assets/plus.svg"
                     alt="add-educ-info"
                     id="add-educ-info-btn"
                     processClick={addEducEntry}
@@ -165,23 +163,28 @@ export default function App() {
             )}
           </div>
         </section>
-        <section className="preview-section" style={documentStyle}>
-          <div className="personal-info-display">
+        <section className="preview-section">
+          <div className="personal-info-display" style={documentStyle}>
             <DisplayPersonalInfo props={personalInformations} />
           </div>
           <div className="preview-divider"></div>
-          <div className="education-info-display">
+          <p id="education-display-header">Education</p>
+          <div className="education-info-display">            
             {educInformations.map((educInformation) => (
               <div
+                key={educInformation.id}
                 className="educ-entry-display"
                 id={`education-info-entry-${educInformation.id}`}
               >
                 <p className="education-info-entry-title">
                   {educInformation.universityName}
                 </p>
-                <p className="education-info-additional-details">
-                  <span></span>
-                </p>
+                <div className="education-info-additional-details">
+                  <p>{educInformation.degreeFinished}</p>
+                  <p>{!isNaN(new Date(educInformation.educationStartDate)) ? convertDate(educInformation.educationStartDate) : ""}-
+                  {!isNaN(new Date(educInformation.educationEndDate)) ? convertDate(educInformation.educationEndDate) : ""}</p>                  
+                  <p>{}</p>
+                </div>
               </div>
             ))}
           </div>
