@@ -38,30 +38,30 @@ export function DisplayPersonalInfo({ props }) {
               <path
                 d="M36 15H44V28V41H4V28V15H12"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M24 19V5"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M30 13L24 19L18 13"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M4 15L24 30L44 15"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
             <span>{inputEmail}</span>
@@ -80,20 +80,20 @@ export function DisplayPersonalInfo({ props }) {
                 d="M8 30H40V42C40 43.1046 39.1046 44 38 44H10C8.89543 44 8 43.1046 8 42V30Z"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinejoin="round"
               />
               <path
                 d="M40 30V6C40 4.89543 39.1046 4 38 4H10C8.89543 4 8 4.89543 8 6V30"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinejoin="round"
               />
               <path
                 d="M22 37H26"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linecap="round"
+                strokeWidth="4"
+                strokeLinecap="round"
               />
             </svg>
             <span>{contactNumber}</span>
@@ -112,15 +112,15 @@ export function DisplayPersonalInfo({ props }) {
                 d="M24 44C24 44 39 32 39 19C39 10.7157 32.2843 4 24 4C15.7157 4 9 10.7157 9 19C9 32 24 44 24 44Z"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinejoin="round"
               />
               <path
                 d="M24 25C27.3137 25 30 22.3137 30 19C30 15.6863 27.3137 13 24 13C20.6863 13 18 15.6863 18 19C18 22.3137 20.6863 25 24 25Z"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinejoin="round"
               />
             </svg>
             <span>{inputAddress}</span>
@@ -142,14 +142,14 @@ export function DisplayPersonalInfo({ props }) {
                 height="32"
                 rx="3"
                 stroke="currentColor"
-                stroke-width="4"
-                stroke-linejoin="round"
+                strokeWidth="4"
+                strokeLinejoin="round"
               />
               <path
                 d="M4 11C4 9.34315 5.34315 8 7 8H41C42.6569 8 44 9.34315 44 11V20H4V11Z"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="4"
+                strokeWidth="4"
               />
               <circle
                 r="2"
