@@ -31,3 +31,4 @@ Task: Education Section
         --- Add Entry and save also to local storage [DONE]
     -- Transfer Tester component to main App and debug if necessary [DONE]
 - Display Section [ONGOING]
+    -- For transform of educ display to component [NOT STARTED]
