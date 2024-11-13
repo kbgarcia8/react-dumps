@@ -1,6 +1,7 @@
 import { Inputs } from "../Inputs";
 import { Button } from "../Button";
 import "../../styles/EducationalInformations/EditEducInfo.css";
+import { convertDate } from "../misc";
 
 export function EditEducInfo({
   props,
@@ -18,15 +19,7 @@ export function EditEducInfo({
     educationStartDate,
     educationEndDate,
   } = props;
-
-  const rawStartDate = new Date(educationStartDate);
-  const formattedStartDate = `${rawStartDate.toLocaleString("default", {
-    month: "short",
-  })} ${rawStartDate.getFullYear()}`;
-  const rawEndDate = new Date(educationEndDate);
-  const formattedEndDate = `${rawEndDate.toLocaleString("default", {
-    month: "short",
-  })} ${rawEndDate.getFullYear()}`;
+  
   return (
     <>
       <div className="educ-info-entry" id={id}>
@@ -37,8 +30,8 @@ export function EditEducInfo({
           </button>
         </div>
         <p>
-          {!isNaN(rawStartDate) ? formattedStartDate : ""}-
-          {!isNaN(rawEndDate) ? formattedEndDate : ""}
+          {!isNaN(new Date(educationStartDate)) ? convertDate(educationStartDate) : ""}-
+          {!isNaN(new Date(educationEndDate)) ? convertDate(educationEndDate) : ""}
         </p>
       </div>
       {isEditing && (
