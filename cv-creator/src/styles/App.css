@@ -66,6 +66,25 @@
 .personal-info-display {
   background-color: var(--primary1);
 }
+.preview-divider {
+  border: 1px solid #adadaddd;
+  background-color: #adadaddd;
+  width: 100%;
+  height: 0.5%;
+}
+.education-info-display {
+  display: flex;
+  flex-wrap: wrap;
+  color: #000;
+}
+.educ-entry-display {
+  border: 2px solid red;
+  margin-inline: 0.75vmax;
+}
+.education-info-entry-title {
+  font-weight: 900;
+  font-size: 0.75vmax;
+}
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {

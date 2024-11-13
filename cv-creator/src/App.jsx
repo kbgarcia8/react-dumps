@@ -17,7 +17,9 @@ export default function App() {
     setOpenMainPanelIndex(parseInt(e.target.dataset.index));
     const openMainPanelBtns = document.querySelectorAll("#edit-panel-btn-img");
     openMainPanelBtns.forEach((openMainPanelBtn, index) => {
-      if (openMainPanelBtns[index] == openMainPanelBtns[e.target.dataset.index]) {
+      if (
+        openMainPanelBtns[index] == openMainPanelBtns[e.target.dataset.index]
+      ) {
         openMainPanelBtns[e.target.dataset.index].classList.toggle("rotated");
       } else {
         openMainPanelBtns[index].classList.remove("rotated");
@@ -99,8 +101,8 @@ export default function App() {
   const documentPreviewStyle = {
     fontFamily: "Rubik",
     color: "#FFF",
-  }
-  const [documentStyle, setDocumentStyle] = useState(documentPreviewStyle)
+  };
+  const [documentStyle, setDocumentStyle] = useState(documentPreviewStyle);
   /*Miscellenous Functions/Variables*/
   function stopPropagationonChild(e) {
     e.stopPropagation();
@@ -121,47 +123,67 @@ export default function App() {
               onClick={mainPanelToggle}
               dataIndex={0}
             />
-            {openMainPanelIndex === 0 && <div id="personal-info-panel">
-              <EditPersonalInfo
-                props={personalInformations}
-                handlePersonalInfoChange={processPersonalInfoChanges}
-                isPanelShown={openMainPanelIndex === 0}
-                formId="personal-info-panel"
-              />
-            </div>}
+            {openMainPanelIndex === 0 && (
+              <div id="personal-info-panel">
+                <EditPersonalInfo
+                  props={personalInformations}
+                  handlePersonalInfoChange={processPersonalInfoChanges}
+                  isPanelShown={openMainPanelIndex === 0}
+                  formId="personal-info-panel"
+                />
+              </div>
+            )}
             <PanelOpener
               text="Educational Background"
               onClick={mainPanelToggle}
               dataIndex={1}
             />
-            {openMainPanelIndex === 1 && <div id="educational-info-panel">
-            {educInformations.map((educInformation) => (
-              <EditEducInfo
-                key={educInformation.id}
-                props={educInformation}
-                onClickEdit={editEducEntryToggle}
-                isEditing={editingEducPanel === educInformation.id}
-                handleEducInfoChange={processEducInfoChange}
-                EducInfoDeletion={deleteEducEntry}
-                EducInfoCancelEdit={cancelEditEducEntry}
-                EducInfoSaveEdit={saveEditEducEntry}
-              />
-            ))}
-              <div className="add-educ-info-btn-space">
-                <Button
-                  text=""
-                  source="src/assets/plus.svg"
-                  alt="add-educ-info"
-                  id="add-educ-info-btn"
-                  processClick={addEducEntry}
-                />
+            {openMainPanelIndex === 1 && (
+              <div id="educational-info-panel">
+                {educInformations.map((educInformation) => (
+                  <EditEducInfo
+                    key={educInformation.id}
+                    props={educInformation}
+                    onClickEdit={editEducEntryToggle}
+                    isEditing={editingEducPanel === educInformation.id}
+                    handleEducInfoChange={processEducInfoChange}
+                    EducInfoDeletion={deleteEducEntry}
+                    EducInfoCancelEdit={cancelEditEducEntry}
+                    EducInfoSaveEdit={saveEditEducEntry}
+                  />
+                ))}
+                <div className="add-educ-info-btn-space">
+                  <Button
+                    text=""
+                    source="assets/plus.svg"
+                    alt="add-educ-info"
+                    id="add-educ-info-btn"
+                    processClick={addEducEntry}
+                  />
+                </div>
               </div>
-            </div>}
+            )}
           </div>
         </section>
         <section className="preview-section" style={documentStyle}>
           <div className="personal-info-display">
             <DisplayPersonalInfo props={personalInformations} />
+          </div>
+          <div className="preview-divider"></div>
+          <div className="education-info-display">
+            {educInformations.map((educInformation) => (
+              <div
+                className="educ-entry-display"
+                id={`education-info-entry-${educInformation.id}`}
+              >
+                <p className="education-info-entry-title">
+                  {educInformation.universityName}
+                </p>
+                <p className="education-info-additional-details">
+                  <span></span>
+                </p>
+              </div>
+            ))}
           </div>
         </section>
       </div>
