@@ -15,7 +15,8 @@ export default function App() {
   /* Main Editing Panels */
   const [openMainPanelIndex, setOpenMainPanelIndex] = useState(null);
   function mainPanelToggle(e) {
-    setOpenMainPanelIndex(parseInt(e.target.dataset.index));
+    const activeIndex = parseInt(e.target.dataset.index)
+    setOpenMainPanelIndex((prevIndex) => (prevIndex === activeIndex ? null : activeIndex));
     const openMainPanelBtns = document.querySelectorAll("#edit-panel-btn-img");
     openMainPanelBtns.forEach((openMainPanelBtn, index) => {
       if (
@@ -24,7 +25,7 @@ export default function App() {
         openMainPanelBtns[e.target.dataset.index].classList.toggle("rotated");
       } else {
         openMainPanelBtns[index].classList.remove("rotated");
-      }
+      }    
     });
   }
   /*Personal Information Section*/
