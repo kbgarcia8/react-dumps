@@ -42,17 +42,17 @@
   flex-direction: column;
   row-gap: 0.5vmin;
 }
-.add-educ-info-btn-space{
+.add-educ-info-btn-space {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-#add-educ-info-btn{
-	width: 12.5%;
-	border-radius: 50%;
+#add-educ-info-btn {
+  width: 10%;
+  border-radius: 50%;
 }
-#add-educ-info-btn img{
-	width: 100%;
+#add-educ-info-btn img {
+  width: 100%;
 }
 .preview-section {
   grid-area: 1 / 2 / 3 / 3;
