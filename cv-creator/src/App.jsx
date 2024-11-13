@@ -162,6 +162,11 @@ export default function App() {
                 </div>
               </div>
             )}
+            <PanelOpener
+              text="Work Experience"
+              onClick={mainPanelToggle}
+              dataIndex={2}
+            />
           </div>
         </section>
         <section className="preview-section">
