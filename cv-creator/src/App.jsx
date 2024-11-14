@@ -9,14 +9,16 @@ import { EditPersonalInfo } from "./components/PersonalInformations/EditPersonal
 import { DisplayPersonalInfo } from "./components/PersonalInformations/DisplayPersonalInfo.jsx";
 import { PanelOpener } from "./components/PanelOpener.jsx";
 import { EditEducInfo } from "./components/EducationalInformations/EditEducInfo.jsx";
-import { convertDate } from "./components/misc.js";
+import { DisplayEducInfo } from "./components/EducationalInformations/DisplayEducInfo.jsx";
 
 export default function App() {
   /* Main Editing Panels */
   const [openMainPanelIndex, setOpenMainPanelIndex] = useState(null);
   function mainPanelToggle(e) {
-    const activeIndex = parseInt(e.target.dataset.index)
-    setOpenMainPanelIndex((prevIndex) => (prevIndex === activeIndex ? null : activeIndex));
+    const activeIndex = parseInt(e.target.dataset.index);
+    setOpenMainPanelIndex((prevIndex) =>
+      prevIndex === activeIndex ? null : activeIndex
+    );
     const openMainPanelBtns = document.querySelectorAll("#edit-panel-btn-img");
     openMainPanelBtns.forEach((openMainPanelBtn, index) => {
       if (
@@ -25,7 +27,7 @@ export default function App() {
         openMainPanelBtns[e.target.dataset.index].classList.toggle("rotated");
       } else {
         openMainPanelBtns[index].classList.remove("rotated");
-      }    
+      }
     });
   }
   /*Personal Information Section*/
@@ -39,9 +41,10 @@ export default function App() {
   /*Educational Background Section*/
   const educInfos = cvData.educationalInformations;
   const [educInformations, setEducInformations] = useState(educInfos);
-  const [educInformationsBackup, setEducInformationsBackup] = useState(educInfos)
+  const [educInformationsBackup, setEducInformationsBackup] =
+    useState(educInfos);
   const [editingEducPanel, setEditingEducPanel] = useState(null);
-  
+
   function processEducInfoChange(e) {
     const changedFormId = parseInt(e.target.closest("form").id);
     const { key } = e.target.dataset;
@@ -69,10 +72,11 @@ export default function App() {
   }
 
   function cancelEditEducEntry() {
-    setEditingEducPanel(null)
-    const retrievedEducInfos = localStorage.getItem('savedEducInfos')
-    const parsedRetrievedData = JSON.parse(retrievedEducInfos) || educInformationsBackup
-    setEducInformations(parsedRetrievedData)
+    setEditingEducPanel(null);
+    const retrievedEducInfos = localStorage.getItem("savedEducInfos");
+    const parsedRetrievedData =
+      JSON.parse(retrievedEducInfos) || educInformationsBackup;
+    setEducInformations(parsedRetrievedData);
   }
 
   function saveEditEducEntry(e) {
@@ -105,9 +109,7 @@ export default function App() {
     color: "#FFF",
   };
   const [documentStyle, setDocumentStyle] = useState(documentPreviewStyle);
-
   return (
-    
     <>
       <Header />
       <div className="main">
@@ -174,24 +176,17 @@ export default function App() {
             <DisplayPersonalInfo props={personalInformations} />
           </div>
           <div className="preview-divider"></div>
-          <p id="education-display-header">Education</p>
-          <div className="education-info-display">            
-            {educInformations.map((educInformation) => (
-              <div
-                key={educInformation.id}
-                className="educ-entry-display"
-                id={`education-info-entry-${educInformation.id}`}
-              >
-                <p className="education-info-entry-title">
-                  {educInformation.universityName}
-                </p>
-                <div className="education-info-additional-details">
-                  <p>{educInformation.degreeFinished}</p>
-                  <p>{!isNaN(new Date(educInformation.educationStartDate)) ? convertDate(educInformation.educationStartDate) : ""}-
-                  {!isNaN(new Date(educInformation.educationEndDate)) ? convertDate(educInformation.educationEndDate) : ""}</p>
-                </div>
-              </div>
-            ))}
+          {Object.keys(educInformations).length !== 0 && (
+            <p id="education-display-header">Education</p>
+          )}
+          <div className="education-info-display">
+            {Object.keys(educInformations).length !== 0 &&
+              educInformations.map((educInformation) => (
+                <DisplayEducInfo
+                  key={educInformation.id}
+                  props={educInformation}
+                />
+              ))}
           </div>
         </section>
       </div>

@@ -1,0 +1,12 @@
+.educ-entry-display {
+    margin-inline: 0.75vmax;
+    margin-block: 0.5vmax;
+    text-align: left;
+}
+.education-info-entry-title {
+    font-weight: 700;
+    font-size: 1vmax;
+}
+.education-info-additional-details {
+    font-size: 0.75vmax;
+}

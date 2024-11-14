@@ -1,7 +1,7 @@
 import { Inputs } from "../Inputs";
 import { Button } from "../Button";
-import "../../styles/EducationalInformations/EditEducInfo.css";
 import { convertDate } from "../misc";
+import "../../styles/EducationalInformations/EditEducInfo.css";
 
 export function EditEducInfo({
   props,
