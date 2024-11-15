@@ -2,6 +2,8 @@
 	border: 2px solid #000;
 	border-radius: 0.25rem;
 	padding: 0.25rem;
+	font-family: "Rubik";
+	font-size: 1.5vmin;
 }
 .educ-info-entry img{
 	width: 5.5%;
@@ -25,21 +27,21 @@
 	animation: expand 250ms ease 1;
 	transform-origin: top;
 }
-.new-form-buttons-space {
+.educ-entry-buttons-space {
 	margin-top: 1vmin;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 }
-.form-button {
+.educ-entry-button {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	min-width: 30%;
 }
-.form-button span {
+.educ-entry-button span {
 	font-size: 1.25vmin;
 }
-.form-button img {
+.educ-entry-button img {
 	width: 35%;
 }

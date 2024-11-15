@@ -5,8 +5,8 @@ import "../../styles/EducationalInformations/EditEducInfo.css";
 
 export function EditEducInfo({
   props,
-  onClickEdit,
-  isEditing,
+  onClickEditEducInfo,
+  isEditingEducInfo,
   handleEducInfoChange,
   EducInfoDeletion,
   EducInfoCancelEdit,
@@ -25,7 +25,7 @@ export function EditEducInfo({
       <div className="educ-info-entry" id={id}>
         <div className="educ-info-entry-header">
           <span>{universityName}</span>
-          <button id="edit-educ-info-btn" onClick={onClickEdit}>
+          <button id="edit-educ-info-btn" onClick={onClickEditEducInfo}>
             <img src="src/assets/edit.svg" alt="edit-entry" data-index={id} />
           </button>
         </div>
@@ -34,7 +34,7 @@ export function EditEducInfo({
           {!isNaN(new Date(educationEndDate)) ? convertDate(educationEndDate) : ""}
         </p>
       </div>
-      {isEditing && (
+      {isEditingEducInfo && (
         <form id={id} onSubmit={EducInfoSaveEdit} className="educ-info-form">
           <fieldset>
             <legend></legend>
@@ -72,12 +72,12 @@ export function EditEducInfo({
               value={educationEndDate}
               onChange={handleEducInfoChange}
             />
-            <div className="new-form-buttons-space">
+            <div className="educ-entry-buttons-space">
               <Button
                 text="Delete"
                 source="src/assets/delete.svg"
                 alt="delete-form"
-                className="form-button"
+                className="educ-entry-button"
                 id={`delete-educ-info-${id}`}
                 buttonType="button"
                 processClick={EducInfoDeletion}
@@ -86,7 +86,7 @@ export function EditEducInfo({
                 text="Cancel"
                 source="src/assets/handle-x.svg"
                 alt="cancel-edit"
-                className="form-button"
+                className="educ-entry-button"
                 id={`cancel-educ-info-${id}`}
                 buttonType="button"
                 processClick={EducInfoCancelEdit}
@@ -95,7 +95,7 @@ export function EditEducInfo({
                 text="Save"
                 source="src/assets/check-one.svg"
                 alt="save-form"
-                className="form-button"
+                className="educ-entry-button"
                 id={`save-educ-info-${id}`}
                 buttonType="submit"
               />

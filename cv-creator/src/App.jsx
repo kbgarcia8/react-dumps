@@ -39,10 +39,10 @@ export default function App() {
     setPersonalInformations({ ...personalInformations, [key]: e.target.value });
   }
   /*Educational Background Section*/
-  const educInfos = cvData.educationalInformations;
-  const [educInformations, setEducInformations] = useState(educInfos);
+  const educBackgroundData = cvData.educationalInformations;
+  const [educInformations, setEducInformations] = useState(educBackgroundData);
   const [educInformationsBackup, setEducInformationsBackup] =
-    useState(educInfos);
+    useState(educBackgroundData);
   const [editingEducPanel, setEditingEducPanel] = useState(null);
 
   function processEducInfoChange(e) {
@@ -145,8 +145,8 @@ export default function App() {
                   <EditEducInfo
                     key={educInformation.id}
                     props={educInformation}
-                    onClickEdit={editEducEntryToggle}
-                    isEditing={editingEducPanel === educInformation.id}
+                    onClickEditEducInfo={editEducEntryToggle}
+                    isEditingEducInfo={editingEducPanel === educInformation.id}
                     handleEducInfoChange={processEducInfoChange}
                     EducInfoDeletion={deleteEducEntry}
                     EducInfoCancelEdit={cancelEditEducEntry}

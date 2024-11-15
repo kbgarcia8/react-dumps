@@ -9,6 +9,7 @@ Task: Slider
         --- Arrow rotates one at a time based on index [DONE]
         --- Forms displays one at a time accordingly
             ---- For fix of extra state issue causing need of double click [DONE]
+    -- Fixed panelOpener can be double clicked to be closed [DONE]
 Task: Personal Info Section
 - Display Section
     -- Restructure design [DONE]
@@ -30,5 +31,16 @@ Task: Education Section
         --- Save data also save to local storage as basis if cancelled [DONE]
         --- Add Entry and save also to local storage [DONE]
     -- Transfer Tester component to main App and debug if necessary [DONE]
-- Display Section [ONGOING]
-    -- For transform of educ display to component [NOT STARTED]
+- Display Section [DONE]
+    -- For transform of educ display to component [DONE]
+
+Task: Work Experience Section
+- Edit Section
+    -- Design of Forms [ONGONG]
+        --- Skills forms
+            ---- Add button for additional skills on a specific Work Exp entry
+    -- Function to process onChange [DONE]
+    --- Button for disabling end date making value as "Present"
+        ---- Put functionality
+            - Remove End date input if checked [DONE]
+            - Change End date on object to Present then save [NOT STARTED]
