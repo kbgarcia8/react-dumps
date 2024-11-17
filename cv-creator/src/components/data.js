@@ -31,6 +31,7 @@ export const cvData = {
           jobPosition: "Java Developer",
           experienceStartDate: "2014-06",
           experienceEndDate: "2017-03",
+          isPresent: false,
           jobTasks: [
             "Design, implement and maintain Java-based applications that can be high-volume and low-latency",
             "Propose changes to current Java infrastructure",
@@ -43,6 +44,7 @@ export const cvData = {
           jobPosition: "Network Engineer",
           experienceStartDate: "2017-06",
           experienceEndDate: "2020-03",
+          isPresent: false,
           jobTasks: [
             "Configure and install various network devices and services (e.g., routers, switches, firewalls, load balancers, VPN, QoS)",
             "Perform network maintenance and system upgrades including service packs, patches, hot fixes and security configurations",
