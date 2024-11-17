@@ -86,8 +86,10 @@ export default function Tester() {
 
   }
   function saveEditWorkExpEntry(e){
-    e.preventDefault()
-
+    e.preventDefault();
+    setEditingWorkExpPanel(null);
+    setWorkExpInformationsBackup([...workExpInformations]);
+    localStorage.setItem("savedWorkExpInfos", JSON.stringify(workExpInformations));
   }
   return (
     <>      
