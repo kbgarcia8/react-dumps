@@ -37,10 +37,16 @@ Task: Education Section
 Task: Work Experience Section
 - Edit Section
     -- Design of Forms [ONGONG]
+        --- useState to hide form until edit is clicked [ONGOING]
         --- Skills forms
-            ---- Add button for additional skills on a specific Work Exp entry
+            ---- Add button for additional tasks/skills on a specific Work Exp entry [DONE]
+            ---- Remove button for last item on job tasks/skills [DONE]
     -- Function to process onChange [DONE]
-    --- Button for disabling end date making value as "Present"
-        ---- Put functionality
-            - Remove End date input if checked [DONE]
-            - Change End date on object to Present then save [NOT STARTED]
+    -- Button for disabling end date making value as "Present" [DONE]
+        --- Put functionality
+            ---- Remove End date input if checked [DONE]
+            ---- Change End date on object to Present [DONE]
+            ---- Save every toggle [NOT STARTED]
+    -- Deletion of Work Exp Entry
+    -- Cancel of Edit of Work Exp Entry
+    -- Save of Edit of Work Exp Entry
