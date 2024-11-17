@@ -8,12 +8,9 @@ export function EditWorkExpInfo({
   onClickEditWorkExpInfo,
   isEditingWorkExpInfo = true,
   handleWorkExpInfoChange,
-  isPresentToggled = function togglePresentCheckbox (e){
-    console.log(e.target.tagName)
-    e.target.checked ? 
-    (e.target.closest('div.toggle-btn-container')).previousSibling.style.display = "none"
-    : (e.target.closest('div.toggle-btn-container')).previousSibling.style.display = "flex"
-  },
+  isPresentToggled,
+  addJobTask,
+  deleteJobTask,
   WorkExpInfoDeletion,
   WorkExpInfoCancelEdit,
   WorkExpInfoSaveEdit,
@@ -24,10 +21,11 @@ export function EditWorkExpInfo({
     jobPosition,
     experienceStartDate,
     experienceEndDate,
+    isPresent,
     jobTasks,
 
   } = props;
-  
+
   return (
     <>
       <div className="workexp-info-entry" id={id}>
@@ -40,52 +38,89 @@ export function EditWorkExpInfo({
         <p>{jobPosition}</p>
         <p>
           {!isNaN(new Date(experienceStartDate)) ? convertDate(experienceStartDate) : ""}-
-          {!isNaN(new Date(experienceEndDate)) ? convertDate(experienceEndDate) : ""}
+          {isPresent?"Present":!isNaN(new Date(experienceEndDate)) ? convertDate(experienceEndDate) : ""}
         </p>
       </div>
         {isEditingWorkExpInfo && <form id={id} onSubmit={WorkExpInfoSaveEdit} className="workexp-info-form">
           <fieldset>
             <legend></legend>
             <Inputs
-              id="school-attended"
-              labelText="University/Institute"
-              placeholderText="University Attended"
+              id="company-worked"
+              labelText="Company Name"
+              placeholderText="Company Worked AT"
               type="text"
               dataKey="companyName"
               value={companyName}
               onChange={handleWorkExpInfoChange}
             />
             <Inputs
-              id="degree"
-              labelText="Degree/Major"
-              placeholderText="Degree Finished"
+              id="job-position"
+              labelText="Job Title/Position"
+              placeholderText="Job Title"
               type="text"
               dataKey="jobPosition"
               value={jobPosition}
               onChange={handleWorkExpInfoChange}
             />
             <Inputs
-              id="education-start-date"
-              labelText="Start Date"
+              id="workexp-start-date"
+              labelText="From"
               type="month"
               dataKey="experienceStartDate"
               value={experienceStartDate}
               onChange={handleWorkExpInfoChange}
             />
             <Inputs
-              id="education-end-date"
-              labelText="End Date"
+              id="workexp-end-date"
+              labelText="To"
               type="month"
               dataKey="experienceEndDate"
               value={experienceEndDate}
               onChange={handleWorkExpInfoChange}
             />
             <div className="toggle-btn-container">
-                <input type="checkbox" id={`toggle-end-date-present-${id}`} onChange={isPresentToggled}/>
+                <input type="checkbox" id={`toggle-end-date-present-${id}`} onChange={isPresentToggled} data-key="isPresent"/>
                 <label htmlFor={`toggle-end-date-present-${id}`} className="toggle-btn"></label>
                 <span className="toggle-btn-label">Present</span>
             </div>
-            {/* CONTINUE TO PUT jobtasks here */} 
+            <div className="workexp-jobtasks-space">
+              <fieldset>
+                <legend>Job Tasks</legend>
+                {jobTasks.map((jobTask, index) => (
+                  <Inputs
+                    key={jobTask}
+                    id={`job-task-${id}-${index}`}
+                    labelText={`Job Task ${index+1}`}
+                    placeholderText="Job Task"
+                    type="text"
+                    dataKey="jobTasks"
+                    dataIndex={index}
+                    value={jobTask}
+                    onChange={handleWorkExpInfoChange}
+                  />
+                ))}
+                <div className="add-workexp-jobtask-btn-space">
+                    <Button
+                      text=""
+                      source="src/assets/minus.svg"
+                      alt="delete-workexp-jobtask"
+                      className="delete-workexp-jobtask-btn"
+                      id={id}
+                      buttonType="button"
+                      processClick={deleteJobTask}
+                    />
+                    <Button
+                      text=""
+                      source="src/assets/plus.svg"
+                      alt="add-workexp-jobtask"
+                      className="add-workexp-jobtask-btn"
+                      id={id}
+                      buttonType="button"
+                      processClick={addJobTask}
+                    />                  
+                  </div>
+              </fieldset>
+            </div>        
             <div className="workexp-entry-buttons-space">
               <Button
                 text="Delete"

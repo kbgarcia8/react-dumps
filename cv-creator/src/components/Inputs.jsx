@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "../styles/Inputs.css"
 
 export function Inputs({
@@ -12,7 +11,8 @@ export function Inputs({
     rows = "4",
     cols = "30",
     onChange,
-    dataKey
+    dataKey,
+    dataIndex
   }) {
     return (
         <div className="input-container">
@@ -26,6 +26,7 @@ export function Inputs({
               rows={rows}
               cols={cols}
               data-key={dataKey}
+              data-index={dataIndex}
             ></textarea>
           ) : (
             <input
@@ -36,6 +37,7 @@ export function Inputs({
               type={type}
               required={isRequired ? "required" : ""}
               data-key={dataKey}
+              data-index={dataIndex}
             />
           )}
         </div>
