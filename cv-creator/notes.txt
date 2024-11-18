@@ -51,4 +51,4 @@ Task: Work Experience Section
     -- Cancel of Edit of Work Exp Entry [DONE]
     -- Save of Edit of Work Exp Entry [DONE]
     -- Transfered to main App [DONE]
-- Display Section
+- Display Section [ONGOING]

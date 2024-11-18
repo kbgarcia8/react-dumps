@@ -11,6 +11,7 @@ import { PanelOpener } from "./components/PanelOpener.jsx";
 import { EditEducInfo } from "./components/EducationalInformations/EditEducInfo.jsx";
 import { DisplayEducInfo } from "./components/EducationalInformations/DisplayEducInfo.jsx";
 import { EditWorkExpInfo } from "./components/WorkExperienceInformations/EditWorkExpInfo.jsx";
+import { DisplayWorkExpInfo } from "./components/WorkExperienceInformations/DisplayWorkExpInfo.jsx";
 
 export default function App() {
   /* Main Editing Panels */
@@ -305,7 +306,7 @@ export default function App() {
                     source="src/assets/plus.svg"
                     alt="add-workexp"
                     id="add-workexp-btn"
-                    processClick={addEducEntry}
+                    processClick={addWorkExpEntry}
                   />
                 </div>
               </div>
@@ -318,21 +319,37 @@ export default function App() {
           </div>
         </section>
         <section className="preview-section">
-          <div className="personal-info-display" style={documentStyle}>
+          <div className="personal-info-display-space" style={documentStyle}>
             <DisplayPersonalInfo props={personalInformations} />
           </div>
           <div className="preview-divider"></div>
-          {Object.keys(educInformations).length !== 0 && (
-            <p id="education-display-header">Education</p>
-          )}
-          <div className="education-info-display">
-            {Object.keys(educInformations).length !== 0 &&
-              educInformations.map((educInformation) => (
-                <DisplayEducInfo
-                  key={educInformation.id}
-                  props={educInformation}
-                />
-              ))}
+          <div className="education-display-space">
+            {Object.keys(educInformations).length !== 0 && (
+              <p id="education-display-header">Education</p>
+            )}
+            <div className="education-info-entries">
+              {Object.keys(educInformations).length !== 0 &&
+                educInformations.map((educInformation) => (
+                  <DisplayEducInfo
+                    key={educInformation.id}
+                    props={educInformation}
+                  />
+                ))}
+            </div>
+          </div>
+          <div className="workexp-display-space">
+            {Object.keys(workExpInformations).length !== 0 && (
+              <p id="workexp-display-header">Work Experience</p>
+            )}
+            <div className="workexp-info-entries">
+              {Object.keys(workExpInformations).length !== 0 &&
+                workExpInformations.map((workExpInformation) => (
+                  <DisplayWorkExpInfo
+                    key={workExpInformation.id}
+                    props={workExpInformation}
+                  />
+                ))}
+            </div>
           </div>
         </section>
       </div>

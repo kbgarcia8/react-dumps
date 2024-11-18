@@ -6,6 +6,6 @@ import Tester from './Tester.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Tester />
+    <App />
   </StrictMode>,
 )
