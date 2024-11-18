@@ -2,13 +2,14 @@ import "./styles/Tester.css";
 import { cvData } from "./components/data";
 import { EditWorkExpInfo } from "./components/WorkExperienceInformations/EditWorkExpInfo";
 import { useState } from "react";
+import { Button } from "./components/Button";
 
 export default function Tester() {  
   const workExperienceData = cvData.workExperiences
   const [workExpInformations, setWorkExpInformations] = useState(workExperienceData);
   const [workExpInformationsBackup, setWorkExpInformationsBackup] = useState(workExperienceData)
   const [editingWorkExpPanel, setEditingWorkExpPanel] = useState(null);
-  console.log(workExpInformations)
+
   function processWorkExpInfoChange(e) {    
     const changedFormId = parseInt(e.target.closest("form").id);
     const { key, index: taskIndex } = e.target.dataset;
@@ -26,7 +27,7 @@ export default function Tester() {
         }
       }));
   }
-  function togglePresentCheckbox (e){
+  function togglePresentCheckbox (e) {
     const changedFormId = parseInt(e.target.closest("form").id);
     const { key } = e.target.dataset;
     const isChecked = e.target.checked;
@@ -42,13 +43,14 @@ export default function Tester() {
           : workExpInformation
       )
     )
+    
   }
-  function addJobTask(e){    
+  function addJobTask(e) {    
     const addTaskBtnId = parseInt(e.target.id) || parseInt(e.target.closest('button').id)
     setWorkExpInformations((prevWorkexpInfo) =>
       prevWorkexpInfo.map((workExpInformation) =>{
         console.log(workExpInformation.id, addTaskBtnId)
-        if (workExpInformation.id === addTaskBtnId){
+        if (workExpInformation.id === addTaskBtnId) {
           const updatedTasks = [...workExpInformation.jobTasks, ""]
           return {...workExpInformation, jobTasks: updatedTasks}
         } else {
@@ -58,12 +60,12 @@ export default function Tester() {
       )
     )
   }
-  function deleteLastJobTask(e){
+  function deleteLastJobTask(e) {
     const deleteTaskBtnId = parseInt(e.target.id) || parseInt(e.target.closest('button').id)
     setWorkExpInformations((prevWorkexpInfo) =>
       prevWorkexpInfo.map((workExpInformation) =>{
         console.log(workExpInformation.id, deleteTaskBtnId)
-        if (workExpInformation.id === deleteTaskBtnId){
+        if (workExpInformation.id === deleteTaskBtnId) {
           const updatedTasks = [...workExpInformation.jobTasks.slice(0,-1)]
           return {...workExpInformation, jobTasks: updatedTasks}
         } else {
@@ -74,22 +76,48 @@ export default function Tester() {
     )
   }
   function editWorkExpEntryToggle(e) {
-    setEditingWorkExpPanel(parseInt(e.target.dataset.index));
+    const activeWorkExpEntry = parseInt(e.target.dataset.index)
+    setEditingWorkExpPanel((prevActiveWorkExpEntry) =>
+      prevActiveWorkExpEntry === activeWorkExpEntry ? null : activeWorkExpEntry
+    );
     setWorkExpInformationsBackup([...workExpInformations]);
   }
-  function deleteWorkExpEntry(e){
-    console.log('delete workexp entry')
-
+  function deleteWorkExpEntry(e) {
+    const toDeleteWorkExpEntryFormId = parseInt(e.target.closest("form").id);
+    const filteredWorkExpInfo = workExpInformations.filter(
+      (workExpInformation) => workExpInformation.id !== toDeleteWorkExpEntryFormId
+    );
+    setWorkExpInformations(filteredWorkExpInfo);
+    localStorage.setItem("savedWorkExpInfos", JSON.stringify(filteredWorkExpInfo));
   }
-  function cancelEditWorkExpEntry(e){
-    console.log('cancel workexp edit entry')
-
+  function cancelEditWorkExpEntry() {
+    setEditingWorkExpPanel(null);
+    const retrievedWorkExpInfos = localStorage.getItem("savedWorkExpInfos");
+    const parsedWorkExpData =
+      JSON.parse(retrievedWorkExpInfos) || workExpInformationsBackup;
+      setWorkExpInformations(parsedWorkExpData);
   }
-  function saveEditWorkExpEntry(e){
+  function saveEditWorkExpEntry(e) {
     e.preventDefault();
     setEditingWorkExpPanel(null);
     setWorkExpInformationsBackup([...workExpInformations]);
     localStorage.setItem("savedWorkExpInfos", JSON.stringify(workExpInformations));
+  }
+  function addWorkExpEntry() {
+    const newWorkExpEntry = {
+      id: Date.now(),
+      companyName: "",
+      jobPosition: "",
+      experienceStartDate: "",
+      experienceEndDate: "",
+      isPresent: false,
+      jobTasks: []
+    }
+    setWorkExpInformations((prevWorkexpInfo) => [
+      ...prevWorkexpInfo,
+      newWorkExpEntry,
+    ]);
+    localStorage.setItem("savedWorkExpInfos", JSON.stringify([...workExpInformations, newWorkExpEntry]));
   }
   return (
     <>      
@@ -109,6 +137,15 @@ export default function Tester() {
               WorkExpInfoSaveEdit={saveEditWorkExpEntry}
           />
         ))}
+        <div className="add-educ-info-btn-space">
+          <Button
+            text=""
+            source="src/assets/plus.svg"
+            alt="add-workexp-info"
+            id="add-workexp-info-btn"
+            processClick={addWorkExpEntry}
+          />
+        </div>
       </div>
     </>
   );

@@ -46,7 +46,9 @@ Task: Work Experience Section
         --- Put functionality
             ---- Remove End date input if checked [DONE]
             ---- Change End date on object to Present [DONE]
-            ---- Save every toggle [NOT STARTED]
-    -- Deletion of Work Exp Entry
-    -- Cancel of Edit of Work Exp Entry
-    -- Save of Edit of Work Exp Entry
+            ---- Save every toggle [DONE]
+    -- Deletion of Work Exp Entry [DONE]
+    -- Cancel of Edit of Work Exp Entry [DONE]
+    -- Save of Edit of Work Exp Entry [DONE]
+    -- Transfered to main App [DONE]
+- Display Section

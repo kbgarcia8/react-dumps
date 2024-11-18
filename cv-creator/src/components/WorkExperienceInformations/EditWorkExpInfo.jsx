@@ -6,7 +6,7 @@ import "../../styles/WorkExperienceInformations/EditWorkExpInfo.css";
 export function EditWorkExpInfo({
   props,
   onClickEditWorkExpInfo,
-  isEditingWorkExpInfo = true,
+  isEditingWorkExpInfo,
   handleWorkExpInfoChange,
   isPresentToggled,
   addJobTask,
@@ -47,7 +47,7 @@ export function EditWorkExpInfo({
             <Inputs
               id="company-worked"
               labelText="Company Name"
-              placeholderText="Company Worked AT"
+              placeholderText="Company Worked At"
               type="text"
               dataKey="companyName"
               value={companyName}
@@ -88,7 +88,7 @@ export function EditWorkExpInfo({
                 <legend>Job Tasks</legend>
                 {jobTasks.map((jobTask, index) => (
                   <Inputs
-                    key={jobTask}
+                    key={`jobTask-${id}`}
                     id={`job-task-${id}-${index}`}
                     labelText={`Job Task ${index+1}`}
                     placeholderText="Job Task"
