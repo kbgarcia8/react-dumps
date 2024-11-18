@@ -26,10 +26,18 @@ export function DisplayWorkExpInfo({ props }) {
             ? convertDate(experienceStartDate)
             : ""}
           -
-          {isPresent ? "Present" : !isNaN(new Date(experienceEndDate))
+          {isPresent 
+            ? "Present" 
+            : !isNaN(new Date(experienceEndDate))
             ? convertDate(experienceEndDate)
-            : ""}
+            : ""
+          }
         </p>
+        <ul className="jobtasks-list">
+            {jobTasks.map((jobTask, index) =>
+                <li key={`jobtask-${id}-${index}`}>{jobTask}</li>
+            )}
+        </ul>
       </div>
     </div>
   );
