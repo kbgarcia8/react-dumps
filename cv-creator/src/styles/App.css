@@ -34,7 +34,8 @@
   overflow-y: auto;
 }
 #personal-info-panel,
-#educational-info-panel {
+#educational-info-panel,
+#workexp-info-panel {
   max-width: 100%;
   animation: expand 250ms ease 1;
   transform-origin: top;
@@ -42,16 +43,20 @@
   flex-direction: column;
   row-gap: 0.5vmin;
 }
-.add-educ-info-btn-space {
+.add-educ-info-btn-space,
+.add-workexp-btn-space {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
 }
-#add-educ-info-btn {
+#add-educ-info-btn,
+#add-workexp-btn {
   width: 10%;
   border-radius: 50%;
 }
-#add-educ-info-btn img {
+#add-educ-info-btn img,
+#add-workexp-btn img {
   width: 100%;
 }
 .preview-section {
