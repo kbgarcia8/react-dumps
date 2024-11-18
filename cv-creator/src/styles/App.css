@@ -68,7 +68,7 @@
   box-shadow: 0px 0px 50px 0px rgba(148, 148, 148, 1);
   overflow-y: auto;
 }
-.personal-info-display {
+.personal-info-display-space {
   background-color: var(--primary1);
 }
 .preview-divider {
@@ -76,6 +76,10 @@
   background-color: #adadaddd;
   width: 100%;
   height: 0.5%;
+}
+.education-display-space{
+  display: flex;
+  flex-direction: column;
 }
 #education-display-header{
   font-family: "Rubik";
@@ -86,25 +90,13 @@
   padding-left: 2.75vmax;
   padding-top: 0.75vmax;
 }
-.education-info-display {
+.education-info-entries {
   display: flex;
   flex-wrap: wrap;
   color: #000;
   margin-top: 0.5vmax;
   margin-left: 2vmax;
   font-family: "Rubik";
-}
-.educ-entry-display {
-  margin-inline: 0.75vmax;
-  margin-block: 0.5vmax;
-  text-align: left;
-}
-.education-info-entry-title {
-  font-weight: 700;
-  font-size: 1vmax;
-}
-.education-info-additional-details{
-  font-size: 0.75vmax;
 }
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
