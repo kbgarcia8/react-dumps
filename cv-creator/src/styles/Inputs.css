@@ -8,6 +8,7 @@ fieldset{
     display: flex;
     flex-direction: column;
     max-width: 95%;
+    margin: 0.5vmin;
 }
 label{
     text-align: left;
