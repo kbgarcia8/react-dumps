@@ -15,7 +15,7 @@ export function DisplayWorkExpInfo({ props }) {
   return (
     <div
       key={id}
-      className="educ-entry-display"
+      className="workexp-entry-display"
       id={`workexp-info-entry-${id}`}
     >
       <p className="workexp-info-entry-title">{companyName}</p>
@@ -35,7 +35,7 @@ export function DisplayWorkExpInfo({ props }) {
         </p>
         <ul className="jobtasks-list">
             {jobTasks.map((jobTask, index) =>
-                <li key={`jobtask-${id}-${index}`}>{jobTask}</li>
+                <li key={`jobtask-${id}-${index}`} className="jobtask-entry">{jobTask}</li>
             )}
         </ul>
       </div>

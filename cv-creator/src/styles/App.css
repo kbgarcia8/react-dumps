@@ -81,7 +81,8 @@
   display: flex;
   flex-direction: column;
 }
-#education-display-header{
+#education-display-header,
+#workexp-display-header{
   font-family: "Rubik";
   font-weight: 900;
   font-size: 1.5vmax;
@@ -90,7 +91,8 @@
   padding-left: 2.75vmax;
   padding-top: 0.75vmax;
 }
-.education-info-entries {
+.education-info-entries,
+.workexp-info-entries {
   display: flex;
   flex-wrap: wrap;
   color: #000;
