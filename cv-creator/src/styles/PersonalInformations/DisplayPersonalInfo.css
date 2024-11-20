@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    font-size: 1vmax;    
+    font-size: 1vmax;
+    column-gap: 1vmin;
   }
   .personal-detail-entry img {
     width: 2.5%;
