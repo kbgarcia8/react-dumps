@@ -35,7 +35,8 @@
 }
 #personal-info-panel,
 #educational-info-panel,
-#workexp-info-panel {
+#workexp-info-panel,
+#techskills-info-panel {
   max-width: 100%;
   animation: expand 250ms ease 1;
   transform-origin: top;
@@ -44,15 +45,19 @@
   row-gap: 0.5vmin;
 }
 .add-educ-info-btn-space,
-.add-workexp-btn-space {
+.add-workexp-btn-space,
+.add-techskills-btn-space {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
 }
-#add-educ-info-btn,
+#add-educ-info-btn {
+  width: 15%;
+  border-radius: 50%;
+}
 #add-workexp-btn {
-  width: 10%;
+  width: 15%;
   border-radius: 50%;
 }
 #add-educ-info-btn img,
@@ -77,12 +82,12 @@
   width: 100%;
   height: 0.5%;
 }
-.education-display-space{
+.education-display-space {
   display: flex;
   flex-direction: column;
 }
 #education-display-header,
-#workexp-display-header{
+#workexp-display-header {
   font-family: "Rubik";
   font-weight: 900;
   font-size: 1.5vmax;
