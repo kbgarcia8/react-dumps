@@ -36,8 +36,8 @@ Task: Education Section
 
 Task: Work Experience Section
 - Edit Section
-    -- Design of Forms [ONGONG]
-        --- useState to hide form until edit is clicked [ONGOING]
+    -- Design of Forms [DONE]
+        --- useState to hide form until edit is clicked [DONE]
         --- Skills forms
             ---- Add button for additional tasks/skills on a specific Work Exp entry [DONE]
             ---- Remove button for last item on job tasks/skills [DONE]
@@ -51,4 +51,16 @@ Task: Work Experience Section
     -- Cancel of Edit of Work Exp Entry [DONE]
     -- Save of Edit of Work Exp Entry [DONE]
     -- Transfered to main App [DONE]
-- Display Section [ONGOING]
+- Display Section [DONE]
+Task: Technical Skills Section
+- Edit Section
+    -- Design of Forms [DONE]
+- Display Section [DONE]
+
+Task: Controls Button Functionality
+- Information Button (default)
+- Aesthetic Button [NOT STARTED]
+- Sample Fill [NOT STARTED]
+- Reset Button [NOT STARTED]
+- Download Button [CHECKING if FEASIBLE]
+- Print Buttong [CHECKING if FEASIBLE]
