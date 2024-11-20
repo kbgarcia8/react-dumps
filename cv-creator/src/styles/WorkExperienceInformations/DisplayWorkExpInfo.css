@@ -1,7 +1,8 @@
 .workexp-entry-display {
-    margin-inline: 0.75vmax;
+    margin-inline: 0.5vmax;
     margin-block: 0.5vmax;
     text-align: left;
+    max-width: 40%;
 }
 .workexp-info-entry-title {
     font-weight: 700;
@@ -11,5 +12,6 @@
     font-size: 0.75vmax;
 }
 .jobtasks-list{
-    list-style-type: circle
+    list-style-type: circle;
+    margin-left: 2.75vmin;
 }

@@ -35,7 +35,7 @@ export function DisplayWorkExpInfo({ props }) {
         </p>
         <ul className="jobtasks-list">
             {jobTasks.map((jobTask, index) =>
-                <li key={`jobtask-${id}-${index}`} className="jobtask-entry">{jobTask}</li>
+                <li key={`${id}-${index}`} className="jobtask-entry">{jobTask}</li>
             )}
         </ul>
       </div>
