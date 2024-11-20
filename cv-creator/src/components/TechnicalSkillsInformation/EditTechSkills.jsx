@@ -1,4 +1,4 @@
-import "../../styles/TechnicalSkillsInformations/EditTechSkillsInfo.css";
+import "../../styles/TechnicalSkillsInformation/EditTechSkillsInfo.css"
 import { Button } from "../Button.jsx";
 import { Inputs } from "../Inputs.jsx";
 
@@ -7,7 +7,7 @@ export function EditTechSkillsInfo({
   handleTechSkillsInfoChange,
   addTechSkill,
   deleteTechSkill,
-  //WorkExpInfoCancelEdit,
+  TechSkillsInfoCancelEdit,
   TechSkillsInfoSaveEdit,
 }) {
   return (
@@ -21,7 +21,7 @@ export function EditTechSkillsInfo({
           <legend></legend>
           {techSkills.map((techSkill, index) => (
             <Inputs
-              keys={`techskill-${index}`}
+              key={`techskill-${index}`}
               id={`techskill-${index}`}
               labelText={`Technical Skill ${index + 1}`}
               placeholderText={`Skill ${index + 1}`}
@@ -31,10 +31,10 @@ export function EditTechSkillsInfo({
               onChange={handleTechSkillsInfoChange}
             />
           ))}
-          <div className="add-techskill-btn-space">
+          <div className="add-remove-techskill-btn-space">
             <Button
               text=""
-              source="/assets/minus.svg"
+              source="/src/assets/minus.svg"
               alt="delete-techskill"
               className="delete-techskill-btn"
               id="techskills-info-form"
@@ -43,42 +43,33 @@ export function EditTechSkillsInfo({
             />
             <Button
               text=""
-              source="/assets/plus.svg"
+              source="/src/assets/plus.svg"
               alt="add-techskill"
               className="add-techskill-btn"
               id="techskills-info-form"
               buttonType="button"
               processClick={addTechSkill}
             />
-          </div>
-          {/*<div className="workexp-entry-buttons-space">
-            <Button
-              text="Delete"
-              source="src/assets/delete.svg"
-              alt="delete-form"
-              className="workexp-entry-button"
-              id={`delete-workexp-info-${id}`}
-              buttonType="button"
-              processClick={WorkExpInfoDeletion}
-            />
+          </div>          
+          <div className="techskills-buttons-space">
             <Button
               text="Cancel"
-              source="src/assets/handle-x.svg"
+              source="/src/assets/handle-x.svg"
               alt="cancel-edit"
-              className="workexp-entry-button"
-              id={`cancel-workexp-info-${id}`}
+              className="techskills-button"
+              id="cancel-techskills"
               buttonType="button"
-              processClick={WorkExpInfoCancelEdit}
+              processClick={TechSkillsInfoCancelEdit}
             />
             <Button
               text="Save"
-              source="src/assets/check-one.svg"
+              source="/src/assets/check-one.svg"
               alt="save-form"
-              className="workexp-entry-button"
-              id={`save-workexp-info-${id}`}
+              className="techskills-button"
+              id="save-techskills"
               buttonType="submit"
             />
-        </div>*/}
+        </div>
         </fieldset>
       </form>
     </>

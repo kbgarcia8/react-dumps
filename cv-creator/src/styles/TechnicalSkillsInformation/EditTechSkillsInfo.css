@@ -1,5 +1,19 @@
-.add-techskill-btn-space {
-    display: flex;
+.add-remove-techskill-btn-space,
+.techskills-buttons-space {
+    margin-top: 1.5vmin;
+	display: flex;
+	flex-direction: row;
     justify-content: space-evenly;
-  }
-  
+}
+.techskills-button {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-width: 30%;
+}
+.techskills-button span {
+	font-size: 1.25vmin;
+}
+.techskills-buttonn img {
+	width: 35%;
+}
