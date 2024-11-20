@@ -12,7 +12,8 @@ import { EditEducInfo } from "./components/EducationalInformations/EditEducInfo.
 import { DisplayEducInfo } from "./components/EducationalInformations/DisplayEducInfo.jsx";
 import { EditWorkExpInfo } from "./components/WorkExperienceInformations/EditWorkExpInfo.jsx";
 import { DisplayWorkExpInfo } from "./components/WorkExperienceInformations/DisplayWorkExpInfo.jsx";
-import { EditTechSkillsInfo } from "./components/TechnicalSkillsInformations/EditTechSkillsInfo.jsx";
+import { EditTechSkillsInfo } from "./components/TechnicalSkillsInformation/EditTechSkills.jsx";
+import { DisplayTechInfo } from "./components/TechnicalSkillsInformation/DisplayTechInfo.jsx";
 
 export default function App() {
   /* Main Editing Panels */
@@ -230,7 +231,7 @@ export default function App() {
       experienceStartDate: "",
       experienceEndDate: "",
       isPresent: false,
-      jobTasks: [],
+      jobTasks: [""],
     };
     setWorkExpInformations((prevWorkexpInfo) => [
       ...prevWorkexpInfo,
@@ -247,7 +248,7 @@ export default function App() {
     useState(techSkillsData);
   const [techSkillsBackup, setTechSkillsInformationsBackup] =
     useState(techSkillsData);
-
+    
   function processTechSkillsInfoChange(e) {
     const { key: techSkillIndex } = e.target.dataset;
     if (e.target.closest("form").id === "techskills-info-form") {
@@ -259,8 +260,38 @@ export default function App() {
     }
   }
   function addTechSkill(e) {
-    setTechSkillsInformations((prevTechSkills) => [...prevTechSkills, ""]);
+    e.target.closest("form").id === "techskills-info-form" && setTechSkillsInformations((prevTechSkills) => [...prevTechSkills, ""]);
+    localStorage.setItem(
+      "savedTechSkillsInfos",
+      JSON.stringify(techSkillsInformations)
+    );
   }
+  function deleteTechSkill(e) {
+    e.target.closest("form").id === "techskills-info-form" && setTechSkillsInformations((prevTechSkills) => [...prevTechSkills.slice(0,-1)]);
+    localStorage.setItem(
+      "savedTechSkillsInfos",
+      JSON.stringify(techSkillsInformations)
+    );
+  }
+  function cancelEditTechSkillsEntry(e) {
+    console.log(e.target.closest("form").id)
+    setOpenMainPanelIndex(null);
+    const retrievedTechSkillsInfo = localStorage.getItem("savedTechSkillsInfos");
+    const parsedTechSkillsData =
+      JSON.parse(retrievedTechSkillsInfo) || techSkillsBackup;
+      setTechSkillsInformations(parsedTechSkillsData);
+  }
+  function saveEditTechSkillsEntry(e) {    
+    e.preventDefault();
+    setOpenMainPanelIndex(null);
+    setTechSkillsInformationsBackup([...techSkillsInformations])
+    localStorage.setItem(
+      "savedTechSkillsInfos",
+      JSON.stringify(techSkillsInformations)
+    );
+  }
+  /* Control Button Functions */
+  
   /* Style Toggling */
   const documentPreviewStyle = {
     fontFamily: "Rubik",
@@ -314,7 +345,7 @@ export default function App() {
                 <div className="add-educ-info-btn-space">
                   <Button
                     text=""
-                    source="/assets/plus.svg"
+                    source="/src/assets/plus.svg"
                     alt="add-educ-info"
                     id="add-educ-info-btn"
                     processClick={addEducEntry}
@@ -349,7 +380,7 @@ export default function App() {
                 <div className="add-workexp-btn-space">
                   <Button
                     text=""
-                    source="/assets/plus.svg"
+                    source="/src/assets/plus.svg"
                     alt="add-workexp"
                     id="add-workexp-btn"
                     processClick={addWorkExpEntry}
@@ -359,7 +390,7 @@ export default function App() {
             )}
             <PanelOpener
               text="Technical Skills"
-              onClick={mainPanelToggle}
+              onClick={(e) =>{mainPanelToggle(e); setTechSkillsInformationsBackup([...techSkillsInformations])}}
               dataIndex={3}
             />
             {openMainPanelIndex === 3 && (
@@ -368,6 +399,9 @@ export default function App() {
                   techSkills={techSkillsInformations}
                   handleTechSkillsInfoChange={processTechSkillsInfoChange}
                   addTechSkill={addTechSkill}
+                  deleteTechSkill={deleteTechSkill}
+                  TechSkillsInfoCancelEdit={cancelEditTechSkillsEntry}
+                  TechSkillsInfoSaveEdit={saveEditTechSkillsEntry}
                 />
               </div>
             )}
@@ -378,40 +412,50 @@ export default function App() {
             <DisplayPersonalInfo props={personalInformations} />
           </div>
           <div className="preview-divider"></div>
-          <div className="education-display-space">
-            {Object.keys(educInformations).length !== 0 && (
-              <p id="education-display-header">Education</p>
-            )}
-            <div className="education-info-entries">
-              {Object.keys(educInformations).length !== 0 &&
-                educInformations.map((educInformation) => (
-                  <DisplayEducInfo
-                    key={educInformation.id}
-                    props={educInformation}
-                  />
-                ))}
+          {Object.keys(educInformations).length !== 0 && (
+            <div className="education-display-space">
+              <p id="education-display-header">Education</p>            
+              <div className="education-info-entries">
+                {Object.keys(educInformations).length !== 0 &&
+                  educInformations.map((educInformation) => (
+                    educInformation.universityName !== "" && 
+                    <DisplayEducInfo
+                      key={educInformation.id}
+                      props={educInformation}
+                    />
+                  ))}
+              </div>
             </div>
-          </div>
-          <div className="workexp-display-space">
-            {Object.keys(workExpInformations).length !== 0 && (
-              <p id="workexp-display-header">Work Experience</p>
-            )}
-            <div className="workexp-info-entries">
-              {Object.keys(workExpInformations).length !== 0 &&
-                workExpInformations.map((workExpInformation) => (
-                  <DisplayWorkExpInfo
-                    key={workExpInformation.id}
-                    props={workExpInformation}
-                  />
-                ))}
+          )}
+          {Object.keys(workExpInformations).length !== 0 && (
+            <div className="workexp-display-space">            
+              <p id="workexp-display-header">Work Experience</p>            
+              <div className="workexp-info-entries">
+                  {workExpInformations.map((workExpInformation) => (
+                    workExpInformation.companyName !== "" && 
+                    <DisplayWorkExpInfo
+                      key={workExpInformation.id}
+                      props={workExpInformation}
+                    />
+                  ))}
+              </div>
             </div>
-          </div>
-          <div className="techskills-display-space">
-            {Object.keys(workExpInformations).length !== 0 && (
+          )}
+          {techSkillsInformations.length !== 0 && (
+            <div className="techskills-display-space">
               <p id="techskills-display-header">Technical Skills</p>
-            )}
-            <div className="techskills-info-entries"></div>
-          </div>
+              <div className="techskills-info-entries">
+                <ul className="techskills-list">
+                    {techSkillsInformations.map((techSkillsInformation,index) => (
+                      <DisplayTechInfo
+                        key={`techskill-display-${index}`}
+                        props={{techSkillsInformation,index}}
+                      />
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
         </section>
       </div>
     </>
