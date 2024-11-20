@@ -52,7 +52,7 @@ export const cvData = {
           ]
         }
     ],
-    Skills: [
+    techSkills: [
       "HTML5",
       "CSS3",
       "Java",
