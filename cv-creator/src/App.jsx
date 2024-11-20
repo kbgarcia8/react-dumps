@@ -247,35 +247,19 @@ export default function App() {
     useState(techSkillsData);
   const [techSkillsBackup, setTechSkillsInformationsBackup] =
     useState(techSkillsData);
-  console.log(techSkillsData);
 
   function processTechSkillsInfoChange(e) {
-    const { index } = e.target.dataset;
+    const { key: techSkillIndex } = e.target.dataset;
     if (e.target.closest("form").id === "techskills-info-form") {
-      console.log("changing");
-      console.log(e.target.dataset);
-      setWorkExpInformations((prevWorkexpInfo) =>
-        prevWorkexpInfo.map((workExpInformation) => {
-          if (
-            workExpInformation.id === changedFormId &&
-            key !== "jobTasks" &&
-            taskIndex === undefined
-          ) {
-            return { ...workExpInformation, [key]: e.target.value };
-          } else if (
-            workExpInformation.id === changedFormId &&
-            key === "jobTasks" &&
-            taskIndex !== undefined
-          ) {
-            const updatedTasks = [...workExpInformation.jobTasks];
-            updatedTasks[parseInt(taskIndex)] = e.target.value;
-            return { ...workExpInformation, jobTasks: updatedTasks };
-          } else {
-            return workExpInformation;
-          }
-        })
+      setTechSkillsInformations((prevTechSkills) =>
+        prevTechSkills.map((prevTechSkill, index) =>
+          index === parseInt(techSkillIndex) ? e.target.value : prevTechSkill
+        )
       );
     }
+  }
+  function addTechSkill(e) {
+    setTechSkillsInformations((prevTechSkills) => [...prevTechSkills, ""]);
   }
   /* Style Toggling */
   const documentPreviewStyle = {
@@ -383,6 +367,7 @@ export default function App() {
                 <EditTechSkillsInfo
                   techSkills={techSkillsInformations}
                   handleTechSkillsInfoChange={processTechSkillsInfoChange}
+                  addTechSkill={addTechSkill}
                 />
               </div>
             )}
