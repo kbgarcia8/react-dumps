@@ -59,8 +59,9 @@ Task: Technical Skills Section
 
 Task: Controls Button Functionality
 - Information Button (default)
-- Aesthetic Button [NOT STARTED]
-- Sample Fill [NOT STARTED]
-- Reset Button [NOT STARTED]
+- Aesthetic Button [ONGOING]
+    -- Aesthetic Panels [NOT STARTED]
+- Sample Fill [DONE]
+- Reset Button [DONE]
 - Download Button [CHECKING if FEASIBLE]
 - Print Buttong [CHECKING if FEASIBLE]
