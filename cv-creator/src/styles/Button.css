@@ -7,7 +7,16 @@
   justify-content: space-around;
   font-family: "Rubik";
   font-size: 1.25vmin;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  box-shadow: 0 3px var(--primary1);
+  transition: all 0.2s ease-in-out;
 }
 .button img {
   width: 25%;
+}
+.button:active {
+  transform: translateY(3px); /* Push the button down */
+  box-shadow: 0 1px var(--primary1); /* Adjust shadow for the "pushed" state */
 }
