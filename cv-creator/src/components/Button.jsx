@@ -7,12 +7,13 @@ export function Button({
   className = "button",
   id,
   buttonType,
-  processClick
+  processClick,
+  dataIndex
 }) {
 
   return (
     <>
-      <button onClick={processClick} className={className} id={id} type={buttonType}>
+      <button onClick={processClick} className={className} id={id} type={buttonType} data-index={dataIndex}>
         <img src={source} alt={alt} />
         {text && <span>{text}</span>}
       </button>
