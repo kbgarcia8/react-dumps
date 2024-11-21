@@ -17,6 +17,6 @@
   width: 25%;
 }
 .button:active {
-  transform: translateY(3px); /* Push the button down */
-  box-shadow: 0 1px var(--primary1); /* Adjust shadow for the "pushed" state */
+  transform: translateY(3px);
+  box-shadow: 0 1px var(--primary1);
 }
