@@ -18,7 +18,7 @@ import { DisplayTechInfo } from "./components/TechnicalSkillsInformation/Display
 export default function App() {
   /* Main Editing Panels */
   const [openMainPanelIndex, setOpenMainPanelIndex] = useState(null);
-  function mainPanelToggle(e) {
+  function editInfoPanelToggle(e) {
     const activeIndex = parseInt(e.target.dataset.index);
     setOpenMainPanelIndex((prevIndex) =>
       prevIndex === activeIndex ? null : activeIndex
@@ -273,8 +273,9 @@ export default function App() {
       JSON.stringify(techSkillsInformations)
     );
   }
-  function cancelEditTechSkillsEntry(e) {
-    console.log(e.target.closest("form").id)
+  function cancelEditTechSkillsEntry() {
+    const arrowBtns = document.querySelectorAll("#edit-panel-btn-img")
+    arrowBtns[3].classList.toggle('rotated')
     setOpenMainPanelIndex(null);
     const retrievedTechSkillsInfo = localStorage.getItem("savedTechSkillsInfos");
     const parsedTechSkillsData =
@@ -283,6 +284,8 @@ export default function App() {
   }
   function saveEditTechSkillsEntry(e) {    
     e.preventDefault();
+    const arrowBtns = document.querySelectorAll("#edit-panel-btn-img")
+    arrowBtns[3].classList.toggle('rotated')
     setOpenMainPanelIndex(null);
     setTechSkillsInformationsBackup([...techSkillsInformations])
     localStorage.setItem(
@@ -291,8 +294,35 @@ export default function App() {
     );
   }
   /* Control Button Functions */
+  const [editPanelCategory, setEditPanelCategory] = useState(0)
   
+  function togglePanelCategory(e){
+    const {index} = e.currentTarget.dataset
+    setEditPanelCategory(parseInt(index))
+  }
+  function sampleDataFill(){
+    setPersonalInformations(cvData.personalInformations)
+    setEducInformations(cvData.educationalInformations)
+    setWorkExpInformations(cvData.workExperiences)
+    setTechSkillsInformations(cvData.techSkills)
+  }
+  function resetAndClearData(){
+    setPersonalInformations('')
+    setEducInformations([])
+    setWorkExpInformations([])
+    setTechSkillsInformations([])
+    localStorage.clear();
+  }
+  function downloadPDF(){
+    alert('Feature comming soon')
+  }
+  function printPDF(){
+    alert('Feature comming soon')
+  }
   /* Style Toggling */
+  function editAestheticPanelToggle(){
+    console.log('toggle aesthetic panels')
+  }
   const documentPreviewStyle = {
     fontFamily: "Rubik",
     color: "#FFF",
@@ -304,107 +334,127 @@ export default function App() {
       <div className="main">
         <section className="controls-section">
           <WebsiteInfo />
-          <Controls />
+          <Controls 
+            toggleInformationPanel={togglePanelCategory}
+            sampleDataFill={sampleDataFill}
+            resetAndClearData={resetAndClearData}
+            downloadPDF={downloadPDF}
+            printPDF={printPDF}
+          />
         </section>
         <section className="edit-section">
           <div className="edit-information-panels">
-            <PanelOpener
-              text="Personal Information"
-              onClick={mainPanelToggle}
-              dataIndex={0}
-            />
-            {openMainPanelIndex === 0 && (
-              <div id="personal-info-panel">
-                <EditPersonalInfo
-                  props={personalInformations}
-                  handlePersonalInfoChange={processPersonalInfoChanges}
-                  isPanelShown={openMainPanelIndex === 0}
-                  formId="personal-info-panel"
-                />
-              </div>
-            )}
-            <PanelOpener
-              text="Educational Background"
-              onClick={mainPanelToggle}
-              dataIndex={1}
-            />
-            {openMainPanelIndex === 1 && (
-              <div id="educational-info-panel">
-                {educInformations.map((educInformation) => (
-                  <EditEducInfo
-                    key={educInformation.id}
-                    props={educInformation}
-                    onClickEditEducInfo={editEducEntryToggle}
-                    isEditingEducInfo={editingEducPanel === educInformation.id}
-                    handleEducInfoChange={processEducInfoChange}
-                    EducInfoDeletion={deleteEducEntry}
-                    EducInfoCancelEdit={cancelEditEducEntry}
-                    EducInfoSaveEdit={saveEditEducEntry}
-                  />
-                ))}
-                <div className="add-educ-info-btn-space">
-                  <Button
-                    text=""
-                    source="/src/assets/plus.svg"
-                    alt="add-educ-info"
-                    id="add-educ-info-btn"
-                    processClick={addEducEntry}
+          {editPanelCategory === 0 && (
+            <>
+              <PanelOpener
+                text="Personal Information"
+                onClick={editInfoPanelToggle}
+                dataIndex={0}
+              />
+              {openMainPanelIndex === 0 && (
+                <div id="personal-info-panel">
+                  <EditPersonalInfo
+                    props={personalInformations}
+                    handlePersonalInfoChange={processPersonalInfoChanges}
+                    isPanelShown={openMainPanelIndex === 0}
+                    formId="personal-info-panel"
                   />
                 </div>
-              </div>
-            )}
-            <PanelOpener
-              text="Work Experience"
-              onClick={mainPanelToggle}
-              dataIndex={2}
-            />
-            {openMainPanelIndex === 2 && (
-              <div id="workexp-info-panel">
-                {workExpInformations.map((workExpInformation) => (
-                  <EditWorkExpInfo
-                    key={workExpInformation.id}
-                    props={workExpInformation}
-                    onClickEditWorkExpInfo={editWorkExpEntryToggle}
-                    isEditingWorkExpInfo={
-                      editingWorkExpPanel === workExpInformation.id
-                    }
-                    handleWorkExpInfoChange={processWorkExpInfoChange}
-                    isPresentToggled={togglePresentCheckbox}
-                    addJobTask={addJobTask}
-                    deleteJobTask={deleteLastJobTask}
-                    WorkExpInfoDeletion={deleteWorkExpEntry}
-                    WorkExpInfoCancelEdit={cancelEditWorkExpEntry}
-                    WorkExpInfoSaveEdit={saveEditWorkExpEntry}
-                  />
-                ))}
-                <div className="add-workexp-btn-space">
-                  <Button
-                    text=""
-                    source="/src/assets/plus.svg"
-                    alt="add-workexp"
-                    id="add-workexp-btn"
-                    processClick={addWorkExpEntry}
+              )}
+              <PanelOpener
+                text="Educational Background"
+                onClick={editInfoPanelToggle}
+                dataIndex={1}
+              />
+              {openMainPanelIndex === 1 && (
+                <div id="educational-info-panel">
+                  {educInformations.map((educInformation) => (
+                    <EditEducInfo
+                      key={educInformation.id}
+                      props={educInformation}
+                      onClickEditEducInfo={editEducEntryToggle}
+                      isEditingEducInfo={editingEducPanel === educInformation.id}
+                      handleEducInfoChange={processEducInfoChange}
+                      EducInfoDeletion={deleteEducEntry}
+                      EducInfoCancelEdit={cancelEditEducEntry}
+                      EducInfoSaveEdit={saveEditEducEntry}
+                    />
+                  ))}
+                  <div className="add-educ-info-btn-space">
+                    <Button
+                      text=""
+                      source="/src/assets/plus.svg"
+                      alt="add-educ-info"
+                      id="add-educ-info-btn"
+                      processClick={addEducEntry}
+                    />
+                  </div>
+                </div>
+              )}
+              <PanelOpener
+                text="Work Experience"
+                onClick={editInfoPanelToggle}
+                dataIndex={2}
+              />
+              {openMainPanelIndex === 2 && (
+                <div id="workexp-info-panel">
+                  {workExpInformations.map((workExpInformation) => (
+                    <EditWorkExpInfo
+                      key={workExpInformation.id}
+                      props={workExpInformation}
+                      onClickEditWorkExpInfo={editWorkExpEntryToggle}
+                      isEditingWorkExpInfo={editingWorkExpPanel === workExpInformation.id}
+                      handleWorkExpInfoChange={processWorkExpInfoChange}
+                      isPresentToggled={togglePresentCheckbox}
+                      addJobTask={addJobTask}
+                      deleteJobTask={deleteLastJobTask}
+                      WorkExpInfoDeletion={deleteWorkExpEntry}
+                      WorkExpInfoCancelEdit={cancelEditWorkExpEntry}
+                      WorkExpInfoSaveEdit={saveEditWorkExpEntry}
+                    />
+                  ))}
+                  <div className="add-workexp-btn-space">
+                    <Button
+                      text=""
+                      source="/src/assets/plus.svg"
+                      alt="add-workexp"
+                      id="add-workexp-btn"
+                      processClick={addWorkExpEntry}
+                    />
+                  </div>
+                </div>
+              )}
+              <PanelOpener
+                text="Technical Skills"
+                onClick={(e) => {
+                  editInfoPanelToggle(e);
+                  setTechSkillsInformationsBackup([...techSkillsInformations]);
+                }}
+                dataIndex={3}
+              />
+              {openMainPanelIndex === 3 && (
+                <div id="techskills-info-panel">
+                  <EditTechSkillsInfo
+                    techSkills={techSkillsInformations}
+                    handleTechSkillsInfoChange={processTechSkillsInfoChange}
+                    addTechSkill={addTechSkill}
+                    deleteTechSkill={deleteTechSkill}
+                    TechSkillsInfoCancelEdit={cancelEditTechSkillsEntry}
+                    TechSkillsInfoSaveEdit={saveEditTechSkillsEntry}
                   />
                 </div>
-              </div>
-            )}
-            <PanelOpener
-              text="Technical Skills"
-              onClick={(e) =>{mainPanelToggle(e); setTechSkillsInformationsBackup([...techSkillsInformations])}}
-              dataIndex={3}
-            />
-            {openMainPanelIndex === 3 && (
-              <div id="techskills-info-panel">
-                <EditTechSkillsInfo
-                  techSkills={techSkillsInformations}
-                  handleTechSkillsInfoChange={processTechSkillsInfoChange}
-                  addTechSkill={addTechSkill}
-                  deleteTechSkill={deleteTechSkill}
-                  TechSkillsInfoCancelEdit={cancelEditTechSkillsEntry}
-                  TechSkillsInfoSaveEdit={saveEditTechSkillsEntry}
-                />
-              </div>
-            )}
+              )}
+            </>
+          )}
+          {editPanelCategory === 1 && (
+            <>
+              <PanelOpener
+                text="Document Design"
+                onClick={editAestheticPanelToggle}
+                dataIndex={0}
+              />
+            </>
+          )}
           </div>
         </section>
         <section className="preview-section">
