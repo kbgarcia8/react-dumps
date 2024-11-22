@@ -1,4 +1,4 @@
-import "../../styles/TechnicalSkillsInformation/DisplayTechInfo.css";
+import "../../styles/TechnicalSkillsInformations/DisplayTechInfo.css";
 
 export function DisplayTechInfo({ props }) {
     const {

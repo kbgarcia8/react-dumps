@@ -1,4 +1,4 @@
-import "../../styles/TechnicalSkillsInformation/EditTechSkillsInfo.css"
+import "../../styles/TechnicalSkillsInformations/EditTechSkillsInfo.css"
 import { Button } from "../Button.jsx";
 import { Inputs } from "../Inputs.jsx";
 

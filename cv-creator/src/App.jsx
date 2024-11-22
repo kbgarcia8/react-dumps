@@ -12,8 +12,8 @@ import { EditEducInfo } from "./components/EducationalInformations/EditEducInfo.
 import { DisplayEducInfo } from "./components/EducationalInformations/DisplayEducInfo.jsx";
 import { EditWorkExpInfo } from "./components/WorkExperienceInformations/EditWorkExpInfo.jsx";
 import { DisplayWorkExpInfo } from "./components/WorkExperienceInformations/DisplayWorkExpInfo.jsx";
-import { EditTechSkillsInfo } from "./components/TechnicalSkillsInformation/EditTechSkillsInfo.jsx";
-import { DisplayTechInfo } from "./components/TechnicalSkillsInformation/DisplayTechInfo.jsx";
+import { EditTechSkillsInfo } from "./components/TechnicalSkillsInformations/EditTechSkillsInfo.jsx";
+import { DisplayTechInfo } from "./components/TechnicalSkillsInformations/DisplayTechInfo.jsx";
 
 export default function App() {
   /* Main Editing Panels */
