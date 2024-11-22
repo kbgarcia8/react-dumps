@@ -61,6 +61,24 @@ Task: Controls Button Functionality
 - Information Button (default)
 - Aesthetic Button [ONGOING]
     -- Aesthetic Panels [NOT STARTED]
+        --- To include:
+            - Font Changer
+                - Choices:
+                    Arial
+                    Calibri
+                    Helvetica
+                    Verdana
+                    Lato
+                    Times New Roman
+                    Garamond
+                    Georgia
+                    Berserkerville
+                    Palatino Linotype
+                    - Add a custom button but only put feature is optional this will be for future implementation
+            - Color Changer for header background
+            - Color Changer for header text
+            - Add a style or layout picker but only put feature is optional this will be for future implementation
+
 - Sample Fill [DONE]
 - Reset Button [DONE]
 - Download Button [CHECKING if FEASIBLE]
