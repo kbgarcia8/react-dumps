@@ -60,8 +60,11 @@ Task: Technical Skills Section
 Task: Controls Button Functionality
 - Information Button (default)
 - Aesthetic Button [ONGOING]
-    -- Aesthetic Panels [NOT STARTED]
+    -- Aesthetic Panels [INITIAL DONE]
         --- To include:
+            - Font Size changer [FOR IMPROVEMENT]
+                - For review on how to implement different font styles within a display component
+            - Add a style or layout picker but only put feature is optional this will be for future implementation [FOR IMPROVEMENT]
             - Font Changer
                 - Choices:
                     Arial
@@ -76,9 +79,7 @@ Task: Controls Button Functionality
                     Palatino Linotype
                     - Add a custom button but only put feature is optional this will be for future implementation
             - Color Changer for header background
-            - Color Changer for header text
-            - Add a style or layout picker but only put feature is optional this will be for future implementation
-
+            - Color Changer for header text            
 - Sample Fill [DONE]
 - Reset Button [DONE]
 - Download Button [CHECKING if FEASIBLE]

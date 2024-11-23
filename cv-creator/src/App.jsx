@@ -14,6 +14,7 @@ import { EditWorkExpInfo } from "./components/WorkExperienceInformations/EditWor
 import { DisplayWorkExpInfo } from "./components/WorkExperienceInformations/DisplayWorkExpInfo.jsx";
 import { EditTechSkillsInfo } from "./components/TechnicalSkillsInformations/EditTechSkillsInfo.jsx";
 import { DisplayTechInfo } from "./components/TechnicalSkillsInformations/DisplayTechInfo.jsx";
+import { AestheticChanger } from "./components/AestheticChanger/AestheticChanger.jsx";
 
 export default function App() {
   /* Main Editing Panels */
@@ -323,11 +324,37 @@ export default function App() {
   function editAestheticPanelToggle(){
     console.log('toggle aesthetic panels')
   }
-  const documentPreviewStyle = {
+  const previewPersonalInfoStyle = {
     fontFamily: "Rubik",
-    color: "#FFF",
+    color: "#FFFFFF",
+    backgroundColor: "#133E87"
   };
-  const [documentStyle, setDocumentStyle] = useState(documentPreviewStyle);
+  const previewSectionHeaderStyle = {
+    fontFamily: "Rubik",
+    fontWeight: 900,
+    //fontSize: `1.25vmax`, need to decide first if rem will be implemented
+    textDecoration: "underline",
+  }
+  const previewEntriesStyle = {
+    fontFamily: "Rubik",
+    //fontSize: `1.25vmax`, need to decide first if rem will be implemented also how to implement different font size per p or div
+  }
+  const [personalInfoStyle, setPersonalInfoStyle] = useState(previewPersonalInfoStyle);
+  const [sectionHeaderStyle, setSectionHeaderStyle] = useState(previewSectionHeaderStyle);
+  const [entriesStyle, setEntriesStyle] = useState(previewEntriesStyle);
+
+  function processPersonalInfoStyleChange(e) {
+    const { key } = e.target.dataset;
+    setPersonalInfoStyle({ ...personalInfoStyle, [key]: e.target.value });
+  }
+  function processSectionHeaderStyle(e) {
+    const { key } = e.target.dataset;
+    setSectionHeaderStyle({ ...sectionHeaderStyle, [key]: e.target.value });
+  }
+  function processSectionDetailsStyle(e) {
+    const { key } = e.target.dataset;
+    setEntriesStyle({ ...entriesStyle, [key]: e.target.value });
+  }
   return (
     <>
       <Header />
@@ -453,19 +480,27 @@ export default function App() {
                 onClick={editAestheticPanelToggle}
                 dataIndex={0}
               />
+              <AestheticChanger
+                personalInfoStyle={personalInfoStyle}
+                processPersonalInfoStyleChange={processPersonalInfoStyleChange}
+                sectionHeaderStyle={sectionHeaderStyle}
+                processSectionHeaderStyle={processSectionHeaderStyle}
+                entriesStyle={entriesStyle}
+                processSectionDetailsStyle={processSectionDetailsStyle}
+              />
             </>
           )}
           </div>
         </section>
         <section className="preview-section">
-          <div className="personal-info-display-space" style={documentStyle}>
+          <div className="personal-info-display-space" style={personalInfoStyle}>
             <DisplayPersonalInfo props={personalInformations} />
           </div>
           <div className="preview-divider"></div>
           {Object.keys(educInformations).length !== 0 && (
             <div className="education-display-space">
-              <p id="education-display-header">Education</p>            
-              <div className="education-info-entries">
+              <p id="education-display-header" style={sectionHeaderStyle}>Education</p>            
+              <div className="education-info-entries" style={entriesStyle}>
                 {Object.keys(educInformations).length !== 0 &&
                   educInformations.map((educInformation) => (
                     educInformation.universityName !== "" && 
@@ -479,8 +514,8 @@ export default function App() {
           )}
           {Object.keys(workExpInformations).length !== 0 && (
             <div className="workexp-display-space">            
-              <p id="workexp-display-header">Work Experience</p>            
-              <div className="workexp-info-entries">
+              <p id="workexp-display-header" style={sectionHeaderStyle}>Work Experience</p>            
+              <div className="workexp-info-entries" style={entriesStyle}>
                   {workExpInformations.map((workExpInformation) => (
                     workExpInformation.companyName !== "" && 
                     <DisplayWorkExpInfo
@@ -493,8 +528,8 @@ export default function App() {
           )}
           {techSkillsInformations.length !== 0 && (
             <div className="techskills-display-space">
-              <p id="techskills-display-header">Technical Skills</p>
-              <div className="techskills-info-entries">
+              <p id="techskills-display-header" style={sectionHeaderStyle}>Technical Skills</p>
+              <div className="techskills-info-entries" style={entriesStyle}>
                 <ul className="techskills-list">
                     {techSkillsInformations.map((techSkillsInformation,index) => (
                       <DisplayTechInfo

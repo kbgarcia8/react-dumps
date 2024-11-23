@@ -1,0 +1,29 @@
+.personal-info-style,
+.entry-headers-style,
+.entiries-details-style{
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-block: 2.5vmin;
+}
+.aesthetic-legends{
+    font-family: "Rubik";
+    font-size: 2vmin;
+}
+#personal-info-background-color,
+#personal-info-text-color{
+  width: 35%;
+  margin: 0.5vmin;
+  height: 5vmin;
+  border: none;
+  background-color: #dddd;
+}
+select{
+  border: 2px rgb(185, 185, 185) solid;
+  border-radius: 0.25rem;
+  max-width: 90%;
+  line-height: 1.5vmax;
+  font-family: "Rubik";
+  padding: 0.5vmin;
+  margin: 1vmin;
+}
