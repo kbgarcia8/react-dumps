@@ -1,5 +1,6 @@
 import "../../styles/AestheticChanger/AestheticChanger.css";
 import { Inputs } from "../Inputs.jsx";
+import React from 'react';
 export function AestheticChanger({
     personalInfoStyle,
     processPersonalInfoStyleChange,
