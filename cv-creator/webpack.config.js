@@ -22,7 +22,7 @@ export default {
       hash: true,
       title: 'CV Creator',
       metaDesc: 'Webpack Example Description',
-      template: './src/index.html',
+      template: './index.html',
       filename: 'index.html',
       inject: 'body',
     }),
