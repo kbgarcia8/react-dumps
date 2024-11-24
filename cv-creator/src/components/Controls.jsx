@@ -8,7 +8,7 @@ export function Controls({toggleInformationPanel, sampleDataFill, resetAndClearD
       <div className="controls-buttons">
         <Button 
           text="Information"
-          source="/src/assets/editor.svg"
+          source="src/assets/editor.svg"
           alt="edit-information-icon"
           buttonType="button"
           processClick={toggleInformationPanel}
@@ -16,7 +16,7 @@ export function Controls({toggleInformationPanel, sampleDataFill, resetAndClearD
         />
         <Button 
           text="Aesthetics"
-          source="/src/assets/color-filter.svg"
+          source="src/assets/color-filter.svg"
           alt="edit-aesthetic-icon"
           processClick={toggleInformationPanel}
           dataIndex={1}
@@ -24,25 +24,25 @@ export function Controls({toggleInformationPanel, sampleDataFill, resetAndClearD
         <div className="divider"></div>
         <Button 
           text="Sample Fill"
-          source="/src/assets/fill.svg"
+          source="src/assets/fill.svg"
           alt="sample-fill-icon"
           processClick={sampleDataFill}
         />
         <Button 
           text="Reset"
-          source="/src/assets/clear.svg"
+          source="src/assets/clear.svg"
           alt="reset-icon"
           processClick={resetAndClearData}
         />
         <Button 
           text="Download"
-          source="/src/assets/download.svg"
+          source="src/assets/download.svg"
           alt="download-icom"
           processClick={downloadPDF}
         />
         <Button 
           text="Print"
-          source="/src/assets/printer.svg"
+          source="src/assets/printer.svg"
           alt="print-icon"
           processClick={printPDF}
         />

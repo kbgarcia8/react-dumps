@@ -26,11 +26,11 @@ export default {
       filename: 'index.html',
       inject: 'body',
     }),
-    /*new CopyPlugin({
+    new CopyPlugin({
       patterns: [
-        { from: "src/assets", to: "assets" }, // Copy static images
+        { from: "src/assets", to: "src/assets" }, // Copy static images
       ],
-    }),*/
+    }),
   ],
   module: {
     rules: [
