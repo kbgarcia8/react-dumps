@@ -1,4 +1,5 @@
 import "./styles/App.css";
+import React from 'react';
 import { useState } from "react";
 import { cvData } from "./components/data.js";
 import { Header } from "./components/Header.jsx";

@@ -1,7 +1,7 @@
 import "../../styles/TechnicalSkillsInformations/EditTechSkillsInfo.css"
 import { Button } from "../Button.jsx";
 import { Inputs } from "../Inputs.jsx";
-
+import React from 'react';
 export function EditTechSkillsInfo({
   techSkills,
   handleTechSkillsInfoChange,

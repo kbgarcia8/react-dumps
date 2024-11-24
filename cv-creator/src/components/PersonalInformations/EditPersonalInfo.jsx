@@ -1,5 +1,5 @@
 import { Inputs } from "../Inputs.jsx";
-
+import React from 'react';
 export function EditPersonalInfo({ props, handlePersonalInfoChange }) {
   const {
     firstName,

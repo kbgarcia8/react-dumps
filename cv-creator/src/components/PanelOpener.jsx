@@ -1,5 +1,5 @@
 import "../styles/PanelOpener.css";
-
+import React from 'react';
 export function PanelOpener({ text, onClick, dataIndex }) {
   return (
     <>

@@ -28,14 +28,14 @@ export default {
     }),
     /*new CopyPlugin({
       patterns: [
-        { from: "src/images", to: "images" }, // Copy static images
+        { from: "src/assets", to: "assets" }, // Copy static images
       ],
     }),*/
   ],
   module: {
     rules: [
         {
-            test: /\.(js|jsx)$/i, // Ensures both .js and .jsx files are handled
+            test: /\.(js|jsx)$/i,
             exclude: /node_modules/,
             use: {
               loader: "babel-loader",
@@ -49,26 +49,26 @@ export default {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(scss|sass)$/i, // Optional: Add SCSS/SASS support
+        test: /\.(scss|sass)$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i, // Handle images
-        type: 'asset',
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
         parser: {
           dataUrlCondition: {
-            maxSize: 8 * 1024, // Inline assets < 8 KB
+            maxSize: 8 * 1024,
           },
         },
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i, // Handle fonts
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
       },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'], // Allow omitting .jsx in imports
+    extensions: ['.js', '.jsx'],
   },
   optimization: {
     splitChunks: {

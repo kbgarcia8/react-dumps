@@ -2,7 +2,7 @@ import { Inputs } from "../Inputs";
 import { Button } from "../Button";
 import { convertDate } from "../misc.js";
 import "../../styles/WorkExperienceInformations/EditWorkExpInfo.css";
-
+import React from 'react';
 export function EditWorkExpInfo({
   props,
   onClickEditWorkExpInfo,

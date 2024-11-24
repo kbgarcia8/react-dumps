@@ -1,5 +1,5 @@
 import "../../styles/PersonalInformations/DisplayPersonalInfo.css";
-
+import React from 'react';
 export function DisplayPersonalInfo({ props }) {
   const {
     firstName,

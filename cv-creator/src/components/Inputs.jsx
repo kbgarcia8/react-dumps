@@ -1,5 +1,5 @@
 import "../styles/Inputs.css"
-
+import React from 'react';
 export function Inputs({
     inputType,
     id,

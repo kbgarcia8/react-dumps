@@ -1,5 +1,5 @@
 import "../../styles/TechnicalSkillsInformations/DisplayTechInfo.css";
-
+import React from 'react';
 export function DisplayTechInfo({ props }) {
     const {
         techSkillsInformation,

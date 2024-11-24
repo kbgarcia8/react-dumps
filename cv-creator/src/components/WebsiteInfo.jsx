@@ -1,5 +1,5 @@
 import "../styles/WebsiteInfo.css";
-
+import React from 'react';
 export function WebsiteInfo() {
   return (
     <>

@@ -1,6 +1,6 @@
 import { convertDate } from "../misc.js";
 import "../../styles/EducationalInformations/DisplayEducInfo.css";
-
+import React from 'react';
 export function DisplayEducInfo({ props }) {
   const {
     id,

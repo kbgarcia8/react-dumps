@@ -1,5 +1,6 @@
 import "../styles/Controls.css"
 import { Button } from "./Button.jsx";
+import React from 'react';
 
 export function Controls({toggleInformationPanel, sampleDataFill, resetAndClearData, downloadPDF, printPDF}) {
   return (

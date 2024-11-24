@@ -1,6 +1,6 @@
 import { convertDate } from "../misc.js";
 import "../../styles/WorkExperienceInformations/DisplayWorkExpInfo.css";
-
+import React from 'react';
 export function DisplayWorkExpInfo({ props }) {
     const {
         id,
