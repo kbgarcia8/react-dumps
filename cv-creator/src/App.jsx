@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "./styles/App.css";
+import { useState } from "react";
 import { cvData } from "./components/data.js";
 import { Header } from "./components/Header.jsx";
 import { WebsiteInfo } from "./components/WebsiteInfo.jsx";
@@ -15,6 +15,8 @@ import { DisplayWorkExpInfo } from "./components/WorkExperienceInformations/Disp
 import { EditTechSkillsInfo } from "./components/TechnicalSkillsInformations/EditTechSkillsInfo.jsx";
 import { DisplayTechInfo } from "./components/TechnicalSkillsInformations/DisplayTechInfo.jsx";
 import { AestheticChanger } from "./components/AestheticChanger/AestheticChanger.jsx";
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 export default function App() {
   /* Main Editing Panels */
@@ -314,11 +316,135 @@ export default function App() {
     setTechSkillsInformations([])
     localStorage.clear();
   }
-  function downloadPDF(){
-    alert('Feature comming soon')
+  async function downloadPDF() {
+    try {
+        const element = document.querySelector(".preview-section");
+        element.style.boxShadow = "none";
+        element.style.filter = "none";
+        if (!element) {
+            console.error("Element not found!");
+            return;
+        }
+
+        // Generate canvas
+        const canvas = await html2canvas(element, {
+            scale: 1, // Use lower scale to avoid memory issues
+            useCORS: true,
+        });
+
+        const base64image = canvas.toDataURL("image/png");
+        if (!base64image) {
+            console.error("Failed to generate base64 image");
+            return;
+        }
+
+        // Set up jsPDF
+        const pdf = new jsPDF({
+            orientation: "portrait",
+            unit: "mm",
+            format: "a4"
+        });
+
+        const pageWidth = 210;
+        const pageHeight = 297;
+        const imgWidth = pageWidth;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        if (imgHeight > pageHeight) {
+            pdf.addImage(base64image, "PNG", 0, 0, imgWidth, pageHeight);
+        } else {
+            const verticalOffset = (pageHeight - imgHeight) / 2;
+            pdf.addImage(base64image, "PNG", 0, verticalOffset, imgWidth, imgHeight);
+        }
+
+        pdf.save("resume.pdf");
+        console.log("Resume downloaded successfully");
+    } catch (error) {
+        console.error("Error generating the PDF:", error);
+    }
   }
-  function printPDF(){
-    alert('Feature comming soon')
+  async function printPDF() {
+    alert("Feature still in progress, Coming soon!")
+    /*try {
+        const element = document.querySelector(".preview-section");
+        if (!element) {
+            console.error("Element not found!");
+            return;
+        }
+
+        // Generate canvas with A4 aspect ratio
+        const canvas = await html2canvas(element, {
+            scale: 2, // High quality
+            useCORS: true,
+            backgroundColor: null, // Transparent background
+        });
+
+        const base64image = canvas.toDataURL("image/png");
+
+        // A4 dimensions in pixels at 96 DPI
+        const A4_WIDTH_PX = 794; // 210mm
+        const A4_HEIGHT_PX = 1123; // 297mm
+
+        const imgWidth = A4_WIDTH_PX;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Create an iframe for printing
+        const iframe = document.createElement("iframe");
+        iframe.style.position = "fixed";
+        iframe.style.top = "0";
+        iframe.style.left = "0";
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.zIndex = "-1"; // Hide from view
+
+        document.body.appendChild(iframe);
+
+        // Write the image into the iframe with correct print styles
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        doc.open();
+        doc.write(`
+            <html>
+                <head>
+                    <title>Print Resume</title>
+                    <style>
+                        @page {
+                            size: A4;
+                            margin: 0;
+                        }
+                        body {
+                            margin: 0;
+                            padding: 0;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                            background-color: white;
+                        }
+                        img {
+                            width: ${imgWidth}px;
+                            height: ${imgHeight}px;
+                            display: block;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <img src="${base64image}" alt="Resume Preview" />
+                </body>
+            </html>
+        `);
+        doc.close();
+
+        // Trigger print once iframe is loaded
+        iframe.onload = () => {
+            iframe.contentWindow.print();
+
+            setTimeout(() => {
+                document.body.removeChild(iframe);
+            }, 1000);
+        };
+    } catch (error) {
+        console.error("Error triggering print:", error);
+    }*/
   }
   /* Style Toggling */
   function editAestheticPanelToggle(){

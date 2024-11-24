@@ -1,6 +1,6 @@
 import { Inputs } from "../Inputs";
 import { Button } from "../Button";
-import { convertDate } from "../misc";
+import { convertDate } from "../misc.js";
 import "../../styles/EducationalInformations/EditEducInfo.css";
 
 export function EditEducInfo({

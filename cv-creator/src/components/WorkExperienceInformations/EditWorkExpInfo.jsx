@@ -1,6 +1,6 @@
 import { Inputs } from "../Inputs";
 import { Button } from "../Button";
-import { convertDate } from "../misc";
+import { convertDate } from "../misc.js";
 import "../../styles/WorkExperienceInformations/EditWorkExpInfo.css";
 
 export function EditWorkExpInfo({
