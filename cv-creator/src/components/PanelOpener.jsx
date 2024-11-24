@@ -7,7 +7,7 @@ export function PanelOpener({ text, onClick, dataIndex }) {
         <span>{text}</span>
         <button id="edit-panel-btn" onClick={onClick}>
           <img
-            src="src/assets/double-right.svg"
+            src="./src/assets/double-right.svg"
             alt="double-arrow-icon"
             id="edit-panel-btn-img"
             data-index={dataIndex}
