@@ -1451,7 +1451,9 @@ function EditPersonalInfo(_ref) {
     contactNumber = props.contactNumber,
     inputAddress = props.inputAddress,
     inputWebsite = props.inputWebsite;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("legend", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Inputs_jsx__WEBPACK_IMPORTED_MODULE_0__.Inputs, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("form", {
+    className: "personal-info-form"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("legend", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Inputs_jsx__WEBPACK_IMPORTED_MODULE_0__.Inputs, {
     id: "first-name",
     labelText: "First Name",
     placeholderText: "John Mark",
@@ -1799,7 +1801,7 @@ function EditWorkExpInfo(_ref) {
     className: "workexp-jobtasks-space"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default().createElement("fieldset", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default().createElement("legend", null, "Job Tasks"), jobTasks.map(function (jobTask, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default().createElement(_Inputs__WEBPACK_IMPORTED_MODULE_0__.Inputs, {
-      key: "jobTask-".concat(id),
+      key: "jobTask-".concat(id, "-").concat(index),
       id: "job-task-".concat(id, "-").concat(index),
       labelText: "Job Task ".concat(index + 1),
       placeholderText: "Job Task",
@@ -1991,12 +1993,12 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.main {
 #educational-info-panel,
 #workexp-info-panel,
 #techskills-info-panel {
-  max-width: 100%;
   animation: expand 250ms ease 1;
   transform-origin: top;
   display: flex;
   flex-direction: column;
   row-gap: 0.5vmin;
+  max-width: 100%;
 }
 .add-educ-info-btn-space,
 .add-workexp-btn-space,
@@ -2106,7 +2108,7 @@ ul.techskills-list{
     transform: scaleY(1);
   }
 }
-`, "",{"version":3,"sources":["webpack://./src/styles/App.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,gBAAgB;EAChB,cAAc;EACd,aAAa;EACb,8BAA8B;EAC9B,2BAA2B;EAC3B,UAAU;AACZ;AACA;EACE,wBAAwB;EACxB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;EAChB,cAAc;EACd,YAAY;AACd;AACA;EACE,wBAAwB;EACxB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;EAChB,eAAe;EACf,YAAY;AACd;AACA;EACE,cAAc;EACd,YAAY;EACZ,WAAW;EACX,mBAAmB;EACnB,oDAAoD;EACpD,iDAAiD;EACjD,4CAA4C;EAC5C,gBAAgB;EAChB,uBAAuB;AACzB;AACA;;;;EAIE,eAAe;EACf,8BAA8B;EAC9B,qBAAqB;EACrB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;AAClB;AACA;;;EAGE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,uBAAuB;AACzB;AACA;EACE,UAAU;EACV,kBAAkB;AACpB;AACA;EACE,UAAU;EACV,kBAAkB;AACpB;AACA;;EAEE,WAAW;AACb;AACA;EACE,wBAAwB;EACxB,eAAe;EACf,gBAAgB;EAChB,gBAAgB;EAChB,uBAAuB;AACzB;AACA;EACE,2BAA2B;EAC3B,2BAA2B;EAC3B,WAAW;EACX,YAAY;AACd;AACA;;EAEE,aAAa;EACb,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;EACnB,gBAAgB;EAChB,sBAAsB;EACtB,qBAAqB;AACvB;AACA;;;EAGE,aAAa;EACb,eAAe;EACf,WAAW;EACX,mBAAmB;EACnB,oBAAoB;EACpB,oBAAoB;AACtB;AACA;EACE,uBAAuB;EACvB,kBAAkB;EAClB,UAAU;EACV,kBAAkB;EAClB,eAAe;EACf,iBAAiB;EACjB,cAAc;AAChB;;AAEA,8BAA8B;AAC9B,YAAY;AACZ;EACE,qBAAqB;EACrB,gCAAgC;AAClC;;AAEA,6BAA6B;AAC7B;EACE,WAAW;AACb;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;AACpB;AACA,2BAA2B;AAC3B;EACE;IACE,oBAAoB;EACtB;;EAEA;IACE,uBAAuB;EACzB;;EAEA;IACE,sBAAsB;EACxB;;EAEA;IACE,uBAAuB;EACzB;;EAEA;IACE,oBAAoB;EACtB;AACF","sourcesContent":[".main {\n  max-width: 90vw;\n  min-height: 80vh;\n  padding: 2vmax;\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  grid-template-rows: 1fr 2fr;\n  gap: 2vmax;\n}\n.controls-section {\n  grid-area: 1 / 1 / 2 / 2;\n  display: flex;\n  flex-direction: column;\n  row-gap: 2.5vmax;\n  max-width: 80%;\n  height: auto;\n}\n.edit-section {\n  grid-area: 2 / 1 / 3 / 2;\n  display: flex;\n  flex-direction: column;\n  row-gap: 1.5vmin;\n  max-width: 100%;\n  height: auto;\n}\n.edit-information-panels {\n  max-width: 80%;\n  height: 75vh;\n  padding: 5%;\n  border-radius: 1rem;\n  -webkit-box-shadow: 0px 0px 50px 0px rgb(88, 88, 88);\n  -moz-box-shadow: 0px 0px 50px 0px rgb(88, 88, 88);\n  box-shadow: 0px 0px 50px 0px rgb(88, 88, 88);\n  overflow-y: auto;\n  background-color: white;\n}\n#personal-info-panel,\n#educational-info-panel,\n#workexp-info-panel,\n#techskills-info-panel {\n  max-width: 100%;\n  animation: expand 250ms ease 1;\n  transform-origin: top;\n  display: flex;\n  flex-direction: column;\n  row-gap: 0.5vmin;\n}\n.add-educ-info-btn-space,\n.add-workexp-btn-space,\n.add-techskills-btn-space {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n}\n#add-educ-info-btn {\n  width: 15%;\n  border-radius: 50%;\n}\n#add-workexp-btn {\n  width: 15%;\n  border-radius: 50%;\n}\n#add-educ-info-btn img,\n#add-workexp-btn img {\n  width: 100%;\n}\n.preview-section {\n  grid-area: 1 / 2 / 3 / 3;\n  max-width: 100%;\n  min-height: 50vh;\n  overflow-y: auto;\n  background-color: white;\n}\n.preview-divider {\n  border: 1px solid #adadaddd;\n  background-color: #adadaddd;\n  width: 100%;\n  height: 0.5%;\n}\n.education-display-space,\n.techskills-display-space {\n  display: flex;\n  flex-direction: column;\n}\n#education-display-header,\n#workexp-display-header,\n#techskills-display-header {\n  font-size: 1.25vmax;\n  text-align: left;\n  padding-left: 2.75vmax;\n  padding-top: 0.75vmax;\n}\n.education-info-entries,\n.workexp-info-entries,\n.techskills-info-entries {\n  display: flex;\n  flex-wrap: wrap;\n  color: #000;\n  margin-top: 0.5vmax;\n  margin-inline: 2vmax;\n  font-family: \"Rubik\";\n}\nul.techskills-list{\n  list-style-type: circle;\n  margin-left: 5vmin;\n  columns: 2;\n  -webkit-columns: 2;\n  -moz-columns: 2;\n  column-fill: auto;\n  height: 15vmin;\n}\n\n/* ===== Scrollbar CSS ===== */\n/* Firefox */\n* {\n  scrollbar-width: thin;\n  scrollbar-color: #969696 #e6e6e6;\n}\n\n/* Chrome, Edge, and Safari */\n*::-webkit-scrollbar {\n  width: 14px;\n}\n\n*::-webkit-scrollbar-track {\n  background: #e6e6e6;\n}\n\n*::-webkit-scrollbar-thumb {\n  background: #888;\n  border-radius: 6px;\n}\n/* ===== Animations ===== */\n@keyframes expand {\n  0% {\n    transform: scaleY(0);\n  }\n\n  25% {\n    transform: scaleY(0.25);\n  }\n\n  50% {\n    transform: scaleY(0.5);\n  }\n\n  75% {\n    transform: scaleY(0.75);\n  }\n\n  100% {\n    transform: scaleY(1);\n  }\n}\n"],"sourceRoot":""}]);
+`, "",{"version":3,"sources":["webpack://./src/styles/App.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,gBAAgB;EAChB,cAAc;EACd,aAAa;EACb,8BAA8B;EAC9B,2BAA2B;EAC3B,UAAU;AACZ;AACA;EACE,wBAAwB;EACxB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;EAChB,cAAc;EACd,YAAY;AACd;AACA;EACE,wBAAwB;EACxB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;EAChB,eAAe;EACf,YAAY;AACd;AACA;EACE,cAAc;EACd,YAAY;EACZ,WAAW;EACX,mBAAmB;EACnB,oDAAoD;EACpD,iDAAiD;EACjD,4CAA4C;EAC5C,gBAAgB;EAChB,uBAAuB;AACzB;AACA;;;;EAIE,8BAA8B;EAC9B,qBAAqB;EACrB,aAAa;EACb,sBAAsB;EACtB,gBAAgB;EAChB,eAAe;AACjB;AACA;;;EAGE,WAAW;EACX,YAAY;EACZ,aAAa;EACb,uBAAuB;AACzB;AACA;EACE,UAAU;EACV,kBAAkB;AACpB;AACA;EACE,UAAU;EACV,kBAAkB;AACpB;AACA;;EAEE,WAAW;AACb;AACA;EACE,wBAAwB;EACxB,eAAe;EACf,gBAAgB;EAChB,gBAAgB;EAChB,uBAAuB;AACzB;AACA;EACE,2BAA2B;EAC3B,2BAA2B;EAC3B,WAAW;EACX,YAAY;AACd;AACA;;EAEE,aAAa;EACb,sBAAsB;AACxB;AACA;;;EAGE,mBAAmB;EACnB,gBAAgB;EAChB,sBAAsB;EACtB,qBAAqB;AACvB;AACA;;;EAGE,aAAa;EACb,eAAe;EACf,WAAW;EACX,mBAAmB;EACnB,oBAAoB;EACpB,oBAAoB;AACtB;AACA;EACE,uBAAuB;EACvB,kBAAkB;EAClB,UAAU;EACV,kBAAkB;EAClB,eAAe;EACf,iBAAiB;EACjB,cAAc;AAChB;;AAEA,8BAA8B;AAC9B,YAAY;AACZ;EACE,qBAAqB;EACrB,gCAAgC;AAClC;;AAEA,6BAA6B;AAC7B;EACE,WAAW;AACb;;AAEA;EACE,mBAAmB;AACrB;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;AACpB;AACA,2BAA2B;AAC3B;EACE;IACE,oBAAoB;EACtB;;EAEA;IACE,uBAAuB;EACzB;;EAEA;IACE,sBAAsB;EACxB;;EAEA;IACE,uBAAuB;EACzB;;EAEA;IACE,oBAAoB;EACtB;AACF","sourcesContent":[".main {\n  max-width: 90vw;\n  min-height: 80vh;\n  padding: 2vmax;\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  grid-template-rows: 1fr 2fr;\n  gap: 2vmax;\n}\n.controls-section {\n  grid-area: 1 / 1 / 2 / 2;\n  display: flex;\n  flex-direction: column;\n  row-gap: 2.5vmax;\n  max-width: 80%;\n  height: auto;\n}\n.edit-section {\n  grid-area: 2 / 1 / 3 / 2;\n  display: flex;\n  flex-direction: column;\n  row-gap: 1.5vmin;\n  max-width: 100%;\n  height: auto;\n}\n.edit-information-panels {\n  max-width: 80%;\n  height: 75vh;\n  padding: 5%;\n  border-radius: 1rem;\n  -webkit-box-shadow: 0px 0px 50px 0px rgb(88, 88, 88);\n  -moz-box-shadow: 0px 0px 50px 0px rgb(88, 88, 88);\n  box-shadow: 0px 0px 50px 0px rgb(88, 88, 88);\n  overflow-y: auto;\n  background-color: white;\n}\n#personal-info-panel,\n#educational-info-panel,\n#workexp-info-panel,\n#techskills-info-panel {\n  animation: expand 250ms ease 1;\n  transform-origin: top;\n  display: flex;\n  flex-direction: column;\n  row-gap: 0.5vmin;\n  max-width: 100%;\n}\n.add-educ-info-btn-space,\n.add-workexp-btn-space,\n.add-techskills-btn-space {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  justify-content: center;\n}\n#add-educ-info-btn {\n  width: 15%;\n  border-radius: 50%;\n}\n#add-workexp-btn {\n  width: 15%;\n  border-radius: 50%;\n}\n#add-educ-info-btn img,\n#add-workexp-btn img {\n  width: 100%;\n}\n.preview-section {\n  grid-area: 1 / 2 / 3 / 3;\n  max-width: 100%;\n  min-height: 50vh;\n  overflow-y: auto;\n  background-color: white;\n}\n.preview-divider {\n  border: 1px solid #adadaddd;\n  background-color: #adadaddd;\n  width: 100%;\n  height: 0.5%;\n}\n.education-display-space,\n.techskills-display-space {\n  display: flex;\n  flex-direction: column;\n}\n#education-display-header,\n#workexp-display-header,\n#techskills-display-header {\n  font-size: 1.25vmax;\n  text-align: left;\n  padding-left: 2.75vmax;\n  padding-top: 0.75vmax;\n}\n.education-info-entries,\n.workexp-info-entries,\n.techskills-info-entries {\n  display: flex;\n  flex-wrap: wrap;\n  color: #000;\n  margin-top: 0.5vmax;\n  margin-inline: 2vmax;\n  font-family: \"Rubik\";\n}\nul.techskills-list{\n  list-style-type: circle;\n  margin-left: 5vmin;\n  columns: 2;\n  -webkit-columns: 2;\n  -moz-columns: 2;\n  column-fill: auto;\n  height: 15vmin;\n}\n\n/* ===== Scrollbar CSS ===== */\n/* Firefox */\n* {\n  scrollbar-width: thin;\n  scrollbar-color: #969696 #e6e6e6;\n}\n\n/* Chrome, Edge, and Safari */\n*::-webkit-scrollbar {\n  width: 14px;\n}\n\n*::-webkit-scrollbar-track {\n  background: #e6e6e6;\n}\n\n*::-webkit-scrollbar-thumb {\n  background: #888;\n  border-radius: 6px;\n}\n/* ===== Animations ===== */\n@keyframes expand {\n  0% {\n    transform: scaleY(0);\n  }\n\n  25% {\n    transform: scaleY(0.25);\n  }\n\n  50% {\n    transform: scaleY(0.5);\n  }\n\n  75% {\n    transform: scaleY(0.75);\n  }\n\n  100% {\n    transform: scaleY(1);\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2265,13 +2267,10 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.educ-info-entry {
 	border-radius: 0.25rem;
 	padding: 0.25rem;
 	font-family: "Rubik";
-	font-size: 1.5vmin;
-}
-.educ-info-entry img{
-	width: 5.5%;
+	font-size: 1.25vmin;
 }
 #edit-educ-info-btn {
-	width: 5.5%;
+	width: 10%;
 	border: none;
 	background-color: transparent;
 }
@@ -2281,9 +2280,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.educ-info-entry {
 .educ-info-entry-header {
 	display: flex;
 	font-family: "Rubik";
-	font-size: 2vmin;
 	align-items: center;
 	justify-content: space-around;
+    max-width: 100%;
+    width: 100%;
+}
+.educ-info-entry-header span{
+    max-width: 100%;
+    width: 100%;
+    font-size: 1.75vmin;
+    font-weight: 500;
 }
 .educ-info-form{
 	animation: expand 250ms ease 1;
@@ -2294,6 +2300,8 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.educ-info-entry {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	width: 100%;
+	max-width: 100%;
 }
 .educ-entry-button {
 	display: flex;
@@ -2306,7 +2314,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.educ-info-entry {
 }
 .educ-entry-button img {
 	width: 35%;
-}`, "",{"version":3,"sources":["webpack://./src/styles/EducationalInformations/EditEducInfo.css"],"names":[],"mappings":"AAAA;CACC,sBAAsB;CACtB,sBAAsB;CACtB,gBAAgB;CAChB,oBAAoB;CACpB,kBAAkB;AACnB;AACA;CACC,WAAW;AACZ;AACA;CACC,WAAW;CACX,YAAY;CACZ,6BAA6B;AAC9B;AACA;CACC,WAAW;AACZ;AACA;CACC,aAAa;CACb,oBAAoB;CACpB,gBAAgB;CAChB,mBAAmB;CACnB,6BAA6B;AAC9B;AACA;CACC,8BAA8B;CAC9B,qBAAqB;AACtB;AACA;CACC,iBAAiB;CACjB,aAAa;CACb,mBAAmB;CACnB,6BAA6B;AAC9B;AACA;CACC,aAAa;CACb,6BAA6B;CAC7B,mBAAmB;CACnB,cAAc;AACf;AACA;CACC,mBAAmB;AACpB;AACA;CACC,UAAU;AACX","sourcesContent":[".educ-info-entry {\r\n\tborder: 2px solid #000;\r\n\tborder-radius: 0.25rem;\r\n\tpadding: 0.25rem;\r\n\tfont-family: \"Rubik\";\r\n\tfont-size: 1.5vmin;\r\n}\r\n.educ-info-entry img{\r\n\twidth: 5.5%;\r\n}\r\n#edit-educ-info-btn {\r\n\twidth: 5.5%;\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\n#edit-educ-info-btn img {\r\n\twidth: 100%;\r\n}\r\n.educ-info-entry-header {\r\n\tdisplay: flex;\r\n\tfont-family: \"Rubik\";\r\n\tfont-size: 2vmin;\r\n\talign-items: center;\r\n\tjustify-content: space-around;\r\n}\r\n.educ-info-form{\r\n\tanimation: expand 250ms ease 1;\r\n\ttransform-origin: top;\r\n}\r\n.educ-entry-buttons-space {\r\n\tmargin-top: 1vmin;\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tjustify-content: space-around;\r\n}\r\n.educ-entry-button {\r\n\tdisplay: flex;\r\n\tjustify-content: space-around;\r\n\talign-items: center;\r\n\tmin-width: 30%;\r\n}\r\n.educ-entry-button span {\r\n\tfont-size: 1.25vmin;\r\n}\r\n.educ-entry-button img {\r\n\twidth: 35%;\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/EducationalInformations/EditEducInfo.css"],"names":[],"mappings":"AAAA;CACC,sBAAsB;CACtB,sBAAsB;CACtB,gBAAgB;CAChB,oBAAoB;CACpB,mBAAmB;AACpB;AACA;CACC,UAAU;CACV,YAAY;CACZ,6BAA6B;AAC9B;AACA;CACC,WAAW;AACZ;AACA;CACC,aAAa;CACb,oBAAoB;CACpB,mBAAmB;CACnB,6BAA6B;IAC1B,eAAe;IACf,WAAW;AACf;AACA;IACI,eAAe;IACf,WAAW;IACX,mBAAmB;IACnB,gBAAgB;AACpB;AACA;CACC,8BAA8B;CAC9B,qBAAqB;AACtB;AACA;CACC,iBAAiB;CACjB,aAAa;CACb,mBAAmB;CACnB,6BAA6B;CAC7B,WAAW;CACX,eAAe;AAChB;AACA;CACC,aAAa;CACb,6BAA6B;CAC7B,mBAAmB;CACnB,cAAc;AACf;AACA;CACC,mBAAmB;AACpB;AACA;CACC,UAAU;AACX","sourcesContent":[".educ-info-entry {\r\n\tborder: 2px solid #000;\r\n\tborder-radius: 0.25rem;\r\n\tpadding: 0.25rem;\r\n\tfont-family: \"Rubik\";\r\n\tfont-size: 1.25vmin;\r\n}\r\n#edit-educ-info-btn {\r\n\twidth: 10%;\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\n#edit-educ-info-btn img {\r\n\twidth: 100%;\r\n}\r\n.educ-info-entry-header {\r\n\tdisplay: flex;\r\n\tfont-family: \"Rubik\";\r\n\talign-items: center;\r\n\tjustify-content: space-around;\r\n    max-width: 100%;\r\n    width: 100%;\r\n}\r\n.educ-info-entry-header span{\r\n    max-width: 100%;\r\n    width: 100%;\r\n    font-size: 1.75vmin;\r\n    font-weight: 500;\r\n}\r\n.educ-info-form{\r\n\tanimation: expand 250ms ease 1;\r\n\ttransform-origin: top;\r\n}\r\n.educ-entry-buttons-space {\r\n\tmargin-top: 1vmin;\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tjustify-content: space-around;\r\n\twidth: 100%;\r\n\tmax-width: 100%;\r\n}\r\n.educ-entry-button {\r\n\tdisplay: flex;\r\n\tjustify-content: space-around;\r\n\talign-items: center;\r\n\tmin-width: 30%;\r\n}\r\n.educ-entry-button span {\r\n\tfont-size: 1.25vmin;\r\n}\r\n.educ-entry-button img {\r\n\twidth: 35%;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2384,42 +2392,42 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `fieldset{
+___CSS_LOADER_EXPORT___.push([module.id, `form, fieldset {
     display: flex;
     flex-direction: column;
     padding: 1vmax;
     max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 .input-container {
     display: flex;
     flex-direction: column;
-    max-width: 95%;
-    margin: 0.5vmin;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    margin: 0.5vmin 0;
 }
 label{
     text-align: left;
     font-size: 1vmax;
     font-family: "Rubik";
+    max-width: 100%;
+    width: 100%;
 }
-input{
+input,
+textarea{
     border: 2px rgb(185, 185, 185) solid;
     border-radius: 0.25rem;
-    max-width: 90%;
+    width: 100%;
     line-height: 1.5vmax;
     font-family: "Rubik";
-    padding: 0.5vmin;
-}
-textarea {
-    border: 2px rgb(185, 185, 185) solid;
-    border-radius: 0.25rem;
-    max-width: 90%;
-    line-height: 1.5vmax;
-    font-family: "Rubik";
+    font-size: 1.5vmin;
     padding: 0.5vmin;
 }
   *::placeholder{
     color: rgb(163, 161, 161);
-}`, "",{"version":3,"sources":["webpack://./src/styles/Inputs.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,sBAAsB;IACtB,cAAc;IACd,eAAe;AACnB;AACA;IACI,aAAa;IACb,sBAAsB;IACtB,cAAc;IACd,eAAe;AACnB;AACA;IACI,gBAAgB;IAChB,gBAAgB;IAChB,oBAAoB;AACxB;AACA;IACI,oCAAoC;IACpC,sBAAsB;IACtB,cAAc;IACd,oBAAoB;IACpB,oBAAoB;IACpB,gBAAgB;AACpB;AACA;IACI,oCAAoC;IACpC,sBAAsB;IACtB,cAAc;IACd,oBAAoB;IACpB,oBAAoB;IACpB,gBAAgB;AACpB;EACE;IACE,yBAAyB;AAC7B","sourcesContent":["fieldset{\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 1vmax;\r\n    max-width: 100%;\r\n}\r\n.input-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    max-width: 95%;\r\n    margin: 0.5vmin;\r\n}\r\nlabel{\r\n    text-align: left;\r\n    font-size: 1vmax;\r\n    font-family: \"Rubik\";\r\n}\r\ninput{\r\n    border: 2px rgb(185, 185, 185) solid;\r\n    border-radius: 0.25rem;\r\n    max-width: 90%;\r\n    line-height: 1.5vmax;\r\n    font-family: \"Rubik\";\r\n    padding: 0.5vmin;\r\n}\r\ntextarea {\r\n    border: 2px rgb(185, 185, 185) solid;\r\n    border-radius: 0.25rem;\r\n    max-width: 90%;\r\n    line-height: 1.5vmax;\r\n    font-family: \"Rubik\";\r\n    padding: 0.5vmin;\r\n}\r\n  *::placeholder{\r\n    color: rgb(163, 161, 161);\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/Inputs.css"],"names":[],"mappings":"AAAA;IACI,aAAa;IACb,sBAAsB;IACtB,cAAc;IACd,eAAe;IACf,WAAW;IACX,sBAAsB;AAC1B;AACA;IACI,aAAa;IACb,sBAAsB;IACtB,eAAe;IACf,WAAW;IACX,eAAe;IACf,iBAAiB;AACrB;AACA;IACI,gBAAgB;IAChB,gBAAgB;IAChB,oBAAoB;IACpB,eAAe;IACf,WAAW;AACf;AACA;;IAEI,oCAAoC;IACpC,sBAAsB;IACtB,WAAW;IACX,oBAAoB;IACpB,oBAAoB;IACpB,kBAAkB;IAClB,gBAAgB;AACpB;EACE;IACE,yBAAyB;AAC7B","sourcesContent":["form, fieldset {\r\n    display: flex;\r\n    flex-direction: column;\r\n    padding: 1vmax;\r\n    max-width: 100%;\r\n    width: 100%;\r\n    box-sizing: border-box;\r\n}\r\n.input-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    flex-wrap: wrap;\r\n    width: 100%;\r\n    max-width: 100%;\r\n    margin: 0.5vmin 0;\r\n}\r\nlabel{\r\n    text-align: left;\r\n    font-size: 1vmax;\r\n    font-family: \"Rubik\";\r\n    max-width: 100%;\r\n    width: 100%;\r\n}\r\ninput,\r\ntextarea{\r\n    border: 2px rgb(185, 185, 185) solid;\r\n    border-radius: 0.25rem;\r\n    width: 100%;\r\n    line-height: 1.5vmax;\r\n    font-family: \"Rubik\";\r\n    font-size: 1.5vmin;\r\n    padding: 0.5vmin;\r\n}\r\n  *::placeholder{\r\n    color: rgb(163, 161, 161);\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2714,14 +2722,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.workexp-info-entry {
 	border-radius: 0.25rem;
 	padding: 0.25rem;
     font-family: "Rubik";
-    font-size: 1.5vmin;
+    font-size: 1.25vmin;
     text-align: center;
-}
-.workexp-info-entry img{
-	width: 5.5%;
+    max-width: 100%;
+    width: 100%;
 }
 #edit-workexp-info-btn {
-	width: 5.5%;
+	width: 10%;
 	border: none;
 	background-color: transparent;
 }
@@ -2731,12 +2738,16 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.workexp-info-entry {
 .workexp-info-entry-header {
 	display: flex;
 	font-family: "Rubik";
-	font-size: 2vmin;
 	align-items: center;
 	justify-content: space-around;
+    max-width: 100%;
+    width: 100%;
 }
 .workexp-info-entry-header span{
+    max-width: 100%;
     width: 100%;
+    font-size: 1.75vmin;
+    font-weight: 500;
 }
 .workexp-info-form{
 	animation: expand 250ms ease 1;
@@ -2786,6 +2797,8 @@ input[type="checkbox"]{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+    width: 100%;
+	max-width: 100%;
 }
 .workexp-entry-button {
 	display: flex;
@@ -2798,7 +2811,7 @@ input[type="checkbox"]{
 }
 .workexp-entry-button img {
 	width: 35%;
-}`, "",{"version":3,"sources":["webpack://./src/styles/WorkExperienceInformations/EditWorkExpInfo.css"],"names":[],"mappings":"AAAA;CACC,sBAAsB;CACtB,sBAAsB;CACtB,gBAAgB;IACb,oBAAoB;IACpB,kBAAkB;IAClB,kBAAkB;AACtB;AACA;CACC,WAAW;AACZ;AACA;CACC,WAAW;CACX,YAAY;CACZ,6BAA6B;AAC9B;AACA;CACC,WAAW;AACZ;AACA;CACC,aAAa;CACb,oBAAoB;CACpB,gBAAgB;CAChB,mBAAmB;CACnB,6BAA6B;AAC9B;AACA;IACI,WAAW;AACf;AACA;CACC,8BAA8B;CAC9B,qBAAqB;AACtB;AACA;IACI,WAAW;IACX,eAAe;IACf,aAAa;IACb,mBAAmB;IACnB,qBAAqB;IACrB,oBAAoB;AACxB;AACA;IACI,kBAAkB;IAClB,oBAAoB;IACpB,oBAAoB;AACxB;AACA;IACI,yBAAyB;IACzB,cAAc;IACd,eAAe;IACf,oBAAoB;IACpB,eAAe;IACf,kBAAkB;AACtB;AACA;IACI,kBAAkB;IAClB,WAAW;IACX,sBAAsB;IACtB,eAAe;IACf,gBAAgB;IAChB,oBAAoB;IACpB,iBAAiB;AACrB;AACA;IACI,2BAA2B;AAC/B;AACA;IACI,0BAA0B;AAC9B;AACA;IACI,aAAa;AACjB;AACA;CACC,iBAAiB;CACjB,aAAa;CACb,mBAAmB;CACnB,6BAA6B;AAC9B;AACA;CACC,aAAa;CACb,6BAA6B;CAC7B,mBAAmB;CACnB,cAAc;AACf;AACA;CACC,mBAAmB;AACpB;AACA;CACC,UAAU;AACX","sourcesContent":[".workexp-info-entry {\r\n\tborder: 2px solid #000;\r\n\tborder-radius: 0.25rem;\r\n\tpadding: 0.25rem;\r\n    font-family: \"Rubik\";\r\n    font-size: 1.5vmin;\r\n    text-align: center;\r\n}\r\n.workexp-info-entry img{\r\n\twidth: 5.5%;\r\n}\r\n#edit-workexp-info-btn {\r\n\twidth: 5.5%;\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\n#edit-workexp-info-btn img {\r\n\twidth: 100%;\r\n}\r\n.workexp-info-entry-header {\r\n\tdisplay: flex;\r\n\tfont-family: \"Rubik\";\r\n\tfont-size: 2vmin;\r\n\talign-items: center;\r\n\tjustify-content: space-around;\r\n}\r\n.workexp-info-entry-header span{\r\n    width: 100%;\r\n}\r\n.workexp-info-form{\r\n\tanimation: expand 250ms ease 1;\r\n\ttransform-origin: top;\r\n}\r\n.toggle-btn-container{\r\n    width: 100%;\r\n    height: 3.5vmin;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: left;\r\n    margin-top: 0.75vmin;\r\n}\r\n.toggle-btn-label{\r\n    font-size: 1.5vmin;\r\n    margin-left: 0.5vmin;\r\n    font-family: \"Rubik\";\r\n}\r\n.toggle-btn{\r\n    background-color: #BBBBBB;\r\n    width: 6.5vmin;\r\n    height: 3.5vmin;\r\n    border-radius: 2vmin;\r\n    cursor: pointer;\r\n    position: relative;\r\n}\r\n.toggle-btn::before{\r\n    position: absolute;\r\n    content: '';\r\n    background-color: #FFF;\r\n    width: 3.25vmin;\r\n    height: 3.25vmin;\r\n    border-radius: 2vmin;\r\n    margin: 0.125vmin;\r\n}\r\ninput:checked+.toggle-btn{\r\n    background: var(--primary1);\r\n}\r\ninput:checked+.toggle-btn::before{\r\n    transform: translateX(90%);\r\n}\r\ninput[type=\"checkbox\"]{\r\n    display: none;\r\n}\r\n.workexp-entry-buttons-space {\r\n\tmargin-top: 1vmin;\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tjustify-content: space-around;\r\n}\r\n.workexp-entry-button {\r\n\tdisplay: flex;\r\n\tjustify-content: space-around;\r\n\talign-items: center;\r\n\tmin-width: 30%;\r\n}\r\n.workexp-entry-button span {\r\n\tfont-size: 1.25vmin;\r\n}\r\n.workexp-entry-button img {\r\n\twidth: 35%;\r\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/WorkExperienceInformations/EditWorkExpInfo.css"],"names":[],"mappings":"AAAA;CACC,sBAAsB;CACtB,sBAAsB;CACtB,gBAAgB;IACb,oBAAoB;IACpB,mBAAmB;IACnB,kBAAkB;IAClB,eAAe;IACf,WAAW;AACf;AACA;CACC,UAAU;CACV,YAAY;CACZ,6BAA6B;AAC9B;AACA;CACC,WAAW;AACZ;AACA;CACC,aAAa;CACb,oBAAoB;CACpB,mBAAmB;CACnB,6BAA6B;IAC1B,eAAe;IACf,WAAW;AACf;AACA;IACI,eAAe;IACf,WAAW;IACX,mBAAmB;IACnB,gBAAgB;AACpB;AACA;CACC,8BAA8B;CAC9B,qBAAqB;AACtB;AACA;IACI,WAAW;IACX,eAAe;IACf,aAAa;IACb,mBAAmB;IACnB,qBAAqB;IACrB,oBAAoB;AACxB;AACA;IACI,kBAAkB;IAClB,oBAAoB;IACpB,oBAAoB;AACxB;AACA;IACI,yBAAyB;IACzB,cAAc;IACd,eAAe;IACf,oBAAoB;IACpB,eAAe;IACf,kBAAkB;AACtB;AACA;IACI,kBAAkB;IAClB,WAAW;IACX,sBAAsB;IACtB,eAAe;IACf,gBAAgB;IAChB,oBAAoB;IACpB,iBAAiB;AACrB;AACA;IACI,2BAA2B;AAC/B;AACA;IACI,0BAA0B;AAC9B;AACA;IACI,aAAa;AACjB;AACA;CACC,iBAAiB;CACjB,aAAa;CACb,mBAAmB;CACnB,6BAA6B;IAC1B,WAAW;CACd,eAAe;AAChB;AACA;CACC,aAAa;CACb,6BAA6B;CAC7B,mBAAmB;CACnB,cAAc;AACf;AACA;CACC,mBAAmB;AACpB;AACA;CACC,UAAU;AACX","sourcesContent":[".workexp-info-entry {\r\n\tborder: 2px solid #000;\r\n\tborder-radius: 0.25rem;\r\n\tpadding: 0.25rem;\r\n    font-family: \"Rubik\";\r\n    font-size: 1.25vmin;\r\n    text-align: center;\r\n    max-width: 100%;\r\n    width: 100%;\r\n}\r\n#edit-workexp-info-btn {\r\n\twidth: 10%;\r\n\tborder: none;\r\n\tbackground-color: transparent;\r\n}\r\n#edit-workexp-info-btn img {\r\n\twidth: 100%;\r\n}\r\n.workexp-info-entry-header {\r\n\tdisplay: flex;\r\n\tfont-family: \"Rubik\";\r\n\talign-items: center;\r\n\tjustify-content: space-around;\r\n    max-width: 100%;\r\n    width: 100%;\r\n}\r\n.workexp-info-entry-header span{\r\n    max-width: 100%;\r\n    width: 100%;\r\n    font-size: 1.75vmin;\r\n    font-weight: 500;\r\n}\r\n.workexp-info-form{\r\n\tanimation: expand 250ms ease 1;\r\n\ttransform-origin: top;\r\n}\r\n.toggle-btn-container{\r\n    width: 100%;\r\n    height: 3.5vmin;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: left;\r\n    margin-top: 0.75vmin;\r\n}\r\n.toggle-btn-label{\r\n    font-size: 1.5vmin;\r\n    margin-left: 0.5vmin;\r\n    font-family: \"Rubik\";\r\n}\r\n.toggle-btn{\r\n    background-color: #BBBBBB;\r\n    width: 6.5vmin;\r\n    height: 3.5vmin;\r\n    border-radius: 2vmin;\r\n    cursor: pointer;\r\n    position: relative;\r\n}\r\n.toggle-btn::before{\r\n    position: absolute;\r\n    content: '';\r\n    background-color: #FFF;\r\n    width: 3.25vmin;\r\n    height: 3.25vmin;\r\n    border-radius: 2vmin;\r\n    margin: 0.125vmin;\r\n}\r\ninput:checked+.toggle-btn{\r\n    background: var(--primary1);\r\n}\r\ninput:checked+.toggle-btn::before{\r\n    transform: translateX(90%);\r\n}\r\ninput[type=\"checkbox\"]{\r\n    display: none;\r\n}\r\n.workexp-entry-buttons-space {\r\n\tmargin-top: 1vmin;\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tjustify-content: space-around;\r\n    width: 100%;\r\n\tmax-width: 100%;\r\n}\r\n.workexp-entry-button {\r\n\tdisplay: flex;\r\n\tjustify-content: space-around;\r\n\talign-items: center;\r\n\tmin-width: 30%;\r\n}\r\n.workexp-entry-button span {\r\n\tfont-size: 1.25vmin;\r\n}\r\n.workexp-entry-button img {\r\n\twidth: 35%;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3819,4 +3832,4 @@ function convertDate(inputDate) {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.bc185221db26e9044644.js.map
+//# sourceMappingURL=main.c05b97fea853449db470.js.map
