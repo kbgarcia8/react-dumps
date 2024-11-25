@@ -3,14 +3,13 @@
 	border-radius: 0.25rem;
 	padding: 0.25rem;
     font-family: "Rubik";
-    font-size: 1.5vmin;
+    font-size: 1.25vmin;
     text-align: center;
-}
-.workexp-info-entry img{
-	width: 5.5%;
+    max-width: 100%;
+    width: 100%;
 }
 #edit-workexp-info-btn {
-	width: 5.5%;
+	width: 10%;
 	border: none;
 	background-color: transparent;
 }
@@ -20,12 +19,16 @@
 .workexp-info-entry-header {
 	display: flex;
 	font-family: "Rubik";
-	font-size: 2vmin;
 	align-items: center;
 	justify-content: space-around;
+    max-width: 100%;
+    width: 100%;
 }
 .workexp-info-entry-header span{
+    max-width: 100%;
     width: 100%;
+    font-size: 1.75vmin;
+    font-weight: 500;
 }
 .workexp-info-form{
 	animation: expand 250ms ease 1;
@@ -75,6 +78,8 @@ input[type="checkbox"]{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+    width: 100%;
+	max-width: 100%;
 }
 .workexp-entry-button {
 	display: flex;

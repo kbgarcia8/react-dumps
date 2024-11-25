@@ -80,6 +80,8 @@ Task: Controls Button Functionality
 
 For improvement:
 - Responsiveness for tablet up to big screen
+    - For the edit sections need to implement media query and adjust the following:
+        - font size of inputs and entries
 - For review on how to implement different font styles within a display component
 - Add a style or layout picker
 - Download Button functionality

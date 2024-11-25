@@ -38,12 +38,12 @@
 #educational-info-panel,
 #workexp-info-panel,
 #techskills-info-panel {
-  max-width: 100%;
   animation: expand 250ms ease 1;
   transform-origin: top;
   display: flex;
   flex-direction: column;
   row-gap: 0.5vmin;
+  max-width: 100%;
 }
 .add-educ-info-btn-space,
 .add-workexp-btn-space,

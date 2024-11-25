@@ -12,8 +12,8 @@ export function EditPersonalInfo({ props, handlePersonalInfoChange }) {
   } = props;
   return (
     <>
-      <form>
-        <fieldset>
+      <form className="personal-info-form">
+        <fieldset >
           <legend></legend>
           <Inputs
             id="first-name"
