@@ -88,7 +88,7 @@ export function EditWorkExpInfo({
                 <legend>Job Tasks</legend>
                 {jobTasks.map((jobTask, index) => (
                   <Inputs
-                    key={`jobTask-${id}`}
+                    key={`jobTask-${id}-${index}`}
                     id={`job-task-${id}-${index}`}
                     labelText={`Job Task ${index+1}`}
                     placeholderText="Job Task"
