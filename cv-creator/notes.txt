@@ -13,8 +13,6 @@ Task: Slider
 Task: Personal Info Section
 - Display Section
     -- Restructure design [DONE]
-    -- Need to apply adaptive change of color for background
-    of personal info and svg icon colors [NOT STARTED]
 
 Task: Education Section
 - Edit Section
@@ -61,11 +59,8 @@ Task: Controls Button Functionality
 - Information Button (default)
 - Aesthetic Button [ONGOING]
     -- Aesthetic Panels [INITIAL DONE]
-        --- To include:
-            - Font Size changer [FOR IMPROVEMENT]
-                - For review on how to implement different font styles within a display component
-            - Add a style or layout picker but only put feature is optional this will be for future implementation [FOR IMPROVEMENT]
-            - Font Changer
+        --- To include:            
+            - Font Changer [DONE]
                 - Choices:
                     Arial
                     Calibri
@@ -78,9 +73,18 @@ Task: Controls Button Functionality
                     Berserkerville
                     Palatino Linotype
                     - Add a custom button but only put feature is optional this will be for future implementation
-            - Color Changer for header background
-            - Color Changer for header text            
+            - Color Changer for header background [DONE]
+            - Color Changer for header text [DONE]
 - Sample Fill [DONE]
 - Reset Button [DONE]
-- Download Button [CHECKING if FEASIBLE]
-- Print Buttong [CHECKING if FEASIBLE]
+
+For improvement:
+- Responsiveness for tablet up to big screen
+- For review on how to implement different font styles within a display component
+- Add a style or layout picker
+- Download Button functionality
+    - Provide A4 and short bond paper format
+    -- Study offset concept and html2canvas and jsPDF functions/documentations
+- Print Button functionality
+    - Fix extra margin on iframe
+    -- Study iframe concept/documentation
