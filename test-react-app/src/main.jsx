@@ -7,9 +7,10 @@ import {ListApp} from "./List.jsx"
 import {Keys} from "./Keys.jsx"
 import {Props} from "./Props.jsx"
 import {State, Gallery, Form} from "./State.jsx"
+import { Clock } from "./Clock.jsx"
 import './index.css'
 
-createRoot(document.getElementById('root')).render(
+/*createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
     <Greeting />
@@ -20,5 +21,10 @@ createRoot(document.getElementById('root')).render(
     <State />
     <Gallery />
     <Form />
+  </StrictMode>,
+)*/
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Clock />
   </StrictMode>,
 )
