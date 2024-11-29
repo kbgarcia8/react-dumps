@@ -15,3 +15,6 @@ Page: Game Page
     Task: Theme
         - League of Legends Character - https://developer.riotgames.com/docs/lol 
         - Adventure Time Character - https://adventure-time-api-docs.vercel.app/
+
+Date                            Accomplishment
+Nov 29, 2024                    Test response of API and useEffect hook with API call
