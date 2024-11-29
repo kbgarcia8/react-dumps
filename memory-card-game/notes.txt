@@ -1,0 +1,12 @@
+Page: Loading Page
+    Task: UI
+
+Page: Home Page (Has start game button and settings[optional])
+    Task: UI
+
+Page: Game Page
+    Task: UI
+    Task: API
+        - Explore Riot Games Developer API
+    Task: Theme
+        - League of Legends Character
