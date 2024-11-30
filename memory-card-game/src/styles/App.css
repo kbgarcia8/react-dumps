@@ -1,8 +1,30 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 100vw;
+  min-height: 100vh;
   text-align: center;
   background-color: #fff;
 }
-
+.temporary-button-space{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.play-card-container{
+  border: 2px solid red;
+  max-width: 98.75vw;
+  min-height: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.play-card{
+  border: 2px solid blue;
+  width: 15vw;
+  height: auto;
+  overflow-y: hidden;
+  margin: 2vmin;
+}
+.play-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
+}

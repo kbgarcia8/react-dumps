@@ -22,4 +22,4 @@ Page: Game Page
 
 Date                            Accomplishment
 Nov 29, 2024                    Test response of API (champion name and image) and useEffect hook with API call
-Nov 30, 2024                    
+Nov 30, 2024                    Initial createRandomChampionList, shuffleChampionListToPlay, checkIfAlreadySelected functions created and tested
