@@ -9,39 +9,74 @@ function App() {
   const [usedChampionsToPlay, setUsedChampionsToPlay] = useState([])
   const [selectedChampions, setSelectedChampions] = useState([])
   const [currentScore, setCurrentScore] = useState(0)
+  const [bestScore, setBestScore] = useState(0)
+  const [difficulty, setDifficulty] = useState('easy')
   useEffect(() => {
     async function fetchMainData() {
-      try {
-        const response = await fetch("https://ddragon.leagueoflegends.com/cdn/14.23.1/data/en_US/champion.json");
-        const result = await response.json();
-        //setRawData(result.data)
-        setChampionMasterList(Object.keys(result.data))
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-      // finally {
-        
-      //}
+        try {
+          const response = await fetch("https://ddragon.leagueoflegends.com/cdn/14.23.1/data/en_US/champion.json");
+          const result = await response.json();
+          //setRawData(result.data)
+          setChampionMasterList(Object.keys(result.data))
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+        // finally {
+          
+        //}
     };
     fetchMainData();
+    setDifficulty('easy')
   }, []);
 
-function createRandomChampionList (sourceArray, quantity) {
-  const championsToPlayCopy = []
+function createRandomChampionList (quantity) {
+  const generatedChampionsToPlay = []
   const usedChampionsToPlayCopy = [...usedChampionsToPlay]
-  while(championsToPlayCopy.length<quantity){
-    const randomIndex = Math.floor(Math.random()*sourceArray.length)
-    const currentlyPickedChampion = sourceArray[randomIndex]
+  while(generatedChampionsToPlay.length<quantity){
+    const randomIndex = Math.floor(Math.random()*championMasterList.length)
+    const currentlyPickedChampion = championMasterList[randomIndex]
     if(!usedChampionsToPlayCopy.includes(currentlyPickedChampion)){
-      championsToPlayCopy.push(currentlyPickedChampion)
+      generatedChampionsToPlay.push(currentlyPickedChampion)
       usedChampionsToPlayCopy.push(currentlyPickedChampion)
     }
   }
-  setChampionListToPlay(championsToPlayCopy)
-  setUsedChampionsToPlay(usedChampionsToPlayCopy)
+  return {generatedChampionsToPlay,usedChampionsToPlayCopy};
 }
 
-function shuffleChampionListToPlay (e){
+useEffect(() => {
+  if (championMasterList.length > 0) {
+    if(difficulty==='easy'){
+    const newChampionsSet = createRandomChampionList(6);
+    setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
+    setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+    } else if(difficulty==='medium'){
+      const newChampionsSet = createRandomChampionList(12);
+      setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
+      setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+    } else if(difficulty==='hard'){
+      const newChampionsSet = createRandomChampionList(18);
+      setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
+      setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+    } else if(difficulty==='very hard'){
+      const newChampionsSet = createRandomChampionList(24);
+      setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
+      setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+    } else if(difficulty==='extreme'){
+      const newChampionsSet = createRandomChampionList(36);
+      setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
+      setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+    }
+  }
+}, [championMasterList, difficulty]);
+
+useEffect(()=>{
+  currentScore===6 && setDifficulty('medium')
+  currentScore===12 && setDifficulty('hard')
+  currentScore===18 && setDifficulty('very hard')
+  currentScore===24 && setDifficulty('extreme')
+},[currentScore])
+
+function shuffleChampionListToPlay (){
   const shuffled = championListToPlay.map((champion)=>({sort: Math.random(), value: champion}))
   .sort((a, b) => a.sort - b.sort)
   .map((a) => a.value)
@@ -54,8 +89,13 @@ function checkIfAlreadySelected(e){
   const selectedChampionsCopy = [...selectedChampions]
   if(!selectedChampionsCopy.includes(champ)) {
     selectedChampionsCopy.push(champ)
-    setCurrentScore((score) => score+1)
     setSelectedChampions(selectedChampionsCopy)
+    
+    setCurrentScore((currentScore) => currentScore+1)
+    currentScore>=bestScore && setBestScore((bestScore) => bestScore+1)
+    
+    //currentScore === 6 && setDifficulty('medium')
+    console.log(difficulty)
   } else {
     setCurrentScore(0)
     setSelectedChampions([])
@@ -63,23 +103,23 @@ function checkIfAlreadySelected(e){
 }
   return (
     <>
-      <div className='temporary-button-space'>
-        <button onClick={() => createRandomChampionList(championMasterList, 6)}>
+      {/*<div className='temporary-button-space'>
+        <button onClick={() => createRandomChampionList(6)}>
           Easy Round
         </button>
-        <button onClick={() => createRandomChampionList(championMasterList, 12)}>
+        <button onClick={() => createRandomChampionList(12)}>
           Medium Round
         </button>
-        <button onClick={() => createRandomChampionList(championMasterList, 18)}>
+        <button onClick={() => createRandomChampionList(18)}>
           Hard Round
         </button>
-        <button onClick={() => createRandomChampionList(championMasterList, 18)}>
+        <button onClick={() => createRandomChampionList(24)}>
           Very Hard Round
         </button>
-      </div>
+      </div>*/}
       <div className="temporary-scoreboard">
         <p className="current-score">Current Score: {currentScore}</p>
-        <p className="best-score"></p>
+        <p className="best-score">Best Score: {bestScore}</p>
       </div>
       <div className='play-card-container'>
           {championListToPlay.map((champion, index) => (
