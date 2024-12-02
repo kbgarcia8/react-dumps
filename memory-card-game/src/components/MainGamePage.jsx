@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
-import "./styles/App.css";
+import "../styles/MainGamePage.css";
 
-function MainGamePage() {
+function MainGamePage({
+  championMasterList,
+  difficulty,
+  currentScore,
+  bestScore,
+  checkIfAlreadySelected
+}) {
   const [championListToPlay, setChampionListToPlay] = useState([]);
   const [usedChampionsToPlay, setUsedChampionsToPlay] = useState([]);
-  const [selectedChampions, setSelectedChampions] = useState([]);
-  const [currentScore, setCurrentScore] = useState(0);
-  const [bestScore, setBestScore] = useState(0);
 
   function createRandomChampionList(quantity) {
     const generatedChampionsToPlay = [];
@@ -41,24 +44,12 @@ function MainGamePage() {
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
       } else if (difficulty === "extreme") {
-        const newChampionsSet = createRandomChampionList(36);
+        const newChampionsSet = createRandomChampionList(48);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
       }
     }
   }, [championMasterList, difficulty]);
-
-  useEffect(() => {
-    currentScore === 6
-      ? setDifficulty("medium")
-      : currentScore === 12
-        ? setDifficulty("hard")
-        : currentScore === 18
-          ? setDifficulty("very hard")
-          : currentScore === 24
-            ? setDifficulty("extreme")
-            : console.log("game finished");
-  }, [currentScore]);
 
   function shuffleChampionListToPlay() {
     const shuffled = championListToPlay
@@ -67,21 +58,6 @@ function MainGamePage() {
       .map((a) => a.value);
     setChampionListToPlay(shuffled);
     console.log("shuffled");
-  }
-
-  function checkIfAlreadySelected(e) {
-    const { key: champ } = e.target.dataset;
-    const selectedChampionsCopy = [...selectedChampions];
-    if (!selectedChampionsCopy.includes(champ)) {
-      selectedChampionsCopy.push(champ);
-      setSelectedChampions(selectedChampionsCopy);
-
-      setCurrentScore((currentScore) => currentScore + 1);
-      currentScore >= bestScore && setBestScore((bestScore) => bestScore + 1);
-    } else {
-      setCurrentScore(0);
-      setSelectedChampions([]);
-    }
   }
   return (
     <>

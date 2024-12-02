@@ -25,3 +25,5 @@ Nov 29, 2024                    Test response of API (champion name and image) a
 Nov 30, 2024                    Initial createRandomChampionList, shuffleChampionListToPlay, checkIfAlreadySelected functions created and tested
 Dec 01, 2024                    Fix useEffect calling createRandomChampionList and autoupdate difficulty and revert it back same difficulty at failure
 Dec 02, 2024                    Debug isolation of MainGamingPage as a component and its states and functions that can be isolated
+                                Created initial loading page
+Dec 03, 2024                    
