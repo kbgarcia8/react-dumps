@@ -6,7 +6,7 @@ function MainGamePage({
   difficulty,
   currentScore,
   bestScore,
-  checkIfAlreadySelected
+  checkIfAlreadySelected,
 }) {
   const [championListToPlay, setChampionListToPlay] = useState([]);
   const [usedChampionsToPlay, setUsedChampionsToPlay] = useState([]);

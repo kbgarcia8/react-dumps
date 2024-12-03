@@ -10,6 +10,7 @@ function App() {
   const [difficulty, setDifficulty] = useState("easy");
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchMainData() {
@@ -39,9 +40,16 @@ function App() {
           ? setDifficulty("very hard")
           : currentScore === 24
             ? setDifficulty("extreme")
-            : currentScore === 48
-              && console.log("game finished");
+            : currentScore === 48 && console.log("game finished");
   }, [currentScore]);
+
+  useEffect(() => {
+    console.log(isLoading);
+    const loadingInterval = setInterval(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearInterval(loadingInterval);
+  }, [isLoading]);
 
   function checkIfAlreadySelected(e) {
     const { key: champ } = e.target.dataset;
@@ -57,17 +65,18 @@ function App() {
       setSelectedChampions([]);
     }
   }
-  
+
   return (
     <>
-      <LoadingPage/>
-      {/*<MainGamePage 
-        championMasterList={championMasterList}
-        difficulty={difficulty}
-        currentScore={currentScore}
-        bestScore={bestScore}
-        checkIfAlreadySelected={checkIfAlreadySelected}
-      />*/}
+      {isLoading
+        ? <LoadingPage />
+        : <MainGamePage
+          championMasterList={championMasterList}
+          difficulty={difficulty}
+          currentScore={currentScore}
+          bestScore={bestScore}
+          checkIfAlreadySelected={checkIfAlreadySelected}
+        />}
     </>
   );
 }
