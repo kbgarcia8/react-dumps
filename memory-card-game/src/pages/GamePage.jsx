@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import "../styles/MainGamePage.css";
+import "../styles/GamePage.css";
 
-function MainGamePage({
+function GamePage({
   championMasterList,
   difficulty,
   currentScore,
@@ -85,4 +85,4 @@ function MainGamePage({
   );
 }
 
-export default MainGamePage;
+export default GamePage;

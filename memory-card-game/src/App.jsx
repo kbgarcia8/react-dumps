@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import LoadingPage from "./components/LoadingPage";
-import MainGamePage from "./components/MainGamePage";
+import LoadingPage from "./pages/LoadingPage.jsx";
+import MainMenu from "./pages/MainMenu.jsx";
+import GamePage from "./pages/GamePage.jsx";
 import "./styles/App.css";
 
 function App() {
@@ -70,13 +71,17 @@ function App() {
     <>
       {isLoading
         ? <LoadingPage />
-        : <MainGamePage
-          championMasterList={championMasterList}
-          difficulty={difficulty}
-          currentScore={currentScore}
-          bestScore={bestScore}
-          checkIfAlreadySelected={checkIfAlreadySelected}
+        : <MainMenu
+
         />}
+        {/*isGameStart 
+        && <GamePage
+        championMasterList={championMasterList}
+        difficulty={difficulty}
+        currentScore={currentScore}
+        bestScore={bestScore}
+        checkIfAlreadySelected={checkIfAlreadySelected}
+      />*/}
     </>
   );
 }
