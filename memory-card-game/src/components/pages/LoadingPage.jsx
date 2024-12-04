@@ -1,5 +1,5 @@
-import "../styles/LoadingPage.css";
-import teemoRunning from "../assets/teemo_running.gif";
+import "../../styles/pages/LoadingPage.css";
+import teemoRunning from "../../assets/teemo_running.gif";
 import { useState, useEffect } from "react";
 
 export function LoadingPage({}) {

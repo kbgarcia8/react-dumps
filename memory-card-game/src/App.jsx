@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import LoadingPage from "./pages/LoadingPage.jsx";
-import MainMenu from "./pages/MainMenu.jsx";
-import GamePage from "./pages/GamePage.jsx";
+import LoadingPage from "./components/pages/LoadingPage.jsx";
+import MainMenu from "./components/pages/MainMenu.jsx";
+import GamePage from "./components/pages/GamePage.jsx";
 import "./styles/App.css";
 
 function App() {
@@ -69,12 +69,8 @@ function App() {
 
   return (
     <>
-      {isLoading
-        ? <LoadingPage />
-        : <MainMenu
-
-        />}
-        {/*isGameStart 
+      {isLoading ? <LoadingPage /> : <MainMenu />}
+      {/*isGameStart 
         && <GamePage
         championMasterList={championMasterList}
         difficulty={difficulty}

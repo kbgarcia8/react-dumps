@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../styles/GamePage.css";
+import "../../styles/pages/GamePage.css";
 
 function GamePage({
   championMasterList,
