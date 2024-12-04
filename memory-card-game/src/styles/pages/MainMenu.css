@@ -9,24 +9,28 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 85vmax;
+    animation: mainMenuPulse 1000ms ease-in-out 1s infinite normal forwards;
   }
   .main-menu-logo {
     width: 60%;
   }
   .main-menu-logo-text {
-    font-size: 2.5vmax;
+    font-size: 3vmax;
     font-family: 'Spiegel';
     font-weight: 900;
     color: #ae914b;
     width: 100%;
-    text-shadow: 5px 5px 0 #000000, 5px 5px 0 #000000;
+    text-shadow: 0.625vmin 0.625vmin 0 #000000, 0.625vmin 0.625vmin 0 #000000;
   }
   .main-menu-buttons {
+    width: 30vmin;
     font-family: 'Marcellus SC', serif;
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 2.5vmin;
+    font-weight: bolder;
+    margin: 3vmin;
     letter-spacing: 1px;
-    padding: 5px 15px; 
+    padding: 5px 15px;
     background: #1e2328;
     color: #cdbe91;
     box-shadow: inset 0 0 2px #000000;
@@ -48,3 +52,18 @@
     box-shadow: none;
     color: #cdbe9130;
   }
+  
+  @keyframes mainMenuPulse {
+    0% {
+      transform: scale(1);
+    }
+  
+    50% {
+      transform: scale(1.1);
+    }
+  
+    100% {
+      transform: scale(1);
+    }
+  }
+  

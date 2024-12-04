@@ -69,7 +69,8 @@ function App() {
 
   return (
     <>
-      {isLoading ? <LoadingPage /> : <MainMenu />}
+      {/*isLoading ? <LoadingPage /> : <MainMenu />*/}
+      <MainMenu />
       {/*isGameStart 
         && <GamePage
         championMasterList={championMasterList}
