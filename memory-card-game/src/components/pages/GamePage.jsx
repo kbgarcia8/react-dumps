@@ -61,25 +61,27 @@ function GamePage({
   }
   return (
     <>
-      <div className="temporary-scoreboard">
-        <p className="current-score">Current Score: {currentScore}</p>
-        <p className="best-score">Best Score: {bestScore}</p>
-      </div>
-      <div className="play-card-container">
-        {championListToPlay.map((champion, index) => (
-          <div className="play-card" key={crypto.randomUUID()}>
-            <p style={{ color: "black" }}>{champion}</p>
-            <img
-              src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion}_0.jpg`}
-              alt={`${champion}-splash-art`}
-              onClick={(e) => {
-                shuffleChampionListToPlay(e);
-                checkIfAlreadySelected(e);
-              }}
-              data-key={champion}
-            />
-          </div>
-        ))}
+      <div className="page-container" id="game-page-container">
+        <div className="temporary-scoreboard">
+          <p className="current-score">Current Score: {currentScore}</p>
+          <p className="best-score">Best Score: {bestScore}</p>
+        </div>
+        <div className="play-card-container">
+          {championListToPlay.map((champion, index) => (
+            <div className="play-card" key={crypto.randomUUID()}>
+              <p style={{ color: "black" }}>{champion}</p>
+              <img
+                src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion}_0.jpg`}
+                alt={`${champion}-splash-art`}
+                onClick={(e) => {
+                  shuffleChampionListToPlay(e);
+                  checkIfAlreadySelected(e);
+                }}
+                data-key={champion}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

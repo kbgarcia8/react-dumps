@@ -27,4 +27,5 @@ Dec 01, 2024                    Fix useEffect calling createRandomChampionList a
 Dec 02, 2024                    Debug isolation of MainGamingPage as a component and its states and functions that can be isolated
                                 Created initial loading page
 Dec 03, 2024                    Finished loading page
-Dec 04, 2024                    
+Dec 04, 2024                    Finished Main Menu UI
+Dec 05, 2024                    Modal of How to Play and Game Page card container

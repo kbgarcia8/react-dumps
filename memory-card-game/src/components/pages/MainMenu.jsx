@@ -2,10 +2,13 @@ import '../../styles/pages/MainMenu.css';
 import leagueLogo from '../../assets/League-of-Legends-Logo.png';
 import Button from '../Button.jsx';
 
-function MainMenu({}) {
+function MainMenu({ startGame }) {
   return (
     <>
-      <div className='page-container' id='main-menu-container'>
+      <div
+        className='page-container'
+        id='main-menu-container'
+      >
         <div className='main-menu-logo-space'>
           <img
             className='main-menu-logo'
@@ -18,15 +21,15 @@ function MainMenu({}) {
           text={'Start Game'}
           className={'main-menu-buttons'}
           id={'start-game'}
-          buttonType={"button"}
-          processClick={""}
+          buttonType={'button'}
+          processClick={startGame}
         />
         <Button
           text={'How To Play'}
           className={'main-menu-buttons'}
           id={'game-mechanics'}
-          buttonType={"button"}
-          processClick={""}
+          buttonType={'button'}
+          processClick={''}
         />
       </div>
     </>
