@@ -4,3 +4,17 @@
   text-align: center;
   background-color: #fff;
 }
+.page-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgb(20, 85, 91);
+  background: linear-gradient(
+    270deg,
+    rgba(20, 85, 91, 1) 0%,
+    rgba(174, 145, 75, 1) 100%
+  );
+}

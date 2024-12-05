@@ -1,4 +1,4 @@
-import '../styles/Button.css';
+import '../styles/components/Button.css';
 import React from 'react';
 function Button({
   text,
@@ -18,7 +18,7 @@ function Button({
         type={buttonType}
       >
         {source && <img src={source} alt={alt} />}
-        {text && <span>{text}</span>}
+        {text && <span id={id}>{text}</span>}
       </button>
     </>
   );

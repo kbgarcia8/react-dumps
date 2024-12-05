@@ -9,19 +9,21 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 85vmax;
+    width: 65vmax;
     animation: mainMenuPulse 1000ms ease-in-out 1s infinite normal forwards;
   }
   .main-menu-logo {
     width: 60%;
   }
   .main-menu-logo-text {
-    font-size: 3vmax;
+    font-size: 2.5vmax;
     font-family: 'Spiegel';
     font-weight: 900;
     color: #ae914b;
     width: 100%;
     text-shadow: 0.625vmin 0.625vmin 0 #000000, 0.625vmin 0.625vmin 0 #000000;
+    position: relative;
+    bottom: 5vmin;
   }
   .main-menu-buttons {
     width: 30vmin;

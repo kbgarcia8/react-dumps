@@ -71,7 +71,7 @@ function App() {
       {isLoading ? (
         <LoadingPage />
       ) : !isGameStart ? (
-        <MainMenu startGame={()=>{setIsGameStart(true)}}/>
+        <MainMenu startGame={()=>{setIsGameStart(true)}} />
       ) : (
         <GamePage
           championMasterList={championMasterList}

@@ -1,0 +1,72 @@
+.modal-container{
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+.modal{
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 2s ease-out;
+    animation: scale-out 1000ms forwards, fade-out 1000ms forwards;    
+    width: 75vmin;
+    height: 75vmin;
+    font-family: 'Marcellus SC', serif;
+    font-size: 2.5vmin;
+    font-weight: bolder;
+    margin: 3vmin;
+    letter-spacing: 1px;
+    padding: 5px 15px;
+    background: #1e2328;
+    color: #cdbe91;
+    box-shadow: inset 0 0 2px #000000;
+    border-image: linear-gradient(to bottom, #c8aa6d, #7a5c29);
+    border-image-slice: 1;
+    border-width: 5px;
+}
+.modal[open]{
+    animation: scale-in 1000ms forwards, fade-in 1000ms forwards;
+}
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        display: block;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes scale-in {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+@keyframes scale-out {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        display: block;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0.5);
+        display: none;
+    }
+}
