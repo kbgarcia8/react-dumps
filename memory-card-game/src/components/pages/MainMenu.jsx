@@ -12,7 +12,8 @@ function MainMenu({ startGame }) {
     clicked === "game-mechanics"
     ? setIsHowToPlayOpen(true)
     : setIsHowToPlayOpen(false)
-    console.log(isHowToPlayOpen)    
+    
+    if(clicked==="close-game-mechanics") console.log(clicked)
   }
   return (
     <>

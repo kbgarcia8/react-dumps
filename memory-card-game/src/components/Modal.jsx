@@ -1,18 +1,24 @@
 import '../styles/components/Modal.css';
+import Button from './Button';
 import React from 'react';
 
-function Modal({isHowToPlayOpen, toggleModal}) {
-    
+function Modal({ isHowToPlayOpen, toggleModal }) {
   return (
     <>
-        {isHowToPlayOpen && (
-            <div className="modal-container">
-                <dialog className="modal" open={isHowToPlayOpen}>
-                    <span>This is the modal</span>
-                    <button onClick={toggleModal}>Test</button>
-                </dialog>
-            </div>
-        )}
+      {isHowToPlayOpen && (
+        <dialog className='modal-container' open={isHowToPlayOpen}>
+          <div className='modal'>
+            <span>This is the modal</span>
+            <Button
+              text={'X'}
+              className={'close-dialog-button'}
+              id={'close-game-mechanics'}
+              buttonType={'button'}
+              processClick={toggleModal}
+            />  
+          </div>
+        </dialog>
+      )}
     </>
   );
 }
