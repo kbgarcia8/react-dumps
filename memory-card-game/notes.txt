@@ -29,3 +29,4 @@ Dec 02, 2024                    Debug isolation of MainGamingPage as a component
 Dec 03, 2024                    Finished loading page
 Dec 04, 2024                    Finished Main Menu UI
 Dec 05, 2024                    Initial How to Play dialog
+Dec 06-07, 2024                 No progress, rest
