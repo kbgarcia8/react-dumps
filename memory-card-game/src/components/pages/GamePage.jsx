@@ -27,24 +27,28 @@ function GamePage({
 
   useEffect(() => {
     if (championMasterList.length > 0) {
-      if (difficulty === "easy") {
+      if (difficulty === "iron") {
         const newChampionsSet = createRandomChampionList(6);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
-      } else if (difficulty === "medium") {
+      } else if (difficulty === "silver") {
         const newChampionsSet = createRandomChampionList(12);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
-      } else if (difficulty === "hard") {
+      } else if (difficulty === "gold") {
         const newChampionsSet = createRandomChampionList(18);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
-      } else if (difficulty === "very hard") {
+      } else if (difficulty === "platinum") {
         const newChampionsSet = createRandomChampionList(24);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
-      } else if (difficulty === "extreme") {
+      } else if (difficulty === "diamond") {
         const newChampionsSet = createRandomChampionList(48);
+        setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
+        setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+      } else if (difficulty === "challenger") {
+        const newChampionsSet = createRandomChampionList(60);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
       }

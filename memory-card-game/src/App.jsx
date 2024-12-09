@@ -24,24 +24,23 @@ function App() {
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-      // finally {
-
-      //}
     }
     fetchMainData();
-    setDifficulty('easy');
+    setDifficulty('iron');
   }, []);
 
   useEffect(() => {
     currentScore === 6
-      ? setDifficulty('medium')
+      ? setDifficulty('silver')
       : currentScore === 12
-      ? setDifficulty('hard')
+      ? setDifficulty('gold')
       : currentScore === 18
-      ? setDifficulty('very hard')
+      ? setDifficulty('platinum')
       : currentScore === 24
-      ? setDifficulty('extreme')
-      : currentScore === 48 && console.log('game finished');
+      ? setDifficulty('diamond')
+      : currentScore === 48 
+      ? setDifficulty('challenger')
+      : currentScore === 60 && console.log('game finished');
   }, [currentScore]);
 
   useEffect(() => {
