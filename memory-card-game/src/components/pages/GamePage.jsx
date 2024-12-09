@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../../styles/pages/GamePage.css";
+import Card from "../Card";
 
 function GamePage({
   championMasterList,
@@ -70,7 +71,7 @@ function GamePage({
           <p className="current-score">Current Score: {currentScore}</p>
           <p className="best-score">Best Score: {bestScore}</p>
         </div>
-        <div className="play-card-container">
+        {/*<div className="play-card-container">
           {championListToPlay.map((champion, index) => (
             <div className="play-card" key={crypto.randomUUID()}>
               <p style={{ color: "black" }}>{champion}</p>
@@ -85,6 +86,9 @@ function GamePage({
               />
             </div>
           ))}
+        </div>*/}
+        <div className="play-card-container">
+          <Card/>
         </div>
       </div>
     </>
