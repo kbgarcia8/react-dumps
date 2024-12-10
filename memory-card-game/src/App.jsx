@@ -67,7 +67,7 @@ function App() {
 
   return (
     <>
-      {isLoading ? (
+      {/*isLoading ? (
         <LoadingPage />
       ) : !isGameStart ? (
         <MainMenu startGame={()=>{setIsGameStart(true)}} />
@@ -79,7 +79,14 @@ function App() {
           bestScore={bestScore}
           checkIfAlreadySelected={checkIfAlreadySelected}
         />
-      )}
+      )*/}
+      <GamePage
+          championMasterList={championMasterList}
+          difficulty={difficulty}
+          currentScore={currentScore}
+          bestScore={bestScore}
+          checkIfAlreadySelected={checkIfAlreadySelected}
+        />
     </>
   );
 }

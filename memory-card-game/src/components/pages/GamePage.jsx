@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import "../../styles/pages/GamePage.css";
 import Card from "../Card";
+import flameGIF from "../../assets/fire-flame.gif"
+import iron from "../../assets/iron.png"
+import silver from "../../assets/silver.png"
+import gold from "../../assets/gold.png"
+import platinum from "../../assets/platinum.png"
+import diamond from "../../assets/diamond.png"
+import challenger from "../../assets/challenger.png"
 
 function GamePage({
   championMasterList,
@@ -67,28 +74,27 @@ function GamePage({
   return (
     <>
       <div className="page-container" id="game-page-container">
-        <div className="temporary-scoreboard">
-          <p className="current-score">Current Score: {currentScore}</p>
-          <p className="best-score">Best Score: {bestScore}</p>
+        <div className="current-tier-container">
+          <span>Your Rank: </span>
+          <img src={`/src/assets/${difficulty}.png`} alt={`${difficulty}-logo`} className="current-tier-logo"/>          
+          <span className="tier-label">{difficulty}</span>
         </div>
-        {/*<div className="play-card-container">
-          {championListToPlay.map((champion, index) => (
-            <div className="play-card" key={crypto.randomUUID()}>
-              <p style={{ color: "black" }}>{champion}</p>
-              <img
-                src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion}_0.jpg`}
-                alt={`${champion}-splash-art`}
-                onClick={(e) => {
-                  shuffleChampionListToPlay(e);
-                  checkIfAlreadySelected(e);
-                }}
-                data-key={champion}
-              />
-            </div>
-          ))}
-        </div>*/}
+        <div className="scoreboard">
+          <p className="current-score">Current Score: {currentScore}</p>
+          <div className="best-score-container">
+            <img src={flameGIF} alt="flame-gif" className="flame-gif"/>
+            <span className="best-score">Best Score: {bestScore}</span>            
+          </div>
+        </div>
         <div className="play-card-container">
-          <Card/>
+          {championListToPlay.map((champion, index) => (
+            <Card
+              key={`${champion}-${Date.now()}`}
+              champion={champion}
+              shuffleChampionListToPlay={shuffleChampionListToPlay}
+              checkIfAlreadySelected={checkIfAlreadySelected}
+            />
+          ))}
         </div>
       </div>
     </>

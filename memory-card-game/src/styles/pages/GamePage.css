@@ -1,25 +1,50 @@
 #game-page-container{
-    justify-content: space-evenly;
+    display: flex;
+    min-height: auto;
+    max-width: 100vw;
+    padding: 5vmax;
+    justify-content: center;
+    align-items: center;
+}
+.scoreboard, .current-tier-container{
+    position: sticky;
+    width: 20vmax;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Colfax";
+    font-weight: 900;
+    font-size: 3vmin;
+    margin-block: 1vmin;
+    color: #000000;
+    text-shadow: 0.2vmin 0.2vmin 0 #cdbe91, 0.2vmin 0.2vmin 0 #cdbe91;
+}
+.current-tier-logo{
+    width: 7.5vmax;
+}
+.tier-label{
+    text-transform: uppercase;
+}
+.best-score{
+    position: absolute;
+    width: 100%;
+    right: 1vmin;
+    padding: 2vmin;
+}
+.flame-gif{
+    width: 7.5vmin;
+    transform: translate(100%,-20%);
 }
 .play-card-container{
-    border: 2px solid red;
     max-width: 98.75vw;
     min-height: auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
-    animation: onGameStart 1s ease 0s 1 normal forwards;
-}
-.play-card{
-    border: 2px solid blue;
-    width: 10vmax;
-    height: auto;
-    overflow: hidden;
-    margin: 2vmin;
-}
-.play-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: scale-down;
+    padding-inline: 2.5vmax;
+    animation: onGameStart 500ms ease 0s 1 normal forwards;
 }
 
 @keyframes onGameStart {
