@@ -30,8 +30,14 @@
 #root {
   max-width: 100vw;
   min-height: 100vh;
+  padding: 0;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: linear-gradient(
+    270deg,
+    rgba(20, 85, 91, 1) 0%,
+    rgba(174, 145, 75, 1) 100%
+  );
 }

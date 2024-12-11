@@ -2,7 +2,7 @@
     display: flex;
     min-height: auto;
     max-width: 100vw;
-    padding: 5vmax;
+    padding-inline: 5vmax;
     justify-content: center;
     align-items: center;
 }
@@ -22,6 +22,9 @@
 }
 .current-tier-logo{
     width: 7.5vmax;
+    transition: 1s;
+    will-change: transform;
+    animation: fall 250ms ease 0s 1 normal forwards;
 }
 .tier-label{
     text-transform: uppercase;
@@ -55,4 +58,26 @@
 	100% {
 		transform: scale(1);
 	}
+}
+@keyframes fall {
+	0% {
+		transform: translateY(-200%);
+	}
+
+	25% {
+		transform: translateY(-150%);
+	}
+
+    50% {
+		transform: translateY(-100%);
+	}
+
+	75% {
+		transform: translateY(-50%);
+	}
+
+    100% {
+		transform: translateY(0);
+	}
+
 }

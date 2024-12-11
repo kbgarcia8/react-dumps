@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
-import "../../styles/pages/GamePage.css";
-import Card from "../Card";
-import flameGIF from "../../assets/fire-flame.gif"
-import iron from "../../assets/iron.png"
-import silver from "../../assets/silver.png"
-import gold from "../../assets/gold.png"
-import platinum from "../../assets/platinum.png"
-import diamond from "../../assets/diamond.png"
-import challenger from "../../assets/challenger.png"
+import "../styles/pages/GamePage.css";
+import Card from "../components/Card";
+import Modal from "../components/MenuModal";
+import flameGIF from "../assets/fire-flame.gif"
 
 function GamePage({
   championMasterList,
@@ -18,6 +13,7 @@ function GamePage({
 }) {
   const [championListToPlay, setChampionListToPlay] = useState([]);
   const [usedChampionsToPlay, setUsedChampionsToPlay] = useState([]);
+  const [isRoundEndOpen, setIsRoundEndOpen] = useState(true);
 
   function createRandomChampionList(quantity) {
     const generatedChampionsToPlay = [];
@@ -69,14 +65,20 @@ function GamePage({
       .sort((a, b) => a.sort - b.sort)
       .map((a) => a.value);
     setChampionListToPlay(shuffled);
-    console.log("shuffled");
+  }
+
+  function toggleModal(e){
+    const clicked = e.target.id;
+    clicked === "game-mechanics"
+    ? setIsRoundEndOpen(true)
+    : setIsRoundEndOpen(false)
   }
   return (
     <>
       <div className="page-container" id="game-page-container">
         <div className="current-tier-container">
           <span>Your Rank: </span>
-          <img src={`/src/assets/${difficulty}.png`} alt={`${difficulty}-logo`} className="current-tier-logo"/>          
+          <img key={difficulty} src={`/src/assets/${difficulty}.png`} alt={`${difficulty}-logo`} className="current-tier-logo"/>          
           <span className="tier-label">{difficulty}</span>
         </div>
         <div className="scoreboard">
@@ -96,6 +98,10 @@ function GamePage({
             />
           ))}
         </div>
+        <Modal
+          isHowToPlayOpen={isRoundEndOpen}
+          toggleModal={toggleModal}
+        />
       </div>
     </>
   );

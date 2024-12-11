@@ -32,3 +32,4 @@ Dec 05, 2024                    Initial How to Play dialog
 Dec 06-08, 2024                 No progress, rest and event
 Dec 09, 2024                    initial flip animation for champ cards
 Dec 10, 2024                    Almost finish GamePage
+Dec 11, 2024                    Finished GamePage

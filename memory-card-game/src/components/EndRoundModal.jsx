@@ -1,8 +1,8 @@
-import '../styles/components/Modal.css';
+import '../styles/components/EndRoundModal.css';
 import Button from './Button';
 import React from 'react';
 
-function Modal({ isHowToPlayOpen, toggleModal }) {
+function EndRoundModal({ isHowToPlayOpen, toggleModal }) {
   return (
     <>
       {isHowToPlayOpen && (
@@ -43,4 +43,4 @@ function Modal({ isHowToPlayOpen, toggleModal }) {
   );
 }
 
-export default Modal;
+export default EndRoundModal;

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import '../../styles/pages/MainMenu.css';
-import leagueLogo from '../../assets/League-of-Legends-Logo.png';
-import Button from '../Button.jsx';
-import Modal from '../Modal.jsx';
+import '../styles/pages/MainMenu.css';
+import leagueLogo from '../assets/League-of-Legends-Logo.png';
+import Button from '../components/Button.jsx';
+import Modal from '../components/MenuModal.jsx';
 
 function MainMenu({ startGame }) {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -12,8 +12,6 @@ function MainMenu({ startGame }) {
     clicked === "game-mechanics"
     ? setIsHowToPlayOpen(true)
     : setIsHowToPlayOpen(false)
-    
-    if(clicked==="close-game-mechanics") console.log(clicked)
   }
   return (
     <>
