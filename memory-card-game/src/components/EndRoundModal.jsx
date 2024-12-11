@@ -1,41 +1,31 @@
 import '../styles/components/EndRoundModal.css';
 import Button from './Button';
+import OK from "../assets/rammus-ok.gif"
 import React from 'react';
 
-function EndRoundModal({ isHowToPlayOpen, toggleModal }) {
+function EndRoundModal({ isRoundEndOpen, toggleModal }) {
   return (
     <>
-      {isHowToPlayOpen && (
-        <dialog className='modal-container' open={isHowToPlayOpen}>
-          <div className='modal'>
-            <div className='modal-header'>
-              <span className='modal-header-title'>Game Mechanics</span>
+      {isRoundEndOpen && (
+        <dialog className='endround-modal-container' open={isRoundEndOpen}>
+          <div className='endround-modal'>
+            <div className="endround-modal-header">
+              <p>You've Ranked Up</p>
+            </div>
+            <div className="endround-modal-body">
+              <p>Congratulations Summoner!</p>
+              <p className='description'>Keep on checking those champions accross Runterra and reach Challenger!</p>
+              <img src={OK} alt="okay-emote" className='okay-emote'/>
+            </div>
+            <div className="endround-modal-footer">
               <Button
-                text={'X'}
+                text={'CONTINUE'}
                 className={'close-dialog-button'}
-                id={'close-game-mechanics'}
+                id={'close-endround-dialog'}
                 buttonType={'button'}
                 processClick={toggleModal}
               />
             </div>
-            <p className='game-instructions'>
-              Pick a card for every turn. Make sure to not pick the same card
-              twice. The number of cards will progress as you go further rounds:
-              <br /><br />
-              <span className="round-title">Bronze Round:</span> 6 champion cards
-              <br /><br />
-              <span className="round-title">Silver Round:</span> 12 champion cards
-              <br /><br />
-              <span className="round-title">Gold Round:</span> 18 champion cards
-              <br /><br />
-              <span className="round-title">Platinum Round:</span> 24 champion cards
-              <br /><br />
-              <span className="round-title">Diamond Round:</span> 48 champion cards 
-              <br /><br />
-              <span className="round-title">Challenger Round:</span> 60 champion cards
-              <br /><br />
-            </p>
-            <p className='modal-footer'>Best of luck, Summoner!</p>
           </div>
         </dialog>
       )}

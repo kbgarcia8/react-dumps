@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
-import LoadingPage from './components/pages/LoadingPage.jsx';
-import MainMenu from './components/pages/MainMenu.jsx';
-import GamePage from './components/pages/GamePage.jsx';
+import LoadingPage from './pages/LoadingPage.jsx';
+import MainMenu from './pages/MainMenu.jsx';
+import GamePage from './pages/GamePage.jsx';
+import EndGameModal from './components/EndGameModal.jsx';
 import './styles/App.css';
 
 function App() {
   const [championMasterList, setChampionMasterList] = useState([]);
   const [selectedChampions, setSelectedChampions] = useState([]);
-  const [difficulty, setDifficulty] = useState('easy');
+  const [difficulty, setDifficulty] = useState('iron');
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isGameStart, setIsGameStart] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false)
 
   useEffect(() => {
     async function fetchMainData() {
@@ -26,21 +28,21 @@ function App() {
       }
     }
     fetchMainData();
-    setDifficulty('iron');
+    setCurrentScore(0)
   }, []);
 
   useEffect(() => {
     currentScore === 6
       ? setDifficulty('silver')
-      : currentScore === 12
-      ? setDifficulty('gold')
       : currentScore === 18
+      ? setDifficulty('gold')
+      : currentScore === 36
       ? setDifficulty('platinum')
-      : currentScore === 24
+      : currentScore === 60
       ? setDifficulty('diamond')
-      : currentScore === 48 
+      : currentScore === 108 
       ? setDifficulty('challenger')
-      : currentScore === 60 && console.log('game finished');
+      : currentScore === 168 && setIsGameOver(true)
   }, [currentScore]);
 
   useEffect(() => {
@@ -49,6 +51,16 @@ function App() {
     }, 3000);
     return () => clearInterval(loadingInterval);
   }, [isLoading]);
+
+  useEffect(() => {
+    const gameOverScreenInterval = setInterval(() => {
+      if(isGameOver) {
+        setIsGameOver(false); 
+        setIsGameStart(false)
+      }
+    }, 3000);
+    return () => clearInterval(gameOverScreenInterval);
+  }, [isGameOver, isGameStart]);
 
   function checkIfAlreadySelected(e) {
     const { key: champ } = e.target.dataset;
@@ -67,7 +79,7 @@ function App() {
 
   return (
     <>
-      {/*isLoading ? (
+      {isLoading ? (
         <LoadingPage />
       ) : !isGameStart ? (
         <MainMenu startGame={()=>{setIsGameStart(true)}} />
@@ -79,14 +91,10 @@ function App() {
           bestScore={bestScore}
           checkIfAlreadySelected={checkIfAlreadySelected}
         />
-      )*/}
-      <GamePage
-          championMasterList={championMasterList}
-          difficulty={difficulty}
-          currentScore={currentScore}
-          bestScore={bestScore}
-          checkIfAlreadySelected={checkIfAlreadySelected}
-        />
+      )}
+      <EndGameModal
+        isGameOver={isGameOver}
+      />
     </>
   );
 }
