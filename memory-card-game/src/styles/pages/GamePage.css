@@ -1,7 +1,5 @@
 #game-page-container{
     display: flex;
-    min-height: auto;
-    max-width: 100vw;
     padding-inline: 5vmax;
     justify-content: center;
     align-items: center;

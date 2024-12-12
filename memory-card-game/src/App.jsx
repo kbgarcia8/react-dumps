@@ -8,7 +8,7 @@ import './styles/App.css';
 function App() {
   const [championMasterList, setChampionMasterList] = useState([]);
   const [selectedChampions, setSelectedChampions] = useState([]);
-  const [difficulty, setDifficulty] = useState('iron');
+  const [difficulty, setDifficulty] = useState('easy');
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +28,7 @@ function App() {
       }
     }
     fetchMainData();
-    setCurrentScore(0)
+    setDifficulty('iron');
   }, []);
 
   useEffect(() => {
@@ -82,7 +82,10 @@ function App() {
       {isLoading ? (
         <LoadingPage />
       ) : !isGameStart ? (
-        <MainMenu startGame={()=>{setIsGameStart(true)}} />
+        <MainMenu
+          startGame={()=>{setIsGameStart(true)}} 
+          isLoading={isLoading}
+        />   
       ) : (
         <GamePage
           championMasterList={championMasterList}
@@ -94,7 +97,7 @@ function App() {
       )}
       <EndGameModal
         isGameOver={isGameOver}
-      />
+      />      
     </>
   );
 }

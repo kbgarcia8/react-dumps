@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import '../styles/pages/MainMenu.css';
 import leagueLogo from '../assets/League-of-Legends-Logo.png';
 import Button from '../components/Button.jsx';
-import Modal from '../components/MenuModal.jsx';
+import MenuModal from '../components/MenuModal.jsx';
+import Footer from '../components/Footer.jsx';
 
-function MainMenu({ startGame }) {
+function MainMenu({ startGame, isLoading}) {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
 
   function toggleModal(e){
@@ -41,9 +42,12 @@ function MainMenu({ startGame }) {
           buttonType={'button'}
           processClick={toggleModal}
         />        
-        <Modal
+        <MenuModal
           isHowToPlayOpen={isHowToPlayOpen}
           toggleModal={toggleModal}
+        />
+        <Footer
+          isLoading={isLoading}
         />
       </div>
     </>
