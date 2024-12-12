@@ -3,6 +3,7 @@
     padding-inline: 5vmax;
     justify-content: center;
     align-items: center;
+    margin-top: 2vmin;
 }
 .scoreboard, .current-tier-container{
     position: sticky;
@@ -46,6 +47,39 @@
     flex-wrap: wrap;
     padding-inline: 2.5vmax;
     animation: onGameStart 500ms ease 0s 1 normal forwards;
+}
+header{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+.lol-header{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.lol-header span{
+    font-size: 2vmax;
+    font-family: 'Spiegel';
+    font-weight: 900;
+    color: #ae914b;
+    text-shadow: 0.5vmin 0.5vmin 0 #000000, 0.5vmin 0.5vmin 0 #000000;
+    cursor: pointer;
+}
+.lol-header span:hover{
+    filter: drop-shadow(5px 5px 10px rgba(20, 85, 91, 1) );
+}
+.lol-logo{
+    width: 3.5%;
+    margin-left: 2vmin;    
+}
+.lol-logo:hover{
+    cursor: pointer;
+    filter: drop-shadow(5px 5px 10px rgba(20, 85, 91, 1) );
 }
 
 @keyframes onGameStart {

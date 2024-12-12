@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import Sound from 'react-sound'
 import LoadingPage from './pages/LoadingPage.jsx';
 import MainMenu from './pages/MainMenu.jsx';
 import GamePage from './pages/GamePage.jsx';
 import EndGameModal from './components/EndGameModal.jsx';
+import LeagueLobbyMusic from "./assets/league-lobby-music.mp3"
 import './styles/App.css';
 
 function App() {
@@ -76,6 +78,11 @@ function App() {
       setSelectedChampions([]);
     }
   }
+  function backToMainMenu(){
+    setIsGameStart(false)
+    setCurrentScore(0)
+    setDifficulty('iron')
+  }
 
   return (
     <>
@@ -93,11 +100,18 @@ function App() {
           currentScore={currentScore}
           bestScore={bestScore}
           checkIfAlreadySelected={checkIfAlreadySelected}
+          backToMainMenu={backToMainMenu}
         />
       )}
       <EndGameModal
         isGameOver={isGameOver}
-      />      
+      />
+      <Sound
+        url={LeagueLobbyMusic}
+        playStatus={Sound.status.PLAYING}
+        playFromPosition={0}
+        loop={true}
+      />
     </>
   );
 }

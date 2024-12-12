@@ -3,7 +3,7 @@ import '../styles/pages/MainMenu.css';
 import leagueLogo from '../assets/League-of-Legends-Logo.png';
 import Button from '../components/Button.jsx';
 import MenuModal from '../components/MenuModal.jsx';
-import Footer from '../components/Footer.jsx';
+import githubIcon from "../assets/github.svg"
 
 function MainMenu({ startGame, isLoading}) {
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
@@ -46,9 +46,13 @@ function MainMenu({ startGame, isLoading}) {
           isHowToPlayOpen={isHowToPlayOpen}
           toggleModal={toggleModal}
         />
-        <Footer
-          isLoading={isLoading}
-        />
+        <footer>
+          <div className='github-info'>
+              <img src={githubIcon} alt="github-logo" className='github-logo'/>
+              <span>This project is made by <a href="https://github.com/kbgarcia8/react-dumps/tree/main/memory-card-game">kbgarcia8</a></span>
+          </div>
+          <span>© League of Legends (Patch 14.23.1) and <a href="https://developer.riotgames.com/docs/lol">Riot Developer API</a></span>
+        </footer>
       </div>
     </>
   );

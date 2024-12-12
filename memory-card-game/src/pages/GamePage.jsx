@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "../styles/pages/GamePage.css";
 import Card from "../components/Card";
-import Modal from "../components/MenuModal";
+import EndRoundModal from "../components/EndRoundModal";
 import flameGIF from "../assets/fire-flame.gif"
+import LOLIcon from "../assets/lol-logo.png"
 
 function GamePage({
   championMasterList,
@@ -10,10 +11,11 @@ function GamePage({
   currentScore,
   bestScore,
   checkIfAlreadySelected,
+  backToMainMenu
 }) {
   const [championListToPlay, setChampionListToPlay] = useState([]);
   const [usedChampionsToPlay, setUsedChampionsToPlay] = useState([]);
-  const [isRoundEndOpen, setIsRoundEndOpen] = useState(true);
+  const [isRoundEndOpen, setIsRoundEndOpen] = useState(false);  
 
   function createRandomChampionList(quantity) {
     const generatedChampionsToPlay = [];
@@ -39,22 +41,27 @@ function GamePage({
         const newChampionsSet = createRandomChampionList(12);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+        setIsRoundEndOpen(true);
       } else if (difficulty === "gold") {
         const newChampionsSet = createRandomChampionList(18);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+        setIsRoundEndOpen(true);
       } else if (difficulty === "platinum") {
         const newChampionsSet = createRandomChampionList(24);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+        setIsRoundEndOpen(true);
       } else if (difficulty === "diamond") {
         const newChampionsSet = createRandomChampionList(48);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+        setIsRoundEndOpen(true);
       } else if (difficulty === "challenger") {
         const newChampionsSet = createRandomChampionList(60);
         setChampionListToPlay(newChampionsSet.generatedChampionsToPlay);
         setUsedChampionsToPlay(newChampionsSet.usedChampionsToPlayCopy);
+        setIsRoundEndOpen(true);
       }
     }
   }, [championMasterList, difficulty]);
@@ -69,12 +76,16 @@ function GamePage({
 
   function toggleModal(e){
     const clicked = e.target.id;
-    clicked === "game-mechanics"
-    ? setIsRoundEndOpen(true)
-    : setIsRoundEndOpen(false)
+    clicked === "close-endround-dialog" && setIsRoundEndOpen(false)
   }
   return (
     <>
+      <header>
+        <div className='lol-header'>
+            <img src={LOLIcon} alt="lol-logo" className='lol-logo' onClick={backToMainMenu}/>
+            <span onClick={backToMainMenu}>Memory Card Game</span>
+        </div>
+      </header>
       <div className="page-container" id="game-page-container">
         <div className="current-tier-container">
           <span>Your Rank: </span>
@@ -98,10 +109,10 @@ function GamePage({
             />
           ))}
         </div>
-        <Modal
-          isHowToPlayOpen={isRoundEndOpen}
+        <EndRoundModal
+          isRoundEndOpen={isRoundEndOpen}
           toggleModal={toggleModal}
-        />
+        />        
       </div>
     </>
   );
