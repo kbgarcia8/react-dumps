@@ -1,0 +1,115 @@
+#game-page-container{
+    display: flex;
+    padding-inline: 5vmax;
+    justify-content: center;
+    align-items: center;
+}
+.scoreboard, .current-tier-container{
+    position: sticky;
+    width: 20vmax;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Colfax";
+    font-weight: 900;
+    font-size: 3vmin;
+    margin-block: 1vmin;
+    color: #000000;
+    text-shadow: 0.2vmin 0.2vmin 0 #cdbe91, 0.2vmin 0.2vmin 0 #cdbe91;
+}
+.current-tier-logo{
+    width: 7.5vmax;
+    transition: 1s;
+    will-change: transform;
+    animation: fall 250ms ease 0s 1 normal forwards;
+}
+.tier-label{
+    text-transform: uppercase;
+}
+.best-score{
+    position: absolute;
+    width: 100%;
+    right: 1vmin;
+    padding: 2vmin;
+}
+.flame-gif{
+    width: 7.5vmin;
+    transform: translate(100%,-20%);
+}
+.play-card-container{
+    max-width: 98.75vw;
+    min-height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-inline: 2.5vmax;
+    animation: onGameStart 500ms ease 0s 1 normal forwards;
+}
+header{
+    position: absolute;
+    top: 2vmin;
+    left: 2vmin;
+    width: 90%;
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+.lol-header{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+.lol-header span{
+    font-size: 2vmax;
+    font-family: 'Spiegel';
+    font-weight: 900;
+    color: #ae914b;
+    text-shadow: 0.5vmin 0.5vmin 0 #000000, 0.5vmin 0.5vmin 0 #000000;
+    cursor: pointer;
+}
+.lol-header span:hover{
+    filter: drop-shadow(5px 5px 10px rgba(20, 85, 91, 1) );
+}
+.lol-logo{
+    width: 3.5%;
+    margin-left: 2vmin;    
+}
+.lol-logo:hover{
+    cursor: pointer;
+    filter: drop-shadow(5px 5px 10px rgba(20, 85, 91, 1) );
+}
+
+@keyframes onGameStart {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+@keyframes fall {
+	0% {
+		transform: translateY(-200%);
+	}
+
+	25% {
+		transform: translateY(-150%);
+	}
+
+    50% {
+		transform: translateY(-100%);
+	}
+
+	75% {
+		transform: translateY(-50%);
+	}
+
+    100% {
+		transform: translateY(0);
+	}
+
+}

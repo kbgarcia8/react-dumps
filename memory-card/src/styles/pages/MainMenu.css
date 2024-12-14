@@ -1,0 +1,105 @@
+#main-menu-container {
+  background-image: url('../../assets/main_menu.jpg_large');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main-menu-logo-space {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 65vmax;
+  animation: mainMenuPulse 1500ms ease-in-out 0s infinite normal forwards;
+}
+.main-menu-logo {
+  width: 60%;
+}
+.main-menu-logo-text {
+  position: relative;
+  bottom: 2vmin;
+  font-size: 2.5vmax;
+  font-family: 'Spiegel';
+  font-weight: 900;
+  color: #ae914b;
+  width: 100%;
+  text-shadow: 0.625vmin 0.625vmin 0 #000000, 0.625vmin 0.625vmin 0 #000000;
+}
+.main-menu-buttons {
+  width: 30vmin;
+  font-family: 'Marcellus SC', serif;
+  font-size: 2.5vmin;
+  font-weight: bolder;
+  margin: 3vmin;
+  letter-spacing: 1px;
+  padding: 5px 15px;
+  background: #1e2328;
+  color: #cdbe91;
+  box-shadow: inset 0 0 2px #000000;
+  border-image: linear-gradient(to bottom, #c8aa6d, #7a5c29);
+  border-image-slice: 1;
+  border-width: 2px;
+}
+
+.main-menu-buttons:hover {
+  text-shadow: 0 0 5px #ffffff80;
+  box-shadow: 0 0 8px 0 #ffffff50;
+  background: linear-gradient(to bottom, #1e2328, #433d2b);
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.main-menu-buttons:active {
+  text-shadow: none;
+  box-shadow: none;
+  color: #cdbe9130;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 7.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: black;
+  color: #FFFF;
+  font-family: "Spiegel", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  font-size: 2vmin;
+}
+.github-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.github-logo{
+  width: 1.5%;
+  margin-inline: 1.25vmin;
+}
+a:link {
+  color: #FFFF;
+}
+a:visited {
+  color: #FFFF;
+}
+a:hover {
+  color: #DDDD;
+}
+a:active {
+  color: #cdbe91;
+}
+@keyframes mainMenuPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
