@@ -821,9 +821,13 @@ ___CSS_LOADER_EXPORT___.push([module.id, `.page-container {
   width: 2.5vmax;
   right: 2vmin;
 }
+#music-control img{
+  height: 2.5vmax;
+  width: 2vmax;
+}
 .main-menu-buttons:active{
   transform: translateY(10%);
-}`, "",{"version":3,"sources":["webpack://./src/styles/App.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,aAAa;EACb,iBAAiB;EACjB,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,sBAAsB;AACxB;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,aAAa;EACb,cAAc;EACd,YAAY;AACd;AACA;EACE,0BAA0B;AAC5B","sourcesContent":[".page-container {\n  width: 100%;\n  height: 100vh;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;  \n}\n#music-control{\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 3vmax;\n  width: 2.5vmax;\n  right: 2vmin;\n}\n.main-menu-buttons:active{\n  transform: translateY(10%);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/App.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,aAAa;EACb,iBAAiB;EACjB,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,sBAAsB;AACxB;AACA;EACE,kBAAkB;EAClB,aAAa;EACb,mBAAmB;EACnB,uBAAuB;EACvB,aAAa;EACb,cAAc;EACd,YAAY;AACd;AACA;EACE,eAAe;EACf,YAAY;AACd;AACA;EACE,0BAA0B;AAC5B","sourcesContent":[".page-container {\n  width: 100%;\n  height: 100vh;\n  min-height: 100vh;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;  \n}\n#music-control{\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 3vmax;\n  width: 2.5vmax;\n  right: 2vmin;\n}\n#music-control img{\n  height: 2.5vmax;\n  width: 2vmax;\n}\n.main-menu-buttons:active{\n  transform: translateY(10%);\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2464,4 +2468,4 @@ module.exports = __webpack_require__.p + "assets/75129a00e21b5d216d8b.ttf";
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.a08154ee15ebc3b15937.js.map
+//# sourceMappingURL=main.866c44723d0d2f541063.js.map

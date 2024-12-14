@@ -16,6 +16,10 @@
   width: 2.5vmax;
   right: 2vmin;
 }
+#music-control img{
+  height: 2.5vmax;
+  width: 2vmax;
+}
 .main-menu-buttons:active{
   transform: translateY(10%);
 }
