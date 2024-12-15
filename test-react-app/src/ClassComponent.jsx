@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./ClassComponent.css"
 /*
   This can also be written as:
 
@@ -52,8 +53,12 @@ class ClassInput extends Component {
         </form>
         <h4>All the tasks!</h4>
         <ul>
-          {this.state.todos.map((todo) => (
-            <li key={todo}>{todo}</li>
+          {this.state.todos.map((todo,index) => (
+            <div key={Date.now()} className="todo-entry">
+              <li>{todo}</li>
+              <button>Edit</button>
+              <button>Delete</button>
+            </div>
           ))}
         </ul>
       </section>
