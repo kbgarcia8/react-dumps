@@ -20,6 +20,7 @@ class ClassInput extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDeleteEntry = this.handleDeleteEntry.bind(this)
   }
 
   handleInputChange(e) {
@@ -35,6 +36,13 @@ class ClassInput extends Component {
       todos: state.todos.concat(state.inputVal),
       inputVal: "",
     }));
+  }
+
+  handleDeleteEntry(e){
+    const toDeleteTodoEntry = e.target.parentNode.querySelector('li').textContent
+    this.setState((state) => ({
+      todos: state.todos.filter((todo) => todo !== toDeleteTodoEntry)
+    }))
   }
 
   render() {
@@ -54,10 +62,10 @@ class ClassInput extends Component {
         <h4>All the tasks!</h4>
         <ul>
           {this.state.todos.map((todo,index) => (
-            <div key={Date.now()} className="todo-entry">
-              <li>{todo}</li>
+            <div key={`todo-entry-${index}`} className="todo-entry">
+              <li id={`todo-entry-${index}`} data-index={index}>{todo}</li>
               <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={this.handleDeleteEntry}>Delete</button>
             </div>
           ))}
         </ul>
