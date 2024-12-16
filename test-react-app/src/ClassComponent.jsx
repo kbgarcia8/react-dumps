@@ -9,6 +9,19 @@ import "./ClassComponent.css"
 
   instead of destructuring the `Component` during import
 */
+
+class TodoCount extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="total-todos">{this.props.count}</div>
+    );
+  }
+}
+
 class ClassInput extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +58,8 @@ class ClassInput extends Component {
     }))
   }
 
+
+
   render() {
     return (
       <section>
@@ -59,6 +74,7 @@ class ClassInput extends Component {
           />
           <button type="submit">Submit</button>
         </form>
+        <TodoCount count={this.state.todos.length}/>
         <h4>All the tasks!</h4>
         <ul>
           {this.state.todos.map((todo,index) => (
