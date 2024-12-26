@@ -12,6 +12,7 @@ const routes = [
   {
     path: "profile/:name", 
     // All :<variable> are dynamic segments and can be accessed via useParams hook in the element component
+    // The purpose is to utilize the dynamic segment for conditional segment
     element: <Profile />,
   },
   {
