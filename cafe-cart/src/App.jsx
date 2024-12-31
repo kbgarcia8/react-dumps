@@ -1,9 +1,20 @@
-import { useState } from 'react'
-import getData from './api/server'
+import { useState, useEffect } from 'react'
+import fetchDesserts from './api/server';
 import './App.css'
 
+
+
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    (async () => {
+      try {
+        const desserts = await fetchDesserts();
+        console.log('Fetched desserts:', desserts);
+      } catch (error) {
+        console.error('Failed to fetch desserts:', error.message);
+      }
+    })();
+  }, []);
 
   return (
     <>
