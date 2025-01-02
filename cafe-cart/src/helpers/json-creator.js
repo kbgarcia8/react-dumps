@@ -2,6 +2,8 @@ import axios from 'axios'
 import fs from 'fs'
 import rawData from '../db/rawData.js'
 
+var db = {}
+
 const JSONCreator = (entries,basename,type) => {
     const mappedData = entries.map(entry => ({
         [`${basename}Id`]: entry.id,
@@ -17,10 +19,17 @@ const JSONCreator = (entries,basename,type) => {
             count: Math.floor(Math.random() * (200 - 20 + 1)) + 20
         }
     }))
-    //if (fs.existsSync(`../db/${basename}.json`)) fs.unlink(`../db/${basename}.json`)
+    //const testMerge = Object.assign({}, {[`${basename}`]: mappedData})
+    db = {...db, [`${basename}`]: mappedData}
+    //create individual json files
     fs.writeFile(`../db/${basename}.json`, JSON.stringify(mappedData, null, 4),err => {
         if (err) throw err 
         console.log(`Done writing ${basename}.json`)
+    })
+    //create db.json file
+    fs.writeFile(`../db/db.json`, JSON.stringify(db, null, 4),err => {
+        if (err) throw err 
+        console.log('Done writing db.json')
     })
 }
 
