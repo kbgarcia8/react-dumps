@@ -1,6 +1,6 @@
 import axios from 'axios'
 import fs from 'fs'
-import rawData from './data/rawData.js'
+import rawData from '../db/rawData.js'
 
 const JSONCreator = (entries,basename,type) => {
     const mappedData = entries.map(entry => ({
@@ -20,9 +20,21 @@ const JSONCreator = (entries,basename,type) => {
     //if (fs.existsSync(`../db/${basename}.json`)) fs.unlink(`../db/${basename}.json`)
     fs.writeFile(`../db/${basename}.json`, JSON.stringify(mappedData, null, 4),err => {
         if (err) throw err 
-        console.log("Done writing")
+        console.log(`Done writing ${basename}.json`)
     })
 }
 
-const icedDrinkData = rawData.icedDrinkInitialData
+const icedDrinkData = rawData.icedDrinks
+const hotDrinkData = rawData.hotDrinks
+const cakesData = rawData.cakes
+const pastriesData = rawData.pastries
+const pastaData = rawData.pasta
+const mainsData = rawData.mains
+const sidesData = rawData.sides
 JSONCreator(icedDrinkData,"icedDrink","drink")
+JSONCreator(hotDrinkData,"hotDrink","drink")
+JSONCreator(cakesData,"cakes")
+JSONCreator(pastriesData,"pastries")
+JSONCreator(pastaData,"pasta")
+JSONCreator(mainsData,"mains")
+JSONCreator(sidesData,"sides")

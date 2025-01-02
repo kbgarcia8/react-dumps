@@ -1,0 +1,142 @@
+[
+    {
+        "hotDrinkId": 1,
+        "hotDrinkName": "Matcha Latte",
+        "hotDrinkDesc": "Made from finely ground green tea leaves that are mixed with steamed milk.",
+        "hotDrinkImage": "https://feelgoodfoodie.net/wp-content/uploads/2023/08/Matcha-Latte-TIMG.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 4.2,
+            "count": 33
+        }
+    },
+    {
+        "hotDrinkId": 2,
+        "hotDrinkName": "Hot Chocolate",
+        "hotDrinkDesc": "made with dark, semisweet, or bittersweet chocolate grated or chopped into small pieces and stirred into milk with the addition of sugar.",
+        "hotDrinkImage": "https://www.wellplated.com/wp-content/uploads/2014/12/French-Hot-Chocolate.-Classic-dark-European-style-hot-chocolate.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 2.5,
+            "count": 151
+        }
+    },
+    {
+        "hotDrinkId": 3,
+        "hotDrinkName": "Hot Toddy",
+        "hotDrinkDesc": "It's a quick solve to a chilly evening that simply requires hot water, honey, lemon, and whiskey!",
+        "hotDrinkImage": "https://hips.hearstapps.com/hmg-prod/images/hot-drinks-hot-toddy-6501eae8d6435.jpeg?crop=0.9981290926099158xw:1xh;center,top&resize=980:*",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 4.9,
+            "count": 113
+        }
+    },
+    {
+        "hotDrinkId": 4,
+        "hotDrinkName": "Pumpkin Spice Latte",
+        "hotDrinkDesc": "Made with real pumpkin puree—this latte is a must-have when the weather turns chilly.",
+        "hotDrinkImage": "https://hips.hearstapps.com/hmg-prod/images/hot-drinks-pumpkin-spice-latte-6501ed8884793.jpeg?crop=0.563xw:1.00xh;0.293xw,0&resize=980:*",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 4.7,
+            "count": 111
+        }
+    },
+    {
+        "hotDrinkId": 5,
+        "hotDrinkName": "Chai Latte",
+        "hotDrinkDesc": "Made by mixing steamed milk with black tea that has been infused with spices",
+        "hotDrinkImage": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2022/02/Chai-Latte-5.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 1.8,
+            "count": 127
+        }
+    },
+    {
+        "hotDrinkId": 6,
+        "hotDrinkName": "Caramel Latte",
+        "hotDrinkDesc": "A velvety coffee indulgence featuring freshly brewed espresso, steamed milk, and a generous drizzle of luscious caramel syrup.",
+        "hotDrinkImage": "https://www.nescafe.com/ph/sites/default/files/2023-04/RecipeHero_CaramelLatte_1066x1066.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 3.1,
+            "count": 141
+        }
+    },
+    {
+        "hotDrinkId": 7,
+        "hotDrinkName": "Caffè Americano",
+        "hotDrinkDesc": "A classic favorite prepared by diluting an espresso with hot water, giving it a similar strength to, but different flavor from, traditionally brewed coffee.",
+        "hotDrinkImage": "https://www.coffeeness.de/wp-content/uploads/2023/09/hot-americano-coffee.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 1.9,
+            "count": 76
+        }
+    },
+    {
+        "hotDrinkId": 8,
+        "hotDrinkName": "Hot buttered rum",
+        "hotDrinkDesc": "Mixed drink containing rum, butter, hot water or cider, a sweetener, and various spices.",
+        "hotDrinkImage": "https://www.liquor.com/thmb/O1ET7pKvz0v1OznBOz3XsWJ3cMg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/hot-caramel-buttered-rum-720x720-primary-9ae83dcacaec4c8e97b395ca6974e809.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 3.6,
+            "count": 69
+        }
+    },
+    {
+        "hotDrinkId": 9,
+        "hotDrinkName": "Irish Coffee",
+        "hotDrinkDesc": "A caffeinated alcoholic drink consisting of Irish whiskey, hot coffee and sugar, which has been stirred and topped with cream.",
+        "hotDrinkImage": "https://www.acouplecooks.com/wp-content/uploads/2021/02/Irish-Coffee-005.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 2.4,
+            "count": 40
+        }
+    },
+    {
+        "hotDrinkId": 10,
+        "hotDrinkName": "Asiático Coffee",
+        "hotDrinkDesc": "Coffee with condensed milk and cognac; a few drops of Licor 43 as well as a couple of coffee beans, lemon rind and cinnamon may be added.",
+        "hotDrinkImage": "https://yourspanishcorner.com/modules/prestablog/views/img/grid-for-1-7/up-img/4.jpg",
+        "prices": {
+            "regular": 120,
+            "large": 140
+        },
+        "rating": {
+            "rate": 1.8,
+            "count": 164
+        }
+    }
+]

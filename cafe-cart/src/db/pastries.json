@@ -1,0 +1,142 @@
+[
+    {
+        "pastriesId": 1,
+        "pastriesName": "Tarte Tatin",
+        "pastriesDesc": "Dark and sticky caramel, sweet apples and crisp pastry combine to make this heavenly French dessert.",
+        "pastriesImage": "https://greatfood.ie/wp-content/uploads/2024/08/a-beautifully-presented-tarte-tatin-on-a-rustic-wo-YSDGksR2TmeixgDiHnjwog-LrjC_1BHSU21_qbCJEZc3w.png",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.8,
+            "count": 105
+        }
+    },
+    {
+        "pastriesId": 2,
+        "pastriesName": "Pain au chocolat",
+        "pastriesDesc": "A Yeasted puff pastry dough wrapped around a stick of chocolate",
+        "pastriesImage": "https://sallysbakingaddiction.com/wp-content/uploads/2018/03/chocolate-croissants-2.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.2,
+            "count": 197
+        }
+    },
+    {
+        "pastriesId": 3,
+        "pastriesName": "Tiramisu",
+        "pastriesDesc": "Classic Italian dessert renowned for its heavenly layers of coffee-soaked ladyfingers and velvety mascarpone cream.",
+        "pastriesImage": "https://fhahoreca.com/wp-content/uploads/2023/08/A-tiramisu-portion-topped-with-strawberry.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.8,
+            "count": 36
+        }
+    },
+    {
+        "pastriesId": 4,
+        "pastriesName": "Croissant",
+        "pastriesDesc": "A laminated, yeast-leavened bakery product that contains dough/roll-in fat layers to create a flaky, crispy texture.",
+        "pastriesImage": "https://fhahoreca.com/wp-content/uploads/2023/08/Two-croissants-on-a-platter.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.6,
+            "count": 146
+        }
+    },
+    {
+        "pastriesId": 5,
+        "pastriesName": "Cinnamon Roll",
+        "pastriesDesc": "Made with yeasted dough that is rolled into a rectangle, spread with butter, then sprinkled heavily with a mix of sugar and cinnamon and rolled into a log that is cut into slices.",
+        "pastriesImage": "https://www.tasteatlas.com/images/dishes/5a7b78ad0a3744cabc9c2f8fd94d1e55.jpg?mw=1300",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.7,
+            "count": 152
+        }
+    },
+    {
+        "pastriesId": 6,
+        "pastriesName": "Everything Bagel",
+        "pastriesDesc": "The bagel underneath the everything topping is just a plain bagel—until it's transformed by the addition of a spice mix right before it's baked.",
+        "pastriesImage": "https://thebusybaker.ca/wp-content/uploads/2020/05/homemade-everything-bagels-fb-ig-7-scaled.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.1,
+            "count": 99
+        }
+    },
+    {
+        "pastriesId": 7,
+        "pastriesName": "Glazed Donut",
+        "pastriesDesc": "Light and fluffy, covered in a simple glaze.",
+        "pastriesImage": "https://assets.epicurious.com/photos/54b0226d766062b20344580a/1:1/w_2560%2Cc_limit/51160200_glazed-doughnuts_1x1.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2,
+            "count": 132
+        }
+    },
+    {
+        "pastriesId": 8,
+        "pastriesName": "Danish Pastry",
+        "pastriesDesc": "Made with laminated dough, where the dough is repeatedly covered with butter and folded over itself.",
+        "pastriesImage": "https://www.tasteatlas.com/Images/Dishes/fefa53468acc4221b66593471638502d.jpg?mw=1300",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.4,
+            "count": 85
+        }
+    },
+    {
+        "pastriesId": 9,
+        "pastriesName": "Éclair",
+        "pastriesDesc": "These elongated pastries with an appealing glaze, a crispy exterior, a soft doughy interior, and a sweet, creamy center",
+        "pastriesImage": "https://www.tasteatlas.com/Images/Dishes/5af8a479dedb4d53a7718ca752a536eb.jpg?mw=1300",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.3,
+            "count": 79
+        }
+    },
+    {
+        "pastriesId": 10,
+        "pastriesName": "Baklava",
+        "pastriesDesc": "Luscious dessert created with layers of thin phyllo dough intertwined with chopped nuts, all doused in a sweet, viscous syrup.",
+        "pastriesImage": "https://www.tasteatlas.com/Images/Dishes/4632111123f642a7a1867909ed5426f5.jpg?mw=1300",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.1,
+            "count": 92
+        }
+    }
+]

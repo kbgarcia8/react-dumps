@@ -1,0 +1,170 @@
+[
+    {
+        "mainsId": 1,
+        "mainsName": "Tonkatsu Pork",
+        "mainsDesc": "A pork chop breaded with flour, egg, and Panko (bread crumbs), then deep fried.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/lwsnkl1604181187.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 3.6,
+            "count": 82
+        }
+    },
+    {
+        "mainsId": 2,
+        "mainsName": "Sweet and Sour Pork",
+        "mainsDesc": "A Chinese stir-fry dish made with juicy pieces of pork tenderloin, bell peppers, onion, and pineapple.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/1529442316.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.7,
+            "count": 130
+        }
+    },
+    {
+        "mainsId": 3,
+        "mainsName": "Roasted Pork Belly",
+        "mainsDesc": "This roasted pork belly is juicy and succulent with a crispy crackling layer on top that takes it to the next level. ",
+        "mainsImage": "https://pinchandswirl.com/wp-content/uploads/2024/07/Pork-Belly-Recipe-sq.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.1,
+            "count": 195
+        }
+    },
+    {
+        "mainsId": 4,
+        "mainsName": "Kung Pao Chicken",
+        "mainsDesc": "Chinese-style stir-fried chicken cubes with dried chili peppers.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/1525872624.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 3.8,
+            "count": 92
+        }
+    },
+    {
+        "mainsId": 5,
+        "mainsName": "General Tso's Chicken",
+        "mainsDesc": "Perfect combination of sweet, savoury, spicy and tangy with crispy Chinese chicken bites.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/1529444113.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 3.4,
+            "count": 141
+        }
+    },
+    {
+        "mainsId": 6,
+        "mainsName": "Thai Green Curry",
+        "mainsDesc": "Undoubtedly a unique curry of all since it gives the soup a light green colour and incredible flavour, making it stand out from the rest.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/sstssx1487349585.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.6,
+            "count": 130
+        }
+    },
+    {
+        "mainsId": 7,
+        "mainsName": "Beef Caldareta",
+        "mainsDesc": "Beef stew cooked with tomato sauce and liver spread.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/41cxjh1683207682.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.7,
+            "count": 144
+        }
+    },
+    {
+        "mainsId": 8,
+        "mainsName": "Szechuan Beef",
+        "mainsDesc": "Spicy stir fry made with tender pieces of beef and colorful vegetables, all tossed in a sweet and savory sauce.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/1529443236.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.7,
+            "count": 196
+        }
+    },
+    {
+        "mainsId": 9,
+        "mainsName": "Beef Brisket Pot Roast",
+        "mainsDesc": "It's essentially a pot roast—a slow braise with lots and lots of onions.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.6,
+            "count": 156
+        }
+    },
+    {
+        "mainsId": 10,
+        "mainsName": "Baked salmon with fennel & tomatoes",
+        "mainsDesc": "Aniseedy fennel and juicy cherry tomatoes cut through the richness of salmon fillets.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/1548772327.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.3,
+            "count": 44
+        }
+    },
+    {
+        "mainsId": 11,
+        "mainsName": "Kung Po Prawns",
+        "mainsDesc": "A delicious stir fry that combines jumbo shrimp in a salty almost sweet sauce loaded with dried chillies, Szechuan pepper and peanuts.",
+        "mainsImage": "https://www.themealdb.com/images/media/meals/1525873040.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.6,
+            "count": 89
+        }
+    },
+    {
+        "mainsId": 12,
+        "mainsName": "Fried Calamari",
+        "mainsDesc": "Crispy, succulent calamari rings, coated in seasoned flour and quickly fried to crispy perfection.",
+        "mainsImage": "https://www.themediterraneandish.com/wp-content/uploads/2021/02/fried-calamari-recipe-7.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.4,
+            "count": 135
+        }
+    }
+]

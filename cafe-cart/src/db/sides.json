@@ -1,0 +1,142 @@
+[
+    {
+        "sidesId": 1,
+        "sidesName": "Prawn & Fennel Bisque",
+        "sidesDesc": "This smooth and creamy seafood soup made with saffron and fennel makes an impressive starter or light supper.",
+        "sidesImage": "https://www.themealdb.com/images/media/meals/rtwwvv1511799504.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.6,
+            "count": 87
+        }
+    },
+    {
+        "sidesId": 2,
+        "sidesName": "Cream of Mushroom Soup",
+        "sidesDesc": "Full flavoured with garlic, onions and herbs, subtle enough to shine through and compliment the natural flavour of the mushrooms.",
+        "sidesImage": "https://www.simplyrecipes.com/thmb/KpdPCxnwtFQCWD6u2Ww0urN8xwU=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2014__12__cream-of-mushroom-soup-horiz-d-1600-35c4020aaa6543e7b6fcecf5e30865e0.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.5,
+            "count": 106
+        }
+    },
+    {
+        "sidesId": 3,
+        "sidesName": "Shakshouka",
+        "sidesDesc": "a Maghrebi (North African) dish, popular throughout the region, featuring poached eggs in a spicy tomato sauce, seasoned with peppers, onion, garlic, and various spices.",
+        "sidesImage": "https://www.themealdb.com/images/media/meals/gpz67p1560458984.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.8,
+            "count": 200
+        }
+    },
+    {
+        "sidesId": 4,
+        "sidesName": "Poutine",
+        "sidesDesc": "Dish of french fries and cheese curds topped with a brown gravy.",
+        "sidesImage": "https://www.themealdb.com/images/media/meals/uuyrrx1487327597.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 3.9,
+            "count": 104
+        }
+    },
+    {
+        "sidesId": 5,
+        "sidesName": "Cheesy Beef Nachos",
+        "sidesDesc": "Cheesy Beef Nachos are a classic appetizer staple that's perfect for solo munching, or turn into a sharing platter for the holidays or parties!",
+        "sidesImage": "https://farahjeats.com/wp-content/uploads/2023/02/IMG_5399-768x1024.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 3.4,
+            "count": 100
+        }
+    },
+    {
+        "sidesId": 6,
+        "sidesName": "Ceasar Salad",
+        "sidesDesc": "Made with romaine lettuce, croutons, Parmesan cheese, and Caesar dressing.",
+        "sidesImage": "https://www.seriouseats.com/thmb/Fi_FEyVa3_-_uzfXh6OdLrzal2M=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/the-best-caesar-salad-recipe-06-40e70f549ba2489db09355abd62f79a9.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4,
+            "count": 44
+        }
+    },
+    {
+        "sidesId": 7,
+        "sidesName": "Cheesy Garlic Bread with dip",
+        "sidesDesc": "Roasted garlic and shallots in a creamy cheesy dip with fresh herbs like parsley and chives, served with toasty bread.",
+        "sidesImage": "https://i0.wp.com/kennascooks.com/wp-content/uploads/2024/07/img_8628.jpg?resize=1080%2C1440&ssl=1",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 3.9,
+            "count": 169
+        }
+    },
+    {
+        "sidesId": 8,
+        "sidesName": "Mozarella Sticks",
+        "sidesDesc": "This classic appetizer consists of sticks of mozzarella cheese that are coated in seasoned Italian breadcrumbs, then deep fried until golden brown.",
+        "sidesImage": "https://sugarspunrun.com/wp-content/uploads/2021/07/Homemade-Mozzarella-Sticks-Recipe-2-of-5.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.3,
+            "count": 163
+        }
+    },
+    {
+        "sidesId": 9,
+        "sidesName": "Chicken Parm Sliders",
+        "sidesDesc": "Succulent store-bought rotisserie chicken layered with tangy marinara sauce, gooey mozzarella cheese, and fragrant fresh basil, all nestled between soft, pillowy dinner rolls.",
+        "sidesImage": "https://www.tasteofhome.com/wp-content/uploads/2018/01/Chicken-Parmesan-Slider-Bake_EXPS_FT24_204498_JR_0124_1.jpg?fit=300,300&webp=1",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.2,
+            "count": 107
+        }
+    },
+    {
+        "sidesId": 10,
+        "sidesName": "Clam Chowder",
+        "sidesDesc": "Creamy broth that’s loaded with delicious clams, savory bacon, simple seasonings, and perfectly cooked potatoes.",
+        "sidesImage": "https://thecozycook.com/wp-content/uploads/2022/10/Clam-Chowder-1.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.4,
+            "count": 184
+        }
+    }
+]
