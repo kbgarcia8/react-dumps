@@ -1,4 +1,3 @@
-import axios from 'axios'
 import fs from 'fs'
 import rawData from '../db/rawData.js'
 
@@ -19,7 +18,7 @@ const JSONCreator = (entries,basename,type) => {
             count: Math.floor(Math.random() * (200 - 20 + 1)) + 20
         }
     }))
-    //const testMerge = Object.assign({}, {[`${basename}`]: mappedData})
+    //append all incoming key: mappedData pair to previous db to collate
     db = {...db, [`${basename}`]: mappedData}
     //create individual json files
     fs.writeFile(`../db/${basename}.json`, JSON.stringify(mappedData, null, 4),err => {
