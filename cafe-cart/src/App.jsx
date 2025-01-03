@@ -10,19 +10,19 @@ function App() {
   useEffect(() => {
     axios.get('https://glorious-space-system-q775w96grrpjh47r7-8000.app.github.dev/pasta')
   .then(response => {
-    console.log((response.data));
-    setPastries(response.data)
+    setPastries(response.data);
   })
   .catch(error => {
     console.error('Error fetching data:', error);
   });
-  console.log(pastries)
   }, []);
 
   return (
     <>
       <div>
-        {pastries}
+        {pastries.map((pastry) => (
+          <div key={pastry.pastaId}>{pastry.pastaName}</div>
+        ))}
       </div>
     </>
   )
