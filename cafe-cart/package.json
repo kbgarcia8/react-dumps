@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://super-yodel-jjjpx49w6x6w2pp96-8000.app.github.dev/",
+  "proxy": "http://localhost:8000/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

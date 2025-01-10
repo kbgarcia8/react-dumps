@@ -11,7 +11,7 @@ function App() {
   const isMobile = useMediaQuery("(max-width: 768px)")
 
   useEffect(() => {
-    axios.get('https://super-yodel-jjjpx49w6x6w2pp96-8000.app.github.dev/pasta')
+    axios.get('http://localhost:8000/pasta')
   .then(response => {
     setPastries(response.data);
   })
