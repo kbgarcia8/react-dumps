@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "proxy": "https://glorious-space-system-q775w96grrpjh47r7-8000.app.github.dev/",
+  "proxy": "https://super-yodel-jjjpx49w6x6w2pp96-8000.app.github.dev/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,7 +17,8 @@
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

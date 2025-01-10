@@ -1,14 +1,17 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './App.css'
 import axios from 'axios';
+import Context from './context/ContextProvider';
 
 
 
 function App() {
   const [pastries, setPastries] = useState([])
+  const {useMediaQuery} = useContext(Context)
+  const isMobile = useMediaQuery("(max-width: 768px)")
 
   useEffect(() => {
-    axios.get('https://glorious-space-system-q775w96grrpjh47r7-8000.app.github.dev/pasta')
+    axios.get('https://super-yodel-jjjpx49w6x6w2pp96-8000.app.github.dev/pasta')
   .then(response => {
     setPastries(response.data);
   })
