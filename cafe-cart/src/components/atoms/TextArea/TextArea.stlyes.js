@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
-export const Input = styled.input`
+export const TextArea = styled.textarea`
     display: flex;
     place-content: center;
     border: 1px solidrgb(94, 94, 94);
     line-height: 1.75;
-    padding: 0.25rem 0.75rem;
 `;
 
-export default Input;
+export default TextArea;

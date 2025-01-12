@@ -16,3 +16,5 @@ WebLayout.propTypes = {
     main: PropTypes.node.isRequired,
     footer: PropTypes.node.isRequired
 }
+
+export default WebLayout;
