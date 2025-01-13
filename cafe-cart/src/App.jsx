@@ -6,6 +6,8 @@ import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
 import GenericInput from './components/atoms/Input';
 import GenericTextArea from './components/atoms/TextArea';
+import Icon from './components/atoms/Icon';
+import Divider from './components/atoms/Divider';
 
 function App() {
   const [pastries, setPastries] = useState([])
@@ -56,6 +58,13 @@ function App() {
             isRequired={true}
             dataKey={"key"}
             dataIndex={0}
+          />
+          <Icon
+            source={"/red-cross.svg"}
+            alt={"placeholder"}
+          />
+          <Divider
+            dividerText={"OR"}
           />
         </ComponentTester>
       </div>
