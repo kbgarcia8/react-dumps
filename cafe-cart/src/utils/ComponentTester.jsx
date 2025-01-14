@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const ComponentTester = ({ children }) => {
 
     return (
-        <div>
+        <div className="component-tester">
             {children}
         </div>
     )

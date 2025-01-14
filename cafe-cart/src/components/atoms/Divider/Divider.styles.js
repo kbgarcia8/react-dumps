@@ -8,7 +8,8 @@ export const DividerLine = styled.div`
 `;
 
 export const DividerText = styled.span`
-    font-size: 2vmax;
+    font-size: 1.25vmax;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.25vmax;
     padding: 1vmax;
 `;

@@ -15,7 +15,6 @@ export const GenericInput = ({
 }) => {
     return (
         <>
-            <label htmlFor={id}>{labelText}</label>
             <Input
                 id={id}
                 name={id}

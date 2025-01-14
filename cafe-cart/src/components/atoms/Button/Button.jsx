@@ -7,7 +7,7 @@ const GenericButton = ({
     id,
     buttonType,
     source,
-    alt="no-image",
+    alt="image",
     text="",
 }) => {
 
@@ -17,8 +17,10 @@ const GenericButton = ({
             id={id}
             type={buttonType}
         >
-            {source && <img src={source} alt={alt} />}
-            {text && <span id={id}>{text}</span>}
+            <div className="button-icon-and-text">
+                {source && <img src={source} alt={alt} />}
+                {text && <span id={id}>{text}</span>}
+            </div>
         </Button>
     )
 }

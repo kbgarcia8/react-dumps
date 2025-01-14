@@ -1,8 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   margin: 0;
   padding: 0;
   display: flex;
-  place-items: center;
-  min-width: 100vw;
-  min-height: 100vh;
+  place-items: center;  
+}
+
+#root{
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  place-content: center;
+}
+
+.component-tester {
+  background-color: gray;
+  border: 5px solid black;
 }

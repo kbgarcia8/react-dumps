@@ -4,10 +4,12 @@ import axios from 'axios';
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
+import GenericLabel from './components/atoms/Label';
 import GenericInput from './components/atoms/Input';
 import GenericTextArea from './components/atoms/TextArea';
 import Icon from './components/atoms/Icon';
 import Divider from './components/atoms/Divider';
+import MobileLayout from './components/layout/MobileLayout';
 
 function App() {
   const [pastries, setPastries] = useState([])
@@ -26,48 +28,9 @@ function App() {
 
   return (
     <>
-      <div>
-        {pastries.map((pastry) => (
-          <div key={pastry.pastaId}>{pastry.pastaName}</div>
-        ))}
-      </div>
-      <div>
-        <ComponentTester>
-          <GenericButton 
-            buttonType={"button"}
-            processClick={() => console.log("Button clicked")}
-            text={"Click me!"}
-          />
-          <GenericInput
-            labelText={"Input"}
-            id={"input"}
-            placeholderText={"Type something here"}
-            onChange={(e) => console.log(e.target.value)}
-            value={""}
-            type={"text"}
-            isRequired={true}
-            dataKey={"key"}
-            dataIndex={0}
-          />
-          <GenericTextArea
-            labelText={"TextArea"}
-            id={"textarea"}
-            placeholderText={"Type something here"}
-            onChange={(e) => console.log(e.target.value)}
-            value={""}
-            isRequired={true}
-            dataKey={"key"}
-            dataIndex={0}
-          />
-          <Icon
-            source={"/red-cross.svg"}
-            alt={"placeholder"}
-          />
-          <Divider
-            dividerText={"OR"}
-          />
-        </ComponentTester>
-      </div>
+        {/*<ComponentTester>*/}
+          <MobileLayout/>
+        {/*</ComponentTester>*/}
     </>
   )
 }

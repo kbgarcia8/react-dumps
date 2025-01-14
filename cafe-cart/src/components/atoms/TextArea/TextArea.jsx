@@ -14,8 +14,7 @@ export const GenericTextArea = ({
     dataIndex
 }) => {
     return (
-        <div>
-        <label htmlFor={id}>{labelText}</label>
+        <>
         <TextArea
             id={id}
             placeholder={placeholderText}
@@ -26,7 +25,7 @@ export const GenericTextArea = ({
             data-key={dataKey}
             data-index={dataIndex}
         />
-        </div>
+        </>
     );
 }
 
