@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from 'react'
-import './App.css'
 import axios from 'axios';
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
@@ -9,6 +8,7 @@ import GenericInput from './components/atoms/Input';
 import GenericTextArea from './components/atoms/TextArea';
 import Icon from './components/atoms/Icon';
 import Divider from './components/atoms/Divider';
+import GenericForm from './components/molecules/Form';
 import MobileLayout from './components/layout/MobileLayout';
 
 function App() {
@@ -28,9 +28,9 @@ function App() {
 
   return (
     <>
-        {/*<ComponentTester>*/}
-          <MobileLayout/>
-        {/*</ComponentTester>*/}
+        <ComponentTester>
+          <GenericForm/>
+        </ComponentTester>
     </>
   )
 }
