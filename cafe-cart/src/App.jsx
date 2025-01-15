@@ -26,10 +26,48 @@ function App() {
   });
   }, []);
 
+  const FormInputs = [
+    {
+      labelText: "Name",
+      id: "name",
+      placeholderText: "Enter your name",
+      onChange: () => {},
+      value: "",
+      type: "text",
+      isRequired: true,
+      dataKey: "",
+      dataIndex: 0
+    }, {
+      labelText: "Email",
+      id: "email",
+      placeholderText: "Enter your email",
+      onChange: () => {},
+      value: "",
+      type: "email",
+      isRequired: true,
+      dataKey: "",
+      dataIndex: 1
+    }, {
+      labelText: "Message",
+      id: "message",
+      placeholderText: "Enter your message",
+      onChange: () => {},
+      value: "",
+      type: "text",
+      isRequired: true,
+      dataKey: "",
+      dataIndex: 2
+    }
+]
+
   return (
     <>
         <ComponentTester>
-          <GenericForm/>
+          <GenericForm 
+            legendText={"Test"} 
+            FormInputs={FormInputs}
+            StyledSubmitButtonComponent={<GenericButton text={"Test"}/>}
+          />
         </ComponentTester>
     </>
   )

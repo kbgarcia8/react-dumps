@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Input from "./Input.styles";
 
 export const GenericInput = ({ 
-    labelText,
     id,
     placeholderText,
     onChange,
@@ -31,7 +30,6 @@ export const GenericInput = ({
 }
 
 GenericInput.propTypes = {
-    labelText: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     placeholderText: PropTypes.string,
     onChange: PropTypes.func.isRequired,

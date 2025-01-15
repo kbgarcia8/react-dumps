@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "./Button.styles";
 
 const GenericButton = ({
-    processClick,
+    onClick,
     id,
     buttonType,
     source,
@@ -13,7 +13,7 @@ const GenericButton = ({
 
     return (
         <Button
-            onClick={processClick}
+            onClick={onClick}
             id={id}
             type={buttonType}
         >

@@ -13,8 +13,7 @@ export const Button = styled.button`
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
-        border: 2px solid red;
+        justify-content: space-evenly;   
     }
 `;
 
