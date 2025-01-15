@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios';
+import styled from 'styled-components';
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
@@ -9,6 +10,7 @@ import GenericTextArea from './components/atoms/TextArea';
 import Icon from './components/atoms/Icon';
 import Divider from './components/atoms/Divider';
 import GenericForm from './components/molecules/Form';
+import ProductCard from './components/molecules/ProductCard';
 import MobileLayout from './components/layout/MobileLayout';
 
 function App() {
@@ -68,6 +70,9 @@ function App() {
             FormInputs={FormInputs}
             StyledSubmitButtonComponent={<GenericButton text={"Test"}/>}
           />
+          <div className='product-card-temporary'>
+            <ProductCard/>
+          </div>
         </ComponentTester>
     </>
   )

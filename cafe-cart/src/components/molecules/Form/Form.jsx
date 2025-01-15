@@ -8,9 +8,9 @@ import {LabelAndInputContainer, FormFieldset, FormLegend, Form} from "./Form.sty
 const GenericForm = ({ 
     legendText, 
     id, 
-    FormInputs,
+    FormInputs, //object that contains the input fields information to make it reusable
     StyledForm,
-    StyledLegendComponent,
+    StyledLegend,
     StyledLabelComponent,
     StyledInputComponent,
     StyledSubmitButtonComponent,
@@ -23,9 +23,7 @@ const GenericForm = ({
     return (
         <StyledForm id={id} >
             <FormFieldset>
-                {StyledLegendComponent 
-                    ? React.cloneElement(StyledLegendComponent,{})
-                    : <FormLegend>{legendText}</FormLegend>}
+                <StyledLegend>{legendText}</StyledLegend>
                 {FormInputs.map((input, index) => (
                     <LabelAndInputContainer key={`form-${id}-${index}`}>
                         {StyledLabelComponent
@@ -103,8 +101,8 @@ GenericForm.propTypes = {
         })
     ).isRequired,
     Form: PropTypes.elementType,
-    StyledLegendComponent: PropTypes.node,
-    StyledLabelComponent: PropTypes.node,
+    StyledLegend: PropTypes.elementType, //for styled components
+    StyledLabelComponent: PropTypes.node, //for JSX elements
     StyledInputComponent: PropTypes.node,
     StyledSubmitButtonComponent: PropTypes.node,
     StyledCancelButtonComponent: PropTypes.node,
@@ -116,8 +114,7 @@ GenericForm.propTypes = {
 
 GenericForm.defaultProps = {
     StyledForm: Form,
-    StyledFormComponent: null,
-    StyledLegendComponent: null,
+    StyledLegend: FormLegend,
     StyledLabelComponent: null,
     StyledInputComponent: null,
     StyledSubmitButtonComponent: null,

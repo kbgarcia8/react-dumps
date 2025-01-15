@@ -3,11 +3,14 @@
   margin: 0;
   padding: 0;
 }
-body {
+
+
+html, body {
   margin: 0;
   padding: 0;
   display: flex;
-  place-items: center;  
+  place-items: center;
+  font-size: 12px;
 }
 
 #root{
@@ -20,8 +23,19 @@ body {
 }
 
 .component-tester {
-  height: 75vh;
+  min-height: 75vh;
   width: 75vw;
-  background-color: gray;
+  background-color: #DDDDDD;
   border: 5px solid black;
+}
+
+.product-card-temporary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 50%;
+  height: 50vh;
+  margin: 1rem;
+  border: 2px solid black;
 }
