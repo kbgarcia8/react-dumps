@@ -11,7 +11,7 @@ export const ProductImage = styled.img`
 `;
 
 export const ProductTitle = styled.h2`
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: 600;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
@@ -19,7 +19,7 @@ export const ProductTitle = styled.h2`
 export const ProductDescription = styled.p`
     display: flex;
     flex-wrap: wrap;
-    font-size: 0.75rem;
+    font-size: 0.90rem;
     font-weight: 400;
     margin-top: 0.5rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -37,11 +37,15 @@ export const ProductInfoContainer = styled.div`
 `;
 
 export const AddToCartButton = styled(GenericButton)`
-  margin: 0.5rem;
+  margin: 0.25rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
   background-color: green;
   color: white;
-  width: 20%;
-  height: 100%;
+  width: 12.5%;
+  height: 75%;
+  background-color: #3C5E83;
+
   & .button-icon-and-text {
     width: 100%;
     border: 1px solid blue;
@@ -58,18 +62,22 @@ export const PriceContainer = styled.div`
     align-items: center;
     width: 90%;
     height: 10%;
-    padding-inline: 1rem;
+    padding-inline: 0.5rem;
     border: 1px solid blue;
 `;
 
 export const ProductSize = styled.span`
-    font-size: 0.75rem;
+    margin-left: 0.25rem;
+    font-size: 0.85rem;
     font-weight: 700;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 export const ProductPrice = styled.span`
-    font-size: 0.65rem;
+    position: relative;
+    left: 55%;
+    font-size: 0.70rem;
+    font-weight: 500;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 

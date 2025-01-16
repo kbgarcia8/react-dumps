@@ -26,6 +26,11 @@ const ProductCard = ({  }) => {
                 <ProductSize>Small</ProductSize>
                 <ProductPrice>$7.99</ProductPrice>
             </PriceContainer>
+            <PriceContainer>
+                <AddToCartButton source={"/shopping-cart.svg"}/>
+                <ProductSize>Large</ProductSize>
+                <ProductPrice>$15.99</ProductPrice>
+            </PriceContainer>
         </ProductCardContainer>
     );
 }
