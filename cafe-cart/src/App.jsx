@@ -11,6 +11,7 @@ import Icon from './components/atoms/Icon';
 import Divider from './components/atoms/Divider';
 import GenericForm from './components/molecules/Form';
 import ProductCard from './components/molecules/ProductCard';
+import Stepper from './components/molecules/Stepper';
 import MobileLayout from './components/layout/MobileLayout';
 
 function App() {
@@ -62,6 +63,11 @@ function App() {
     }
 ]
 
+const prices = {
+  "solo": 160,
+  "share": 220
+} 
+
   return (
     <>
         <ComponentTester>
@@ -71,7 +77,14 @@ function App() {
             StyledSubmitButtonComponent={<GenericButton text={"Test"}/>}
           />
           <div className='product-card-temporary'>
-            <ProductCard/>
+            <ProductCard
+              productTitle={"Baked Penne With Chicken and Sun-Dried Tomatoes"}
+              productDescription={"A delicious baked penne pasta with chicken and sun-dried tomatoes in a creamy mozzarella cheese sauce."}
+              prices={prices}
+            />
+          </div>
+          <div className='stepper-temporary'>
+            <Stepper />
           </div>
         </ComponentTester>
     </>
