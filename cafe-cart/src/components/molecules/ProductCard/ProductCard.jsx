@@ -1,6 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ProductTitle, ProductDescription, ProductInfoContainer, ProductImage, ProductCardContainer } from "./Product.styles";
+import { ProductImage,
+    ProductTitle,
+    ProductDescription,
+    ProductInfoContainer,
+    PriceContainer,
+    AddToCartButton,
+    ProductSize,
+    ProductPrice,
+    ProductCardContainer } from "./Product.styles";
 
 const ProductCard = ({  }) => {
 
@@ -11,8 +19,13 @@ const ProductCard = ({  }) => {
                 <ProductTitle>Baked Penne With Chicken and Sun-Dried Tomatoes</ProductTitle>
                 <ProductDescription>
                     It has chicken breasts, mushrooms, and sun-dried tomatoes. Shredded provolone and grated Parmesan make it super creamy.
-                </ProductDescription>
+                </ProductDescription>                
             </ProductInfoContainer>
+            <PriceContainer>
+                <AddToCartButton source={"/shopping-cart.svg"}/>
+                <ProductSize>Small</ProductSize>
+                <ProductPrice>$7.99</ProductPrice>
+            </PriceContainer>
         </ProductCardContainer>
     );
 }

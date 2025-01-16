@@ -10,7 +10,7 @@ html, body {
   padding: 0;
   display: flex;
   place-items: center;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 #root{
@@ -34,8 +34,8 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 50%;
-  height: 50vh;
+  max-width: 25vmax;
+  height: 30vmax;
   margin: 1rem;
   border: 2px solid black;
 }

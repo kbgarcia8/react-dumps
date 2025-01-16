@@ -1,15 +1,17 @@
 import styled from 'styled-components';
+import Button from '../../atoms/Button/Button.styles';
+import GenericButton from '../../atoms/Button/Button';
 
 export const ProductImage = styled.img`
     width: 90%;
     height: 50%;
-    object-fit: fill;
+    object-fit: cover;
     border-radius: 1rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 `;
 
 export const ProductTitle = styled.h2`
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 600;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
@@ -17,8 +19,9 @@ export const ProductTitle = styled.h2`
 export const ProductDescription = styled.p`
     display: flex;
     flex-wrap: wrap;
-    font-size: 1rem;
+    font-size: 0.75rem;
     font-weight: 400;
+    margin-top: 0.5rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
@@ -33,14 +36,41 @@ export const ProductInfoContainer = styled.div`
     overflow: hidden;
 `;
 
+export const AddToCartButton = styled(GenericButton)`
+  margin: 0.5rem;
+  background-color: green;
+  color: white;
+  width: 20%;
+  height: 100%;
+  & .button-icon-and-text {
+    width: 100%;
+    border: 1px solid blue;
+  }
+    & .button-icon-and-text img {
+        width: 100%;
+        height: 100%;
+    }
+`;
+
 export const PriceContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: 0.25rem;
+    width: 90%;
+    height: 10%;
+    padding-inline: 1rem;
+    border: 1px solid blue;
+`;
+
+export const ProductSize = styled.span`
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`;
+
+export const ProductPrice = styled.span`
+    font-size: 0.65rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 export const ProductCardContainer = styled.div`
@@ -59,9 +89,13 @@ export const ProductCardContainer = styled.div`
 `;
 
 export default {
+    ProductImage,
     ProductTitle,
     ProductDescription,
     ProductInfoContainer,
-    ProductImage, 
+    PriceContainer,
+    AddToCartButton,
+    ProductSize,
+    ProductPrice,
     ProductCardContainer
 };

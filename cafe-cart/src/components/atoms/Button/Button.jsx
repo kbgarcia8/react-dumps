@@ -9,6 +9,7 @@ const GenericButton = ({
     source,
     alt="image",
     text="",
+    className
 }) => {
 
     return (
@@ -16,6 +17,7 @@ const GenericButton = ({
             onClick={onClick}
             id={id}
             type={buttonType}
+            className={className}
         >
             <div className="button-icon-and-text">
                 {source && <img src={source} alt={alt} />}
