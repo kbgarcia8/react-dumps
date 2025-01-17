@@ -11,7 +11,7 @@ export const ProductImage = styled.img`
 `;
 
 export const ProductTitle = styled.h2`
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
@@ -19,7 +19,7 @@ export const ProductTitle = styled.h2`
 export const ProductDescription = styled.p`
     display: flex;
     flex-wrap: wrap;
-    font-size: 0.90rem;
+    font-size: 0.85rem;
     font-weight: 400;
     margin-top: 0.5rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -37,22 +37,20 @@ export const ProductInfoContainer = styled.div`
 `;
 
 export const AddToCartButton = styled(GenericButton)`
-  margin: 0.25rem;
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-  background-color: green;
-  color: white;
-  width: 12.5%;
-  height: 75%;
-  background-color: #3C5E83;
+    margin: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    background-color: green;
+    color: white;
+    width: 12.5%;
+    height: 75%;
+    background-color: #3C5E83;
 
-  & .button-icon-and-text {
+    & .button-icon-and-text {
     width: 100%;
-    border: 1px solid blue;
-  }
+    }
     & .button-icon-and-text img {
-        width: 100%;
-        height: 100%;
+        width: 75%;
     }
 `;
 
@@ -70,12 +68,14 @@ export const ProductSize = styled.span`
     margin-left: 0.25rem;
     font-size: 0.85rem;
     font-weight: 700;
+    border: 1px solid blue;
+    width: 25%;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
 export const ProductPrice = styled.span`
     position: relative;
-    left: 55%;
+    left: 45%;
     font-size: 0.70rem;
     font-weight: 500;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

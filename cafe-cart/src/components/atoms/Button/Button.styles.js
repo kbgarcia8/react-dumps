@@ -13,8 +13,19 @@ export const Button = styled.button`
     & .button-icon-and-text { //default styling for icon and text inside button
         width: 100%;
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
+    }
+    & .button-icon-and-text img { //default styling for icon inside button
+        width: 100%;
+    }
+    & .button-icon-and-text span { //default styling for text inside button
+        font-size: 0.75rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 `;
 

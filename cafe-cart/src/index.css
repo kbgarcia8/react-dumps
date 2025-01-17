@@ -27,6 +27,8 @@ html, body {
   width: 75vw;
   background-color: #DDDDDD;
   border: 5px solid black;
+  display: flex;
+  place-items: center;
 }
 
 .product-card-temporary {
@@ -38,4 +40,13 @@ html, body {
   height: 30vmax;
   margin: 1rem;
   border: 2px solid black;
+}
+
+.stepper-temporary{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  height: 10%;
+  border: 2px solid red;
 }

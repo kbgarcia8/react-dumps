@@ -8,31 +8,42 @@ import { ProductImage,
     AddToCartButton,
     ProductSize,
     ProductPrice,
-    ProductCardContainer } from "./Product.styles";
+    ProductCardContainer
+} from "./Product.styles";
 
-const ProductCard = ({  }) => {
+const ProductCard = ({
+    productImage,
+    productTitle,
+    productDescription,
+    prices,
+    className
+}) => {
 
     return (
-        <ProductCardContainer>
-            <ProductImage src={"https://www.errenskitchen.com/wp-content/uploads/2022/05/Chicken-Sundried-Tomato-Pasta-1-4.jpg"} alt={"no-image"}/>
+        <ProductCardContainer className={className}>
+            <ProductImage src={productImage} alt={`${productTitle}-image`}/>
             <ProductInfoContainer>
-                <ProductTitle>Baked Penne With Chicken and Sun-Dried Tomatoes</ProductTitle>
+                <ProductTitle>{productTitle}</ProductTitle>
                 <ProductDescription>
-                    It has chicken breasts, mushrooms, and sun-dried tomatoes. Shredded provolone and grated Parmesan make it super creamy.
+                    {productDescription}
                 </ProductDescription>                
             </ProductInfoContainer>
-            <PriceContainer>
-                <AddToCartButton source={"/shopping-cart.svg"}/>
-                <ProductSize>Small</ProductSize>
-                <ProductPrice>$7.99</ProductPrice>
-            </PriceContainer>
-            <PriceContainer>
-                <AddToCartButton source={"/shopping-cart.svg"}/>
-                <ProductSize>Large</ProductSize>
-                <ProductPrice>$15.99</ProductPrice>
-            </PriceContainer>
+            {Object.keys(prices).map((size, index) => (
+                <PriceContainer key={`${productTitle}-${size}`}>
+                    <AddToCartButton source={"/shopping-cart.svg"}/>
+                    <ProductSize>{size}</ProductSize>
+                    <ProductPrice>{prices[size]}</ProductPrice>
+                </PriceContainer>
+            ))}
         </ProductCardContainer>
     );
+}
+
+ProductCard.propTypes = {
+    productImage: PropTypes.string,
+    productTitle: PropTypes.string,
+    productDescription: PropTypes.string,
+    prices: PropTypes.object.isRequired
 }
 
 export default ProductCard;
