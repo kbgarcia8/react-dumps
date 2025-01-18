@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 const Context = createContext();
 
 export const ContextProvider = ({children}) => {
+    /*'use' prefixed functions are custom hooks */
     const useMediaQuery = (query) => {
         const [matches, setMatches] = useState(false);
       
