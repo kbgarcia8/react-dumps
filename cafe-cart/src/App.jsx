@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
 import axios from 'axios';
-import styled from 'styled-components';
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
