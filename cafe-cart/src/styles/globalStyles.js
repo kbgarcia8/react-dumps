@@ -41,11 +41,11 @@ h1, h2, h3, h4, form, legend {
 
 h1 {
     font-size: ${v.fontSize.xxlarge};
-    margin-bottom: ${v.spacing.large};
+    margin-bottom: ${v.spacing.medium};
 }
 h2 {
     font-size: ${v.fontSize.xlarge};
-    margin-bottom: ${v.spacing.medium};
+    margin-bottom: ${v.spacing.small};
 }
 h3 {
     font-size: ${v.fontSize.large};
@@ -93,17 +93,37 @@ u {
     width: 100vw;
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     place-items: center;
     place-content: center;
 }
 
 .component-tester {
-    min-height: 75vh;
-    width: 75vw;
-    background-color: #DDDDDD;
+    height: 100vh;
+    width: 100vw;
+    padding: ${v.spacing.small};
+    /*background-color: #DDDDDD;*/
+    background-color: transparent;
     border: 5px solid black;
     display: flex;
+    flex-direction: column;
     place-items: center;
+}
+
+.toggle-button-container {
+    width: 10%;
+    border: 2px solid red;
+    margin-bottom: ${v.spacing.medium}
+}
+
+.design-system-card {
+    display: flex;
+    flex-direction: column;
+    background-color: ${({theme}) => theme.screenColor};
+}
+
+.bolder-text {
+    font-weight: ${v.fontWeight.bolder};
 }
 
 .product-card-temporary {
@@ -124,6 +144,14 @@ u {
     width: 35%;
     height: 10%;
     border: 2px solid red;
+}
+
+.light-theme-card,
+.dark-theme-card {
+    display: flex;
+    flex-direction: column;
+    width: 45vw;
+    height: 100%;
 }
 `;
 

@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
+import { useTheme } from './context/ThemeProvider'
 import axios from 'axios';
+import styled from 'styled-components';
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
@@ -13,7 +15,12 @@ import ProductCard from './components/molecules/ProductCard';
 import Stepper from './components/molecules/Stepper';
 import MobileLayout from './components/layout/MobileLayout';
 
+const ToggleButton = styled(GenericButton)`
+  background-color: gray;
+`;
+
 function App() {
+  const {theme, toggleTheme} = useTheme()
   const [pastries, setPastries] = useState([])
   const {useMediaQuery} = useContext(Context)
   const isMobile = useMediaQuery("(max-width: 768px)")
@@ -65,25 +72,34 @@ function App() {
 const prices = {
   "solo": 160,
   "share": 220
-} 
+}
+
 
   return (
     <>
         <ComponentTester>
-          <GenericForm 
-            legendText={"Test"} 
-            FormInputs={FormInputs}
-            StyledSubmitButtonComponent={<GenericButton text={"Test"}/>}
-          />
-          <div className='product-card-temporary'>
-            <ProductCard
-              productTitle={"Baked Penne With Chicken and Sun-Dried Tomatoes"}
-              productDescription={"A delicious baked penne pasta with chicken and sun-dried tomatoes in a creamy mozzarella cheese sauce."}
-              prices={prices}
+          <div className="toggle-button-container">
+            <ToggleButton
+              text={'Toggle Theme'}
+              onClick={toggleTheme}
             />
           </div>
-          <div className='stepper-temporary'>
-            <Stepper />
+          <div className="design-system-card">
+            <h1>Heading 1</h1>
+            <h2>Heading 2</h2>
+            <h3>Heading 3</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+            <p>This is a test to show paragraph normal text preview</p>
+            <p className='bold-text'><b>This is a test to show paragraph bold text preview</b></p>
+            <p className='bolder-text'>This is a test to show paragraph bolder text preview</p>
+            <p className='italic-text'><em>This is a test to show paragraph italic text preview</em></p>
+            <p className='italic-bold'><b><em>This is a test to show paragraph italic bold text preview</em></b></p>
+            <GenericButton/>
+            <GenericInput/>
+            {/*<ProductCard/>*/}
+            
           </div>
         </ComponentTester>
     </>
