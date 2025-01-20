@@ -120,10 +120,20 @@ u {
     display: flex;
     flex-direction: column;
     background-color: ${({theme}) => theme.screenColor};
+    width: 50%;
 }
 
 .bolder-text {
     font-weight: ${v.fontWeight.bolder};
+}
+
+.button-entry {
+    display: flex;
+    flex-directon: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-block: ${v.spacing.xxsmall};
 }
 
 .product-card-temporary {

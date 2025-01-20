@@ -32,10 +32,12 @@ export const lightTheme = {//utilize dark text
     backgroundColor1: palette.primary1,
     backgroundColor2: palette.primary2,
     backgroundColor3: palette.secondary2,
+    backgroundColor4: palette.secondary1,
     borderColor1: palette.neutral4,
     borderColor2: palette.neutral3,
     textColor1: palette.neutral4,
-    textColor2: palette.primary2,
+    textColor2: palette.neutral2,
+    textColor3: palette.accent,
     warning: palette.error2,
     success: palette.success2,
     error: palette.error2

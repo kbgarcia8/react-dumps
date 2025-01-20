@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import { useTheme } from './context/ThemeProvider'
 import axios from 'axios';
 import styled from 'styled-components';
+import { v } from './styles/variables'
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
@@ -74,6 +75,32 @@ const prices = {
   "share": 220
 }
 
+const PrimaryButton = styled(GenericButton)`
+  background-color: ${({theme}) => theme.backgroundColor1};
+  color: ${({theme}) => theme.textColor2};
+  width: 30%;
+  border-radius: ${v.spacing.xxsmall};
+`;
+
+const PrimaryButtonHover = styled(PrimaryButton)`
+  background-color: ${({theme}) => theme.backgroundColor2};
+`;
+
+const PrimaryButtonDisabled = styled(PrimaryButton)`
+  background-color: ${({theme}) => theme.textColor3};
+  color: ${({theme}) => theme.borderColor2};
+`;
+
+const SecondaryButton = styled(PrimaryButton)`
+  background-color: ${({theme}) => theme.backgroundColor3};
+  color: ${({theme}) => theme.textColor1};
+`;
+
+const SecondaryButtonHovered = styled(SecondaryButton)`
+  background-color: ${({theme}) => theme.backgroundColor4};
+`;
+
+const SecondaryButtonDisabled = styled(PrimaryButtonDisabled)``;
 
   return (
     <>
@@ -96,7 +123,18 @@ const prices = {
             <p className='bolder-text'>This is a test to show paragraph bolder text preview</p>
             <p className='italic-text'><em>This is a test to show paragraph italic text preview</em></p>
             <p className='italic-bold'><b><em>This is a test to show paragraph italic bold text preview</em></b></p>
-            <GenericButton/>
+            <div className="button-entry">
+              <PrimaryButton text='Primary Button'/>
+              <PrimaryButtonHover text='Primary Hover' />
+              <PrimaryButton text='Primary Active'/>
+              <PrimaryButtonDisabled text='Primary Disable'/>
+            </div>
+            <div className="button-entry">
+              <SecondaryButton text='Secondary Button'/>
+              <SecondaryButtonHovered text='Secondary Hover'/>
+              <SecondaryButton text='Secondary Active'/>
+              <SecondaryButtonDisabled text='Secondary Disable'/>
+            </div>
             <GenericInput/>
             {/*<ProductCard/>*/}
             
