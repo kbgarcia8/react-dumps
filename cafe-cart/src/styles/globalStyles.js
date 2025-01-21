@@ -99,7 +99,7 @@ u {
 }
 
 .component-tester {
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     padding: ${v.spacing.small};
     /*background-color: #DDDDDD;*/
@@ -121,13 +121,14 @@ u {
     flex-direction: column;
     background-color: ${({theme}) => theme.screenColor};
     width: 50%;
+    padding: ${v.spacing.medium};
 }
 
 .bolder-text {
     font-weight: ${v.fontWeight.bolder};
 }
 
-.button-entry {
+.button-entry, .icon-buttons {
     display: flex;
     flex-directon: row;
     align-items: center;

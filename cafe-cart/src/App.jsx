@@ -78,6 +78,7 @@ const prices = {
 const PrimaryButton = styled(GenericButton)`
   background-color: ${({theme}) => theme.backgroundColor1};
   color: ${({theme}) => theme.textColor2};
+  border: 2px solid ${({theme}) => theme.textColor2};
   width: 30%;
   border-radius: ${v.spacing.xxsmall};
 `;
@@ -89,18 +90,49 @@ const PrimaryButtonHover = styled(PrimaryButton)`
 const PrimaryButtonDisabled = styled(PrimaryButton)`
   background-color: ${({theme}) => theme.textColor3};
   color: ${({theme}) => theme.borderColor2};
+  border: 2px solid ${({theme}) => theme.borderColor2};
 `;
 
 const SecondaryButton = styled(PrimaryButton)`
   background-color: ${({theme}) => theme.backgroundColor3};
   color: ${({theme}) => theme.textColor1};
+  border: 2px solid ${({theme}) => theme.textColor1};
 `;
 
-const SecondaryButtonHovered = styled(SecondaryButton)`
+const SecondaryButtonHover = styled(SecondaryButton)`
   background-color: ${({theme}) => theme.backgroundColor4};
 `;
 
 const SecondaryButtonDisabled = styled(PrimaryButtonDisabled)``;
+
+const FlatButton = styled(PrimaryButton)`
+  background-color: transparent;
+  color: ${({theme}) => theme.backgroundColor1};
+  border: none;
+  `
+const FlatButtonHover = styled(FlatButton)`
+  background-color: ${({theme}) => theme.borderColor2};
+  border: 2px solid ${({theme}) => theme.backgroundColor1};
+`;
+
+const FlatButtonDisabled = styled(PrimaryButtonDisabled)`
+  background-color: transparent;
+  color: ${({theme}) => theme.borderColor2};
+  border: none;
+`;
+
+const GhostButton = styled(PrimaryButton)`
+  background-color: transparent;
+  color: ${({theme}) => theme.backgroundColor1};
+  border: 2px solid ${({theme}) => theme.backgroundColor1};
+`;
+
+const GhostButtonHover = styled(PrimaryButtonHover)``;
+
+const GhostButtonDisabled = styled(FlatButtonDisabled)`
+  color: ${({theme}) => theme.borderColor2};
+  border: 2px solid ${({theme}) => theme.borderColor2};
+`;
 
   return (
     <>
@@ -126,16 +158,31 @@ const SecondaryButtonDisabled = styled(PrimaryButtonDisabled)``;
             <div className="button-entry">
               <PrimaryButton text='Primary Button'/>
               <PrimaryButtonHover text='Primary Hover' />
-              <PrimaryButton text='Primary Active'/>
+              <PrimaryButtonHover text='Primary Active'/>
               <PrimaryButtonDisabled text='Primary Disable'/>
             </div>
             <div className="button-entry">
               <SecondaryButton text='Secondary Button'/>
-              <SecondaryButtonHovered text='Secondary Hover'/>
-              <SecondaryButton text='Secondary Active'/>
+              <SecondaryButtonHover text='Secondary Hover'/>
+              <SecondaryButtonHover text='Secondary Active'/>
               <SecondaryButtonDisabled text='Secondary Disable'/>
             </div>
-            <GenericInput/>
+            <div className="button-entry">
+              <FlatButton text='Flat Button'/>
+              <FlatButtonHover text='Flat Hover'/>
+              <FlatButtonHover text='Flat Active'/>
+              <FlatButtonDisabled text='Flat Disable'/>
+            </div>
+            <div className="button-entry">
+              <GhostButton text='Ghost Button'/>
+              <GhostButtonHover text='Ghost Hover'/>
+              <GhostButtonHover text='Ghost Active'/>
+              <GhostButtonDisabled text='Ghost Disable'/>
+            </div>
+            <div className="icon-buttons">
+
+            </div>
+            {/*<GenericInput/>*/}
             {/*<ProductCard/>*/}
             
           </div>
