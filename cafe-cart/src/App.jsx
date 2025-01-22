@@ -3,6 +3,7 @@ import { useTheme } from './context/ThemeProvider'
 import axios from 'axios';
 import styled from 'styled-components';
 import { v } from './styles/variables'
+import { palette } from './styles/theme'
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
@@ -77,8 +78,8 @@ const prices = {
 
 const PrimaryButton = styled(GenericButton)`
   background-color: ${({theme}) => theme.backgroundColor1};
-  color: ${({theme}) => theme.textColor2};
-  border: 2px solid ${({theme}) => theme.textColor2};
+  color: ${({theme}) => theme.textColor3};
+  border: 2px solid ${({theme}) => theme.borderColor2};
   width: 30%;
   border-radius: ${v.spacing.xxsmall};
 `;
@@ -135,6 +136,118 @@ const GhostButtonDisabled = styled(FlatButtonDisabled)`
   border: 2px solid ${({theme}) => theme.borderColor2};
 `;
 
+const PrimaryCancel1 = styled(GenericButton)`
+  width: 5%;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  & .button-icon-and-text span {
+    font-size: ${v.fontSize.small};
+    font-weight: ${v.fontWeight.bold};
+  }
+`;
+
+const PrimaryCancel2 = styled(PrimaryCancel1)`
+  background-color: ${palette.primary2};
+`;
+
+const PrimaryCancel3 = styled(PrimaryCancel1)`
+  background-color: ${palette.primary3};
+`;
+
+const SecondaryCancel1 = styled(PrimaryCancel1)`
+  background-color: ${palette.secondary1};
+`;
+
+const SecondaryCancel2 = styled(SecondaryCancel1)`
+  color: ${palette.neutral4};
+`;
+
+const SecondaryCancel3 = styled(PrimaryCancel1)`
+  background-color: ${palette.secondary2};
+  color: ${palette.neutral4};
+`;
+
+const NeutralCancel1 = styled(PrimaryCancel1)`
+  background-color: ${palette.neutral1};
+  color: ${palette.neutral4};
+`;
+
+const NeutralCancel2 = styled(NeutralCancel1)`
+  background-color: ${palette.neutral3};
+`;
+
+const NeutralCancel3 = styled(NeutralCancel1)`
+  background-color: ${palette.neutral4};
+  color: ${palette.neutral1};
+`;
+
+const NeutralCancel4 = styled(NeutralCancel1)`
+  color: ${palette.primary1};
+`;
+
+const NeutralCancel5 = styled(NeutralCancel1)`
+  background-color: ${palette.accent};
+  color: ${palette.primary1};
+`;
+
+const NeutralCancel6 = styled(NeutralCancel3)`
+  color: ${palette.primary1};
+`;
+
+const RequiredText = styled.p`
+  display: inline;
+  font-size: ${v.fontSize.xsmall};
+  font-weight: ${v.fontWeight.medium};
+  color: ${({theme}) => theme.borderColor1};
+`;
+
+const InfoMessage = styled.p`
+  font-size: ${v.fontSize.xsmall};
+  font-weight: ${v.fontWeight.medium};
+  font-style: italic;
+`;
+
+const StyledLabel = styled(GenericLabel)`
+  font-size: ${v.fontSize.small};
+  font-weight: ${v.fontWeight.bold};
+`;
+
+const InputWithText = styled(GenericInput)`
+  margin: ${v.spacing.xsmall};
+  width: 50%;
+  position: relative;
+  right: 25%;
+  border: 2px solid ${({theme}) => theme.backgroundColor1};
+  color: ${({theme}) => theme.backgroundColor1};
+`;
+
+const InputWithNoText = styled(InputWithText)`
+  &::placeholder {
+    color: ${({theme}) => theme.backgroundColor1};
+    opacity: 0.5;
+  }
+`;
+
+const DisabledInput = styled(InputWithText)`
+  background-color: ${({theme}) => theme.borderColor2};
+`;
+
+const InputOnError = styled(InputWithText)`
+  border: 2.5px solid ${({theme}) => theme.error};
+`;
+
+const ErrorMessage = styled(InfoMessage)`
+  color: ${({theme}) => theme.error};
+  font-weight: ${v.fontWeight.bold};
+  font-size: ${v.fontSize.xsmall};
+  font-style: normal;
+  position: relative;
+  right: 25%;
+`;
+
   return (
     <>
         <ComponentTester>
@@ -181,9 +294,37 @@ const GhostButtonDisabled = styled(FlatButtonDisabled)`
               <GhostButtonDisabled text='Ghost Disable'/>
             </div>
             <div className="icon-buttons">
-
+                <PrimaryCancel1 text='X'/>
+                <PrimaryCancel2 text='X'/>
+                <PrimaryCancel3 text='X'/>                
             </div>
-            {/*<GenericInput/>*/}
+            <div className="icon-buttons">
+                <SecondaryCancel1 text='X'/>
+                <SecondaryCancel2 text='X'/>
+                <SecondaryCancel3 text='X'/>
+            </div>
+            <div className="icon-buttons">
+                <NeutralCancel1 text='X'/>
+                <NeutralCancel2 text='X'/>
+                <NeutralCancel3 text='X'/>
+            </div>
+            <div className="icon-buttons">
+                <NeutralCancel4 text='X'/>
+                <NeutralCancel5 text='X'/>
+                <NeutralCancel6 text='X'/>
+            </div>
+            <div className="info-messages-and-labels">
+              <StyledLabel textLabel={'Password'}/>
+              <RequiredText className="required-field">* Required Fields</RequiredText>
+              <InfoMessage>Password must contain atleast 1 of each: A-Z, a-z , 0-9 and a special character</InfoMessage>
+            </div>
+            <div className="input-styles">
+              <InputWithText value={"Test Component"}/>
+              <InputWithNoText value={""} placeholderText={"Placeholder Only"}/>
+              <DisabledInput/>
+              <InputOnError/>
+              <ErrorMessage>Your Password is incorrect for specified Username</ErrorMessage>
+            </div>
             {/*<ProductCard/>*/}
             
           </div>

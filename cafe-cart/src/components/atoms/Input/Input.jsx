@@ -10,7 +10,8 @@ export const GenericInput = ({
     type,
     isRequired,
     dataKey,
-    dataIndex
+    dataIndex,
+    className
 }) => {
     return (
         <>
@@ -24,6 +25,7 @@ export const GenericInput = ({
                 required={isRequired ? "required" : ""}
                 data-key={dataKey}
                 data-index={dataIndex}
+                className={className}
             />
         </>
     )

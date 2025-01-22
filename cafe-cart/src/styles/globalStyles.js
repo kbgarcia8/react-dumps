@@ -37,6 +37,17 @@ html, body {
 h1, h2, h3, h4, form, legend {
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
     line-height: ${v.base.lineHeight};
+    color: ${({theme}) => theme.textColor1};
+}
+
+p, label, input, button {
+    font-family: ${v.fonts.primary}, ${v.fonts.fallback};
+    line-height: ${v.base.lineHeight};
+    color: ${({theme}) => theme.textColor2};
+}
+h5, h6, legend {
+    font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+    line-height: ${v.base.lineHeight};
 }
 
 h1 {
@@ -58,9 +69,7 @@ h5 {
     font-size: ${v.fontSize.small};
 }
 p {
-    font-family: ${v.fonts.primary}, ${v.fonts.fallback};
     font-size: ${v.fontSize.small};
-    line-height: ${v.base.lineHeight};
 }
 ul,ol,p{
     margin-bottom: ${v.spacing.medium};
@@ -112,8 +121,9 @@ u {
 
 .toggle-button-container {
     width: 10%;
-    border: 2px solid red;
-    margin-bottom: ${v.spacing.medium}
+    margin-bottom: ${v.spacing.medium};
+    position: sticky;
+    top: 0;
 }
 
 .design-system-card {
@@ -128,13 +138,17 @@ u {
     font-weight: ${v.fontWeight.bolder};
 }
 
-.button-entry, .icon-buttons {
+.button-entry, .icon-buttons, .input-styles {
     display: flex;
     flex-directon: row;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
     padding-block: ${v.spacing.xxsmall};
+}
+
+.input-styles {
+    flex-direction: column;
 }
 
 .product-card-temporary {

@@ -15,7 +15,7 @@ export const Button = styled.button`
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
     }
     & .button-icon-and-text img { //default styling for icon inside button
         width: 100%;

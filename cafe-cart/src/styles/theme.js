@@ -17,14 +17,15 @@ export const palette = {
     neutral1: '#FFFFFF',
     neutral2: '#F2F2F2',
     neutral3: '#ABABAB',
-    neutral4: '#000000',
+    neutral4: '#373A40',
+    neutral5: '#000000',
     accent: '#E1D3B7',
     warning1: '#FF8303',
     warning2: '#F39C11',
     success1: '#3E7B27',
     success2: '#85A947',
     error1: '#E84C3D',
-    error2: '#E5D0AC'
+    error2: '#800000'
 }
 
 export const lightTheme = {//utilize dark text
@@ -33,23 +34,23 @@ export const lightTheme = {//utilize dark text
     backgroundColor2: palette.primary2,
     backgroundColor3: palette.secondary2,
     backgroundColor4: palette.secondary1,
-    borderColor1: palette.neutral4,
+    borderColor1: palette.neutral5,
     borderColor2: palette.neutral3,
-    textColor1: palette.neutral4,
-    textColor2: palette.neutral2,
+    textColor1: palette.neutral5,
+    textColor2: palette.neutral4,
     textColor3: palette.accent,
-    warning: palette.error2,
+    warning: palette.warning2,
     success: palette.success2,
     error: palette.error2
 }
 
 export const darkTheme = {//utilize light text
-    screenColor: palette.neutral4,
+    screenColor: palette.neutral5,
     backgroundColor1: palette.primary2,
     backgroundColor2: palette.primary3,
     backgroundColor3: palette.secondary1,
-    borderColor1: palette.neutral3,
-    borderColor2: palette.neutral2,
+    borderColor1: palette.neutral2,
+    borderColor2: palette.neutral3,
     textColor1: palette.neutral1,
     textColor2: palette.accent,
     textColor3: palette.neutral2,

@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import Label from "./Label.styles";
 
-const GenericLabel = ({htmlFor, textLabel}) => {
+const GenericLabel = ({htmlFor, textLabel, className}) => {
     return(
-        <Label htmlFor={htmlFor}>
+        <Label htmlFor={htmlFor} className={className}>
             {textLabel}
         </Label>
     )
