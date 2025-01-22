@@ -101,6 +101,7 @@ const SecondaryButton = styled(PrimaryButton)`
 
 const SecondaryButtonHover = styled(SecondaryButton)`
   background-color: ${({theme}) => theme.backgroundColor4};
+  color: ${({theme}) => theme.screenColor};
 `;
 
 const SecondaryButtonDisabled = styled(PrimaryButtonDisabled)``;

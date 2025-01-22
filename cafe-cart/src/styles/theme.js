@@ -48,10 +48,11 @@ export const darkTheme = {//utilize light text
     backgroundColor1: palette.primary2,
     backgroundColor2: palette.primary3,
     backgroundColor3: palette.secondary1,
-    borderColor1: palette.neutral4,
-    borderColor2: palette.neutral3,
+    borderColor1: palette.neutral3,
+    borderColor2: palette.neutral2,
     textColor1: palette.neutral1,
     textColor2: palette.accent,
+    textColor3: palette.neutral2,
     warning: palette.error1,
     success: palette.success1,
     error: palette.error1
