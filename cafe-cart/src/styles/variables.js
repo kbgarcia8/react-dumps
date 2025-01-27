@@ -57,4 +57,17 @@ export const v = {
         xxlarge: '5.25em',
         xxxlarge: '8.5em',
     },
+    borderRadius: {
+        small: '0.25em',
+        medium: '0.5em',
+        large: '1em',
+        circle: '50%',
+    },
+    borderThickness: {
+        thin: '0.0625em',
+        medium: '0.2em',
+        thick: '0.25em',
+    },
+    width : {},
+    height : {},
 };

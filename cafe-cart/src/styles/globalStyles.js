@@ -151,6 +151,17 @@ u {
     flex-direction: column;
 }
 
+.div-grouped-radio-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: ${v.spacing.small};
+    border-radius: ${v.borderRadius.medium};
+    padding: ${v.spacing.small};
+    box-shadow: 0px 2px 3.84px rgba(0, 0, 0, 0.25);
+}
+
 .product-card-temporary {
     display: flex;
     flex-direction: column;

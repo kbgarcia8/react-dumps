@@ -248,6 +248,51 @@ const ErrorMessage = styled(InfoMessage)`
   right: 25%;
 `;
 
+const RadioButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`;
+
+const RadioButton = styled(GenericInput)`
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  height: 25px;
+  width: 25px;
+  background-color: transparent;
+  border-radius: ${v.borderRadius.circle};
+  border: ${v.borderThickness.medium} solid ${({theme}) => theme.borderColor1};
+  outline: none;
+  &:hover {
+    background-color: ${({theme}) => theme.borderColor2};
+  }
+  &:checked {
+    background-color: ${({theme}) => theme.backgroundColor2};
+    border: ${v.borderThickness.medium} solid ${({theme}) => theme.backgroundColor1};
+  }
+  &:checked::after {
+    content: "";
+    position: absolute;
+    transform: translateY(25%);
+	  width: 10px;
+	  height: 10px;
+	  border-radius: 50%;
+	  background: white;
+  }
+`;
+
+const RadioLabel = styled(GenericLabel)`
+  margin-left: ${v.spacing.small};
+  font-size: ${v.fontSize.xsmall};
+  color: ${({theme}) => theme.textColor1};  
+`;
+
   return (
     <>
         <ComponentTester>
@@ -324,6 +369,21 @@ const ErrorMessage = styled(InfoMessage)`
               <DisabledInput/>
               <InputOnError/>
               <ErrorMessage>Your Password is incorrect for specified Username</ErrorMessage>
+            </div>
+            {/*Convert this into form if submit button is needed*/}
+            <div className="div-grouped-radio-buttons">
+              <RadioButtonContainer>
+                <RadioButton type='radio' name='radio1' id='radio1' value='Option1'/>
+                <RadioLabel htmlFor={'radio1'} textLabel='Option 1'/>
+              </RadioButtonContainer>
+              <RadioButtonContainer>
+                <RadioButton type='radio' name='radio2' value='Option 2'/>
+                <RadioLabel htmlFor={'radio2'} textLabel='Option 2'/>
+              </RadioButtonContainer>
+              <RadioButtonContainer>
+                <RadioButton type='radio' name='radio3' value='Option 3'/>
+                <RadioLabel htmlFor={'radio3'} textLabel='Option 3'/>
+              </RadioButtonContainer>
             </div>
             {/*<ProductCard/>*/}
             
