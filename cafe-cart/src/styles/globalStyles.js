@@ -151,7 +151,12 @@ u {
     flex-direction: column;
 }
 
-.div-grouped-radio-buttons {
+.div-grouped-radio-buttons,
+.dropdown-space,
+.divider-space,
+.productcard-space,
+.stepper-space,
+.warn-and-info-cards {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,7 +164,8 @@ u {
     margin-top: ${v.spacing.small};
     border-radius: ${v.borderRadius.medium};
     padding: ${v.spacing.small};
-    box-shadow: 0px 2px 3.84px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 3.84px ${({theme}) => theme.textColor1};
+    min-height: 10vh;
 }
 
 .product-card-temporary {

@@ -290,8 +290,25 @@ const RadioButton = styled(GenericInput)`
 const RadioLabel = styled(GenericLabel)`
   margin-left: ${v.spacing.small};
   font-size: ${v.fontSize.xsmall};
-  color: ${({theme}) => theme.textColor1};  
+  color: ${({theme}) => theme.textColor1};
+  font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+  font-weight: ${v.fontWeight.bold};
 `;
+
+const SimpleDropdown = styled.select`
+  width: 25%;
+  padding: ${v.spacing.xsmall};
+  margin: ${v.spacing.small};
+  border: 2px solid ${({theme}) => theme.backgroundColor1};
+  font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+  font-weight: ${v.fontWeight.medium};
+
+  & option:hover {
+    appearance: none;
+    background-color: red;
+    color: ${({theme}) => theme.screenColor};
+  }
+  `;
 
   return (
     <>
@@ -385,8 +402,27 @@ const RadioLabel = styled(GenericLabel)`
                 <RadioLabel htmlFor={'radio3'} textLabel='Option 3'/>
               </RadioButtonContainer>
             </div>
-            {/*<ProductCard/>*/}
-            
+            <div className="dropdown-space">
+              <GenericLabel htmlFor={'simple-dropdown'} textLabel='Simple Dropdown'/>
+                <SimpleDropdown id='simple-dropdown'>
+                  <option value="fruit">Fruit</option>
+                  <option value="vegetable">Vegetable</option>
+                  <option value="meat">Meat</option>
+                </SimpleDropdown>
+                <GenericLabel htmlFor={'simple-dropdown'} textLabel='Customizable Dropdown'/>                             
+            </div>
+            <div className="divider-space">
+
+            </div>
+            <div className="productcard-space">
+
+            </div>
+            <div className="stepper-space">
+
+            </div>
+            <div className="warn-and-info-cards">
+
+            </div>
           </div>
         </ComponentTester>
     </>
