@@ -21,61 +21,6 @@ const ToggleButton = styled(GenericButton)`
   background-color: gray;
 `;
 
-function App() {
-  const {theme, toggleTheme} = useTheme()
-  const [pastries, setPastries] = useState([])
-  const {useMediaQuery} = useContext(Context)
-  const isMobile = useMediaQuery("(max-width: 768px)")
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/pasta')
-  .then(response => {
-    setPastries(response.data);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-  }, []);
-
-  const FormInputs = [
-    {
-      labelText: "Name",
-      id: "name",
-      placeholderText: "Enter your name",
-      onChange: () => {},
-      value: "",
-      type: "text",
-      isRequired: true,
-      dataKey: "",
-      dataIndex: 0
-    }, {
-      labelText: "Email",
-      id: "email",
-      placeholderText: "Enter your email",
-      onChange: () => {},
-      value: "",
-      type: "email",
-      isRequired: true,
-      dataKey: "",
-      dataIndex: 1
-    }, {
-      labelText: "Message",
-      id: "message",
-      placeholderText: "Enter your message",
-      onChange: () => {},
-      value: "",
-      type: "text",
-      isRequired: true,
-      dataKey: "",
-      dataIndex: 2
-    }
-]
-
-const prices = {
-  "solo": 160,
-  "share": 220
-}
-
 const PrimaryButton = styled(GenericButton)`
   background-color: ${({theme}) => theme.backgroundColor1};
   color: ${({theme}) => theme.textColor3};
@@ -310,6 +255,61 @@ const SimpleDropdown = styled.select`
   }
   `;
 
+function App() {
+  const {theme, toggleTheme} = useTheme()
+  const [pastries, setPastries] = useState([])
+  const {useMediaQuery} = useContext(Context)
+  const isMobile = useMediaQuery("(max-width: 768px)")
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/pasta')
+  .then(response => {
+    setPastries(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+  }, []);
+
+  const FormInputs = [
+    {
+      labelText: "Name",
+      id: "name",
+      placeholderText: "Enter your name",
+      onChange: () => {},
+      value: "",
+      type: "text",
+      isRequired: true,
+      dataKey: "",
+      dataIndex: 0
+    }, {
+      labelText: "Email",
+      id: "email",
+      placeholderText: "Enter your email",
+      onChange: () => {},
+      value: "",
+      type: "email",
+      isRequired: true,
+      dataKey: "",
+      dataIndex: 1
+    }, {
+      labelText: "Message",
+      id: "message",
+      placeholderText: "Enter your message",
+      onChange: () => {},
+      value: "",
+      type: "text",
+      isRequired: true,
+      dataKey: "",
+      dataIndex: 2
+    }
+]
+
+const prices = {
+  "solo": 160,
+  "share": 220
+}
+
   return (
     <>
         <ComponentTester>
@@ -412,10 +412,21 @@ const SimpleDropdown = styled.select`
                 <GenericLabel htmlFor={'simple-dropdown'} textLabel='Customizable Dropdown'/>                             
             </div>
             <div className="divider-space">
-
+              <Divider dividerText={'Divider'}/>
             </div>
             <div className="productcard-space">
-
+              <ProductCard
+                productImage={'https://greatfood.ie/wp-content/uploads/2024/08/a-beautifully-presented-tarte-tatin-on-a-rustic-wo-YSDGksR2TmeixgDiHnjwog-LrjC_1BHSU21_qbCJEZc3w.png'}
+                productTitle={'Tarte Tatin'}
+                productDescription={'Dark and sticky caramel, sweet apples and crisp pastry combine to make this heavenly French dessert.'}
+                prices={prices}
+              />
+              <ProductCard
+                productImage={'https://greatfood.ie/wp-content/uploads/2024/08/a-beautifully-presented-tarte-tatin-on-a-rustic-wo-YSDGksR2TmeixgDiHnjwog-LrjC_1BHSU21_qbCJEZc3w.png'}
+                productTitle={'Tarte Tatin'}
+                productDescription={'Dark and sticky caramel, sweet apples and crisp pastry combine to make this heavenly French dessert.'}
+                prices={prices}
+              />
             </div>
             <div className="stepper-space">
 

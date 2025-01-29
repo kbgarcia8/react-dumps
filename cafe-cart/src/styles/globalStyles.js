@@ -167,6 +167,15 @@ u {
     box-shadow: 0px 2px 3.84px ${({theme}) => theme.textColor1};
     min-height: 10vh;
 }
+.productcard-space {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+              minmax(10vmax, 1fr));
+    gap: ${v.spacing.small};
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
 .product-card-temporary {
     display: flex;

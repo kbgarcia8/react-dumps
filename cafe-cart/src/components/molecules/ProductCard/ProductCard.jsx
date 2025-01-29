@@ -9,7 +9,7 @@ import { ProductImage,
     ProductSize,
     ProductPrice,
     ProductCardContainer
-} from "./Product.styles";
+} from "./ProductCard.styles";
 
 const ProductCard = ({
     productImage,

@@ -28,8 +28,7 @@ export const ProductInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
-    border: 1px solid blue;
-    max-width: 90%;
+    max-width: 100%;
     max-height: 30%;
     padding: 0.25rem;
     overflow: hidden;
@@ -88,7 +87,6 @@ export const ProductCardContainer = styled.div`
     width: 100%;
     height: 100%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    margin: 1rem;
     border-radius: 1rem;
     background-color: #f8f8f8;
     padding: 1.25rem;
