@@ -260,6 +260,15 @@ function App() {
   const [pastries, setPastries] = useState([])
   const {useMediaQuery} = useContext(Context)
   const isMobile = useMediaQuery("(max-width: 768px)")
+  const [count, setCount] = useState(0)
+
+  const incrementCount = () => {
+    setCount((prevCount) => prevCount + 1)
+  }
+
+  const decrementCount = () => {
+    setCount((prevCount) => prevCount - 1)
+  }
 
   useEffect(() => {
     axios.get('http://localhost:8000/pasta')
@@ -306,8 +315,8 @@ function App() {
 ]
 
 const prices = {
-  "solo": 160,
-  "share": 220
+  "Solo": 160,
+  "Share": 220
 }
 
   return (
@@ -426,13 +435,20 @@ const prices = {
                 productTitle={'Croissant'}
                 productDescription={'A laminated, yeast-leavened bakery product that contains dough/roll-in fat layers to create a flaky, crispy texture.'}
                 prices={prices}
+                isDarkCard
               />
             </div>
             <div className="stepper-space">
-
+              <Stepper
+                count={count}
+                increment={incrementCount}
+                decrement={decrementCount}
+              />
             </div>
             <div className="warn-and-info-cards">
-
+              <div className="error"></div>
+              <div className="warning"></div>
+              <div className="success"></div>
             </div>
           </div>
         </ComponentTester>

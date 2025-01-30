@@ -11,19 +11,28 @@ export const ProductImage = styled.img`
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 `;
 
-export const ProductTitle = styled.h2`
+export const ProductTitle = styled.h2.attrs(props => ({
+    textColor: props.textColor
+}))`
     font-size: 1rem;
     font-weight: ${v.fontWeight.bold};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+    color: ${(props) => props.textColor};
+    margin-top: ${v.spacing.xxsmall};
+    margin-bottom: ${v.spacing.xxxsmall};
 `;
 
-export const ProductDescription = styled.p`
+export const ProductDescription = styled.p.attrs(props => ({
+    textColor: props.textColor
+}))`
     display: flex;
     flex-wrap: wrap;
     font-size: 0.85rem;
+    line-height: 1.25rem;
     margin-top: ${v.spacing.xxxsmall};
     font-weight: ${v.fontWeight.medium};
     font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+    color: ${(props) => props.textColor};
 `;
 
 export const ProductInfoContainer = styled.div`
@@ -36,15 +45,16 @@ export const ProductInfoContainer = styled.div`
     overflow: hidden;
 `;
 
-export const AddToCartButton = styled(GenericButton)`
+export const AddToCartButton = styled(GenericButton).attrs(props => ({
+    buttonColor: props.buttonColor,
+    borderColor: props.borderColor
+}))`
     margin: 0.25rem;
     padding: 0.25rem;
     border-radius: 0.25rem;
-    background-color: green;
-    color: white;
     width: 12.5%;
     height: 75%;
-    background-color: #3C5E83;
+    background-color: ${(props) => props.buttonColor};
 
     & .button-icon-and-text {
     width: 100%;
@@ -60,29 +70,33 @@ export const PriceContainer = styled.div`
     align-items: center;
     width: 90%;
     height: 10%;
-    padding-inline: 0.5rem;
-    border: 1px solid blue;
 `;
 
-export const ProductSize = styled.span`
+export const ProductSize = styled.span.attrs(props => ({
+    textColor: props.textColor
+}))`
     margin-left: 0.25rem;
     font-size: 0.85rem;
     font-weight: 700;
-    border: 1px solid blue;
     width: 25%;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: ${(props) => props.textColor};
+    font-family: ${v.fonts.primary}, ${v.fonts.fallback};
 `;
 
-export const ProductPrice = styled.span`
+export const ProductPrice = styled.span.attrs(props => ({
+    textColor: props.textColor
+}))`
     position: relative;
     left: 45%;
     font-size: 0.70rem;
-    font-weight: 500;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: ${(props) => props.textColor};
+    font-weight: ${v.fontWeight.bold};
+    font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
 
 export const ProductCardContainer = styled.div.attrs(props => ({
-    cardBackgroundColor: props.cardBackgroundColor
+    cardBackgroundColor: props.cardBackgroundColor,
+    cardShadowColor: props.cardShadowColor
 }))`
     display: flex;
     flex-direction: column;
@@ -90,11 +104,10 @@ export const ProductCardContainer = styled.div.attrs(props => ({
     justify-content: center;
     width: 100%;
     height: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 1rem;
+    box-shadow: 0 4px 8px 0 ${(props) => props.cardShadowColor};    
     background-color: ${(props) => props.cardBackgroundColor};
     padding: 1.25rem;
-    border: 1px solid blue;
 `;
 
 export default {

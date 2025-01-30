@@ -12,18 +12,21 @@ const GlobalStyle = createGlobalStyle`
 }
 
 @font-face {
-    font-family: 'Oswald';
-    url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+  font-family: 'Oswald';
+  font-weight: 400;
+  src: url('../fonts/Oswald-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Trirong';
-    url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Trirong:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  font-family: 'Trirong';
+  font-weight: 400;
+  src: url('../fonts/Trirong-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Arvo';
-    url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Oswald:wght@200..700&family=Trirong:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  font-family: 'Arvo';
+  font-weight: 400;
+  src: url('../fonts/Arvo.ttf') format('truetype');
 }
 
 html, body {
@@ -154,8 +157,8 @@ u {
 .div-grouped-radio-buttons,
 .dropdown-space,
 .divider-space,
-.productcard-space,
 .stepper-space,
+.productcard-space,
 .warn-and-info-cards {
     display: flex;
     flex-direction: column;
@@ -175,6 +178,12 @@ u {
     justify-content: center;
     align-items: center;
     width: 100%;
+}
+
+.stepper-space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .product-card-temporary {

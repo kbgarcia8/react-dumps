@@ -25,7 +25,9 @@ export const palette = {
     success1: '#3E7B27',
     success2: '#85A947',
     error1: '#E84C3D',
-    error2: '#800000'
+    error2: '#800000',
+    shadow1: 'rgb(88, 88, 88)',
+    shadow2: 'rgba(255, 255, 255, 0.50)'
 }
 
 export const lightTheme = {//utilize dark text
@@ -41,7 +43,8 @@ export const lightTheme = {//utilize dark text
     textColor3: palette.accent,
     warning: palette.warning2,
     success: palette.success2,
-    error: palette.error2
+    error: palette.error2,
+    shadow: palette.shadow1
 }
 
 export const darkTheme = {//utilize light text
@@ -56,7 +59,8 @@ export const darkTheme = {//utilize light text
     textColor3: palette.neutral2,
     warning: palette.error1,
     success: palette.success1,
-    error: palette.error1
+    error: palette.error1,
+    shadow: palette.shadow2
 }
 
 export default { lightTheme, darkTheme }
