@@ -16,7 +16,8 @@ const ProductCard = ({
     productTitle,
     productDescription,
     prices,
-    className
+    className,
+    cardBackgroundColor,
 }) => {
 
     return (

@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import GenericButton from '../../atoms/Button/Button';
+import { v } from '../../../styles/variables';
+//Refactor designing of ProductCard component same as ginawa sa Divider
 
 export const ProductImage = styled.img`
-    width: 90%;
+    width: 100%;
     height: 50%;
     object-fit: cover;
     border-radius: 1rem;
@@ -11,17 +13,17 @@ export const ProductImage = styled.img`
 
 export const ProductTitle = styled.h2`
     font-size: 1rem;
-    font-weight: 600;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: ${v.fontWeight.bold};
+    font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
 
 export const ProductDescription = styled.p`
     display: flex;
     flex-wrap: wrap;
     font-size: 0.85rem;
-    font-weight: 400;
-    margin-top: 0.5rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-top: ${v.spacing.xxxsmall};
+    font-weight: ${v.fontWeight.medium};
+    font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
 `;
 
 export const ProductInfoContainer = styled.div`
@@ -79,7 +81,9 @@ export const ProductPrice = styled.span`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `;
 
-export const ProductCardContainer = styled.div`
+export const ProductCardContainer = styled.div.attrs(props => ({
+    cardBackgroundColor: props.cardBackgroundColor
+}))`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,7 +92,7 @@ export const ProductCardContainer = styled.div`
     height: 100%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 1rem;
-    background-color: #f8f8f8;
+    background-color: ${(props) => props.cardBackgroundColor};
     padding: 1.25rem;
     border: 1px solid blue;
 `;

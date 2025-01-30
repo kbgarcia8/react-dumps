@@ -3,7 +3,7 @@ import { useTheme } from './context/ThemeProvider'
 import axios from 'axios';
 import styled from 'styled-components';
 import { v } from './styles/variables'
-import { palette } from './styles/theme'
+import { palette, lightTheme, darkTheme } from './styles/theme'
 import Context from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
@@ -422,9 +422,9 @@ const prices = {
                 prices={prices}
               />
               <ProductCard
-                productImage={'https://greatfood.ie/wp-content/uploads/2024/08/a-beautifully-presented-tarte-tatin-on-a-rustic-wo-YSDGksR2TmeixgDiHnjwog-LrjC_1BHSU21_qbCJEZc3w.png'}
-                productTitle={'Tarte Tatin'}
-                productDescription={'Dark and sticky caramel, sweet apples and crisp pastry combine to make this heavenly French dessert.'}
+                productImage={'https://fhahoreca.com/wp-content/uploads/2023/08/Two-croissants-on-a-platter.jpg'}
+                productTitle={'Croissant'}
+                productDescription={'A laminated, yeast-leavened bakery product that contains dough/roll-in fat layers to create a flaky, crispy texture.'}
                 prices={prices}
               />
             </div>
