@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTheme } from "../../../context/ThemeProvider";
+import { lightTheme, darkTheme } from "../../../styles/theme";
 import { ProductImage,
     ProductTitle,
     ProductDescription,
@@ -20,8 +22,19 @@ const ProductCard = ({
     cardBackgroundColor,
 }) => {
 
+    const { theme, toggleTheme } = useTheme();
+
+    /*const internalThemeSwitch = {
+        cardBackgroundColor: {theme == lightTheme ? darkTheme.backgroundColor1 : lightTheme.backgroundColor1 }
+    }*/
+
+        console.log(theme == darkTheme ? 'YES' : 'NO')
+
     return (
-        <ProductCardContainer className={className}>
+        <ProductCardContainer 
+            className={className} 
+            cardBackgroundColor={cardBackgroundColor}
+        >
             <ProductImage src={productImage} alt={`${productTitle}-image`}/>
             <ProductInfoContainer>
                 <ProductTitle>{productTitle}</ProductTitle>
