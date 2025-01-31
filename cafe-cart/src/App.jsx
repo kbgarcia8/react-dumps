@@ -456,10 +456,28 @@ const prices = {
                 />
               </div>
               <div className="warning">
-              
+              <NotificationCard
+                  notificationImage={'https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png'}
+                  notificationMessage={'Warning: You have not yet verified your email address'}
+                  hasCloseButton
+                  closeButtonText={'X'}
+                />
               </div>
               <div className="success">
-              
+              <NotificationCard
+                  notificationImage={'https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png'}
+                  notificationMessage={'Sucess: Payment method was registered successfully'}
+                  hasCloseButton
+                  closeButtonText={'X'}
+                />
+              </div>
+              <div className="info">
+              <NotificationCard
+                  notificationImage={'https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png'}
+                  notificationMessage={'Info: Credit Card are now accepted as payment method'}
+                  hasCloseButton
+                  closeButtonText={'X'}
+                />
               </div>
             </div>
           </div>

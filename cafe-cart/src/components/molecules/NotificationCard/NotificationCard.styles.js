@@ -27,6 +27,7 @@ export const NotificationCardWrapper = styled.div`
     align-items: center;
     justify-content: center;
     padding: ${v.spacing.small};
+    margin: ${v.spacing.xxsmall};
     max-width: 100%;
     height: 20%;
     border: 2px solid red;
