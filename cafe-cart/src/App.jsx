@@ -446,9 +446,15 @@ const prices = {
               />
             </div>
             <div className="warn-and-info-cards">
-              <div className="error"></div>
-              <div className="warning"></div>
-              <div className="success"></div>
+              <div className="error">
+                
+              </div>
+              <div className="warning">
+              
+              </div>
+              <div className="success">
+              
+              </div>
             </div>
           </div>
         </ComponentTester>
