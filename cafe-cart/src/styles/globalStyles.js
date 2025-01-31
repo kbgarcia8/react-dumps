@@ -1,5 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import { v } from './variables';
+import oswald from "../fonts/Oswald-Regular.ttf";
+import trirong from "../fonts/Trirong-Regular.ttf";
+import arvo from "../fonts/Arvo-Regular.ttf";
 
 //test screen-width: 1440
 //test screen-height: 900
@@ -14,19 +17,19 @@ const GlobalStyle = createGlobalStyle`
 @font-face {
   font-family: 'Oswald';
   font-weight: 400;
-  src: url('../fonts/Oswald-Regular.ttf') format('truetype');
+  src: url('${oswald}') format('truetype');
 }
 
 @font-face {
   font-family: 'Trirong';
   font-weight: 400;
-  src: url('../fonts/Trirong-Regular.ttf') format('truetype');
+  src: url('${trirong}') format('truetype');
 }
 
 @font-face {
   font-family: 'Arvo';
   font-weight: 400;
-  src: url('../fonts/Arvo.ttf') format('truetype');
+  src: url('${arvo}') format('truetype');
 }
 
 html, body {

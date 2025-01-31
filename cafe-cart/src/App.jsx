@@ -15,6 +15,7 @@ import Divider from './components/atoms/Divider';
 import GenericForm from './components/molecules/Form';
 import ProductCard from './components/molecules/ProductCard';
 import Stepper from './components/molecules/Stepper';
+import NotificationCard from './components/molecules/NotificationCard';
 import MobileLayout from './components/layout/MobileLayout';
 
 const ToggleButton = styled(GenericButton)`
@@ -447,7 +448,12 @@ const prices = {
             </div>
             <div className="warn-and-info-cards">
               <div className="error">
-                
+                <NotificationCard
+                  notificationImage={'https://www.freeiconspng.com/thumbs/error-icon/error-icon-4.png'}
+                  notificationMessage={'Error: Please enter a valid email address'}
+                  hasCloseButton
+                  closeButtonText={'X'}
+                />
               </div>
               <div className="warning">
               
