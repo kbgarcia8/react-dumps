@@ -37,7 +37,7 @@ html, body {
     padding: 0;
     display: flex;
     place-items: center;
-    font-size: ${v.base.fontSize};
+    font-size: calc(0.125vmin + ${v.base.fontSize});
 }
 
 h1, h2, h3, h4, form, legend {
@@ -66,13 +66,16 @@ h2 {
 }
 h3 {
     font-size: ${v.fontSize.large};
+    margin-bottom: ${v.spacing.xsmall};
 }
 h4 {
     font-size: ${v.fontSize.medium};
+    margin-bottom: ${v.spacing.xsmall};
 }
 h5 {
     font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
     font-size: ${v.fontSize.small};
+    margin-bottom: ${v.spacing.xsmall};
 }
 p {
     font-size: ${v.fontSize.small};

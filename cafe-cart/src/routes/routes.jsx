@@ -1,10 +1,11 @@
 import React from "react";
 import App from "../App"
+import DesignSystem from "../DesignSystem";
 
 const routes = [
   {
-    path: "/",
-    element: <App />,
+    path: "/design",
+    element: <DesignSystem />,
    // errorElement: <ErrorPage />, //need to explore more about this
   },
   /*{

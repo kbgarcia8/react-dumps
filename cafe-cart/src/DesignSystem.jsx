@@ -256,11 +256,11 @@ const SimpleDropdown = styled.select`
   }
   `;
 
-function App() {
+function DesignSystem() {
   const {theme, toggleTheme} = useTheme()
   const [pastries, setPastries] = useState([])
   const {useMediaQuery} = useContext(Context)
-  const isMobile = useMediaQuery("(max-width: 768px)")
+  const isMobile = useMediaQuery(`(max-width: ${v.breakpoints.mobile})`)
   const [count, setCount] = useState(0)
 
   const incrementCount = () => {
@@ -270,16 +270,6 @@ function App() {
   const decrementCount = () => {
     setCount((prevCount) => prevCount - 1)
   }
-
-  useEffect(() => {
-    axios.get('http://localhost:8000/pasta')
-  .then(response => {
-    setPastries(response.data);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-  }, []);
 
   const FormInputs = [
     {
@@ -484,4 +474,4 @@ const prices = {
   )
 }
 
-export default App
+export default DesignSystem
