@@ -9,7 +9,7 @@ export const Button = styled.button`
     border-radius: 2rem;
     padding: 0.25rem 0.75rem;
     margin: 0.125rem;
-    width: 50%;
+    width: 100%;
     cursor: pointer;
     & .button-icon-and-text { //default styling for icon and text inside button
         width: 100%;
