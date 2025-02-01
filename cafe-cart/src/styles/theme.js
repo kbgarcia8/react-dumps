@@ -20,14 +20,19 @@ export const palette = {
     neutral4: '#373A40',
     neutral5: '#000000',
     accent: '#E1D3B7',
-    warning1: '#FF8303',
-    warning2: '#F39C11',
-    success1: '#3E7B27',
-    success2: '#85A947',
-    error1: '#E84C3D',
-    error2: '#800000',
     shadow1: 'rgb(88, 88, 88)',
     shadow2: 'rgba(255, 255, 255, 0.50)'
+}
+
+export const notificationPalette = {
+    infoLight: '#C9E6F0',
+    infoDark: '#202234',
+    warningLight: '#FCFFC1',
+    warningDark: '#493323',
+    successLight: '#9EDF9C',
+    successDark: '#123524',
+    errorLight: '#FAD4D4',
+    errorDark: '#990000',
 }
 
 export const lightTheme = {//utilize dark text
@@ -63,4 +68,4 @@ export const darkTheme = {//utilize light text
     shadow: palette.shadow2
 }
 
-export default { lightTheme, darkTheme }
+export default { palette, notificationPalette, lightTheme, darkTheme }

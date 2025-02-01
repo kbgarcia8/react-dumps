@@ -44,8 +44,8 @@ export const ProductInfoContainer = styled.div`
     padding: 0.25rem;
     overflow: hidden;
 `;
-
 export const AddToCartButton = styled(GenericButton).attrs(props => ({
+
     buttonColor: props.buttonColor,
     borderColor: props.borderColor
 }))`

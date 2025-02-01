@@ -6,31 +6,47 @@ export const NotificationImage = styled.img`
     width: 5%;
 `;
 
-export const NotifcationMessage = styled.span`
+export const NotifcationMessage = styled.span.attrs(props => ({
+    textColor: props.textColor
+}))`
     display: flex;
     align-items: center;
-    width: 70%;
+    width: 100%;
     padding-left: ${v.spacing.medium};
-    font-size: ${v.fontSize.xsmall};
+    font-size: ${v.fontSize.small};
     font-family: ${v.fonts.tertiary};
+    color: ${(props) => props.textColor};
 `;
 
-export const NotificationCloseButton = styled(GenericButton)`
+export const NotificationCloseButton = styled(GenericButton).attrs(props => ({
+    textColor: props.textColor,
+
+}))`
     background-color: transparent;
+    border: none;
     width: 7.5%;
     height: 2.5vmin;
-    color: black;
+    color: ${(props) => props.textColor};
+    && .button-icon-and-text span { //default styling for text inside button
+        font-size: ${v.fontSize.xsmall};
+        font-weight: ${v.fontWeight.bolder};        
+    }
 `;
 
-export const NotificationCardWrapper = styled.div`
+export const NotificationCardWrapper = styled.div.attrs(props => ({
+    borderColor: props.borderColor,
+    backgroundColor: props.backgroundColor
+}))`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: ${v.spacing.small};
+    padding: ${v.spacing.medium};
     margin: ${v.spacing.xxsmall};
     max-width: 100%;
     height: 20%;
-    border: 2px solid red;
+    background-color: ${(props) => props.backgroundColor};
+    border-radius: ${v.borderRadius.small};
+    border: 2px solid ${(props) => props.borderColor};
 `;
 
 export default {
