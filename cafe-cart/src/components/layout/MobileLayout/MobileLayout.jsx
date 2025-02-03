@@ -1,8 +1,9 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
+import { Outlet } from 'react-router-dom';
 import {MobileLayoutContainer, MobileHeader, MobileContent, MobileFooter} from "./MobileLayout.styles"
 
-const MobileLayout = ({header, main, footer}) => {
+const MobileLayout = ({header, footer}) => {
 
     return (
         <>
@@ -11,7 +12,7 @@ const MobileLayout = ({header, main, footer}) => {
                     {header}
                 </MobileHeader>
                 <MobileContent>
-                    {main}
+                    <Outlet />
                 </MobileContent>
                 <MobileFooter>
                     {footer}

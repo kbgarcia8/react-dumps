@@ -1,6 +1,9 @@
 import React from "react";
 import App from "../App"
 import DesignSystem from "../DesignSystem";
+import WebLayout from "../components/layout/WebLayout/WebLayout";
+import HomePage from "../components/pages/WebPages/HomePage/HomePage";
+import AboutPage from "../components/pages/WebPages/AboutPage/AboutPage";
 
 const routes = [
   {
@@ -8,6 +11,14 @@ const routes = [
     element: <DesignSystem />,
    // errorElement: <ErrorPage />, //need to explore more about this
   },
+  {
+    path: "/",
+    element: <WebLayout />,
+    children: [
+      {index: true, element: <HomePage/>}, //Default route of '/' due to index: true
+      {path: "about", element: <AboutPage/>}
+    ]
+  }
   /*{
     path: "profile/:name", 
     // All :<variable> are dynamic segments and can be accessed via useParams hook in the element component
