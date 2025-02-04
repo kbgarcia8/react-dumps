@@ -11,7 +11,7 @@ export const WebLayoutWrapper = styled.div`
 
 export const WebLayoutHeader = styled.div`
     max-width: 100vw;
-    height: 7.5vh;
+    height: 10vh;
     position: relative;
     top: 0;
     grid-row: 1/2;

@@ -2,6 +2,7 @@ import React from "react";
 import App from "../App"
 import DesignSystem from "../DesignSystem";
 import WebLayout from "../components/layout/WebLayout/WebLayout";
+import Navbar from "../components/molecules/Navbar/Navbar";
 import HomePage from "../components/pages/WebPages/HomePage/HomePage";
 import AboutPage from "../components/pages/WebPages/AboutPage/AboutPage";
 
@@ -13,7 +14,7 @@ const routes = [
   },
   {
     path: "/",
-    element: <WebLayout />,
+    element: <WebLayout header={<Navbar/>}/>,
     children: [
       {index: true, element: <HomePage/>}, //Default route of '/' due to index: true
       {path: "about", element: <AboutPage/>}
