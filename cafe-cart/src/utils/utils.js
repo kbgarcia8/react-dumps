@@ -1,3 +1,4 @@
+//creates a temporary div with scroll bar to get scroll bar width based on the current styling or OS/browser
 export const getScrollbarWidth = () => {
     const scrollDiv = document.createElement("div");
     scrollDiv.style.width = "100px";
