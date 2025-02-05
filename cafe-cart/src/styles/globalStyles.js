@@ -38,6 +38,7 @@ html, body {
     display: flex;
     place-items: center;
     font-size: calc(0.125vmin + ${v.base.fontSize});
+    max-width: 100vw;
 }
 
 h1, h2, h3, h4, form, legend {
@@ -108,7 +109,7 @@ u {
 
 #root{
     padding: 0;
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

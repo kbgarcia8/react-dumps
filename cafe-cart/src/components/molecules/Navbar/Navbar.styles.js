@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { v } from '../../../styles/variables.js'
+import { Link } from 'react-router-dom';
 
 export const NavbarWrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    width: 80%;
     height: 100%;
-    background-color:rgb(168, 168, 168);
 `;
 
 export const NavbarLogoSpace = styled.div`
@@ -16,7 +16,6 @@ export const NavbarLogoSpace = styled.div`
     justify-content: center;
     width: 10%;
     height: 100%;
-    border: 2px solid red;
     cursor: pointer;
 `;
 
@@ -29,7 +28,6 @@ export const NavbarLinks = styled.ul`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    border: 2px solid blue;
     width: 75%;
     height: 100%;
     margin: 0;
@@ -41,7 +39,21 @@ export const NavbarLink = styled.li`
     list-style-type: none;
     cursor: pointer;
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
-    font-weight: ${v.fontWeight.medium}
+    font-weight: ${v.fontWeight.bolder};
+    font-size: ${v.fontSize.medium};
+`;
+
+export const StyledLink = styled(Link).attrs(props => ({
+    anchorTheme: props.anchorTheme
+}))`
+    text-decoration: none;
+    color: ${(props) => props.anchorTheme.textColor1};
+    &:hover{
+        color: ${(props) => props.anchorTheme.backgroundColor2};
+    }
+    &:active{
+        color: ${(props) => props.anchorTheme.backgroundColor3};
+    }
 `;
 
 export default { 
@@ -49,5 +61,6 @@ export default {
     NavbarLogoSpace,
     NavbarLogo,
     NavbarLinks,
-    NavbarLink
+    NavbarLink,
+    StyledLink
 };

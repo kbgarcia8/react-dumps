@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { v } from '../../../styles/variables';
 
-export const WebLayoutWrapper = styled.div`
+export const DashboardLayoutWrapper = styled.div`
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: repeat(2, minmax(5vw, auto));
@@ -10,7 +10,7 @@ export const WebLayoutWrapper = styled.div`
     gap: 0;
 `;
 
-export const WebLayoutHeader = styled.div`
+export const DashboardLayoutHeader = styled.div`
     max-width: 100vw;
     height: 10vh;
     position: relative;
@@ -19,7 +19,7 @@ export const WebLayoutHeader = styled.div`
     border: 1px solid red;
 `;
 
-export const WebLayoutSidebar = styled.div`
+export const DashboardLayoutSidebar = styled.div`
     width: 5vw;
     height: 100vh;
     position: relative;
@@ -29,7 +29,7 @@ export const WebLayoutSidebar = styled.div`
     border: 1px solid blue;
 `;
 
-export const WebLayoutContent = styled.main`
+export const DashboardLayoutContent = styled.main`
     width: 100vw;
     min-height: 100vh;
     overflow-y: scroll;
@@ -38,7 +38,7 @@ export const WebLayoutContent = styled.main`
     padding: ${v.spacing.small};
 `;
 
-export const WebLayoutFooter = styled(WebLayoutHeader)`
+export const DashboardLayoutFooter = styled(DashboardLayoutHeader)`
     height: 7.5vh;
     position: relative;
     bottom: 0;
@@ -46,4 +46,4 @@ export const WebLayoutFooter = styled(WebLayoutHeader)`
     border: 1px solid black;
 `;
 
-export default { WebLayoutWrapper, WebLayoutHeader, WebLayoutSidebar, WebLayoutContent, WebLayoutFooter };
+export default { DashboardLayoutWrapper, DashboardLayoutHeader, DashboardLayoutSidebar, DashboardLayoutContent, DashboardLayoutFooter };

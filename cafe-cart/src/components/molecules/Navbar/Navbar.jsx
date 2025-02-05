@@ -1,27 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 import navbarLogo from '../../../assets/column-logo.png'
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../../../context/ThemeProvider';
 import * as styled from "./Navbar.styles";
 
-const Navbar =({}) => {
+const Navbar =({anchorTheme}) => {
+    const { theme } = useTheme();
+
     const navigate = useNavigate();
-    const navmenu = ["Home", "About", "Testimonials","Contact Us"]
     const handleLogoClick = (e) => {        
-        navigate('/');
+        navigate('/design');
     }
-    const handleLinkClick = (e) => {
-        console.log(e.target)
-    }
+    const links = [
+        {name: "Home", path:"/"},
+        {name: "About", path:"/about"},
+        {name: "Testimonials", path:"/testimonials"},
+        {name: "Contact Us", path:"/contact"},
+      ];
     return(
         <styled.NavbarWrapper>
             <styled.NavbarLogoSpace>
                 <styled.NavbarLogo onClick={handleLogoClick} src={navbarLogo} />
             </styled.NavbarLogoSpace>
             <styled.NavbarLinks>
-                {navmenu.map((menu,index) => 
-                    <styled.NavbarLink key={`${menu}-${index}`}>
-                        <Link>{menu}</Link>
+                {links.map((link,index) => 
+                    <styled.NavbarLink key={`${link}-${index}`}>
+                        <styled.StyledLink
+                            to={link.path}
+                            anchorTheme={anchorTheme ? anchorTheme : theme}
+                        >{link.name}</styled.StyledLink>
                     </styled.NavbarLink>
                 )}
             </styled.NavbarLinks>
