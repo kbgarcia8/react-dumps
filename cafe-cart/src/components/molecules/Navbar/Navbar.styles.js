@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { v } from '../../../styles/variables.js'
 
 export const NavbarWrapper = styled.nav`
     display: flex;
@@ -16,6 +17,7 @@ export const NavbarLogoSpace = styled.div`
     width: 10%;
     height: 100%;
     border: 2px solid red;
+    cursor: pointer;
 `;
 
 export const NavbarLogo = styled.img`
@@ -37,6 +39,9 @@ export const NavbarLink = styled.li`
     display: flex;
     align-items: center;
     list-style-type: none;
+    cursor: pointer;
+    font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+    font-weight: ${v.fontWeight.medium}
 `;
 
 export default { 

@@ -1,14 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import navbarLogo from '../../../assets/column-logo.png'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import * as styled from "./Navbar.styles";
 
 const Navbar =({}) => {
     const navigate = useNavigate();
     const navmenu = ["Home", "About", "Testimonials","Contact Us"]
-    const handleLogoClick = (e) => {
+    const handleLogoClick = (e) => {        
         navigate('/');
+    }
+    const handleLinkClick = (e) => {
+        console.log(e.target)
     }
     return(
         <styled.NavbarWrapper>
@@ -18,7 +21,7 @@ const Navbar =({}) => {
             <styled.NavbarLinks>
                 {navmenu.map((menu,index) => 
                     <styled.NavbarLink key={`${menu}-${index}`}>
-                        {menu}
+                        <Link>{menu}</Link>
                     </styled.NavbarLink>
                 )}
             </styled.NavbarLinks>

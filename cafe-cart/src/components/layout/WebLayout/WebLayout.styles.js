@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { v } from '../../../styles/variables';
 
 export const WebLayoutWrapper = styled.div`
     display: grid;
@@ -15,7 +16,7 @@ export const WebLayoutHeader = styled.div`
     position: relative;
     top: 0;
     grid-row: 1/2;
-    border: 5px solid red;
+    border: 1px solid red;
 `;
 
 export const WebLayoutSidebar = styled.div`
@@ -25,7 +26,7 @@ export const WebLayoutSidebar = styled.div`
     top: 0;
     grid-column: 1/2;
     grid-row: 1/4;
-    border: 5px solid blue;
+    border: 1px solid blue;
 `;
 
 export const WebLayoutContent = styled.main`
@@ -33,7 +34,8 @@ export const WebLayoutContent = styled.main`
     min-height: 100vh;
     overflow-y: scroll;
     grid-row: 2/3;
-    border: 5px solid violet;
+    border: 1px solid violet;
+    padding: ${v.spacing.small};
 `;
 
 export const WebLayoutFooter = styled(WebLayoutHeader)`
@@ -41,7 +43,7 @@ export const WebLayoutFooter = styled(WebLayoutHeader)`
     position: relative;
     bottom: 0;
     grid-row: 3/4;
-    border: 5px solid black;
+    border: 1px solid black;
 `;
 
 export default { WebLayoutWrapper, WebLayoutHeader, WebLayoutSidebar, WebLayoutContent, WebLayoutFooter };
