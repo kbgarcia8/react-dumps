@@ -12,7 +12,7 @@ const MainLayout = ({header, sidebar, footer}) => {
         setScrollbarWidth(getScrollbarWidth());
         
     }, []);
-    console.log(scrollbarWidth)
+
     return (
         <styled.MainLayoutWrapper scrollbarWidth={scrollbarWidth}>
             <styled.MainLayoutHeader>{header}</styled.MainLayoutHeader>

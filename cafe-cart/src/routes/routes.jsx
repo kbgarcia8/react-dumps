@@ -7,6 +7,8 @@ import HomePage from "../components/pages/WebPages/HomePage/HomePage";
 import AboutPage from "../components/pages/WebPages/AboutPage/AboutPage";
 import TestimonialPage from "../components/pages/WebPages/TestimonialsPage";
 import ContactPage from "../components/pages/WebPages/ContactPage";
+import SignUpPage from "../components/pages/WebPages/SignUpPage/SignUpPage";
+import LoginPage from "../components/pages/WebPages/LoginPage";
 
 const routes = [
   {
@@ -21,7 +23,9 @@ const routes = [
       {index: true, element: <HomePage/>}, //Default route of '/' due to index: true
       {path: "about", element: <AboutPage/>},
       {path: "testimonials", element: <TestimonialPage/>},
-      {path: "contact", element: <ContactPage/>}
+      {path: "contact", element: <ContactPage/>},
+      {path: "signup", element: <SignUpPage/>},
+      {path: "login", element: <LoginPage/>}
     ]
   }
   /*{

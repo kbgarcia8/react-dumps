@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const LoginPage =({}) => {
+const SignUpPage =({}) => {
 
     return(
         <h1>
-            This is the temporary Login Page! 
+            This is the temporary Sign Up Page! 
         </h1>
     )
 }
 
-export default LoginPage;
+export default SignUpPage;
