@@ -12,7 +12,8 @@ const Navbar =({anchorTheme}) => {
 
 
     const handleLogoClick = (e) => {        
-        navigate('/design');
+        //navigate('/design');
+        setIsSigning(false)
     }
 
     const handleButtonNavigate = (e) => { 
@@ -22,7 +23,7 @@ const Navbar =({anchorTheme}) => {
         }       
         const buttonText = e.target.textContent
         navigate(`/${textToLink[buttonText]}`)
-        //setIsSigning((prevStat) => prevStat===false ? true : false)
+        setIsSigning(true)
     }
 
     console.log(isSigning)
@@ -38,7 +39,7 @@ const Navbar =({anchorTheme}) => {
             <styled.NavbarLogoSpace>
                 <styled.NavbarLogo onClick={handleLogoClick} src={navbarLogo} />
             </styled.NavbarLogoSpace>
-            <styled.Navbar>
+            {!isSigning && <styled.Navbar>
                 <styled.NavbarLinks>
                     {links.map((link,index) => 
                         <styled.NavbarLink key={`${link}-${index}`}>
@@ -49,7 +50,7 @@ const Navbar =({anchorTheme}) => {
                         </styled.NavbarLink>
                     )}
                 </styled.NavbarLinks>
-            </styled.Navbar>
+            </styled.Navbar>}
             <styled.ButtonWrapper>
                 <styled.NavbarButton2 text={"Sign Up"} onClick={handleButtonNavigate}/>
                 <styled.NavbarButton1 text={"Login"} onClick={handleButtonNavigate}/>
