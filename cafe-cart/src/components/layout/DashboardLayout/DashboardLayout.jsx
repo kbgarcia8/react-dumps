@@ -1,20 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Outlet } from 'react-router-dom';
-import { DashboardLayoutWrapper, DashboardLayoutHeader, DashboardLayoutSidebar, DashboardLayoutContent, DashboardLayoutFooter } from "./DashboardLayout.styles";
+import * as styled from "./DashboardLayout.styles";
 
-const DashboardLayout = ({header, sidebar, footer}) => {
+const DashboardLayout = ({header, sidebar}) => {
 
     return (
-        <DashboardLayoutWrapper>
-            <DashboardLayoutHeader>{header}</DashboardLayoutHeader>
-            <DashboardLayoutSidebar>{sidebar}</DashboardLayoutSidebar>
-            <DashboardLayoutContent>
+        <styled.DashboardLayoutWrapper>
+            <styled.DashboardLayoutHeader>{header}</styled.DashboardLayoutHeader>
+            <styled.DashboardLayoutSidebar>{sidebar}</styled.DashboardLayoutSidebar>
+            <styled.DashboardLayoutContent>
                 <Outlet />
-            </DashboardLayoutContent>
-            <DashboardLayoutFooter>{footer}</DashboardLayoutFooter>
-        </DashboardLayoutWrapper>
+            </styled.DashboardLayoutContent>
+        </styled.DashboardLayoutWrapper>
     )
+}
+
+DashboardLayout.propTypes = {
+    header: PropTypes.element,
+    sidebar: PropTypes.element
 }
 
 export default DashboardLayout;

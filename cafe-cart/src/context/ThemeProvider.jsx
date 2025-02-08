@@ -20,7 +20,7 @@ export const ThemeContextProvider = ({children}) => {
         
 }
 
-export const useTheme = () => {return useContext(ThemeContext)}
+export const useTheme = () => {return useContext(ThemeContext)} //example of 'custom hooks'
 
 ThemeContextProvider.propTypes = {
   children: PropTypes.node.isRequired

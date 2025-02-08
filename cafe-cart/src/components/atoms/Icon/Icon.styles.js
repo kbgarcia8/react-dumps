@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { v } from '../../../styles/variables'
 
 export const IconImage = styled.img`
     display: flex;
@@ -11,8 +12,7 @@ export const IconContainer = styled.div`
     display: flex;
     place-items: center;
     background-color: transparent;
-    padding: 1.5rem;
-    border: 2px solid red;
+    padding: ${v.spacing.small};
     max-width: 100%;
 `;
 

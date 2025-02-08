@@ -2,13 +2,18 @@ import React from "react";
 import App from "../App"
 import DesignSystem from "../DesignSystem";
 import MainLayout from "../components/layout/MainLayout/MainLayout";
-import Navbar from "../components/molecules/Navbar/Navbar";
+import MainHeader from "../components/organisms/MainHeader";
+import Footer from "../components/organisms/Footer";
 import HomePage from "../components/pages/WebPages/HomePage/HomePage";
 import AboutPage from "../components/pages/WebPages/AboutPage/AboutPage";
 import TestimonialPage from "../components/pages/WebPages/TestimonialsPage";
 import ContactPage from "../components/pages/WebPages/ContactPage";
 import SignUpPage from "../components/pages/WebPages/SignUpPage/SignUpPage";
 import LoginPage from "../components/pages/WebPages/LoginPage";
+
+import DashboardLayout from "../components/layout/DashboardLayout/DashboardLayout";
+import DashboardHeader from "../components/organisms/DashboardHeader";
+import Sidebar from "../components/organisms/Sidebar";
 
 const routes = [
   {
@@ -18,7 +23,7 @@ const routes = [
   },
   {
     path: "/",
-    element: <MainLayout header={<Navbar/>}/>,
+    element: <MainLayout header={<MainHeader/>} footer={<Footer/>}/>,
     children: [
       {index: true, element: <HomePage/>}, //Default route of '/' due to index: true
       {path: "about", element: <AboutPage/>},
@@ -26,6 +31,13 @@ const routes = [
       {path: "contact", element: <ContactPage/>},
       {path: "signup", element: <SignUpPage/>},
       {path: "login", element: <LoginPage/>}
+    ]
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout header={<DashboardHeader/>} sidebar={<Sidebar/>}/>,
+    children: [
+      {index: true, element: <HomePage/>}, //Default route of '/' due to index: true
     ]
   }
   /*{
