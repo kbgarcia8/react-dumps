@@ -16,7 +16,7 @@ export const SidebarLogoSpace = styled.div`
     align-items: center;
     justify-content: center;
     width: 75%;
-    height: 8.5%;
+    height: 9.5%;
     cursor: pointer;
 `;
 
@@ -26,11 +26,12 @@ export const SidebarLogo = styled.img`
 `;
 
 export const SidebarMainControlsSpace = styled(SidebarWrapper)`
-    height: 75%;
+    height: 45%;
     width: 100%;
     isplay: flex;
     align-items: center;
     justify-content: space-evenly;
+    border: 2px solid black;
 `
 export const StyledLinkWithImage = styled(Link)`
     display: flex;
@@ -38,12 +39,15 @@ export const StyledLinkWithImage = styled(Link)`
     justify-content: center;
     cursor: pointer;
     width: 100%;
-    height: 7.5%;
-    border: 2px solid red;
+    height: fit-content;
+    color: ${({theme}) => theme.backgroundColor1};
+    & svg {
+        width: 100%;
+    }
 `;
 
 export const SidebarSettingsSpace = styled(SidebarMainControlsSpace)`
-    height: 15%;
+    height: 20%;
 `
 
 export default { 

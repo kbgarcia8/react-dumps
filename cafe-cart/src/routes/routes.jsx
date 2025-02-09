@@ -14,6 +14,12 @@ import LoginPage from "../components/pages/WebPages/LoginPage";
 import DashboardLayout from "../components/layout/DashboardLayout/DashboardLayout";
 import DashboardHeader from "../components/organisms/DashboardHeader";
 import Sidebar from "../components/organisms/Sidebar";
+import DashboardHomepage from "../components/pages/WebPages/DashboardHomePage";
+import MenuPage from "../components/pages/WebPages/MenuPage";
+import CartPage from "../components/pages/WebPages/CartPage/CartPage";
+import OrdersPage from "../components/pages/WebPages/OrdersPage/OrdersPage";
+import PendingPage from "../components/pages/WebPages/PendingPage/PendingPage";
+import SettingsPage from "../components/pages/WebPages/SettingsPage/SettingsPage";
 
 const routes = [
   {
@@ -34,10 +40,16 @@ const routes = [
     ]
   },
   {
-    path: "/dashboard",
+    path: "/dashboard/",
     element: <DashboardLayout header={<DashboardHeader/>} sidebar={<Sidebar/>}/>,
     children: [
-      {index: true, element: <HomePage/>}, //Default route of '/' due to index: true
+      {index: true, element: <DashboardHomepage/>}, //Default route of '/' due to index: true
+      {path: "menu", element: <MenuPage/>},
+      {path: "cart", element: <CartPage/>},
+      {path: "orders", element: <OrdersPage/>},
+      {path: "pending", element: <PendingPage/>},
+      {path: "settings", element: <SettingsPage/>},
+      {path: "login", element: <LoginPage/>}
     ]
   }
   /*{

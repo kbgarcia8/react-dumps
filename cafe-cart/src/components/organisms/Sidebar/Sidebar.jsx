@@ -7,20 +7,28 @@ import MenuIcon from "../../atoms/SVG/MenuIcon";
 import CartIcon from "../../atoms/SVG/CartIcon";
 import ClipboardIcon from "../../atoms/SVG/ClipboardIcon";
 import TimerIcon from "../../atoms/SVG/TimerIcon";
+import SettingsIcon from "../../atoms/SVG/SettingsIcon";
+import LogoutIcon from "../../atoms/SVG/LogoutIcon";
 
 import * as styled from "./Sidebar.styles";
 
 const Sidebar =({}) => {
+    const navigate = useNavigate();
     const handleLogoClick = (e) => {
         navigate('/');
     }
 
     const mainControls = [
-        {value: "Home", path:"/home", icon: <HomeIcon/>},
-        {value: "Menu", path:"/menu", icon: <MenuIcon/>},
-        {value: "Cart", path:"/cart", icon: <CartIcon/>},
-        {value: "Orders", path:"/orders", icon: <ClipboardIcon/>},
-        {value: "Pending", path:"/pending", icon: <TimerIcon/>},
+        {name: "Home", path:"", icon: <HomeIcon/>},
+        {name: "Menu", path:"/menu", icon: <MenuIcon/>},
+        {name: "Cart", path:"/cart", icon: <CartIcon/>},
+        {name: "Orders", path:"/orders", icon: <ClipboardIcon/>},
+        {name: "Pending", path:"/pending", icon: <TimerIcon/>},
+    ]
+
+    const settingControls = [
+        {name: "Settings", path:"/settings", icon: <SettingsIcon/>},
+        {name: "Logout", path:"/login", icon: <LogoutIcon/>}
     ]
     
     return(
@@ -29,12 +37,25 @@ const Sidebar =({}) => {
                 <styled.SidebarLogo src={sidebarLogo} onClick={handleLogoClick}/>
             </styled.SidebarLogoSpace>
             <styled.SidebarMainControlsSpace>                
-                {mainControls.map((control,index) => (
-                    <styled.StyledLinkWithImage>
-                        {control.icon}
+                {mainControls.map((mainControl,index) => (
+                    <styled.StyledLinkWithImage
+                        key={`${mainControl.name}-${index}`}
+                        to={`../dashboard${mainControl.path}`}
+                    >
+                        {mainControl.icon}
                     </styled.StyledLinkWithImage>
                 ))}
             </styled.SidebarMainControlsSpace>
+            <styled.SidebarSettingsSpace>
+                {settingControls.map((settingControl,index) => (
+                    <styled.StyledLinkWithImage 
+                        key={`${settingControl.name}-${index}`}
+                        to={settingControl.name=="Settings" ? `../dashboard${settingControl.path}` : `${settingControl.path}`}
+                    >
+                        {settingControl.icon}
+                    </styled.StyledLinkWithImage>
+                ))}
+            </styled.SidebarSettingsSpace>
         </styled.SidebarWrapper>
     )
 }
