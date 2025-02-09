@@ -31,7 +31,6 @@ export const SidebarMainControlsSpace = styled(SidebarWrapper)`
     isplay: flex;
     align-items: center;
     justify-content: space-evenly;
-    border: 2px solid black;
 `
 export const StyledLinkWithImage = styled(Link)`
     display: flex;
