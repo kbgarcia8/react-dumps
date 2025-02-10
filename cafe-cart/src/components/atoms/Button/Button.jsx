@@ -9,7 +9,8 @@ const GenericButton = ({
     source,
     alt="image",
     text="",
-    className
+    className,
+    dataKey
 }) => {
 
     return (
@@ -18,6 +19,7 @@ const GenericButton = ({
             id={id}
             type={buttonType}
             className={className}
+            data-key={dataKey}
         >
             <div className="button-icon-and-text">
                 {source && <img src={source} alt={alt} />}
@@ -34,6 +36,8 @@ GenericButton.propTypes = {
     source: PropTypes.string,
     alt: PropTypes.string,
     text: PropTypes.string,
+    className: PropTypes.string,
+    dataKey: PropTypes.string
 }
 
 export default GenericButton;
