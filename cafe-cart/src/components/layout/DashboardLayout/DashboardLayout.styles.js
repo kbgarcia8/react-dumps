@@ -34,7 +34,6 @@ export const DashboardLayoutContent = styled.main`
     overflow-y: auto;
     grid-area: 2/2/3/3;
     border: 1px solid violet;
-    padding: ${v.spacing.small};
 `;
 
 export default { DashboardLayoutWrapper, DashboardLayoutHeader, DashboardLayoutSidebar, DashboardLayoutContent };
