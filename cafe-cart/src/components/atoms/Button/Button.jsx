@@ -22,15 +22,15 @@ const GenericButton = ({
             data-key={dataKey}
         >
             <div className="button-icon-and-text">
-                {source && <img src={source} alt={alt} />}
-                {text && <span id={id}>{text}</span>}
+                {source && <img src={source} alt={alt} data-key={dataKey} />}
+                {text && <span id={id} data-key={dataKey} >{text}</span>}
             </div>
         </Button>
     )
 }
 
 GenericButton.propTypes = {
-    processClick: PropTypes.func.isRequired,
+    onClick: PropTypes.func.isRequired,
     id: PropTypes.string,
     buttonType: PropTypes.string,
     source: PropTypes.string,
