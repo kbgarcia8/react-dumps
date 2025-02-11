@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
 const Context = createContext();
-
+//https://cafe-cart-db.vercel.app/ API link
 export const ContextProvider = ({children}) => {
     /*'use' prefixed functions are custom hooks */
     const useMediaQuery = (query) => {
