@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "alias": "cafe-cart-db",
     "builds": [
       { 
         "src": "server/server.js", 
