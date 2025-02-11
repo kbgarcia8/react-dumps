@@ -1,0 +1,142 @@
+[
+    {
+        "pastaId": 1,
+        "pastaName": "Lasagne",
+        "pastaDesc": "Layered with a rich meat sauce and a creamy parmesan white sauce, plus the perfect amount of mozzarella cheese.",
+        "pastaImage": "https://www.themealdb.com/images/media/meals/wtsvxx1511296896.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.8,
+            "count": 111
+        }
+    },
+    {
+        "pastaId": 2,
+        "pastaName": "Carbonara",
+        "pastaDesc": "Italian main course consisting of spaghetti with bacon and a creamy sauce made from eggs, Pecorino or Parmesan and black pepper.",
+        "pastaImage": "https://www.themealdb.com/images/media/meals/llcbn01574260722.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.6,
+            "count": 135
+        }
+    },
+    {
+        "pastaId": 3,
+        "pastaName": "Chili prawin linguine",
+        "pastaDesc": "Pasta tossed with a rich tomato sauce with a tingle of spicy heat and plump prawns (shrimp). ",
+        "pastaImage": "https://www.themea,ldb.com/images/media/meals/usywpp1511189717.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.5,
+            "count": 112
+        }
+    },
+    {
+        "pastaId": 4,
+        "pastaName": "Macaroni Cheese",
+        "pastaDesc": "The dish consists of macaroni (short, tubular) pasta, baked in a cheesy bechamel sauce (also known as a Mornay sauce) in the oven.",
+        "pastaImage": "https://www.datocms-assets.com/20941/1635348486-adobestock224148008.jpeg?auto=compress&dpr=0.95&fm=jpg&w=850",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1,
+            "count": 158
+        }
+    },
+    {
+        "pastaId": 5,
+        "pastaName": "Aglio Olio",
+        "pastaDesc": "Deliciously simple Italian dish of fresh garlic, olive oil, and Parmesan cheese tossed with freshly cooked spaghetti.",
+        "pastaImage": "https://www.sharmispassions.com/wp-content/uploads/2021/12/spaghetti-aglio-e-olio4.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 4.2,
+            "count": 107
+        }
+    },
+    {
+        "pastaId": 6,
+        "pastaName": "Baked Penne With Chicken and Sun-Dried Tomatoes",
+        "pastaDesc": "It has chicken breasts, mushrooms, and sun-dried tomatoes. Shredded provolone and grated Parmesan make it super creamy.",
+        "pastaImage": "https://www.errenskitchen.com/wp-content/uploads/2022/05/Chicken-Sundried-Tomato-Pasta-1-4.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 3.6,
+            "count": 170
+        }
+    },
+    {
+        "pastaId": 7,
+        "pastaName": "One-Pan Creamy Tuna Pasta",
+        "pastaDesc": "This one-pot wonder inspired by Tuna Helper has tuna, tender noodles, and peas cooked together in a creamy sauce.",
+        "pastaImage": "https://www.marthastewart.com/thmb/ojZtnIjwwH0zT62cky2nf_9pQzA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/MSL-one-pan-creamy-tuna-pasta-hero-1866-b0847e3b8c1a4786a122af224868b5bf.jpeg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.8,
+            "count": 186
+        }
+    },
+    {
+        "pastaId": 8,
+        "pastaName": "Mushroom Ragu",
+        "pastaDesc": "A hearty and deeply flavorful mushroom ragù featuring finely chopped mushrooms, tomatoes, white wine, and aromatics slow-cooked in an oven.",
+        "pastaImage": "https://cookingwithcocktailrings.com/wp-content/uploads/2024/03/Creamy-Mushroom-Ragu-Sauce-with-Short-Rib-Ravioli-30-scaled.webp",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 1.6,
+            "count": 91
+        }
+    },
+    {
+        "pastaId": 9,
+        "pastaName": "Garlic Cream Sauce Ravioli",
+        "pastaDesc": "Sauce is made to be drenched over ravioli and compliments so many different fillings.",
+        "pastaImage": "https://www.dontgobaconmyheart.co.uk/wp-content/uploads/2021/07/garlic-cream-sauce-for-ravioli-744x828.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.7,
+            "count": 20
+        }
+    },
+    {
+        "pastaId": 10,
+        "pastaName": "Beef Stroganoff",
+        "pastaDesc": "Features juicy beef, hearty mushrooms, mustard, white wine, and sour cream for the most tender and delicious results.",
+        "pastaImage": "https://www.foodandwine.com/thmb/WDzimnme-7nOe_wBVXYxVyGNVBQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/FAW-beef-stroganoff-hero-06-5dc1fb98ed9f4eea97bab613d212eead.jpg",
+        "prices": {
+            "solo": 160,
+            "share": 220
+        },
+        "rating": {
+            "rate": 2.8,
+            "count": 138
+        }
+    }
+]

@@ -14,3 +14,5 @@
 5. Checkout and Payment Page
 6. Delivery Status Page
 7. User Settings Page
+
+https://ivo-culic.medium.com/create-restful-api-with-json-server-and-deploy-it-to-vercel-d56061c1157a
