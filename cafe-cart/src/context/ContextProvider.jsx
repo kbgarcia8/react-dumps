@@ -1,14 +1,18 @@
-import React, { createContext, useState, useEffect } from "react"
+import React, { createContext, useState, useEffect, useContext } from "react"
 import PropTypes from "prop-types"
+import axios from "axios";
 
 const Context = createContext();
 //https://cafe-cart-db.vercel.app/ API link
 export const ContextProvider = ({children}) => {
+    /*Global States*/
+    const [database, setDatabase] = useState(null)
     /*'use' prefixed functions are custom hooks */
+    //Check screen width for responsive design
     const useMediaQuery = (query) => {
-        const [matches, setMatches] = useState(false);
+      const [matches, setMatches] = useState(false);
       
-        useEffect(() => {
+      useEffect(() => {
           const media = window.matchMedia(query);
           if (media.matches !== matches) {
             setMatches(media.matches);
@@ -19,22 +23,33 @@ export const ContextProvider = ({children}) => {
 
           return () => media.removeEventListener("change", listener);
       
-        }, [matches, query]);
-        console.log(matches)
-        return matches;
-      };
-
+      }, [matches, query]);
+      
+      return matches;
+    };
+    //Fetch database from deployed API
+    useEffect(() => {
+      axios.get('https://cafe-cart-db.vercel.app/menu')
+    .then(response => {
+      setDatabase(response.data);
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+    }, []);
 
     return (
-    <Context.Provider value={{useMediaQuery}}> 
+    <Context.Provider value={{useMediaQuery, database}}> 
         {children}
     </Context.Provider> 
     )
         
 }
 
+export const useGlobalProvider = () => {return useContext(Context)}
+
 ContextProvider.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export default Context;
+export default {ContextProvider, useGlobalProvider};

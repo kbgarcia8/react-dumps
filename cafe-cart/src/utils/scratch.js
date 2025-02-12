@@ -1,4 +1,4 @@
-const prices = {
+/*const prices = {
     "solo": 160,
     "share": 220
 } 
@@ -17,4 +17,10 @@ var docWidth = document.documentElement.offsetWidth;
       console.log(el);
     }
   }
-);
+);*/
+
+(async () => {
+  const response = await fetch('https://cafe-cart-db.vercel.app/menu/');
+  const body = await response.text();
+  console.log(body);
+})();
