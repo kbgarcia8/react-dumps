@@ -1,18 +1,23 @@
 import {React, useState, useContext} from "react";
 import PropTypes from "prop-types";
 import { useGlobalProvider } from "../../../../context/ContextProvider";
+import ProductCard from "../../../molecules/ProductCard";
+import Divider from "../../../atoms/Divider";
 import * as styled from './CartPage.styles'
 
 const CartPage =({}) => {
 
     const {database} = useGlobalProvider();
-    const [filteredMenu, setFilteredMenu] = useState(database['icedDrink'])
+    const [filteredMenu, setFilteredMenu] = useState(null)
 
-    const DBKeys = Object.keys(database)
+    let DBKeys = null
 
-    //console.log(database['icedDrink'])
-    
+    database ? DBKeys = Object.keys(database) : console.warn('Database is still loading')
+
+    console.log(database)
+
     const keyTranslates = {
+        menu: {text: "All"},
         icedDrink: {text: "Iced Drink"},
         hotDrink: {text: "Hot Drink"},
         cakes: {text: "Cakes"},
@@ -29,16 +34,29 @@ const CartPage =({}) => {
             console.warn("Database is still loading!")
             return;
         }
-        const current = database[key]
-        setFilteredMenu((prevFilter) => prevFilter==current ? prevFilter : current)
-        console.log(filteredMenu)
-        console.log(key)
+        if (key !== 'menu') {
+            const current = database[key]
+            setFilteredMenu((prevFilter) => prevFilter==current ? prevFilter : current)
+            console.log(filteredMenu)
+            console.log(key)
+        } else if (key === 'menu') {
+            setFilteredMenu('all')
+            console.log(filteredMenu)
+            console.log(key)
+        }
+        
     }
 
     return(
         <styled.CartPageWrapper>
-            <styled.MenuFilterSpace>
-                {DBKeys.map((DBKey,index) => (
+            <styled.MenuFilterButtonsSpace>
+                <styled.MenuFilterButton 
+                        dataKey={'menu'}
+                        text={'All'}
+                        onClick={handleMenuFilterButton}
+                        disabled={!database}
+                />
+                {DBKeys !== null && DBKeys.map((DBKey,index) => (
                     <styled.MenuFilterButton 
                         key={`${DBKey}-${index}`}
                         dataKey={DBKey}
@@ -47,15 +65,21 @@ const CartPage =({}) => {
                         disabled={!database}
                     />
                 ))}
-            </styled.MenuFilterSpace>
-            <h1>
-                This is the temporary Dashboard Cart Page! 
-            </h1>
-            <div>
-                {filteredMenu.map((filter,index) => (
-                    <div>{filter.name}</div>
-                ))}
-            </div>
+            </styled.MenuFilterButtonsSpace>            
+            <Divider/>
+            <styled.MenuCardContainer>
+                {(filteredMenu !== 'all' && filteredMenu !== '' && filteredMenu !== null)
+                    ? filteredMenu.map((filteredItem,index) => (
+                            <ProductCard
+                                productImage={filteredItem.image}
+                                productTitle={filteredItem.name}
+                                productDescription={filteredItem.description}
+                                prices={filteredItem.prices}
+                            />
+                        ))
+                    : ''
+                }
+            </styled.MenuCardContainer>
         </styled.CartPageWrapper>
     )
 }
