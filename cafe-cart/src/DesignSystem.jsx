@@ -4,7 +4,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { v } from './styles/variables'
 import { palette, lightTheme, darkTheme } from './styles/theme'
-import Context from './context/ContextProvider';
+import { useGlobalProvider } from './context/ContextProvider';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
 import GenericLabel from './components/atoms/Label';
@@ -259,7 +259,7 @@ const SimpleDropdown = styled.select`
 function DesignSystem() {
   const {theme, toggleTheme} = useTheme()
   const [pastries, setPastries] = useState([])
-  const {useMediaQuery} = useContext(Context)
+  const {useMediaQuery} = useGlobalProvider();
   const isMobile = useMediaQuery(`(max-width: ${v.breakpoints.mobile})`)
   const [count, setCount] = useState(0)
 
