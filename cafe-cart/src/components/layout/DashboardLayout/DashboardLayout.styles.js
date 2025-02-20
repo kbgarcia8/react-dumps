@@ -5,7 +5,7 @@ export const DashboardLayoutWrapper = styled.div`
     display: grid;
     grid-template-rows: auto 1fr;
     grid-template-columns: 5vw 1fr;
-    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     gap: 0;
 `;

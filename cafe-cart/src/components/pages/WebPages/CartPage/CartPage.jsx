@@ -70,7 +70,8 @@ const CartPage =({}) => {
             <styled.MenuCardContainer>
                 {(filteredMenu !== 'all' && filteredMenu !== '' && filteredMenu !== null)
                     ? filteredMenu.map((filteredItem,index) => (
-                            <ProductCard
+                        /*<div>{filteredItem.name}</div>*/
+                            <styled.CartItemCard
                                 productImage={filteredItem.image}
                                 productTitle={filteredItem.name}
                                 productDescription={filteredItem.description}
