@@ -2,16 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "../../../context/ThemeProvider";
 import { palette, lightTheme } from "../../../styles/theme";
-import { ProductImage,
-    ProductTitle,
-    ProductDescription,
-    ProductInfoContainer,
-    PriceContainer,
-    AddToCartButton,
-    ProductSize,
-    ProductPrice,
-    ProductCardContainer
-} from "./ProductCard.styles";
+import * as styled from "./ProductCard.styles";
 
 const ProductCard = ({
     productImage,
@@ -22,7 +13,7 @@ const ProductCard = ({
     isDarkCard
 }) => {
 
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
     
     const commonThemeSwitch = {
         cardShadowColor: theme == lightTheme ? palette.shadow1 : palette.shadow2
@@ -43,36 +34,36 @@ const ProductCard = ({
     }
 
     return (
-        <ProductCardContainer 
+        <styled.ProductCardContainer 
             className={className} 
             cardBackgroundColor={isDarkCard ? darkCardThemeSwitch.cardBackgroundColor : lightCardThemeSwitch.cardBackgroundColor}
             cardShadowColor={commonThemeSwitch.cardShadowColor}
         >
-            <ProductImage src={productImage} alt={`${productTitle}-image`}/>
-            <ProductInfoContainer>
-                <ProductTitle 
-                    textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}>{productTitle}</ProductTitle>
-                <ProductDescription 
+            <styled.ProductImage src={productImage} alt={`${productTitle}-image`}/>
+            <styled.ProductInfoContainer>
+                <styled.ProductTitle 
+                    textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}>{productTitle}</styled.ProductTitle>
+                <styled.ProductDescription 
                     textColor={isDarkCard ? darkCardThemeSwitch.descriptionTextColor : lightCardThemeSwitch.descriptionTextColor}
                 >
                     {productDescription}
-                </ProductDescription>                
-            </ProductInfoContainer>
+                </styled.ProductDescription>                
+            </styled.ProductInfoContainer>
             {Object.keys(prices).map((size, index) => (
-                <PriceContainer key={`${productTitle}-${size}`}>
-                    <AddToCartButton 
+                <styled.PriceContainer key={`${productTitle}-${size}`}>
+                    <styled.AddToCartButton 
                         source={"/shopping-cart.svg"}
                         buttonColor={isDarkCard ? lightCardThemeSwitch.buttonColor : darkCardThemeSwitch.buttonColor}
                     />
-                    <ProductSize
+                    <styled.ProductSize
                         textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}
-                    >{size}</ProductSize>
-                    <ProductPrice
+                    >{size}</styled.ProductSize>
+                    <styled.ProductPrice
                         textColor={isDarkCard ? darkCardThemeSwitch.descriptionTextColor : lightCardThemeSwitch.descriptionTextColor}
-                    >{prices[size]}</ProductPrice>
-                </PriceContainer>
+                    >{prices[size]}</styled.ProductPrice>
+                </styled.PriceContainer>
             ))}
-        </ProductCardContainer>
+        </styled.ProductCardContainer>
     );
 }
 
