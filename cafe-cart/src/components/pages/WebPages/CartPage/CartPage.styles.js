@@ -42,4 +42,3 @@ export const MenuCardContainer = styled.div`
 export const CartItemCard = styled(ProductCard)`
     border: 2px solid red;
 `;
-//https://stackoverflow.com/questions/66817240/how-to-make-css-grid-container-keep-responsive-square-size
