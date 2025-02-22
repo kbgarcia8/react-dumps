@@ -71,7 +71,9 @@ ProductCard.propTypes = {
     productImage: PropTypes.string,
     productTitle: PropTypes.string,
     productDescription: PropTypes.string,
-    prices: PropTypes.object.isRequired
+    prices: PropTypes.object.isRequired,
+    className: PropTypes.string,
+    isDarkCard: PropTypes.bool
 }
 
 export default ProductCard;
