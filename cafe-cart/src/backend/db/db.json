@@ -4,7 +4,7 @@
             "id": 1,
             "name": "Caramel Macchiato",
             "description": "A perfect balance of coffee, vanilla, milk, and caramel makes a sweet and creamy summer drink.",
-            "image": "https://www.allrecipes.com/thmb/f6PPqsjkI8-XvRgBJLWrCx5GEO0=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/4538360_20Iced20Caramel20Macchiato20Photo20by20Lela20650x465-21dd58b096bc43ce8452ad1e8becaed4.jpg",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -46,7 +46,7 @@
             "id": 4,
             "name": "Iced Latte",
             "description": "Renowned for their harmonious blend of frothed milk, foam, and espresso, possess a cold counterpart in iced lattes.",
-            "image": "https://www.tastingtable.com/img/gallery/15-types-of-iced-coffee-explained/iced-latte-1687369765.webp",
+            "image": "https://www.shutterstock.com/image-photo/concept-isolated-white-background-latte-260nw-2477078677.jpg",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -74,7 +74,7 @@
             "id": 6,
             "name": "Frappucino",
             "description": "Made famous by Starbucks, the Frappuccino is a blended iced coffee drink that’s topped with whipped cream and syrup.",
-            "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Strawberry_Delight_Frappuccino.JPG",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTprS4loJglrtmOh7b8nBO_U36WQM_xLXW4wA&s",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -88,7 +88,7 @@
             "id": 7,
             "name": "Strawberry and Cream",
             "description": "Frappuccino crème syrup blended with milk, strawberry sauce and ice. Topped with whipped cream.",
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7guHl-10F7DH-cju9JGML-harZJc8iY1VA&s",
+            "image": "https://www.munchkintime.com/wp-content/uploads/2019/08/strawberry-and-cream-frappuccino-starbucks-3.jpg",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -102,7 +102,7 @@
             "id": 8,
             "name": "Spanish Latte",
             "description": "Iced coffee drink that's made with milk (any kind, I ordered soy milk), condensed milk, and fresh espresso.",
-            "image": "https://thehintofrosemary.com/wp-content/uploads/2023/11/Spanish-iced-latte-recipe-cover-photo-720x720.jpg",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDXVZb3dZccYIh4aEmpFgpn1Ng4dyaGP46uw&s",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -116,7 +116,7 @@
             "id": 9,
             "name": "Iced Mocha",
             "description": "An espresso-based drink with chocolate and warm milk for the right blend of creaminess and sweetness, served over ice.",
-            "image": "https://vibrantlygfree.com/wp-content/uploads/2023/07/iced-mocha-1.jpg",
+            "image": "https://www.torani.com/media/catalog/product/cache/061ec4132b50c94b3e8cb7e7e25c75e8/I/c/Iced_Sugar_Free_Turtle_Mocha.jpg",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -130,7 +130,7 @@
             "id": 10,
             "name": "Iced Chocolate",
             "description": " It's easy, super chocolate-y, and hydrating. Plus, it's got a rich enough chocolate flavor that it's something that you'll sip slowly.",
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM3Ue0aHM2X0Q5gybGbzk9t0TyYuJidXBGrw&s",
+            "image": "https://media.istockphoto.com/id/1371303553/photo/coffee-and-chocolate-cocktail-with-whipped-cream.jpg?s=612x612&w=0&k=20&c=O3ZIVpWd6ADADg0ELcjkqD1qkWPJsvKE4AU_yoLdm5Y=",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -258,7 +258,7 @@
             "id": 9,
             "name": "Irish Coffee",
             "description": "A caffeinated alcoholic drink consisting of Irish whiskey, hot coffee and sugar, which has been stirred and topped with cream.",
-            "image": "https://www.acouplecooks.com/wp-content/uploads/2021/02/Irish-Coffee-005.jpg",
+            "image": "https://kirbiecravings.com/wp-content/uploads/2019/06/cold-brew-irish-coffee-18-700x726.jpg",
             "prices": {
                 "Regular": 120,
                 "Large": 140
@@ -911,7 +911,7 @@
         {
             "id": 3,
             "name": "Shakshouka",
-            "description": "a Maghrebi (North African) dish, popular throughout the region, featuring poached eggs in a spicy tomato sauce, seasoned with peppers, onion, garlic, and various spices.",
+            "description": "A Maghrebi (North African) dish, popular throughout the region, featuring poached eggs in a spicy tomato sauce, seasoned with peppers, onion, garlic, and various spices.",
             "image": "https://www.themealdb.com/images/media/meals/gpz67p1560458984.jpg",
             "prices": {
                 "Solo": 160,

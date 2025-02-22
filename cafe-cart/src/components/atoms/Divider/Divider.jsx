@@ -4,16 +4,17 @@ import { DividerContainer, DividerLine, DividerText } from "./Divider.styles";
 import { useTheme } from '../../../context/ThemeProvider';
 
 
-const Divider = ({ dividerText, lineColor, textColor, screenColor }) => {
-    const { theme, toggleTheme } = useTheme();
+const Divider = ({ dividerText, lineColor, textColor, screenColor, className }) => {
+    const { theme } = useTheme();
     
     return(
-        <DividerContainer>
+        <DividerContainer className={className}>
             <DividerLine lineColor={lineColor ? lineColor : theme.backgroundColor1}>
             {dividerText && 
             <DividerText 
                 textColor={textColor ? textColor : theme.textColor1} 
-                screenColor={screenColor ? screenColor : theme.screenColor}>{dividerText}</DividerText>}
+                screenColor={screenColor ? screenColor : theme.screenColor}
+            >{dividerText}</DividerText>}
             </DividerLine>
         </DividerContainer>
     );

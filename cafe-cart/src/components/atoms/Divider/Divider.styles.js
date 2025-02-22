@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {v} from '../../../styles/variables'
 
 export const DividerLine = styled.div.attrs(props => ({
     lineColor: props.lineColor
@@ -16,17 +17,18 @@ export const DividerText = styled.span.attrs(props => ({
     textColor: props.textColor,
     screenColor: props.screenColor
 }))`
-    font-size: 1.25vmax;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: ${v.fontSize.medium};
+    font-family: ${v.fonts.tertiary}, ${v.fonts.fallback}
     line-height: 1.25vmax;
-    padding: 0.5vmax;
+    padding-inline: ${v.spacing.xsmall};
     color: ${(props) => props.textColor};
     background-color: ${(props) => props.screenColor};
+    position: relative;
 `;
 
 export const DividerContainer = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     width: 100%;
     height: 2vmax;
