@@ -72,7 +72,7 @@ export const StyledDivider = styled(Divider)`
     }
     & span {
         right: 42.5%;
-        width: 8.5%;
+        width: 8.75%;
         display: flex;
         align-items: center;
         justify-content: center;

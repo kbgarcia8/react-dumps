@@ -46,8 +46,6 @@ const MenuPage =({}) => {
             setFilteredMenu(database);
             setFilteredMenuHeader('All');
         }
-        console.log(filteredMenu)
-        console.log(filteredMenuHeader)
     }
 
     return(
@@ -80,6 +78,7 @@ const MenuPage =({}) => {
                                 productTitle={filteredItem.name}
                                 productDescription={filteredItem.description}
                                 prices={filteredItem.prices}
+                                dataCart={Object.keys(keyTranslates).find((key) => keyTranslates[key]['text']===filteredMenuHeader)}
                             />
                         ))}            
                     </styled.MenuCardContainer>
@@ -97,6 +96,7 @@ const MenuPage =({}) => {
                                 productTitle={filteredItem.name}
                                 productDescription={filteredItem.description}
                                 prices={filteredItem.prices}
+                                dataCart={DBKey}
                             />
                         ))}
                         </styled.MenuCardContainer2>
