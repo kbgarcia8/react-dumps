@@ -9,6 +9,8 @@ const ProductCard = ({
     productTitle,
     productDescription,
     prices,
+    dataCart,
+    handleAddToCartButton,
     className,
     isDarkCard
 }) => {
@@ -49,11 +51,14 @@ const ProductCard = ({
                     {productDescription}
                 </styled.ProductDescription>                
             </styled.ProductInfoContainer>
-            {Object.keys(prices).map((size, index) => (
+            {Object.keys(prices).map((size) => (
                 <styled.PriceContainer key={`${productTitle}-${size}`}>
                     <styled.AddToCartButton 
                         source={"/shopping-cart.svg"}
                         buttonColor={isDarkCard ? lightCardThemeSwitch.buttonColor : darkCardThemeSwitch.buttonColor}
+                        dataKey={`${size}-${prices[size]}`}
+                        dataCart={dataCart}
+                        onClick={handleAddToCartButton}
                     />
                     <styled.ProductSize
                         textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}
