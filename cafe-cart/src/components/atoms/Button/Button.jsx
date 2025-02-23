@@ -10,7 +10,8 @@ const GenericButton = ({
     alt="image",
     text="",
     className,
-    dataKey
+    dataKey,
+    dataCart
 }) => {
 
     return (
@@ -20,6 +21,7 @@ const GenericButton = ({
             type={buttonType}
             className={className}
             data-key={dataKey}
+            data-cart={dataCart}
         >
             <div className="button-icon-and-text">
                 {source && <img src={source} alt={alt} data-key={dataKey} />}
