@@ -1,15 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useOutletContext } from "react-router-dom";
 
 const CartPage =({}) => {
 
-    const addToCart = () => {
-        
-    }
+    const {cart} = useOutletContext();
+
     return(
+        <>
         <h1>
             This is the temporary Dashboard Cart Page! 
         </h1>
+        {cart.map((item, index) => (
+            <div>{item.quantity}x {item.name} - {item.price}</div>
+        ))}
+        </>
     )
 }
 

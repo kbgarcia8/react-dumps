@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "../../../context/ThemeProvider";
@@ -9,12 +11,12 @@ const ProductCard = ({
     productTitle,
     productDescription,
     prices,
-    dataCart,
+    dataCategory,
+    dataIndex,
     handleAddToCartButton,
     className,
     isDarkCard
 }) => {
-
     const { theme } = useTheme();
     
     const commonThemeSwitch = {
@@ -56,8 +58,12 @@ const ProductCard = ({
                     <styled.AddToCartButton 
                         source={"/shopping-cart.svg"}
                         buttonColor={isDarkCard ? lightCardThemeSwitch.buttonColor : darkCardThemeSwitch.buttonColor}
-                        dataKey={`${size}-${prices[size]}`}
-                        dataCart={dataCart}
+                        dataAttributes={{
+                            "data-size": size,
+                            "data-price": prices[size],
+                            "data-category": dataCategory,
+                            "data-index": dataIndex
+                        }}
                         onClick={handleAddToCartButton}
                     />
                     <styled.ProductSize

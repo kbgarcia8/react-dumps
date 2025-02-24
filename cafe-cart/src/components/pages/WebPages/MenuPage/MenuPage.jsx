@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from "react";
 import PropTypes from "prop-types";
+import { useOutletContext } from "react-router-dom";
 import { useGlobalProvider } from "../../../../context/ContextProvider";
 import ProductCard from "../../../molecules/ProductCard";
 import Divider from "../../../atoms/Divider";
@@ -11,6 +12,7 @@ const MenuPage =({}) => {
     const [DBKeys, setDBKeys] = useState([]);
     const [filteredMenu, setFilteredMenu] = useState(null)
     const [filteredMenuHeader, setFilteredMenuHeader] = useState('All')
+    const {addToCart} = useOutletContext();
 
     useEffect(() => {
         if (database) {
@@ -52,7 +54,7 @@ const MenuPage =({}) => {
         <styled.MenuPageWrapper>
             <styled.MenuFilterButtonsSpace>
                 <styled.MenuFilterButton 
-                        dataKey={'menu'}
+                        dataAttributes={{"data-key": "menu"}}
                         text={'All'}
                         onClick={handleMenuFilterButton}
                         disabled={!database}
@@ -60,7 +62,7 @@ const MenuPage =({}) => {
                 {DBKeys !== null && DBKeys.map((DBKey,index) => (
                     <styled.MenuFilterButton 
                         key={`${DBKey}-${index}`}
-                        dataKey={DBKey}
+                        dataAttributes={{"data-key": DBKey}}
                         text={`${keyTranslates[DBKey]['text']}`}
                         onClick={handleMenuFilterButton}
                         disabled={!database}
@@ -71,14 +73,16 @@ const MenuPage =({}) => {
                     ? <>
                     <styled.StyledDivider dividerText={filteredMenuHeader}/>
                     <styled.MenuCardContainer>                        
-                        {filteredMenu.map((filteredItem,index) => (
+                        {Array.isArray(filteredMenu) && filteredMenu.map((filteredItem,index) => (
                             <styled.CartItemCard
                                 key={`${filteredItem.name}-${index}`}
                                 productImage={filteredItem.image}
                                 productTitle={filteredItem.name}
                                 productDescription={filteredItem.description}
                                 prices={filteredItem.prices}
-                                dataCart={Object.keys(keyTranslates).find((key) => keyTranslates[key]['text']===filteredMenuHeader)}
+                                dataCategory={Object.keys(keyTranslates).find((key) => keyTranslates[key]['text']===filteredMenuHeader)}
+                                dataIndex={index}
+                                handleAddToCartButton={addToCart}
                             />
                         ))}            
                     </styled.MenuCardContainer>
@@ -88,15 +92,16 @@ const MenuPage =({}) => {
                         <>
                         <styled.StyledDivider2 key={`${DBKey}-${index}`} dividerText={keyTranslates[DBKey]['text']}/>
                         <styled.MenuCardContainer2>
-                        {filteredMenu[DBKey].map((filteredItem, index) => (
-                            /*<div key={`${DBKey}`}>{filteredItem.name}</div>*/
+                        {Array.isArray(filteredMenu[DBKey]) && filteredMenu[DBKey].map((filteredItem, index) => (
                             <styled.CartItemCard
                                 key={`${filteredItem.name}-${index}`}
                                 productImage={filteredItem.image}
                                 productTitle={filteredItem.name}
                                 productDescription={filteredItem.description}
                                 prices={filteredItem.prices}
-                                dataCart={DBKey}
+                                dataCategory={DBKey}
+                                dataIndex={index}
+                                handleAddToCartButton={addToCart}
                             />
                         ))}
                         </styled.MenuCardContainer2>

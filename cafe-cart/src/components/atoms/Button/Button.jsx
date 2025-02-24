@@ -1,3 +1,5 @@
+
+
 import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "./Button.styles";
@@ -10,8 +12,7 @@ const GenericButton = ({
     alt="image",
     text="",
     className,
-    dataKey,
-    dataCart
+    dataAttributes
 }) => {
 
     return (
@@ -20,12 +21,11 @@ const GenericButton = ({
             id={id}
             type={buttonType}
             className={className}
-            data-key={dataKey}
-            data-cart={dataCart}
+            {...dataAttributes}
         >
             <div className="button-icon-and-text">
-                {source && <img src={source} alt={alt} data-key={dataKey} />}
-                {text && <span id={id} data-key={dataKey} >{text}</span>}
+                {source && <img src={source} alt={alt} />}
+                {text && <span id={id} >{text}</span>}
             </div>
         </Button>
     )
@@ -39,7 +39,6 @@ GenericButton.propTypes = {
     alt: PropTypes.string,
     text: PropTypes.string,
     className: PropTypes.string,
-    dataKey: PropTypes.string
 }
 
 export default GenericButton;
