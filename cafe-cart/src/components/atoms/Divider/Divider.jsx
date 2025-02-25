@@ -9,11 +9,11 @@ const Divider = ({ dividerText, lineColor, textColor, screenColor, className }) 
     
     return(
         <DividerContainer className={className}>
-            <DividerLine lineColor={lineColor ? lineColor : theme.backgroundColor1}>
+            <DividerLine $lineColor={lineColor ? lineColor : theme.backgroundColor1}>
             {dividerText && 
             <DividerText 
-                textColor={textColor ? textColor : theme.textColor1} 
-                screenColor={screenColor ? screenColor : theme.screenColor}
+                $textColor={textColor ? textColor : theme.textColor1} 
+                $screenColor={screenColor ? screenColor : theme.screenColor}
             >{dividerText}</DividerText>}
             </DividerLine>
         </DividerContainer>

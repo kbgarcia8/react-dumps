@@ -96,12 +96,12 @@ export const StyledLink = styled(Link).attrs(props => ({
     anchorTheme: props.anchorTheme
 }))`
     text-decoration: none;
-    color: ${(props) => props.anchorTheme.textColor1};
+    color: ${(props) => props.$anchorTheme.textColor1};
     &:hover{
-        color: ${(props) => props.anchorTheme.backgroundColor2};
+        color: ${(props) => props.$anchorTheme.backgroundColor2};
     }
     &:active{
-        color: ${(props) => props.anchorTheme.backgroundColor3};
+        color: ${(props) => props.$anchorTheme.backgroundColor3};
     }
 `;
 

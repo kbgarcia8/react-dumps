@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "../../../context/ThemeProvider";
 import { notificationPalette, lightTheme } from "../../../styles/theme";
-import { NotificationImage, NotifcationMessage, NotificationCloseButton, NotificationCardWrapper } from "./NotificationCard.styles";
+import * as styled from "./NotificationCard.styles";
 import errorIcon from '../../../assets/error.png'
 import warningIcon from '../../../assets/warning.png'
 import successIcon from '../../../assets/success2.png'
@@ -46,17 +46,17 @@ const NotificationCard = ({
     }
 
     return (
-        <NotificationCardWrapper className={className} borderColor={textColor} backgroundColor={backgroundColor}>
-            <NotificationImage src={notificationImage ? notificationImage : defaultImage} alt={`${className}-image`} />
-            <NotifcationMessage textColor={textColor}>{notificationMessage}</NotifcationMessage>
+        <styled.NotificationCardWrapper className={className} $borderColor={textColor} $backgroundColor={backgroundColor}>
+            <styled.NotificationImage src={notificationImage ? notificationImage : defaultImage} alt={`${className}-image`} />
+            <styled.NotifcationMessage $textColor={textColor}>{notificationMessage}</styled.NotifcationMessage>
             {hasCloseButton && 
-            <NotificationCloseButton 
+            <styled.NotificationCloseButton 
                 onClick={() => console.log('testing')}
                 id={`${className}-close-button`}
                 text={closeButtonText}
-                textColor={textColor}
+                $textColor={textColor}
             />}
-        </NotificationCardWrapper>
+        </styled.NotificationCardWrapper>
     );
 }
 

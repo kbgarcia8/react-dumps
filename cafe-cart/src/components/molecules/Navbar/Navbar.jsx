@@ -21,7 +21,7 @@ const Navbar =({anchorTheme, isSigning}) => {
                         <styled.NavbarLink key={`${link}-${index}`}>
                             <styled.StyledLink
                                 to={link.path}
-                                anchorTheme={anchorTheme ? anchorTheme : theme}
+                                $anchorTheme={anchorTheme ? anchorTheme : theme}
                             >{link.name}</styled.StyledLink>
                         </styled.NavbarLink>
                     )}

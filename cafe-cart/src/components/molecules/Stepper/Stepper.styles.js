@@ -12,7 +12,7 @@ export const StepperButton = styled(GenericButton).attrs(props => ({
     color: white;
     width: 25%;
     height: 100%;
-    background-color: ${(props) => props.color};
+    background-color: ${(props) => props.$color};
     border: none;
     & .button-icon-and-text span {
         font-size: 1.5rem;
@@ -21,7 +21,7 @@ export const StepperButton = styled(GenericButton).attrs(props => ({
         align-items: center;
         justify-content: center;
         padding: 0;
-        color: ${(props) => props.textColor};
+        color: ${(props) => props.$textColor};
     }
 `;
 
@@ -34,8 +34,8 @@ export const StepperCounter = styled.span.attrs(props => ({
     justify-content: center;
     width: 50%;
     height: 100%;
-    border-inline: 2px solid  ${(props) => props.color};
-    color: ${(props) => props.textColor};
+    border-inline: 2px solid  ${(props) => props.$color};
+    color: ${(props) => props.$textColor};
     margin: 0;
     padding: 0;
     font-size: 1rem;
@@ -50,7 +50,7 @@ export const StepperContainer = styled.div.attrs(props => ({
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border: 1.5px solid  ${(props) => props.color};
+    border: 1.5px solid  ${(props) => props.$color};
     height: 5vh;
     width: 25%;
     border-radius: 0.25rem;

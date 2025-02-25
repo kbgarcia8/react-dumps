@@ -12,7 +12,7 @@ const CartPage =({}) => {
             This is the temporary Dashboard Cart Page! 
         </h1>
         {cart.map((item, index) => (
-            <div>{item.quantity}x {item.name} - {item.price}</div>
+            <div key={`${item.name}-${index}`}>{item.quantity}x {item.size} {item.name} - {item.price}</div>
         ))}
         </>
     )

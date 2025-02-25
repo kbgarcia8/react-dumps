@@ -40,15 +40,15 @@ const ProductCard = ({
     return (
         <styled.ProductCardContainer 
             className={className} 
-            cardBackgroundColor={isDarkCard ? darkCardThemeSwitch.cardBackgroundColor : lightCardThemeSwitch.cardBackgroundColor}
-            cardShadowColor={commonThemeSwitch.cardShadowColor}
+            $cardBackgroundColor={isDarkCard ? darkCardThemeSwitch.cardBackgroundColor : lightCardThemeSwitch.cardBackgroundColor}
+            $cardShadowColor={commonThemeSwitch.cardShadowColor}
         >
             <styled.ProductImage src={productImage} alt={`${productTitle}-image`}/>
             <styled.ProductInfoContainer>
                 <styled.ProductTitle 
-                    textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}>{productTitle}</styled.ProductTitle>
+                    $textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}>{productTitle}</styled.ProductTitle>
                 <styled.ProductDescription 
-                    textColor={isDarkCard ? darkCardThemeSwitch.descriptionTextColor : lightCardThemeSwitch.descriptionTextColor}
+                    $textColor={isDarkCard ? darkCardThemeSwitch.descriptionTextColor : lightCardThemeSwitch.descriptionTextColor}
                 >
                     {productDescription}
                 </styled.ProductDescription>                
@@ -57,7 +57,7 @@ const ProductCard = ({
                 <styled.PriceContainer key={`${productTitle}-${size}`}>
                     <styled.AddToCartButton 
                         source={"/shopping-cart.svg"}
-                        buttonColor={isDarkCard ? lightCardThemeSwitch.buttonColor : darkCardThemeSwitch.buttonColor}
+                        $buttonColor={isDarkCard ? lightCardThemeSwitch.buttonColor : darkCardThemeSwitch.buttonColor}
                         dataAttributes={{
                             "data-size": size,
                             "data-price": prices[size],
@@ -67,10 +67,10 @@ const ProductCard = ({
                         onClick={handleAddToCartButton}
                     />
                     <styled.ProductSize
-                        textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}
+                        $textColor={isDarkCard ? darkCardThemeSwitch.titleTextColor : lightCardThemeSwitch.titleTextColor}
                     >{size}</styled.ProductSize>
                     <styled.ProductPrice
-                        textColor={isDarkCard ? darkCardThemeSwitch.descriptionTextColor : lightCardThemeSwitch.descriptionTextColor}
+                        $textColor={isDarkCard ? darkCardThemeSwitch.descriptionTextColor : lightCardThemeSwitch.descriptionTextColor}
                     >{prices[size]}</styled.ProductPrice>
                 </styled.PriceContainer>
             ))}

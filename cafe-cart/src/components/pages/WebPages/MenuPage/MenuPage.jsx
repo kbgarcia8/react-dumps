@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from "react";
+import {React, useState, useEffect, Fragment} from "react";
 import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
 import { useGlobalProvider } from "../../../../context/ContextProvider";
@@ -89,9 +89,9 @@ const MenuPage =({}) => {
                     </>
                     : <styled.MenuCardContainerAll> 
                     {DBKeys !== null && DBKeys.map((DBKey,index) => (
-                        <>
-                        <styled.StyledDivider2 key={`${DBKey}-${index}`} dividerText={keyTranslates[DBKey]['text']}/>
-                        <styled.MenuCardContainer2>
+                        <Fragment key={`${DBKey}-fragment`}>
+                        <styled.StyledDivider2 key={`${DBKey}-divider`} dividerText={keyTranslates[DBKey]['text']}/>
+                        <styled.MenuCardContainer2 key={`${DBKey}-${index}-container`}>
                         {Array.isArray(filteredMenu[DBKey]) && filteredMenu[DBKey].map((filteredItem, index) => (
                             <styled.CartItemCard
                                 key={`${filteredItem.name}-${index}`}
@@ -105,7 +105,7 @@ const MenuPage =({}) => {
                             />
                         ))}
                         </styled.MenuCardContainer2>
-                        </>
+                        </Fragment>
                     ))}
                     </styled.MenuCardContainerAll>
                 }

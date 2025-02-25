@@ -10,10 +10,14 @@ const DashboardLayout = ({header, sidebar}) => {
     const [cart, setCart] = useState([]);
 
     const addToCart = (e) => {
-        console.log(e.currentTarget.dataset)
         const {size, price, category, index} = e.currentTarget.dataset;
-        
-        setCart((prevCart) => [...prevCart, {name: `${database[category][index].name}`, price: `${price}`, quantity: ''}])
+        const itemInDatabase = database[category][index];
+
+        setCart((prevCart) =>         
+            [...prevCart].indexOf(prevCart.find((entry => entry.name === `${itemInDatabase.name}` && entry.size === `${size}` ))) === -1
+            ? [...prevCart, {name: `${itemInDatabase.name}`, size: `${size}`,price: `${price}`, quantity: 1}]
+            : prevCart.map((entry) => (entry.name === `${itemInDatabase.name}` && entry.size === `${size}`) && {...entry, quantity: entry.quantity + 1})
+        )
     }
 
     return (

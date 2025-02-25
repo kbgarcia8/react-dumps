@@ -17,7 +17,7 @@ export const ProductTitle = styled.h2.attrs(props => ({
     font-size: ${v.fontSize.small};
     font-weight: ${v.fontWeight.bolder};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
-    color: ${(props) => props.textColor};
+    color: ${(props) => props.$textColor};
     margin-top: ${v.spacing.xxxsmall};
 `;
 
@@ -29,7 +29,7 @@ export const ProductDescription = styled.p.attrs(props => ({
     font-size: calc(${v.fontSize.xsmall} - 0.10rem);
     font-weight: ${v.fontWeight.bold};
     font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
-    color: ${(props) => props.textColor};
+    color: ${(props) => props.$textColor};
 `;
 
 export const ProductInfoContainer = styled.div`
@@ -51,7 +51,7 @@ export const AddToCartButton = styled(GenericButton).attrs(props => ({
     border-radius: ${v.borderRadius.small};
     width: 12.5%;
     height: 75%;
-    background-color: ${(props) => props.buttonColor};
+    background-color: ${(props) => props.$buttonColor};
 
     & .button-icon-and-text {
         width: 100%;
@@ -76,7 +76,7 @@ export const ProductSize = styled.span.attrs(props => ({
     font-size: ${v.fontSize.xsmall};
     font-weight: 700;
     width: 25%;
-    color: ${(props) => props.textColor};
+    color: ${(props) => props.$textColor};
     font-family: ${v.fonts.primary}, ${v.fonts.fallback};
 `;
 
@@ -86,7 +86,7 @@ export const ProductPrice = styled.span.attrs(props => ({
     position: relative;
     left: 45%;
     font-size: ${v.fontSize.xsmall};
-    color: ${(props) => props.textColor};
+    color: ${(props) => props.$textColor};
     font-weight: ${v.fontWeight.bold};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
@@ -102,8 +102,8 @@ export const ProductCardContainer = styled.div.attrs(props => ({
     width: 100%;
     height: 100%;
     border-radius: ${v.borderRadius.medium};
-    box-shadow: 0 4px 8px 0 ${(props) => props.cardShadowColor};    
-    background-color: ${(props) => props.cardBackgroundColor};
+    box-shadow: 0 4px 8px 0 ${(props) => props.$cardShadowColor};    
+    background-color: ${(props) => props.$cardBackgroundColor};
     padding: ${v.spacing.medium};
 `;
 
