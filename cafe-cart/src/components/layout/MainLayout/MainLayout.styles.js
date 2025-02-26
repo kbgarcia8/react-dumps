@@ -7,7 +7,7 @@ export const MainLayoutWrapper = styled.div.attrs(props => ({
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
-    width: ${(props) => `calc(100vw - ${props.scrollbarWidth}px)`};
+    width: ${(props) => `calc(100vw - ${props.$scrollbarWidth}px)`};
     gap: 0;
 `;
 

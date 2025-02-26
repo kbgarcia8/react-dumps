@@ -14,7 +14,7 @@ const MainLayout = ({header, sidebar, footer}) => {
     }, []);
 
     return (
-        <styled.MainLayoutWrapper scrollbarWidth={scrollbarWidth}>
+        <styled.MainLayoutWrapper $scrollbarWidth={scrollbarWidth}>
             <styled.MainLayoutHeader>{header}</styled.MainLayoutHeader>
             <styled.MainLayoutContent>
                 <Outlet />
