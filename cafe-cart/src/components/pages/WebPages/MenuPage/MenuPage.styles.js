@@ -61,7 +61,7 @@ export const MenuCardContainerAll = styled.div`
 
 export const CartItemCard = styled(ProductCard)`
     width: 95%;
-    height: 95%;
+    height: 100%;
 `;
 
 export const StyledDivider = styled(Divider)`

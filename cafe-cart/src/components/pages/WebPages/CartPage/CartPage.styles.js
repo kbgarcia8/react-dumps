@@ -10,7 +10,7 @@ export const CartPageWrapper = styled.div`
 `
 export const CartListContainer = styled.div`
     grid-column: 1/2;
-    width: 100%;
+    width: 100%; 
     border: 2px solid black;
 `;
 

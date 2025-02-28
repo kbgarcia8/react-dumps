@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
 import { useGlobalProvider } from "../../../../context/ContextProvider";
 import * as styled from "./CartPage.styles";
+import CartItem from "../../../organisms/CartItem/CartItem";
 
 const CartPage =({}) => {
 
@@ -16,10 +17,14 @@ const CartPage =({}) => {
             </h1>
             <styled.CartListContainer>
                 {cart.map((item, index) => (
-                    <div key={`${item.name}-${index}`}>
-                        <img src={`${item.thumbnail}`} alt={`${item.name}-cart-thumbnail`} />
-                        <span>{item.quantity}x {item.size} {item.name} - {item.price}</span>
-                    </div>
+                    <CartItem 
+                        key={`${item.name}-${index}`}
+                        itemImage={item.thumbnail}
+                        itemQuantity={item.quantity}
+                        itemSize={item.size}
+                        itemName={item.name}
+                        itemPrice={item.price}
+                    />
                 ))}
             </styled.CartListContainer>
             <styled.CheckoutInformationContainer>

@@ -30,6 +30,7 @@ export const ProductDescription = styled.p.attrs(props => ({
     font-weight: ${v.fontWeight.bold};
     font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
     color: ${(props) => props.$textColor};
+    line-height: ${v.spacing.small};
 `;
 
 export const ProductInfoContainer = styled.div`
