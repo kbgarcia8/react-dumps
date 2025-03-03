@@ -12,11 +12,11 @@ const DashboardLayout = ({header, sidebar}) => {
     const addToCart = (e) => {
         const {size, price, category, index} = e.currentTarget.dataset;
         const itemInDatabase = database[category][index];
-        console.log(itemInDatabase.image);
+
         setCart((prevCart) =>         
             [...prevCart].indexOf(prevCart.find((entry => entry.name === `${itemInDatabase.name}` && entry.size === `${size}` ))) === -1
             ? [...prevCart, {name: `${itemInDatabase.name}`, thumbnail: `${itemInDatabase.image}`, size: `${size}`,price: `${price}`, quantity: 1}]
-            : prevCart.map((entry) => (entry.name === `${itemInDatabase.name}` && entry.size === `${size}`) && {...entry, quantity: entry.quantity + 1})
+            : prevCart.map((entry) => (entry.name === `${itemInDatabase.name}` && entry.size === `${size}`) ? {...entry, quantity: entry.quantity + 1} : entry)
         )
     }
     

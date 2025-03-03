@@ -5,7 +5,7 @@ import { palette, lightTheme } from "../../../styles/theme";
 
 import * as styled from "./Stepper.styles";
 
-const Stepper = ({ count, increment, decrement, className }) => {
+const Stepper = ({ count, increment, decrement, dataIndex, className }) => {
 
     const { theme, toggleTheme } = useTheme();
 
@@ -17,9 +17,9 @@ const Stepper = ({ count, increment, decrement, className }) => {
 
     return (
         <styled.StepperContainer $color={themeSwitch.color} className={className}>
-            <styled.StepperButton $color={themeSwitch.color} $textColor={themeSwitch.buttonTextColor} onClick={decrement} text="-" />
+            <styled.StepperButton $color={themeSwitch.color} $textColor={themeSwitch.buttonTextColor} onClick={decrement} text="-" dataAttributes={{"data-index": dataIndex}}/>
             <styled.StepperCounter $color={themeSwitch.color} $textColor={themeSwitch.counterTextColor}>{count}</styled.StepperCounter>
-            <styled.StepperButton $color={themeSwitch.color} $textColor={themeSwitch.buttonTextColor} onClick={increment}  text="+"/>
+            <styled.StepperButton $color={themeSwitch.color} $textColor={themeSwitch.buttonTextColor} onClick={increment}  text="+" dataAttributes={{"data-index": dataIndex}}/>
         </styled.StepperContainer>
     );
 }

@@ -8,13 +8,12 @@ import CartItem from "../../../organisms/CartItem/CartItem";
 const CartPage =({}) => {
 
     const {cart} = useOutletContext();
-    const {database} = useGlobalProvider();
-
+    console.log(cart)
     return(
         <styled.CartPageWrapper>
-            <h1>
-                This is the temporary Dashboard Cart Page! 
-            </h1>
+            <styled.CartListHeader>
+                Your Orders:
+            </styled.CartListHeader>
             <styled.CartListContainer>
                 {cart.map((item, index) => (
                     <CartItem 
@@ -24,6 +23,7 @@ const CartPage =({}) => {
                         itemSize={item.size}
                         itemName={item.name}
                         itemPrice={item.price}
+                        dataIndex={index}
                     />
                 ))}
             </styled.CartListContainer>
