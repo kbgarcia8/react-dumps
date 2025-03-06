@@ -32,6 +32,9 @@ export const CartItemDetails = styled.span`
     font-size: ${v.fontSize.xsmall};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
+export const CartItemPrice = styled.div`
+    
+`;
 export const CartItemStepper = styled(Stepper)`
 
 `;

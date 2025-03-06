@@ -7,15 +7,15 @@ import CartItem from "../../../organisms/CartItem/CartItem";
 
 const CartPage =({}) => {
 
-    const {cart} = useOutletContext();
-    console.log(cart)
+    const {state} = useOutletContext();
+    console.log(state)
     return(
         <styled.CartPageWrapper>
             <styled.CartListHeader>
                 Your Orders:
             </styled.CartListHeader>
             <styled.CartListContainer>
-                {cart.map((item, index) => (
+                {state.map((item, index) => (
                     <CartItem 
                         key={`${item.name}-${index}`}
                         itemImage={item.thumbnail}
@@ -24,6 +24,7 @@ const CartPage =({}) => {
                         itemName={item.name}
                         itemPrice={item.price}
                         dataIndex={index}
+                        dataQuantity={item.quantity}
                     />
                 ))}
             </styled.CartListContainer>
