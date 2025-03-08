@@ -9,6 +9,7 @@ const GenericButton = ({
     id,
     buttonType,
     source,
+    svg,
     alt="image",
     text="",
     className,
@@ -24,7 +25,7 @@ const GenericButton = ({
             {...dataAttributes}
         >
             <div className="button-icon-and-text">
-                {source && <img src={source} alt={alt} />}
+                {source ? <img src={source} alt={alt} /> : svg ? svg : ''}
                 {text && <span id={id} >{text}</span>}
             </div>
         </Button>

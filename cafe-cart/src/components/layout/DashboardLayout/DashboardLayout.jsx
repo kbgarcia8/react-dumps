@@ -12,15 +12,15 @@ function reducer(state, action){
         case "addToCart":
         console.log('added to cart')
         return [...state].indexOf(state.find((entry => entry.name === `${action.databaseItem.name}` && entry.size === `${size}` ))) === -1
-                ? [...state, {name: `${action.databaseItem.name}`, thumbnail: `${action.databaseItem.image}`, size: `${size}`,price: `${price}`, quantity: 1}]
-                : state.map((entry) => (entry.name === `${action.databaseItem.name}` && entry.size === `${size}`) ? {...entry, quantity: entry.quantity + 1} : entry);
-        case "increment":                    
-            return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity + 1} : entry);
+                ? [...state, {name: `${action.databaseItem.name}`, thumbnail: `${action.databaseItem.image}`, size: `${size}`,price: `${price}`, quantity: 1, total: parseInt(price)}]
+                : state.map((entry) => (entry.name === `${action.databaseItem.name}` && entry.size === `${size}`) ? {...entry, quantity: entry.quantity + 1, total: entry.total + parseInt(price)} : entry);
+        case "increment":
+            return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity + 1, total: parseInt(entry.total) + parseInt(entry.price)} : entry);
         case "decrement":
                 if(parseInt(quantity) === 1) {            
                     return state.filter((entry, idx) => idx !== parseInt(index));
                 } else {
-                    return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity -1} : entry);
+                    return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity -1, total: parseInt(entry.total) - parseInt(entry.price)} : entry);
                 }
             
         case "reset":

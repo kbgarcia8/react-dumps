@@ -11,9 +11,17 @@ const CartPage =({}) => {
     console.log(state)
     return(
         <styled.CartPageWrapper>
-            <styled.CartListHeader>
-                Your Orders:
-            </styled.CartListHeader>
+            <styled.CartListHeaderSpace>
+                <styled.OrderQuantityHeader>Your Orders:</styled.OrderQuantityHeader>
+                {state.length !== 0 && <styled.ItemQuantity>{`${state.length} items`}</styled.ItemQuantity>}
+                <styled.ClearCartButton text={"Clear Cart"}/>
+            </styled.CartListHeaderSpace>
+            <styled.CartItemsHeaderSpace>
+                <styled.CartListHeader $width={"50%"}>{"Item Details"}</styled.CartListHeader>
+                <styled.CartListHeader $width={"15%"}>{"Item Price"}</styled.CartListHeader>
+                <styled.CartListHeader $width={"20%"}>{"Item Quantity"}</styled.CartListHeader>
+                <styled.CartListHeader $width={"15%"}>{"Item Total Price"}</styled.CartListHeader>
+            </styled.CartItemsHeaderSpace>
             <styled.CartListContainer>
                 {state.map((item, index) => (
                     <CartItem 
@@ -23,6 +31,7 @@ const CartPage =({}) => {
                         itemSize={item.size}
                         itemName={item.name}
                         itemPrice={item.price}
+                        itemTotal={item.total}
                         dataIndex={index}
                         dataQuantity={item.quantity}
                     />

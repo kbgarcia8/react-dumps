@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { v } from "../../../styles/variables";
 import Stepper from "../../molecules/Stepper/Stepper";
+import GenericButton from "../../atoms/Button";
 
 export const CartItemWrapper = styled.div`
     display: flex;
@@ -8,33 +9,62 @@ export const CartItemWrapper = styled.div`
     justify-content: space-between;
     flex-direction: row;
     width: 100%;
-    height: 20%;
+    height: 15%;
     padding: ${v.spacing.xxsmall};
     border: 2px solid blue;
 `;
 export const CartImageContainer = styled.div`
     display: flex;
-    width: 12.5%;
+    width: 20%;
     height: 100%;
+    border: 2px solid green;
 `;
 export const CartItemImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
 `;
-export const CartItemDetails = styled.span`
+export const CartItemName = styled.span`
     border: 2px solid orange;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 80%;
     height: 100%;
-    font-size: ${v.fontSize.xsmall};
+    font-size: ${v.fontSize.small};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
+export const ItemDetailsContainer = styled.div`
+    border: 2px solid red;
+    display: flex;
+    width: 50%;
+    height: 100%;
+`;
 export const CartItemPrice = styled.div`
-    
+    border: 2px solid blue;
+    width: 10%;
+    height: 100%;
+    font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${v.fontSize.xsmall};
+    font-weight: ${v.fontWeight.bold};
+`;
+export const StepperContainer = styled.div`
+    width: 20%;
 `;
 export const CartItemStepper = styled(Stepper)`
-
+    width: 100%;
+`;
+export const CartItemTotal = styled(CartItemPrice)``;
+export const RemoveItemButtonSpace = styled.div`
+    width: 5%;
+    height:100%;
+    border: 2px solid blue;
+`;
+export const RemoveItemButton = styled(GenericButton)`
+    width: 100%;
+    height: 100%;
+    border: none;
 `;

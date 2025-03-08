@@ -21,6 +21,9 @@ export const Button = styled.button`
     & .button-icon-and-text img { //default styling for icon inside button
         width: 100%;
     }
+    & .button-icon-and-text svg {
+        width: 100%;
+    }
     & .button-icon-and-text span { //default styling for text inside button
         font-size: 0.75rem;
         font-weight: 500;
