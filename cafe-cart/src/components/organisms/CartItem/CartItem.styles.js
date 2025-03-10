@@ -9,7 +9,7 @@ export const CartItemWrapper = styled.div`
     justify-content: space-between;
     flex-direction: row;
     width: 100%;
-    height: 15%;
+    height: 20%;
     padding: ${v.spacing.xxsmall};
     border: 2px solid blue;
 `;
@@ -62,9 +62,15 @@ export const RemoveItemButtonSpace = styled.div`
     width: 5%;
     height:100%;
     border: 2px solid blue;
+    padding: 0;
 `;
 export const RemoveItemButton = styled(GenericButton)`
     width: 100%;
     height: 100%;
     border: none;
+    border-radius: 0%;
+    padding: 0;
+    margin: 0;
+    background-color: ${({theme}) => theme.error};
+    border-radius: ${v.borderRadius.small};
 `;

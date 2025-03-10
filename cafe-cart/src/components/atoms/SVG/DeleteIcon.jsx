@@ -11,7 +11,7 @@ const DeleteIcon = (props) => (
         strokeWidth="2" 
         strokeLinecap="round" 
         strokeLinejoin="round" 
-        class="lucide lucide-trash-2"
+        className="lucide lucide-trash-2"
         {...props}
     >
     <path 

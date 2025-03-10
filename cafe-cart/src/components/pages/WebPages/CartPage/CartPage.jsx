@@ -7,18 +7,17 @@ import CartItem from "../../../organisms/CartItem/CartItem";
 
 const CartPage =({}) => {
 
-    const {state} = useOutletContext();
-    console.log(state)
+    const {state, clearCart, transactionType, subtotal} = useOutletContext();
+    
     return(
         <styled.CartPageWrapper>
             <styled.CartListHeaderSpace>
-                <styled.OrderQuantityHeader>Your Orders:</styled.OrderQuantityHeader>
-                {state.length !== 0 && <styled.ItemQuantity>{`${state.length} items`}</styled.ItemQuantity>}
-                <styled.ClearCartButton text={"Clear Cart"}/>
+                <styled.OrderQuantityHeader>Your Orders:</styled.OrderQuantityHeader>                
+                <styled.ClearCartButton text={"Clear Cart"} onClick={clearCart}/>
             </styled.CartListHeaderSpace>
             <styled.CartItemsHeaderSpace>
                 <styled.CartListHeader $width={"50%"}>{"Item Details"}</styled.CartListHeader>
-                <styled.CartListHeader $width={"15%"}>{"Item Price"}</styled.CartListHeader>
+                <styled.CartListHeader $width={"10%"}>{"Item Price"}</styled.CartListHeader>
                 <styled.CartListHeader $width={"20%"}>{"Item Quantity"}</styled.CartListHeader>
                 <styled.CartListHeader $width={"15%"}>{"Item Total Price"}</styled.CartListHeader>
             </styled.CartItemsHeaderSpace>
@@ -28,7 +27,7 @@ const CartPage =({}) => {
                         key={`${item.name}-${index}`}
                         itemImage={item.thumbnail}
                         itemQuantity={item.quantity}
-                        itemSize={item.size}
+                        itemSize={item.size} 
                         itemName={item.name}
                         itemPrice={item.price}
                         itemTotal={item.total}
@@ -37,6 +36,14 @@ const CartPage =({}) => {
                     />
                 ))}
             </styled.CartListContainer>
+            <styled.CartTotalSpace>
+                <styled.CartTotalInfo $width={"33%"}>{"Total Items:"}</styled.CartTotalInfo>
+                <styled.CartTotalInfo $width={"33%"}>{"Transaction Type:"}</styled.CartTotalInfo>
+                <styled.CartTotalInfo $width={"33%"}>{"Subtotal:"}</styled.CartTotalInfo>
+                {state.length !== 0 ? <styled.CartTotalInfo $width={"33%"}>{`${state.length} items`}</styled.CartTotalInfo> : <styled.CartTotalInfo $width={"33%"}>{'0 items'}</styled.CartTotalInfo>}
+                <styled.CartTotalInfo $width={"33%"}>{transactionType}</styled.CartTotalInfo>
+                <styled.CartTotalInfo $width={"33%"}>{subtotal}</styled.CartTotalInfo>
+            </styled.CartTotalSpace>
             <styled.CheckoutInformationContainer>
                 <div>This is temporary Checkout Informations container</div>
             </styled.CheckoutInformationContainer>                        

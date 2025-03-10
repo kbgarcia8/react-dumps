@@ -16,7 +16,7 @@ const CartItem = ({
     className
 }) => {
 
-    const {incrementItem,decrementItem} = useOutletContext();
+    const {incrementItem,decrementItem,removeFromCart} = useOutletContext();
 
     return(
         <styled.CartItemWrapper className={className}>
@@ -38,7 +38,7 @@ const CartItem = ({
             </styled.StepperContainer>            
             <styled.CartItemTotal>{itemTotal}</styled.CartItemTotal>
             <styled.RemoveItemButtonSpace>
-                <styled.RemoveItemButton svg={<DeleteIcon/>}/>
+                <styled.RemoveItemButton svg={<DeleteIcon/>} dataAttributes={{"data-index": dataIndex}} onClick={removeFromCart}/>
             </styled.RemoveItemButtonSpace>
         </styled.CartItemWrapper>
     )

@@ -1,4 +1,4 @@
-import {React, useState, useReducer} from "react";
+import {React, useState, useReducer, useEffect} from "react";
 import PropTypes from "prop-types";
 import { Outlet } from 'react-router-dom';
 import { useGlobalProvider } from "../../../context/ContextProvider";
@@ -22,7 +22,8 @@ function reducer(state, action){
                 } else {
                     return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity -1, total: parseInt(entry.total) - parseInt(entry.price)} : entry);
                 }
-            
+        case "remove":
+            return state.filter((entry, idx) => idx !== parseInt(index)); 
         case "reset":
             return initialCart;
         default:
@@ -34,6 +35,14 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const {database} = useGlobalProvider();
     const [state, dispatch] = useReducer(reducer, initialCart);
+    const [transactionType, setTransactionType] = useState("Dine-In");
+    const [subtotal, setSubtotal] = useState(0);
+
+    useEffect(() => {
+        const currentTotal = [];        
+        state.map((entry,index) => currentTotal.push(parseInt(entry.total)));
+        currentTotal.length !== 0 ? setSubtotal(currentTotal.reduce((total, itemTotal) => total + itemTotal,0)) : setSubtotal(0);        
+    }, [state])
     
     const addToCart = (e) => {
         const {size, price, category, index} = e.currentTarget.dataset;
@@ -53,7 +62,12 @@ const DashboardLayout = ({header, sidebar}) => {
     }
     
     const removeFromCart = (e) => {
-        //instantly remove from cart
+        const {index} = e.currentTarget.dataset;
+        dispatch({ type: "remove" , data: {index}})
+    }
+
+    const clearCart = () => {
+        dispatch({ type: "reset" })
     }
 
     return (
@@ -61,7 +75,7 @@ const DashboardLayout = ({header, sidebar}) => {
             <styled.DashboardLayoutHeader>{header}</styled.DashboardLayoutHeader>
             <styled.DashboardLayoutSidebar>{sidebar}</styled.DashboardLayoutSidebar>
             <styled.DashboardLayoutContent>
-                <Outlet context={{state, addToCart, incrementItem, decrementItem}}/>
+                <Outlet context={{state, addToCart, incrementItem, decrementItem, removeFromCart, clearCart, transactionType, subtotal}}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>
     )

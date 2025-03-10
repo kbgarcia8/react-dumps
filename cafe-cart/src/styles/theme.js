@@ -45,11 +45,11 @@ export const lightTheme = {//utilize dark text
     borderColor2: palette.neutral3,
     textColor1: palette.neutral5,
     textColor2: palette.neutral4,
-    textColor3: palette.accent,
-    warning: palette.warning2,
-    success: palette.success2,
-    error: palette.error2,
-    shadow: palette.shadow1
+    textColor3: palette.accent,    
+    warning: notificationPalette.warningDark,
+    success: notificationPalette.successDark,
+    error: notificationPalette.errorDark,
+    shadow: notificationPalette.shadow1
 }
 
 export const darkTheme = {//utilize light text
@@ -62,9 +62,9 @@ export const darkTheme = {//utilize light text
     textColor1: palette.neutral1,
     textColor2: palette.accent,
     textColor3: palette.neutral2,
-    warning: palette.error1,
-    success: palette.success1,
-    error: palette.error1,
+    warning: notificationPalette.warningLight,
+    success: notificationPalette.successLight,
+    error: notificationPalette.errorLight,
     shadow: palette.shadow2
 }
 
