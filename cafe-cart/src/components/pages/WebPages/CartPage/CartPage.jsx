@@ -4,10 +4,11 @@ import { useOutletContext } from "react-router-dom";
 import { useGlobalProvider } from "../../../../context/ContextProvider";
 import * as styled from "./CartPage.styles";
 import CartItem from "../../../organisms/CartItem/CartItem";
+import GenericForm from "../../../molecules/Form";
 
 const CartPage =({}) => {
 
-    const {state, clearCart, transactionType, subtotal} = useOutletContext();
+    const {state, clearCart, transactionType, subtotal, addressRadio} = useOutletContext();
     
     return(
         <styled.CartPageWrapper>
@@ -45,7 +46,9 @@ const CartPage =({}) => {
                 <styled.CartTotalInfo $width={"33%"}>{subtotal}</styled.CartTotalInfo>
             </styled.CartTotalSpace>
             <styled.CheckoutInformationContainer>
-                <div>This is temporary Checkout Informations container</div>
+                <styled.AddressInfoContainer>
+                    <GenericForm formInputs={addressRadio}/>
+                </styled.AddressInfoContainer>
             </styled.CheckoutInformationContainer>                        
         </styled.CartPageWrapper>
     )

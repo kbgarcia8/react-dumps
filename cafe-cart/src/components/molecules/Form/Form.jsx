@@ -3,46 +3,47 @@ import PropTypes from "prop-types";
 import GenericLabel from "../../atoms/Label";
 import GenericInput from "../../atoms/Input";
 import GenericButton from "../../atoms/Button";
-import {LabelAndInputContainer, FormFieldset, FormLegend, Form} from "./Form.styles";
-
+import * as styled from "./Form.styles";
+/*
+    1. Modify to accept multiple fieldset or just one of no object
+    2. forminputs will be a map of addressBank -> try this
+    3. try to clean up react clone element use classname instead
+*/
 const GenericForm = ({ 
     legendText, 
     id, 
-    FormInputs, //object that contains the input fields information to make it reusable
-    StyledForm,
-    StyledLegend,
-    StyledLabelComponent,
-    StyledInputComponent,
-    StyledSubmitButtonComponent,
-    StyledCancelButtonComponent,
-    StyledDeleteButtonComponent,
+    formInputs, //object that contains the input fields information to make it reusable
+    styledLabelComponent,
+    styledInputComponent,
+    styledSubmitButtonComponent,
+    styledCancelButtonComponent,
+    styledDeleteButtonComponent,
     handleSubmit,
     handleCancel,
     handleDelete,
 }) => {
     return (
-        <StyledForm id={id} >
+        <styled.Form id={id} >
             <FormFieldset>
-                <StyledLegend>{legendText}</StyledLegend>
-                {FormInputs.map((input, index) => (
+                <styled.FormLegend>{legendText}</styled.FormLegend>
+                {formInputs.map((input, index) => (
                     <LabelAndInputContainer key={`form-${id}-${index}`}>
-                        {StyledLabelComponent
-                            ? React.cloneElement(StyledLabelComponent, {
+                        {styledLabelComponent
+                            ? React.cloneElement(styledLabelComponent, {
                                 htmlFor: input.id,
                                 textLabel: input.labelText
                             })
                             : <GenericLabel htmlFor={input.id} textLabel={input.labelText} />
                         }
-                        { StyledInputComponent 
-                            ? React.cloneElement(StyledInputComponent, {
+                        {styledInputComponent 
+                            ? React.cloneElement(styledInputComponent, {
                                 id: input.id,
                                 placeholderText: input.placeholderText,
                                 onChange: input.onChange,
                                 value: input.value,
                                 type: input.type,
                                 isRequired: input.isRequired,
-                                dataKey: input.dataKey,
-                                dataIndex: input.dataIndex
+                                ...input.dataAttributes
                             })
                             : <GenericInput 
                                 id={input.id}
@@ -51,36 +52,35 @@ const GenericForm = ({
                                 value={input.value}
                                 type={input.type}
                                 isRequired={input.isRequired}
-                                dataKey={input.dataKey}
-                                dataIndex={input.dataIndex}
+                                {...input.dataAttributes}
                             />}
                         </LabelAndInputContainer>
                 ))}
                 <div className="button-container">
-                    {StyledSubmitButtonComponent 
-                        ? React.cloneElement(StyledSubmitButtonComponent, {
-                                id: StyledSubmitButtonComponent.props.id || `form-${id}-submit`,
+                    {styledSubmitButtonComponent 
+                        ? React.cloneElement(styledSubmitButtonComponent, {
+                                id: styledSubmitButtonComponent.props.id || `form-${id}-submit`,
                                 type: "submit",                                
                                 onClick: handleSubmit
                             })
                         : <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Submit"} onClick={handleSubmit} />}
-                    {StyledCancelButtonComponent 
-                        ? React.cloneElement(StyledCancelButtonComponent, {
-                                id: StyledCancelButtonComponent.props.id || `form-${id}-cancel`,
+                    {styledCancelButtonComponent 
+                        ? React.cloneElement(styledCancelButtonComponent, {
+                                id: styledCancelButtonComponent.props.id || `form-${id}-cancel`,
                                 type: "button",
                                 onClick: handleCancel
                             })
                         : <GenericButton id={`form-${id}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel}/>}
-                    {StyledDeleteButtonComponent 
-                        ? React.cloneElement(StyledDeleteButtonComponent, {
-                                id: StyledDeleteButtonComponent.props.id || `form-${id}-delete`,
+                    {styledDeleteButtonComponent 
+                        ? React.cloneElement(styledDeleteButtonComponent, {
+                                id: styledDeleteButtonComponent.props.id || `form-${id}-delete`,
                                 type: "button",
                                 onClick: handleDelete
                             })
                         : <GenericButton id={`form-${id}-delete`} type={"button"} text={"Delete"} onClick={handleDelete}/>}
                 </div>
             </FormFieldset>
-        </StyledForm>
+        </styled.Form>
     );
 }
 
@@ -96,30 +96,25 @@ GenericForm.propTypes = {
             value: PropTypes.string.isRequired,
             type: PropTypes.string,
             isRequired: PropTypes.bool,
-            dataKey: PropTypes.string,
-            dataIndex: PropTypes.number,
+            dataAttributes: PropTypes.object,
         })
     ).isRequired,
     Form: PropTypes.elementType,
-    StyledLegend: PropTypes.elementType, //for styled components
-    StyledLabelComponent: PropTypes.node, //for JSX elements
-    StyledInputComponent: PropTypes.node,
-    StyledSubmitButtonComponent: PropTypes.node,
-    StyledCancelButtonComponent: PropTypes.node,
-    StyledDeleteButtonComponent: PropTypes.node,
+    styledInputComponent: PropTypes.node,
+    styledSubmitButtonComponent: PropTypes.node,
+    styledCancelButtonComponent: PropTypes.node,
+    styledDeleteButtonComponent: PropTypes.node,
     handleSubmit: PropTypes.func,
     handleCancel: PropTypes.func,
     handleDelete: PropTypes.func,
 }
 
 GenericForm.defaultProps = {
-    StyledForm: Form,
-    StyledLegend: FormLegend,
-    StyledLabelComponent: null,
-    StyledInputComponent: null,
-    StyledSubmitButtonComponent: null,
-    StyledCancelButtonComponent: null,
-    StyledDeleteButtonComponent: null,
+    styledLabelComponent: null,
+    styledInputComponent: null,
+    styledSubmitButtonComponent: null,
+    styledCancelButtonComponent: null,
+    styledDeleteButtonComponent: null,
 }
 
 export default GenericForm;

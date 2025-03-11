@@ -4,8 +4,9 @@ import GenericButton from "../../../atoms/Button";
 
 export const CartPageWrapper = styled.div`
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 3fr 2.5fr;
     grid-template-rows: 1fr 1fr 7fr 1fr;
+    column-gap: ${v.spacing.xxsmall};
     width: 100%;
     height: 100%;
     padding: ${v.spacing.small};
@@ -72,7 +73,18 @@ export const CartTotalInfo = styled.span.attrs(props => ({
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+    font-size: ${v.fontSize.xsmall};
+    font-weight: ${v.fontWeight.light};
 `;
 export const CheckoutInformationContainer = styled.div`
-    grid-area: 1/2/3/3;
+    grid-area: 1/2/5/3;
+    padding: ${v.spacing.xxsmall};
+    display: grid;
+    grid-template-rows: 3fr 3fr 2fr;  
+    border: 2px solid green;
+`;
+export const AddressInfoContainer = styled.div`
+    grid-row: 1/2;
+    border: 2px solid red;
 `;

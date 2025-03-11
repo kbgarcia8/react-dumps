@@ -6,6 +6,27 @@ import * as styled from "./DashboardLayout.styles";
 
 const initialCart = [];
 
+const initialAddressBank = [
+    {
+        name: "KB Garcia",
+        number: "09123456789",
+        location: "Metro, Manila",
+        selected: false
+    }
+];
+
+const addressRadio = [
+    {
+      labelText: "Name",
+      id: "name",
+      placeholderText: "Enter your name",
+      onChange: () => {},
+      value: "",
+      type: "radio",
+      isRequired: false,
+    },
+]
+
 function reducer(state, action){
     const {size, price, quantity, index} = action.data || {};
     switch (action.type) {        
@@ -35,8 +56,9 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const {database} = useGlobalProvider();
     const [state, dispatch] = useReducer(reducer, initialCart);
-    const [transactionType, setTransactionType] = useState("Dine-In");
     const [subtotal, setSubtotal] = useState(0);
+    const [transactionType, setTransactionType] = useState("Dine-In");
+    const [addressBank,setAddressBank] = useState(initialAddressBank); 
 
     useEffect(() => {
         const currentTotal = [];        
@@ -75,7 +97,7 @@ const DashboardLayout = ({header, sidebar}) => {
             <styled.DashboardLayoutHeader>{header}</styled.DashboardLayoutHeader>
             <styled.DashboardLayoutSidebar>{sidebar}</styled.DashboardLayoutSidebar>
             <styled.DashboardLayoutContent>
-                <Outlet context={{state, addToCart, incrementItem, decrementItem, removeFromCart, clearCart, transactionType, subtotal}}/>
+                <Outlet context={{state, addToCart, incrementItem, decrementItem, removeFromCart, clearCart, transactionType, subtotal, addressRadio, addressBank}}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>
     )
