@@ -6,25 +6,55 @@ import * as styled from "./DashboardLayout.styles";
 
 const initialCart = [];
 
+//have own reducer for onChange on edit function of these rather than including in fieldset entry
 const initialAddressBank = [
     {
         name: "KB Garcia",
         number: "09123456789",
         location: "Metro, Manila",
         selected: false
+    },
+    {
+        name: "John Doe",
+        number: "09876543210",
+        location: "Cebu, Philippines",
+        selected: false
     }
 ];
 
-const addressRadio = [
+const paymentFieldSet = [
     {
-      labelText: "Name",
-      id: "name",
-      placeholderText: "Enter your name",
-      onChange: () => {},
-      value: "",
-      type: "radio",
-      isRequired: false,
+        legend: "Address",
+        inputs: initialAddressBank.map((addressEntry, index) => ({
+            labelText: `${addressEntry.name}\n${addressEntry.number}\n${addressEntry.location}`,
+            id: `address-entry-${index}`,
+            placeholderText: "",
+            onChange: () => {},
+            value: "",
+            type: "radio",
+            isRequired: false,
+            dataAttributes: {
+                "data-index": index
+            }
+          }))
     },
+    {
+        legend: "Payment Option",
+        inputs: [
+            {
+                labelText: 'GCash',
+                id: `payment-option-0`,
+                placeholderText: "",
+                onChange: () => {},
+                value: "",
+                type: "radio",
+                isRequired: false,
+                dataAttributes: {
+                    "data-index": 0
+                }
+            }
+        ]
+    }
 ]
 
 function reducer(state, action){
@@ -80,7 +110,7 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const decrementItem = (e) => {
         const {index,quantity} = e.currentTarget.dataset;
-        dispatch({ type: "decrement" , data: {index,quantity}})
+        dispatch({ type: "decrement" , data: {index, quantity}})
     }
     
     const removeFromCart = (e) => {
@@ -97,7 +127,7 @@ const DashboardLayout = ({header, sidebar}) => {
             <styled.DashboardLayoutHeader>{header}</styled.DashboardLayoutHeader>
             <styled.DashboardLayoutSidebar>{sidebar}</styled.DashboardLayoutSidebar>
             <styled.DashboardLayoutContent>
-                <Outlet context={{state, addToCart, incrementItem, decrementItem, removeFromCart, clearCart, transactionType, subtotal, addressRadio, addressBank}}/>
+                <Outlet context={{state, addToCart, incrementItem, decrementItem, removeFromCart, clearCart, transactionType, subtotal, addressBank, paymentFieldSet}}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>
     )

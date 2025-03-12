@@ -1,24 +1,25 @@
 import styled from 'styled-components';
+import { v } from '../../../styles/variables';
 
 export const LabelAndInputContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: ${v.spacing.small};
 `;
 
 export const FormLegend = styled.legend`
-    font-size: 1.25rem;
+    font-size: ${v.spacing.medium};
     font-weight: 500;
-    margin-bottom: 1rem;
+    margin-bottom: ${v.spacing.small};
     width: 25%;
     text-align: center;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
 
 export const FormFieldset = styled.fieldset`
-    padding: 1rem;
+    padding: ${v.spacing.small};
 `;
 
 export const Form = styled.form`
@@ -26,12 +27,9 @@ export const Form = styled.form`
     flex-direction: column;
     align-items: center;
     width: 100%;
-
-    & .button-container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
 `;
-
-export default { LabelAndInputContainer, FormFieldset, FormLegend, Form };
+export const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+`;

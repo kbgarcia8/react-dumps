@@ -4,90 +4,87 @@ import GenericLabel from "../../atoms/Label";
 import GenericInput from "../../atoms/Input";
 import GenericButton from "../../atoms/Button";
 import * as styled from "./Form.styles";
-/*
-    1. Modify to accept multiple fieldset or just one of no object
-    2. forminputs will be a map of addressBank -> try this
-    3. try to clean up react clone element use classname instead
-*/
-const GenericForm = ({ 
+
+const GenericForm = ({
+    fieldsets,
     legendText, 
     id, 
     formInputs, //object that contains the input fields information to make it reusable
-    styledLabelComponent,
-    styledInputComponent,
-    styledSubmitButtonComponent,
-    styledCancelButtonComponent,
-    styledDeleteButtonComponent,
+    labelClassName,
+    inputClassName,
+    hasSubmit,
+    hasCancel,
+    hasDelete,
     handleSubmit,
     handleCancel,
     handleDelete,
 }) => {
+    console.log(fieldsets)
     return (
         <styled.Form id={id} >
-            <FormFieldset>
-                <styled.FormLegend>{legendText}</styled.FormLegend>
-                {formInputs.map((input, index) => (
-                    <LabelAndInputContainer key={`form-${id}-${index}`}>
-                        {styledLabelComponent
-                            ? React.cloneElement(styledLabelComponent, {
-                                htmlFor: input.id,
-                                textLabel: input.labelText
-                            })
-                            : <GenericLabel htmlFor={input.id} textLabel={input.labelText} />
-                        }
-                        {styledInputComponent 
-                            ? React.cloneElement(styledInputComponent, {
-                                id: input.id,
-                                placeholderText: input.placeholderText,
-                                onChange: input.onChange,
-                                value: input.value,
-                                type: input.type,
-                                isRequired: input.isRequired,
-                                ...input.dataAttributes
-                            })
-                            : <GenericInput 
-                                id={input.id}
-                                placeholderText={input.placeholderText}
-                                onChange={input.onChange}
-                                value={input.value}
-                                type={input.type}
-                                isRequired={input.isRequired}
-                                {...input.dataAttributes}
-                            />}
-                        </LabelAndInputContainer>
-                ))}
-                <div className="button-container">
-                    {styledSubmitButtonComponent 
-                        ? React.cloneElement(styledSubmitButtonComponent, {
-                                id: styledSubmitButtonComponent.props.id || `form-${id}-submit`,
-                                type: "submit",                                
-                                onClick: handleSubmit
-                            })
-                        : <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Submit"} onClick={handleSubmit} />}
-                    {styledCancelButtonComponent 
-                        ? React.cloneElement(styledCancelButtonComponent, {
-                                id: styledCancelButtonComponent.props.id || `form-${id}-cancel`,
-                                type: "button",
-                                onClick: handleCancel
-                            })
-                        : <GenericButton id={`form-${id}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel}/>}
-                    {styledDeleteButtonComponent 
-                        ? React.cloneElement(styledDeleteButtonComponent, {
-                                id: styledDeleteButtonComponent.props.id || `form-${id}-delete`,
-                                type: "button",
-                                onClick: handleDelete
-                            })
-                        : <GenericButton id={`form-${id}-delete`} type={"button"} text={"Delete"} onClick={handleDelete}/>}
-                </div>
-            </FormFieldset>
+            {fieldsets !== null
+                ? fieldsets.map((field, index) => (
+                    <styled.FormFieldset id={id}>
+                        <styled.FormLegend>{field.legend}</styled.FormLegend>
+                        {field['inputs'].map((input, index) => (
+                            <styled.LabelAndInputContainer key={`form-${id}-${index}`}>                        
+                                <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />                        
+                                    <GenericInput
+                                        id={input.id}
+                                        placeholderText={input.placeholderText}
+                                        onChange={input.onChange}
+                                        value={input.value}
+                                        type={input.type}
+                                        isRequired={input.isRequired}
+                                        {...input.dataAttributes}
+                                        className={inputClassName}
+                                    />
+                                </styled.LabelAndInputContainer>
+                        ))}
+                        <styled.ButtonContainer>
+                            {hasSubmit && <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Submit"} onClick={handleSubmit} className={"submit-btn"}/>}
+                            {hasCancel && <GenericButton id={`form-${id}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel} className={"cancel-btn"}/>}
+                            {hasDelete && <GenericButton id={`form-${id}-delete`} type={"button"} text={"Delete"} onClick={handleDelete} className={"delete-btn"}/>}
+                        </styled.ButtonContainer>
+                    </styled.FormFieldset>
+                ))
+                : <styled.FormFieldset id={id}>
+                        <styled.FormLegend>{legendText}</styled.FormLegend>
+                        {formInputs.map((input, index) => (
+                            <styled.LabelAndInputContainer key={`form-${id}-${index}`}>                        
+                                <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />                        
+                                    <GenericInput
+                                        id={input.id}
+                                        placeholderText={input.placeholderText}
+                                        onChange={input.onChange}
+                                        value={input.value}
+                                        type={input.type}
+                                        isRequired={input.isRequired}
+                                        {...input.dataAttributes}
+                                        className={inputClassName}
+                                    />
+                                </styled.LabelAndInputContainer>
+                        ))}
+                        <styled.ButtonContainer>
+                            {hasSubmit && <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Submit"} onClick={handleSubmit} className={"submit-btn"}/>}
+                            {hasCancel && <GenericButton id={`form-${id}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel} className={"cancel-btn"}/>}
+                            {hasDelete && <GenericButton id={`form-${id}-delete`} type={"button"} text={"Delete"} onClick={handleDelete} className={"delete-btn"}/>}
+                        </styled.ButtonContainer>
+                    </styled.FormFieldset>
+            }
         </styled.Form>
     );
 }
-
 GenericForm.propTypes = {
+    fieldsets: PropTypes.arrayOf(
+        PropTypes.shape({
+            legend: PropTypes.string.isRequired,
+            inputs: PropTypes.array
+        })
+    ),
     legendText: PropTypes.string,
     id: PropTypes.string,
-    FormInputs: PropTypes.arrayOf(
+    formInputs: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             labelText: PropTypes.string.isRequired,
@@ -98,23 +95,22 @@ GenericForm.propTypes = {
             isRequired: PropTypes.bool,
             dataAttributes: PropTypes.object,
         })
-    ).isRequired,
-    Form: PropTypes.elementType,
-    styledInputComponent: PropTypes.node,
-    styledSubmitButtonComponent: PropTypes.node,
-    styledCancelButtonComponent: PropTypes.node,
-    styledDeleteButtonComponent: PropTypes.node,
+    ),
+    labelClassName: PropTypes.string,
+    inputClassName: PropTypes.string,
+    hasSubmit: PropTypes.bool,
+    hasCancel: PropTypes.bool,
+    hasDelete: PropTypes.bool,
     handleSubmit: PropTypes.func,
     handleCancel: PropTypes.func,
     handleDelete: PropTypes.func,
 }
 
 GenericForm.defaultProps = {
-    styledLabelComponent: null,
-    styledInputComponent: null,
-    styledSubmitButtonComponent: null,
-    styledCancelButtonComponent: null,
-    styledDeleteButtonComponent: null,
+    fieldsets: null,
+    hasSubmit: false,
+    hasCancel: false,
+    hasDelete: false,
 }
 
 export default GenericForm;

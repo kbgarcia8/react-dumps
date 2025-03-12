@@ -8,7 +8,7 @@ import GenericForm from "../../../molecules/Form";
 
 const CartPage =({}) => {
 
-    const {state, clearCart, transactionType, subtotal, addressRadio} = useOutletContext();
+    const {state, clearCart, transactionType, subtotal, paymentFieldSet} = useOutletContext();
     
     return(
         <styled.CartPageWrapper>
@@ -47,7 +47,7 @@ const CartPage =({}) => {
             </styled.CartTotalSpace>
             <styled.CheckoutInformationContainer>
                 <styled.AddressInfoContainer>
-                    <GenericForm formInputs={addressRadio}/>
+                    <GenericForm fieldsets={paymentFieldSet}/>
                 </styled.AddressInfoContainer>
             </styled.CheckoutInformationContainer>                        
         </styled.CartPageWrapper>
