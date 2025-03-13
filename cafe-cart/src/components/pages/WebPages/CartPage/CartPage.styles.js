@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { v } from "../../../../styles/variables";
 import GenericButton from "../../../atoms/Button";
+import GenericForm from "../../../molecules/Form";
 
 export const CartPageWrapper = styled.div`
     display: grid;
@@ -86,5 +87,29 @@ export const CheckoutInformationContainer = styled.div`
 `;
 export const AddressInfoContainer = styled.div`
     grid-row: 1/2;
+    padding: ${v.spacing.xxsmall};
     border: 2px solid red;
+`;
+export const CheckoutForm = styled(GenericForm)`
+    border: 2px solid black;
+
+    & fieldset {
+        width: 100%;
+    }
+
+    & .payment-label {
+        border: 2px solid yellow;
+        display: flex;
+        white-space: pre-line;
+        width: 100%;
+    }
+
+    & .label-input-container{
+        flex-direction: row;
+        align-items: center;
+        border: 2px solid violet;
+        margin-block: ${v.spacing.xsmall};
+        height: 5rem;
+        width: 50%;
+    }
 `;

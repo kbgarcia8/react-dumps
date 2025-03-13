@@ -47,7 +47,10 @@ const CartPage =({}) => {
             </styled.CartTotalSpace>
             <styled.CheckoutInformationContainer>
                 <styled.AddressInfoContainer>
-                    <GenericForm fieldsets={paymentFieldSet}/>
+                    <styled.CheckoutForm 
+                        fieldsets={paymentFieldSet}
+                        labelClassName={"payment-label"}
+                    />
                 </styled.AddressInfoContainer>
             </styled.CheckoutInformationContainer>                        
         </styled.CartPageWrapper>

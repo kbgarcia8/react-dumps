@@ -6,29 +6,30 @@ import GenericButton from "../../atoms/Button";
 import * as styled from "./Form.styles";
 
 const GenericForm = ({
-    fieldsets,
+    fieldsets = null,
     legendText, 
     id, 
     formInputs, //object that contains the input fields information to make it reusable
     labelClassName,
     inputClassName,
-    hasSubmit,
-    hasCancel,
-    hasDelete,
+    hasSubmit = false,
+    hasCancel = false,
+    hasDelete = false,
     handleSubmit,
     handleCancel,
     handleDelete,
+    className
 }) => {
     console.log(fieldsets)
     return (
-        <styled.Form id={id} >
+        <styled.Form id={id} className={className}>
             {fieldsets !== null
                 ? fieldsets.map((field, index) => (
-                    <styled.FormFieldset id={id}>
+                    <styled.FormFieldset key={`${field.legend}-${index}`} id={id}>
                         <styled.FormLegend>{field.legend}</styled.FormLegend>
                         {field['inputs'].map((input, index) => (
-                            <styled.LabelAndInputContainer key={`form-${id}-${index}`}>                        
-                                <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />                        
+                            <styled.LabelAndInputContainer key={`form-${id}-${index}`} className={"label-input-container"}>                        
+                                {input.type !== "radio" && <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />}
                                     <GenericInput
                                         id={input.id}
                                         placeholderText={input.placeholderText}
@@ -39,7 +40,8 @@ const GenericForm = ({
                                         {...input.dataAttributes}
                                         className={inputClassName}
                                     />
-                                </styled.LabelAndInputContainer>
+                                {input.type === "radio" && <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />}
+                            </styled.LabelAndInputContainer>
                         ))}
                         <styled.ButtonContainer>
                             {hasSubmit && <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Submit"} onClick={handleSubmit} className={"submit-btn"}/>}
@@ -52,7 +54,7 @@ const GenericForm = ({
                         <styled.FormLegend>{legendText}</styled.FormLegend>
                         {formInputs.map((input, index) => (
                             <styled.LabelAndInputContainer key={`form-${id}-${index}`}>                        
-                                <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />                        
+                                {input.type !== "radio" && <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />}        
                                     <GenericInput
                                         id={input.id}
                                         placeholderText={input.placeholderText}
@@ -63,7 +65,8 @@ const GenericForm = ({
                                         {...input.dataAttributes}
                                         className={inputClassName}
                                     />
-                                </styled.LabelAndInputContainer>
+                                {input.type === "radio" && <GenericLabel htmlFor={input.id} textLabel={input.labelText} className={labelClassName} />}
+                            </styled.LabelAndInputContainer>
                         ))}
                         <styled.ButtonContainer>
                             {hasSubmit && <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Submit"} onClick={handleSubmit} className={"submit-btn"}/>}
@@ -104,13 +107,6 @@ GenericForm.propTypes = {
     handleSubmit: PropTypes.func,
     handleCancel: PropTypes.func,
     handleDelete: PropTypes.func,
-}
-
-GenericForm.defaultProps = {
-    fieldsets: null,
-    hasSubmit: false,
-    hasCancel: false,
-    hasDelete: false,
 }
 
 export default GenericForm;
