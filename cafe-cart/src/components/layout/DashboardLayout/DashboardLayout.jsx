@@ -84,6 +84,7 @@ const DashboardLayout = ({header, sidebar}) => {
     const {database} = useGlobalProvider();
     const [state, dispatch] = useReducer(reducer, initialCart);
     const [subtotal, setSubtotal] = useState(0);
+    const [addressBank,setAddressBank] = useState(initialAddressBank);
     const [paymentFieldSet, setPaymentFieldSet] = useState([
         {
             legend: "Address",
@@ -129,7 +130,6 @@ const DashboardLayout = ({header, sidebar}) => {
         }
     ])
     const [transactionType, setTransactionType] = useState("Dine-In");
-    const [addressBank,setAddressBank] = useState(initialAddressBank);
 
     useEffect(() => {
         const currentTotal = [];        
