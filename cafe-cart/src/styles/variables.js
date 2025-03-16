@@ -23,7 +23,7 @@ export const v = {
         bolder: 900,
     },
     fontSize: {
-        xxsmall: '0.5rem',
+        xxsmall: '0.6rem',
         xsmall: '0.75rem',
         small: '1rem',
         medium: '1.25rem',

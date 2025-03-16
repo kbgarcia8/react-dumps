@@ -1,5 +1,19 @@
 import styled from 'styled-components';
 import { v } from '../../../styles/variables';
+import GenericLabel from '../../atoms/Label';
+
+export const FormLabel = styled(GenericLabel).attrs(props => ({
+    labelDirection: props.labelDirection
+}))`
+    flex-direction:  ${(props) => props.$labelDirection};    
+`;
+
+export const EditableInputButtonContainer = styled.div`
+    border: 2px solid black;
+    display: flex;
+    height: 50%;
+    width: 20%;
+`
 
 export const LabelAndInputContainer = styled.div`
     display: flex;
@@ -18,8 +32,11 @@ export const FormLegend = styled.legend`
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
 
-export const FormFieldset = styled.fieldset`
+export const FormFieldset = styled.fieldset.attrs(props => ({
+    fieldHeight: props.fieldHeight
+}))`
     padding: ${v.spacing.small};
+    height: ${(props) => props.$fieldHeight};
 `;
 
 export const Form = styled.form`

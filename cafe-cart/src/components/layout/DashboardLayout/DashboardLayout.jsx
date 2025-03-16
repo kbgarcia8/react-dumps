@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 import { Outlet } from 'react-router-dom';
 import { useGlobalProvider } from "../../../context/ContextProvider";
 import * as styled from "./DashboardLayout.styles";
+import DeleteIcon from "../../atoms/SVG/DeleteIcon";
+import EditIcon from "../../atoms/SVG/EditIcon";
+import CashIcon from "../../atoms/SVG/CashIcon";
+import CardIcon from "../../atoms/SVG/CardIcon";
+import GCashIcon from "../../atoms/SVG/GCashIcon";
 
 const initialCart = [];
 
@@ -12,49 +17,41 @@ const initialAddressBank = [
         name: "KB Garcia",
         number: "09123456789",
         location: "Metro, Manila",
-        selected: false
+        checked: false
+    },
+    {
+        name: "Mark Sylvestre",
+        number: "091241246571",
+        location: "Muntinlupa, Philippines",
+        checked: false
+    },
+    {
+        name: "Rosie Jackson",
+        number: "09658512314",
+        location: "Pampanga, Philippines",
+        checked: false
     },
     {
         name: "John Doe",
         number: "09876543210",
         location: "Cebu, Philippines",
-        selected: false
+        checked: false
     }
 ];
 
-const paymentFieldSet = [
+const paymentMethods = [
     {
-        legend: "Address",
-        inputs: initialAddressBank.map((addressEntry, index) => ({
-            labelText: `${addressEntry.name}\n${addressEntry.number}\n${addressEntry.location}`,
-            id: `address-entry-${index}`,
-            placeholderText: "",
-            onChange: () => {},
-            value: "",
-            type: "radio",
-            isRequired: false,
-            dataAttributes: {
-                "data-index": index
-            }
-          }))
+        name: "Cash/COD",
+        image: <CashIcon/>
     },
     {
-        legend: "Payment Option",
-        inputs: [
-            {
-                labelText: 'GCash',
-                id: `payment-option-0`,
-                placeholderText: "",
-                onChange: () => {},
-                value: "",
-                type: "radio",
-                isRequired: false,
-                dataAttributes: {
-                    "data-index": 0
-                }
-            }
-        ]
-    }
+        name: "GCash/E-wallet",
+        image: <GCashIcon/>
+    },
+    {
+        name: "Credit/Debit Card",
+        image: <CardIcon/>
+    },
 ]
 
 function reducer(state, action){
@@ -87,14 +84,62 @@ const DashboardLayout = ({header, sidebar}) => {
     const {database} = useGlobalProvider();
     const [state, dispatch] = useReducer(reducer, initialCart);
     const [subtotal, setSubtotal] = useState(0);
+    const [paymentFieldSet, setPaymentFieldSet] = useState([
+        {
+            legend: "Address",
+            inputs: addressBank.map((addressEntry, index) => ({
+                labelText: `${addressEntry.name}\n`,
+                additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
+                labelDirection: "column",
+                id: `address-entry-${index}`,
+                placeholderText: "",
+                editable: true,
+                mainOnChange: () => {},
+                onClickEdit: () => {},
+                editIcon: <EditIcon/>,
+                onClickDelete: () => {},
+                deleteIcon: <DeleteIcon/>,
+                value: "",
+                type: "radio",
+                isRequired: false,
+                data: addressEntry,
+                dataAttributes: {
+                    "data-index": index
+                }
+            })),
+            height: "25vh"
+        },
+        {
+            legend: "Payment Option",
+            inputs: paymentMethods.map((method, index) => ({
+                    labelText: `${method.name}`,
+                    labelDirection: "row",
+                    id: `payment-option-${index}`,
+                    placeholderText: "",
+                    image: method.image,
+                    mainOnChange: () => {},
+                    value: "",
+                    type: "radio",
+                    isRequired: false,
+                    dataAttributes: {
+                        "data-index": index
+                    }
+            })),
+            height: "35vh"
+        }
+    ])
     const [transactionType, setTransactionType] = useState("Dine-In");
-    const [addressBank,setAddressBank] = useState(initialAddressBank); 
+    const [addressBank,setAddressBank] = useState(initialAddressBank);
 
     useEffect(() => {
         const currentTotal = [];        
         state.map((entry,index) => currentTotal.push(parseInt(entry.total)));
         currentTotal.length !== 0 ? setSubtotal(currentTotal.reduce((total, itemTotal) => total + itemTotal,0)) : setSubtotal(0);        
     }, [state])
+
+    useEffect(() => {
+        //update paymentFieldSet
+    }, [addressBank])
     
     const addToCart = (e) => {
         const {size, price, category, index} = e.currentTarget.dataset;
@@ -122,12 +167,38 @@ const DashboardLayout = ({header, sidebar}) => {
         dispatch({ type: "reset" })
     }
 
+    const handleAddressBankChange = (e) => {
+        const {index, key} = e.currentTarget.dataset;
+        //console.log(index, key, addressBank[index][key])
+
+        setAddressBank((prevAddressBank) => 
+            prevAddressBank.map((addressInfo, addressInfoIndex) => (
+                addressInfoIndex == index
+                ? {...addressInfo, [key]: e.target.value}
+                : addressInfo
+            ))
+        )
+        console.log(addressBank)
+    }
+
     return (
         <styled.DashboardLayoutWrapper>
             <styled.DashboardLayoutHeader>{header}</styled.DashboardLayoutHeader>
             <styled.DashboardLayoutSidebar>{sidebar}</styled.DashboardLayoutSidebar>
             <styled.DashboardLayoutContent>
-                <Outlet context={{state, addToCart, incrementItem, decrementItem, removeFromCart, clearCart, transactionType, subtotal, addressBank, paymentFieldSet}}/>
+                <Outlet context={{
+                    state, 
+                    addToCart, 
+                    incrementItem, 
+                    decrementItem, 
+                    removeFromCart, 
+                    clearCart, 
+                    transactionType, 
+                    subtotal, 
+                    addressBank, 
+                    paymentFieldSet,
+                    handleAddressBankChange
+                }}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>
     )

@@ -81,20 +81,22 @@ export const CartTotalInfo = styled.span.attrs(props => ({
 export const CheckoutInformationContainer = styled.div`
     grid-area: 1/2/5/3;
     padding: ${v.spacing.xxsmall};
-    display: grid;
-    grid-template-rows: 3fr 3fr 2fr;  
     border: 2px solid green;
-`;
-export const AddressInfoContainer = styled.div`
-    grid-row: 1/2;
-    padding: ${v.spacing.xxsmall};
-    border: 2px solid red;
 `;
 export const CheckoutForm = styled(GenericForm)`
     border: 2px solid black;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     & fieldset {
         width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow-y: auto;
+        align-items: center;
     }
 
     & .payment-label {
@@ -102,14 +104,54 @@ export const CheckoutForm = styled(GenericForm)`
         display: flex;
         white-space: pre-line;
         width: 100%;
+        max-height: 90%;
+        margin: 0;
+        & span {
+            margin-left: ${v.spacing.xxxsmall};
+            width: 100%;
+        }
+        & .label-image-container svg {
+            height: 100%;
+        }
+    }
+
+    & .additional-info{
+        font-size: ${v.fontSize.xxsmall};
     }
 
     & .label-input-container{
         flex-direction: row;
-        align-items: center;
         border: 2px solid violet;
-        margin-block: ${v.spacing.xsmall};
-        height: 5rem;
-        width: 50%;
+        margin-inline: ${v.spacing.xxxsmall};
+        margin-block: ${v.spacing.small};
+        width: 47.5%;
+        padding-inline: ${v.spacing.xxxsmall};
+        max-height: 100%;
+    }
+    
+    & .input-edit-buttons{
+        flex-direction: column;
+
+        & button {
+            width: 100%;
+            border-radius: 0;
+            padding: 0%;
+        }
+        
+        & .button-icon-and-text svg {
+            width: 50%;
+        }
+    }
+    
+    & .form-main-button-container{
+        justify-content: center;
+    
+        & .submit-form-btn {
+            width: 50%;
+        }
+    }
+    
+    & .edit-address-info {
+        border: 2px solid black;
     }
 `;

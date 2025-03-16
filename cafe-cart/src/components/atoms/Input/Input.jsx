@@ -10,6 +10,7 @@ export const GenericInput = ({
     type,
     isRequired,
     dataAttributes,
+    checked,
     className
 }) => {
     return (
@@ -24,6 +25,7 @@ export const GenericInput = ({
                 required={isRequired ? "required" : ""}
                 {...dataAttributes}
                 className={className}
+                checked={checked}
             />
         </>
     )
