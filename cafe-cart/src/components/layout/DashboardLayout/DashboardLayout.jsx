@@ -54,6 +54,51 @@ const paymentMethods = [
     },
 ]
 
+const initialPaymentFieldset = [
+    {
+        legend: "Address",
+        inputs: initialAddressBank.map((addressEntry, index) => ({
+            labelText: `${addressEntry.name}\n`,
+            additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
+            labelDirection: "column",
+            id: `address-entry-${index}`,
+            placeholderText: "",
+            editable: true,
+            mainOnChange: () => {},
+            onClickEdit: () => {},
+            editIcon: <EditIcon/>,
+            onClickDelete: () => {},
+            deleteIcon: <DeleteIcon/>,
+            value: "",
+            type: "radio",
+            isRequired: false,
+            data: addressEntry,
+            dataAttributes: {
+                "data-index": index
+            }
+        })),
+        height: "25vh"
+    },
+    {
+        legend: "Payment Option",
+        inputs: paymentMethods.map((method, index) => ({
+                labelText: `${method.name}`,
+                labelDirection: "row",
+                id: `payment-option-${index}`,
+                placeholderText: "",
+                image: method.image,
+                mainOnChange: () => {},
+                value: "",
+                type: "radio",
+                isRequired: false,
+                dataAttributes: {
+                    "data-index": index
+                }
+        })),
+        height: "35vh"
+    }
+]
+
 function reducer(state, action){
     const {size, price, quantity, index} = action.data || {};
     switch (action.type) {        
@@ -85,50 +130,7 @@ const DashboardLayout = ({header, sidebar}) => {
     const [state, dispatch] = useReducer(reducer, initialCart);
     const [subtotal, setSubtotal] = useState(0);
     const [addressBank,setAddressBank] = useState(initialAddressBank);
-    const [paymentFieldSet, setPaymentFieldSet] = useState([
-        {
-            legend: "Address",
-            inputs: addressBank.map((addressEntry, index) => ({
-                labelText: `${addressEntry.name}\n`,
-                additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
-                labelDirection: "column",
-                id: `address-entry-${index}`,
-                placeholderText: "",
-                editable: true,
-                mainOnChange: () => {},
-                onClickEdit: () => {},
-                editIcon: <EditIcon/>,
-                onClickDelete: () => {},
-                deleteIcon: <DeleteIcon/>,
-                value: "",
-                type: "radio",
-                isRequired: false,
-                data: addressEntry,
-                dataAttributes: {
-                    "data-index": index
-                }
-            })),
-            height: "25vh"
-        },
-        {
-            legend: "Payment Option",
-            inputs: paymentMethods.map((method, index) => ({
-                    labelText: `${method.name}`,
-                    labelDirection: "row",
-                    id: `payment-option-${index}`,
-                    placeholderText: "",
-                    image: method.image,
-                    mainOnChange: () => {},
-                    value: "",
-                    type: "radio",
-                    isRequired: false,
-                    dataAttributes: {
-                        "data-index": index
-                    }
-            })),
-            height: "35vh"
-        }
-    ])
+    const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
     const [transactionType, setTransactionType] = useState("Dine-In");
 
     useEffect(() => {
@@ -138,7 +140,35 @@ const DashboardLayout = ({header, sidebar}) => {
     }, [state])
 
     useEffect(() => {
-        //update paymentFieldSet
+        setPaymentFieldSet((prevPaymentFieldSet) => 
+            prevPaymentFieldSet.map((fieldEntry, fieldIndex) => {
+                if(fieldEntry.legend === "Address") {
+                    return {...fieldEntry, 
+                    inputs: addressBank.map((addressEntry, index) => ({
+                            labelText: `${addressEntry.name}\n`,
+                            additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
+                            labelDirection: "column",
+                            id: `address-entry-${index}`,
+                            placeholderText: "",
+                            editable: true,
+                            mainOnChange: () => {},
+                            onClickEdit: () => {},
+                            editIcon: <EditIcon/>,
+                            onClickDelete: () => {},
+                            deleteIcon: <DeleteIcon/>,
+                            value: "",
+                            type: "radio",
+                            isRequired: false,
+                            data: addressEntry,
+                            dataAttributes: {
+                                "data-index": index
+                            }
+                    }))
+                };
+                }
+                return fieldEntry
+            })
+        )
     }, [addressBank])
     
     const addToCart = (e) => {
@@ -178,7 +208,7 @@ const DashboardLayout = ({header, sidebar}) => {
                 : addressInfo
             ))
         )
-        console.log(addressBank)
+        console.dir(addressBank, { depth: null });
     }
 
     return (

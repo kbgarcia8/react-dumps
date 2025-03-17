@@ -16,7 +16,7 @@ const CartPage =({}) => {
         paymentFieldSet,
         handleAddressBankChange
     } = useOutletContext();
-    
+    {/*console.dir(paymentFieldSet, { depth: null });*/}
     return(
         <styled.CartPageWrapper>
             <styled.CartListHeaderSpace>

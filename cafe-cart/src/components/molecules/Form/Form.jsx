@@ -23,7 +23,7 @@ const GenericForm = ({
     handleDelete,
     className
 }) => {
-    {/*console.dir(fieldsets, { depth: null });*/}
+    {/*console.dir(paymentFieldSet, { depth: null });*/}
     return (
         <styled.Form id={`${id}-form`} className={className}>
             {fieldsets !== null
@@ -68,12 +68,16 @@ const GenericForm = ({
                                                     isRequired={true}
                                                     className={"editable-input"}
                                                     dataAttributes={{
-                                                        "data-index": keydataIndex,
+                                                        "data-index": inputIndex, //should be inputIndex to correspond to radio button index and not with input increment
                                                         "data-key": keydata
                                                     }}
                                                 />
                                             </styled.LabelAndInputContainer>
                                         ))}
+                                        {/*Continue editing save, cancel and delete buttons for editable input */}
+                                        <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Save"} onClick={handleSubmit} className={"submit-form-btn"}/>
+                                        <GenericButton id={`form-${id}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>
+                                        <GenericButton id={`form-${id}-delete`} type={"button"} text={"Delete"} onClick={handleDelete} className={"delete-form-btn"}/>
                                     </styled.FormFieldset>}
                             </React.Fragment>
                         ))}
