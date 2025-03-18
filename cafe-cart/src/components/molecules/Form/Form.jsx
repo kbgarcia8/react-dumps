@@ -46,18 +46,18 @@ const GenericForm = ({
                                         checked={input.checked}
                                     />
                                 {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
-                                {(input.editable && input.type ==="radio") && 
+                                {(input.editable && input.type ==="radio") &&
                                     <styled.EditableInputButtonContainer className={"input-edit-buttons"}>
                                         <GenericButton id={`edit-radio-${input.id}-edit`} svg={input.editIcon} type={"button"} onClick={input.onClickEdit} className={`edit-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
                                         <GenericButton id={`edit-radio-${input.id}-delete`} svg={input.deleteIcon} type={"button"} onClick={input.onClickDelete} className={`delete-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
                                     </styled.EditableInputButtonContainer>                                    
                                 }
                             </styled.LabelAndInputContainer>
-                            {(input.editable && input.type ==="radio") &&
+                            {(input.editable && input.type ==="radio" && input['data']['editing']) && 
                                     <styled.FormFieldset className={"editable-input-fieldset"}>
                                         <styled.FormLegend>{`${field.legend} ${inputIndex + 1}`}</styled.FormLegend>
                                         {Object.keys(input['data']).map((keydata, keydataIndex) => (
-                                            keydata !== "checked" &&
+                                            (keydata !== "checked" && keydata !== "editing") &&
                                             <styled.LabelAndInputContainer key={`${keydata}-${keydataIndex}`} className={"editable-input-container"}>
                                                 <GenericInput
                                                     id={`editable-input-${keydataIndex}`}
@@ -75,9 +75,11 @@ const GenericForm = ({
                                             </styled.LabelAndInputContainer>
                                         ))}
                                         {/*Continue editing save, cancel and delete buttons for editable input */}
-                                        <GenericButton id={`form-${id}-submit`} type={"submit"} text={"Save"} onClick={handleSubmit} className={"submit-form-btn"}/>
-                                        <GenericButton id={`form-${id}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>
-                                        <GenericButton id={`form-${id}-delete`} type={"button"} text={"Delete"} onClick={handleDelete} className={"delete-form-btn"}/>
+                                        <styled.ButtonContainer className={"editable-input-button-space"}>
+                                            <GenericButton id={`editable-input-${inputIndex}-submit`} type={"submit"} text={"Save"} onClick={handleSubmit} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                            <GenericButton id={`editable-input-${inputIndex}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                            <GenericButton id={`editable-input-${inputIndex}-delete`} type={"button"} text={"Delete"} onClick={handleDelete} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                        </styled.ButtonContainer>
                                     </styled.FormFieldset>}
                             </React.Fragment>
                         ))}

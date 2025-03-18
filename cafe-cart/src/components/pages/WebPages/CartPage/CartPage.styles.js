@@ -159,7 +159,35 @@ export const CheckoutForm = styled(GenericForm)`
         }
     }
     
-    & .edit-address-info {
-        border: 2px solid black;
+    & .editable-input-fieldset {
+        margin-left: ${v.spacing.large};
+        margin-bottom: ${v.spacing.large};
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        & legend {
+            font-size: ${v.fontSize.xsmall};
+            width: 35%;
+        }
+        & .editable-input-container {width: 75%;}
+        & input {font-size: ${v.fontSize.xxsmall};}
+
+
+        & .editable-input-button-space {
+            & button {
+                border-radius: ${v.borderRadius.small};
+                width: 50%;
+                margin: 0;
+                padding: 0;
+                margin-inline: ${v.spacing.xxxsmall};
+                padding-inline: ${v.spacing.xxxsmall};
+                
+                & .button-icon-and-text span {
+                    font-size: ${v.fontSize.xxsmall};
+                }
+            }
+        }
     }
 `;

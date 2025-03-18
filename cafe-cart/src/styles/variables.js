@@ -23,7 +23,8 @@ export const v = {
         bolder: 900,
     },
     fontSize: {
-        xxsmall: '0.6rem',
+        xxxsmall: '0.35rem',
+        xxsmall: '0.55rem',
         xsmall: '0.75rem',
         small: '1rem',
         medium: '1.25rem',
@@ -47,6 +48,7 @@ export const v = {
         small: '0.25rem',
         medium: '0.5rem',
         large: '1rem',
+        xlarge: '2rem',
         circle: '50%',
     },
     borderThickness: {

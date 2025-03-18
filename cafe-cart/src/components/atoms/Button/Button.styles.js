@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { v } from '../../../styles/variables';
 
 export const Button = styled.button`
     display: flex;
@@ -6,8 +7,8 @@ export const Button = styled.button`
     justify-items: center;
     background-color: ${({theme}) => theme.backgroundColor1};
     color: #FFFFFF;
-    border-radius: 2rem;
-    padding: 0.25rem 0.75rem;
+    border-radius: ${v.borderRadius.xlarge};
+    padding: ${v.spacing.xxxsmall} ${v.spacing.small};
     margin: 0.125rem;
     width: 100%;
     cursor: pointer;
@@ -24,9 +25,10 @@ export const Button = styled.button`
     & .button-icon-and-text svg {
         width: 100%;
     }
-    & .button-icon-and-text span { //default styling for text inside button
-        font-size: 0.75rem;
-        font-weight: 500;
+    & .button-icon-and-text span {
+        font-size: ${v.fontSize.xsmall};
+        font-weight: ${v.fontWeight.medium};
+        font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
         display: flex;
         align-items: center;
         justify-content: center;

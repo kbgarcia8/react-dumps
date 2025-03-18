@@ -18,24 +18,28 @@ const initialAddressBank = [
         name: "KB Garcia",
         number: "09123456789",
         location: "Metro, Manila",
+        editing: false,
         checked: false
     },
     {
         name: "Mark Sylvestre",
         number: "091241246571",
         location: "Muntinlupa, Philippines",
+        editing: false,
         checked: false
     },
     {
         name: "Rosie Jackson",
         number: "09658512314",
         location: "Pampanga, Philippines",
+        editing: false,
         checked: false
     },
     {
         name: "John Doe",
         number: "09876543210",
         location: "Cebu, Philippines",
+        editing: false,
         checked: false
     }
 ];
@@ -64,7 +68,7 @@ const initialPaymentFieldset = [
             labelDirection: "column",
             id: `address-entry-${index}`,
             placeholderText: "",
-            editable: true,
+            editable: true, //if editable is true data structure must have an editing key with a boolean value
             mainOnChange: () => {},
             onClickEdit: () => {},
             editIcon: <EditIcon/>,
@@ -154,7 +158,7 @@ const DashboardLayout = ({header, sidebar}) => {
                             placeholderText: "",
                             editable: true,
                             mainOnChange: () => {},
-                            onClickEdit: () => {},
+                            onClickEdit: openEditAddressEntryPanel,
                             editIcon: <EditIcon/>,
                             onClickDelete: () => {},
                             deleteIcon: <DeleteIcon/>,
@@ -175,7 +179,6 @@ const DashboardLayout = ({header, sidebar}) => {
     
     useEffect(() => {
         setTransactionType(transactionTypes[transactionTypeCount]);
-        console.log(transactionType);
     }, [transactionTypeCount]); 
 
     const addToCart = (e) => {
@@ -208,13 +211,12 @@ const DashboardLayout = ({header, sidebar}) => {
         setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 3 ? prevTransactionCount + 1 : 0) 
     }
 
-    const prevTransactionType = (e) => {
+    const prevTransactionType = () => {
         setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 0 ? prevTransactionCount - 1 : 3) 
     }
 
     const handleAddressBankChange = (e) => {
         const {index, key} = e.currentTarget.dataset;
-        //console.log(index, key, addressBank[index][key])
 
         setAddressBank((prevAddressBank) => 
             prevAddressBank.map((addressInfo, addressInfoIndex) => (
@@ -224,6 +226,18 @@ const DashboardLayout = ({header, sidebar}) => {
             ))
         )
         console.dir(addressBank, { depth: null });
+    }
+
+    const openEditAddressEntryPanel = (e) => {
+        e.preventDefault();
+        const { index } = e.currentTarget.dataset;
+        setAddressBank((prevAddressBank) => 
+            prevAddressBank.map((addressInfo, addressInfoIndex) => (
+                (addressInfoIndex == index)
+                ? addressInfo['editing'] === false ? {...addressInfo, ['editing']: true} : {...addressInfo, ['editing']: false}
+                : {...addressInfo, ['editing']: false}
+            ))
+        )
     }
 
     return (
