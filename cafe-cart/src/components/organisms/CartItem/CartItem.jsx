@@ -29,11 +29,15 @@ const CartItem = ({
             <styled.CartItemPrice>{itemPrice}</styled.CartItemPrice>
             <styled.StepperContainer>
                 <styled.CartItemStepper
-                    count={itemQuantity}
+                    stepperState={itemQuantity}
                     increment={incrementItem}
+                    incrementButtonText={"+"}
                     decrement={decrementItem}
-                    dataIndex={dataIndex}
-                    dataQuantity={dataQuantity}
+                    decrementButtonText={"-"}
+                    dataAttributes={{
+                        "data-index": dataIndex,
+                        "data-quantity": dataQuantity
+                    }}
                 />
             </styled.StepperContainer>            
             <styled.CartItemTotal>{itemTotal}</styled.CartItemTotal>

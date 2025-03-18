@@ -11,7 +11,9 @@ const CartPage =({}) => {
     const {
         state, 
         clearCart, 
-        transactionType, 
+        transactionType,
+        nextTransactionType,
+        prevTransactionType,
         subtotal, 
         paymentFieldSet,
         handleAddressBankChange
@@ -49,7 +51,15 @@ const CartPage =({}) => {
                 <styled.CartTotalInfo $width={"33%"}>{"Transaction Type:"}</styled.CartTotalInfo>
                 <styled.CartTotalInfo $width={"33%"}>{"Subtotal:"}</styled.CartTotalInfo>
                 {state.length !== 0 ? <styled.CartTotalInfo $width={"33%"}>{`${state.length} items`}</styled.CartTotalInfo> : <styled.CartTotalInfo $width={"33%"}>{'0 items'}</styled.CartTotalInfo>}
-                <styled.CartTotalInfo $width={"33%"}>{transactionType}</styled.CartTotalInfo>
+                <styled.CartTotalInfo $width={"33%"}>
+                    <styled.TransactionTypeStepper
+                        stepperState={transactionType}
+                        increment={nextTransactionType}
+                        incrementButtonText={">"}
+                        decrement={prevTransactionType}
+                        decrementButtonText={"<"}
+                    />
+                </styled.CartTotalInfo>
                 <styled.CartTotalInfo $width={"33%"}>{subtotal}</styled.CartTotalInfo>
             </styled.CartTotalSpace>
             <styled.CheckoutInformationContainer>

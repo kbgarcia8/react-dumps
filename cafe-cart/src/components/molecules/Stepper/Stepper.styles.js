@@ -25,7 +25,7 @@ export const StepperButton = styled(GenericButton).attrs(props => ({
     }
 `;
 
-export const StepperCounter = styled.span.attrs(props => ({
+export const StepperState = styled.span.attrs(props => ({
     color: props.color,
     textColor: props.textColor
 }))`
@@ -55,5 +55,3 @@ export const StepperContainer = styled.div.attrs(props => ({
     width: 25%;
     border-radius: 0.25rem;
 `;
-
-export default { StepperButton, StepperCounter, StepperContainer };

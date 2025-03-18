@@ -11,7 +11,8 @@ import GCashIcon from "../../atoms/SVG/GCashIcon";
 
 const initialCart = [];
 
-//have own reducer for onChange on edit function of these rather than including in fieldset entry
+const transactionTypes = ["Dine-In", "Take-out", "Drive Thru", "Delivery"];
+
 const initialAddressBank = [
     {
         name: "KB Garcia",
@@ -131,7 +132,8 @@ const DashboardLayout = ({header, sidebar}) => {
     const [subtotal, setSubtotal] = useState(0);
     const [addressBank,setAddressBank] = useState(initialAddressBank);
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
-    const [transactionType, setTransactionType] = useState("Dine-In");
+    const [transactionTypeCount, setTransactionTypeCount] = useState(0)
+    const [transactionType, setTransactionType] = useState(transactionTypes[0]);
 
     useEffect(() => {
         const currentTotal = [];        
@@ -171,6 +173,11 @@ const DashboardLayout = ({header, sidebar}) => {
         )
     }, [addressBank])
     
+    useEffect(() => {
+        setTransactionType(transactionTypes[transactionTypeCount]);
+        console.log(transactionType);
+    }, [transactionTypeCount]); 
+
     const addToCart = (e) => {
         const {size, price, category, index} = e.currentTarget.dataset;
         const itemInDatabase = database[category][index];
@@ -195,6 +202,14 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const clearCart = () => {
         dispatch({ type: "reset" })
+    }
+
+    const nextTransactionType = () => {
+        setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 3 ? prevTransactionCount + 1 : 0) 
+    }
+
+    const prevTransactionType = (e) => {
+        setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 0 ? prevTransactionCount - 1 : 3) 
     }
 
     const handleAddressBankChange = (e) => {
@@ -223,7 +238,9 @@ const DashboardLayout = ({header, sidebar}) => {
                     decrementItem, 
                     removeFromCart, 
                     clearCart, 
-                    transactionType, 
+                    transactionType,
+                    nextTransactionType,
+                    prevTransactionType,
                     subtotal, 
                     addressBank, 
                     paymentFieldSet,

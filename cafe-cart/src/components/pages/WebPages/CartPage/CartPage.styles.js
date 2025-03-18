@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { v } from "../../../../styles/variables";
 import GenericButton from "../../../atoms/Button";
 import GenericForm from "../../../molecules/Form";
+import Stepper from "../../../molecules/Stepper/Stepper";
 
 export const CartPageWrapper = styled.div`
     display: grid;
@@ -77,6 +78,13 @@ export const CartTotalInfo = styled.span.attrs(props => ({
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
     font-size: ${v.fontSize.xsmall};
     font-weight: ${v.fontWeight.light};
+`;
+export const TransactionTypeStepper = styled(Stepper)`
+    width: 80%;
+    
+    & .stepper-state {
+        font-size: ${v.fontSize.xsmall};
+    }
 `;
 export const CheckoutInformationContainer = styled.div`
     grid-area: 1/2/5/3;
