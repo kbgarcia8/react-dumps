@@ -74,7 +74,6 @@ const initialPaymentFieldset = [
             editIcon: <EditIcon/>,
             onClickDelete: () => {},
             deleteIcon: <DeleteIcon/>,
-            value: "",
             type: "radio",
             isRequired: false,
             data: addressEntry,
@@ -135,6 +134,7 @@ const DashboardLayout = ({header, sidebar}) => {
     const [state, dispatch] = useReducer(reducer, initialCart);
     const [subtotal, setSubtotal] = useState(0);
     const [addressBank,setAddressBank] = useState(initialAddressBank);
+    const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
     const [transactionTypeCount, setTransactionTypeCount] = useState(0)
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
@@ -157,12 +157,13 @@ const DashboardLayout = ({header, sidebar}) => {
                             id: `address-entry-${index}`,
                             placeholderText: "",
                             editable: true,
-                            mainOnChange: () => {},
+                            mainOnChange: checkedAddress,
                             onClickEdit: openEditAddressEntryPanel,
                             editIcon: <EditIcon/>,
-                            onClickDelete: () => {},
+                            onClickDelete: deleteAddressEntry,
                             deleteIcon: <DeleteIcon/>,
-                            value: "",
+                            onClickSave: saveAddressEntryEdit,
+                            onClickCancel: cancelAddressEntryEdit,
                             type: "radio",
                             isRequired: false,
                             data: addressEntry,
@@ -236,6 +237,42 @@ const DashboardLayout = ({header, sidebar}) => {
                 (addressInfoIndex == index)
                 ? addressInfo['editing'] === false ? {...addressInfo, ['editing']: true} : {...addressInfo, ['editing']: false}
                 : {...addressInfo, ['editing']: false}
+            ))
+        )
+    }
+
+    const deleteAddressEntry = (e) => {
+        e.preventDefault();
+        const { index } = e.currentTarget.dataset;
+        setAddressBank((prevAddressBank) => 
+            prevAddressBank.filter((entry, idx) => (
+                idx !== parseInt(index)
+            )
+        ))
+    }
+
+    const saveAddressEntryEdit = (e) => {
+        e.preventDefault();
+        setAddressBank((prevAddressBank) =>  prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false})))
+        setAddressBankBackup([...addressBank]);
+        localStorage.setItem("savedAddressBank", JSON.stringify(addressBank));
+        //add a case where there are no address available yet
+    }
+
+    const cancelAddressEntryEdit = () => {
+        setAddressBank((prevAddressBank) =>  prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false})))
+        const retrievedAddressBankData = localStorage.getItem("savedAddressBank");
+        const parsedAddressBankData = JSON.parse(retrievedAddressBankData) || addressBankBackup;
+        setAddressBank(parsedAddressBankData);
+    }
+
+    const checkedAddress = (e) => {
+        const { index } = e.currentTarget.dataset;
+        setAddressBank((prevAddressBank) => 
+            prevAddressBank.map((addressInfo, addressInfoIndex) => (
+                (addressInfoIndex == index)
+                ? {...addressInfo, ['checked']: true}
+                : {...addressInfo, ['checked']: false}
             ))
         )
     }

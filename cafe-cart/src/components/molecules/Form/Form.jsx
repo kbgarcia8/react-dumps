@@ -41,15 +41,15 @@ const GenericForm = ({
                                         value={input.value}
                                         type={input.type}
                                         isRequired={input.isRequired}
-                                        {...input.dataAttributes}
+                                        dataAttributes={input.dataAttributes}
                                         className={inputClassName}
-                                        checked={input.checked}
+                                        checked={!!input.data?.checked}
                                     />
                                 {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
                                 {(input.editable && input.type ==="radio") &&
                                     <styled.EditableInputButtonContainer className={"input-edit-buttons"}>
-                                        <GenericButton id={`edit-radio-${input.id}-edit`} svg={input.editIcon} type={"button"} onClick={input.onClickEdit} className={`edit-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
-                                        <GenericButton id={`edit-radio-${input.id}-delete`} svg={input.deleteIcon} type={"button"} onClick={input.onClickDelete} className={`delete-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
+                                        <GenericButton id={`edit-radio-${input.id}-edit`} svg={input.editIcon} buttonType={"button"} onClick={input.onClickEdit} className={`edit-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
+                                        <GenericButton id={`edit-radio-${input.id}-delete`} svg={input.deleteIcon} buttonType={"button"} onClick={input.onClickDelete} className={`delete-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
                                     </styled.EditableInputButtonContainer>                                    
                                 }
                             </styled.LabelAndInputContainer>
@@ -76,9 +76,9 @@ const GenericForm = ({
                                         ))}
                                         {/*Continue editing save, cancel and delete buttons for editable input */}
                                         <styled.ButtonContainer className={"editable-input-button-space"}>
-                                            <GenericButton id={`editable-input-${inputIndex}-submit`} type={"submit"} text={"Save"} onClick={handleSubmit} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
-                                            <GenericButton id={`editable-input-${inputIndex}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
-                                            <GenericButton id={`editable-input-${inputIndex}-delete`} type={"button"} text={"Delete"} onClick={handleDelete} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                            <GenericButton id={`editable-input-${inputIndex}-submit`} buttonType={"submit"} text={"Save"} onClick={input.onClickSave} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                            <GenericButton id={`editable-input-${inputIndex}-cancel`} buttonType={"button"} text={"Cancel"} onClick={input.onClickCancel} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                            <GenericButton id={`editable-input-${inputIndex}-delete`} buttonType={"button"} text={"Delete"} onClick={input.onClickDelete} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
                                         </styled.ButtonContainer>
                                     </styled.FormFieldset>}
                             </React.Fragment>
@@ -97,23 +97,23 @@ const GenericForm = ({
                                         value={input.value}
                                         type={input.type}
                                         isRequired={input.isRequired}
-                                        {...input.dataAttributes}
+                                        dataAttributes={input.dataAttributes}
                                         className={inputClassName}
                                     />
                                 {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} additionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.svg} className={labelClassName} />}
                                 {(input.editable && input.type ==="radio") && 
                                     <styled.ButtonContainer>
-                                        <GenericButton id={`edit-radio-${input.id}-edit`} type={"button"} onClick={input.onClickEdit} className={`edit-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
-                                        <GenericButton id={`edit-radio-${input.id}-delete`} type={"button"} onClick={input.onClickDelete} className={`delete-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
+                                        <GenericButton id={`edit-radio-${input.id}-edit`} buttonType={"button"} onClick={input.onClickEdit} className={`edit-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
+                                        <GenericButton id={`edit-radio-${input.id}-delete`} buttonType={"button"} onClick={input.onClickDelete} className={`delete-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
                                     </styled.ButtonContainer>}
                             </styled.LabelAndInputContainer>
                         ))}                        
                     </styled.FormFieldset>
             }
             <styled.ButtonContainer className={"form-main-button-container"}>
-                {hasSubmit && <GenericButton id={`form-${id}-submit`} type={"submit"} text={submitText} onClick={handleSubmit} className={"submit-form-btn"}/>}
-                {hasCancel && <GenericButton id={`form-${id}-cancel`} type={"button"} text={"Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}
-                {hasDelete && <GenericButton id={`form-${id}-delete`} type={"button"} text={"Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
+                {hasSubmit && <GenericButton id={`form-${id}-submit`} buttonType={"submit"} text={submitText} onClick={handleSubmit} className={"submit-form-btn"}/>}
+                {hasCancel && <GenericButton id={`form-${id}-cancel`} buttonType={"button"} text={"Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}
+                {hasDelete && <GenericButton id={`form-${id}-delete`} buttonType={"button"} text={"Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
             </styled.ButtonContainer>
         </styled.Form>
     );

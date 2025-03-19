@@ -24,7 +24,10 @@ const Stepper = ({ stepperState, increment, incrementButtonText, decrementButton
 }
 
 Stepper.propTypes = {
-    stepperState: PropTypes.number.isRequired || PropTypes.string.isRequired,
+    stepperState: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
     increment: PropTypes.func.isRequired,
     incrementButtonText: PropTypes.string.isRequired,
     decrement: PropTypes.func.isRequired,
