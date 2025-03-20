@@ -22,7 +22,7 @@ export const GenericInput = ({
                 onChange={onChange}
                 value={value}
                 type={type}
-                required={isRequired ? "required" : ""}
+                required={isRequired}
                 {...dataAttributes}
                 className={className}
                 checked={checked}

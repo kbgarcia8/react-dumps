@@ -75,13 +75,14 @@ const initialPaymentFieldset = [
             onClickDelete: () => {},
             deleteIcon: <DeleteIcon/>,
             type: "radio",
-            isRequired: false,
+            isRequired: true,
             data: addressEntry,
             dataAttributes: {
                 "data-index": index
             }
         })),
-        height: "25vh"
+        height: "25vh",
+        expandable: true //indicates if fieldset entry can be added that will add inputs
     },
     {
         legend: "Payment Option",
@@ -99,7 +100,8 @@ const initialPaymentFieldset = [
                     "data-index": index
                 }
         })),
-        height: "35vh"
+        height: "35vh",
+        expandable: false
     }
 ]
 
@@ -165,7 +167,7 @@ const DashboardLayout = ({header, sidebar}) => {
                             onClickSave: saveAddressEntryEdit,
                             onClickCancel: cancelAddressEntryEdit,
                             type: "radio",
-                            isRequired: false,
+                            isRequired: true,
                             data: addressEntry,
                             dataAttributes: {
                                 "data-index": index
@@ -253,10 +255,28 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const saveAddressEntryEdit = (e) => {
         e.preventDefault();
-        setAddressBank((prevAddressBank) =>  prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false})))
-        setAddressBankBackup([...addressBank]);
-        localStorage.setItem("savedAddressBank", JSON.stringify(addressBank));
-        //add a case where there are no address available yet
+        const currentFieldset = e.target.closest("fieldset")
+
+        if(currentFieldset) {
+            const inputs = currentFieldset.querySelectorAll("div input");
+            inputs.forEach(input => {
+                const {key, index} = input.dataset;
+
+                if(input.value === "" || input.value === null || input.value === undefined) {
+                    alert(`Please provide ${key.charAt(0).toUpperCase() + key.slice(1)} of Address ${parseInt(index)+1} entry`)
+                } else if (input.value !== "" || input.value !== null || input.value !== undefined) {
+                    setAddressBank((prevAddressBank) =>  {
+                        const updatedBank = prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false}))
+            
+                        localStorage.setItem("savedAddressBank", JSON.stringify(updatedBank));
+            
+                        return updatedBank;
+                    })
+                        
+                    setAddressBankBackup((prevBackup) => [...addressBank]);
+                }
+            });
+        }
     }
 
     const cancelAddressEntryEdit = () => {
@@ -264,6 +284,21 @@ const DashboardLayout = ({header, sidebar}) => {
         const retrievedAddressBankData = localStorage.getItem("savedAddressBank");
         const parsedAddressBankData = JSON.parse(retrievedAddressBankData) || addressBankBackup;
         setAddressBank(parsedAddressBankData);
+    }
+
+    const addAddressEntry = () => {
+        const newAddAddressEntry = {
+            name: "",
+            number: "",
+            location: "",
+            editing: true,
+            checked: false
+        }
+        setAddressBank((prevAddressBank) => [
+            ...prevAddressBank,
+            newAddAddressEntry,
+          ]);
+          
     }
 
     const checkedAddress = (e) => {
@@ -295,7 +330,8 @@ const DashboardLayout = ({header, sidebar}) => {
                     subtotal, 
                     addressBank, 
                     paymentFieldSet,
-                    handleAddressBankChange
+                    handleAddressBankChange,
+                    addAddressEntry
                 }}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>

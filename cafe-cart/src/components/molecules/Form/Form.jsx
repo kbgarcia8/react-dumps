@@ -14,6 +14,7 @@ const GenericForm = ({
     labelClassName,
     inputClassName,
     editableOnChange,
+    addInputFunction,
     hasSubmit = false,
     hasCancel = false,
     hasDelete = false,
@@ -25,65 +26,69 @@ const GenericForm = ({
 }) => {
     {/*console.dir(paymentFieldSet, { depth: null });*/}
     return (
-        <styled.Form id={`${id}-form`} className={className}>
+        <styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmit}>
             {fieldsets !== null
                 ? fieldsets.map((field, fieldIndex) => (
-                    <styled.FormFieldset key={`${field.legend}-${fieldIndex}`} id={`${id}-form-fieldset-${fieldIndex}`} $fieldHeight={field.height}>
-                        <styled.FormLegend>{field.legend}</styled.FormLegend>
-                        {field['inputs'].map((input, inputIndex) => (
-                            <React.Fragment key={`form-${id}-${inputIndex}`}>
-                            <styled.LabelAndInputContainer className={"label-input-container"}>                        
-                                {input.type !== "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} additionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.svg} className={labelClassName} />}
-                                    <GenericInput
-                                        id={input.id}
-                                        placeholderText={input.placeholderText}
-                                        onChange={input.mainOnChange}
-                                        value={input.value}
-                                        type={input.type}
-                                        isRequired={input.isRequired}
-                                        dataAttributes={input.dataAttributes}
-                                        className={inputClassName}
-                                        checked={!!input.data?.checked}
-                                    />
-                                {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
-                                {(input.editable && input.type ==="radio") &&
-                                    <styled.EditableInputButtonContainer className={"input-edit-buttons"}>
-                                        <GenericButton id={`edit-radio-${input.id}-edit`} svg={input.editIcon} buttonType={"button"} onClick={input.onClickEdit} className={`edit-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
-                                        <GenericButton id={`edit-radio-${input.id}-delete`} svg={input.deleteIcon} buttonType={"button"} onClick={input.onClickDelete} className={`delete-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
-                                    </styled.EditableInputButtonContainer>                                    
-                                }
-                            </styled.LabelAndInputContainer>
-                            {(input.editable && input.type ==="radio" && input['data']['editing']) && 
-                                    <styled.FormFieldset className={"editable-input-fieldset"}>
-                                        <styled.FormLegend>{`${field.legend} ${inputIndex + 1}`}</styled.FormLegend>
-                                        {Object.keys(input['data']).map((keydata, keydataIndex) => (
-                                            (keydata !== "checked" && keydata !== "editing") &&
-                                            <styled.LabelAndInputContainer key={`${keydata}-${keydataIndex}`} className={"editable-input-container"}>
-                                                <GenericInput
-                                                    id={`editable-input-${keydataIndex}`}
-                                                    placeholderText={keydata.charAt(0).toUpperCase() + keydata.slice(1)}
-                                                    onChange={editableOnChange}
-                                                    value={input['data'][keydata]}
-                                                    type={"text"}
-                                                    isRequired={true}
-                                                    className={"editable-input"}
-                                                    dataAttributes={{
-                                                        "data-index": inputIndex, //should be inputIndex to correspond to radio button index and not with input increment
-                                                        "data-key": keydata
-                                                    }}
-                                                />
-                                            </styled.LabelAndInputContainer>
-                                        ))}
-                                        {/*Continue editing save, cancel and delete buttons for editable input */}
-                                        <styled.ButtonContainer className={"editable-input-button-space"}>
-                                            <GenericButton id={`editable-input-${inputIndex}-submit`} buttonType={"submit"} text={"Save"} onClick={input.onClickSave} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
-                                            <GenericButton id={`editable-input-${inputIndex}-cancel`} buttonType={"button"} text={"Cancel"} onClick={input.onClickCancel} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
-                                            <GenericButton id={`editable-input-${inputIndex}-delete`} buttonType={"button"} text={"Delete"} onClick={input.onClickDelete} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
-                                        </styled.ButtonContainer>
-                                    </styled.FormFieldset>}
-                            </React.Fragment>
-                        ))}
-                    </styled.FormFieldset>
+                    <styled.FieldsetWrapper key={`${field.legend}-${fieldIndex}`}>
+                        <styled.FormFieldset id={`${id}-form-fieldset-${fieldIndex}`} $fieldHeight={field.height}>
+                            <styled.FormLegend>{field.legend}</styled.FormLegend>
+                            {field['inputs'].map((input, inputIndex) => (
+                                <React.Fragment key={`form-${id}-${inputIndex}`}>
+                                <styled.LabelAndInputContainer className={"label-input-container"}>                        
+                                    {input.type !== "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} additionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.svg} className={labelClassName} />}
+                                        <GenericInput
+                                            id={input.id}
+                                            placeholderText={input.placeholderText}
+                                            onChange={input.mainOnChange}
+                                            value={input.value}
+                                            type={input.type}
+                                            isRequired={input.isRequired}
+                                            dataAttributes={input.dataAttributes}
+                                            className={inputClassName}
+                                            checked={!!input.data?.checked}
+                                        />
+                                    {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
+                                    {(input.editable && input.type ==="radio") &&
+                                        <styled.EditableInputButtonContainer className={"input-edit-buttons"}>
+                                            <GenericButton id={`edit-radio-${input.id}-edit`} svg={input.editIcon} buttonType={"button"} onClick={input.onClickEdit} className={`edit-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
+                                            <GenericButton id={`edit-radio-${input.id}-delete`} svg={input.deleteIcon} buttonType={"button"} onClick={input.onClickDelete} className={`delete-radio-${inputIndex}`} dataAttributes={input.dataAttributes}/>
+                                        </styled.EditableInputButtonContainer>                                    
+                                    }
+                                </styled.LabelAndInputContainer>
+                                {(input.editable && input.type ==="radio" && input['data']['editing']) && 
+                                        <styled.FormFieldset className={"editable-input-fieldset"}>
+                                            <styled.FormLegend>{`${field.legend} ${inputIndex + 1}`}</styled.FormLegend>
+                                            {Object.keys(input['data']).map((keydata, keydataIndex) => (
+                                                (keydata !== "checked" && keydata !== "editing") &&
+                                                <styled.LabelAndInputContainer key={`${keydata}-${keydataIndex}`} className={"editable-input-container"}>
+                                                    <GenericInput
+                                                        id={`editable-input-${keydataIndex}`}
+                                                        placeholderText={keydata.charAt(0).toUpperCase() + keydata.slice(1)}
+                                                        onChange={editableOnChange}
+                                                        value={input['data'][keydata]}
+                                                        type={"text"}
+                                                        isRequired={true}
+                                                        className={"editable-input"}
+                                                        dataAttributes={{
+                                                            "data-index": inputIndex, //should be inputIndex to correspond to radio button index and not with input increment
+                                                            "data-key": keydata
+                                                        }}
+                                                    />
+                                                </styled.LabelAndInputContainer>
+                                            ))}                                            
+                                            <styled.ButtonContainer className={"editable-input-button-space"}>
+                                                <GenericButton id={`editable-input-${inputIndex}-submit`} buttonType={"submit"} text={"Save"} onClick={input.onClickSave} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                                <GenericButton id={`editable-input-${inputIndex}-cancel`} buttonType={"button"} text={"Cancel"} onClick={input.onClickCancel} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                                <GenericButton id={`editable-input-${inputIndex}-delete`} buttonType={"button"} text={"Delete"} onClick={input.onClickDelete} className={"editable-input-btn"} dataAttributes={{"data-index": inputIndex}}/>
+                                            </styled.ButtonContainer>
+                                        </styled.FormFieldset>}
+                                </React.Fragment>
+                            ))}
+                        </styled.FormFieldset>
+                        {field.expandable && <styled.ButtonContainer className={"add-input-button-space"}>
+                            <GenericButton id={`expand-${field.legend}-inputs`} buttonType={"button"} text={"+"} onClick={addInputFunction} className={`add-input-entry`}/>
+                        </styled.ButtonContainer>}
+                    </styled.FieldsetWrapper>
                 ))
                 : <styled.FormFieldset id={id}>
                         <styled.FormLegend>{legendText}</styled.FormLegend>

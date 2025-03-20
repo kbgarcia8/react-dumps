@@ -16,7 +16,8 @@ const CartPage =({}) => {
         prevTransactionType,
         subtotal, 
         paymentFieldSet,
-        handleAddressBankChange
+        handleAddressBankChange,
+        addAddressEntry
     } = useOutletContext();
     {/*console.dir(paymentFieldSet, { depth: null });*/}
     return(
@@ -70,6 +71,8 @@ const CartPage =({}) => {
                         submitText={"Checkout"}
                         id={"checkout"}
                         editableOnChange={handleAddressBankChange}
+                        addInputFunction={addAddressEntry}
+                        handleSubmit={(e) => {e.preventDefault(); console.log("Form submitted")}}
                 />
             </styled.CheckoutInformationContainer>                        
         </styled.CartPageWrapper>

@@ -39,6 +39,8 @@ export const FormFieldset = styled.fieldset.attrs(props => ({
     height: ${(props) => props.$fieldHeight};
 `;
 
+export const FieldsetWrapper = styled.div``;
+
 export const Form = styled.form`
     display: flex;
     flex-direction: column;
