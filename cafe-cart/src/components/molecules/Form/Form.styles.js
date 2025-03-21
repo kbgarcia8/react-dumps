@@ -32,14 +32,30 @@ export const FormLegend = styled.legend`
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
 `;
 
-export const FormFieldset = styled.fieldset.attrs(props => ({
-    fieldHeight: props.fieldHeight
+export const FormFieldset = styled.fieldset`
+    padding: 0;
+    height: 100%;
+    width: 100%;
+`;
+
+export const FieldsetWrapper = styled.div.attrs(props => ({
+    $fieldHeight: props.$fieldHeight
 }))`
     padding: ${v.spacing.small};
     height: ${(props) => props.$fieldHeight};
+    width: 100%;
 `;
 
-export const FieldsetWrapper = styled.div``;
+export const FieldsetNoEntryMessage = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid blue;
+    width: 100%;
+    height: 100%;
+    font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+    font-size: ${v.fontSize.xsmall};
+`
 
 export const Form = styled.form`
     display: flex;

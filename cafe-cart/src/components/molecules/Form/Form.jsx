@@ -29,10 +29,11 @@ const GenericForm = ({
         <styled.Form id={`${id}-form`} className={className} onSubmit={handleSubmit}>
             {fieldsets !== null
                 ? fieldsets.map((field, fieldIndex) => (
-                    <styled.FieldsetWrapper key={`${field.legend}-${fieldIndex}`}>
-                        <styled.FormFieldset id={`${id}-form-fieldset-${fieldIndex}`} $fieldHeight={field.height}>
+                    <styled.FieldsetWrapper key={`${field.legend}-${fieldIndex}`} $fieldHeight={field.height}>
+                        <styled.FormFieldset id={`${id}-form-fieldset-${fieldIndex}`}>
                             <styled.FormLegend>{field.legend}</styled.FormLegend>
-                            {field['inputs'].map((input, inputIndex) => (
+                            {field['inputs'].length !== 0
+                            ? field['inputs'].map((input, inputIndex) => (
                                 <React.Fragment key={`form-${id}-${inputIndex}`}>
                                 <styled.LabelAndInputContainer className={"label-input-container"}>                        
                                     {input.type !== "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} additionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.svg} className={labelClassName} />}
@@ -83,7 +84,8 @@ const GenericForm = ({
                                             </styled.ButtonContainer>
                                         </styled.FormFieldset>}
                                 </React.Fragment>
-                            ))}
+                            ))
+                            : <styled.FieldsetNoEntryMessage>{`No entry yet on ${field.legend}. Please click "+" button to add`}</styled.FieldsetNoEntryMessage>}
                         </styled.FormFieldset>
                         {field.expandable && <styled.ButtonContainer className={"add-input-button-space"}>
                             <GenericButton id={`expand-${field.legend}-inputs`} buttonType={"button"} text={"+"} onClick={addInputFunction} className={`add-input-entry`}/>

@@ -153,9 +153,12 @@ export const CheckoutForm = styled(GenericForm)`
     
     & .form-main-button-container{
         justify-content: center;
+        width: 100%;
+        padding: ${v.spacing.xxxsmall};
     
         & .submit-form-btn {
-            width: 50%;
+            width: 35%;
+            border-radius: ${v.borderRadius.small};
         }
     }
     
@@ -187,6 +190,23 @@ export const CheckoutForm = styled(GenericForm)`
                 & .button-icon-and-text span {
                     font-size: ${v.fontSize.xxsmall};
                 }
+            }
+        }
+    }
+    
+    & .add-input-button-space {
+        border: 2px solid red;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: ${v.spacing.xxsmall};
+
+        & button {
+            width: 10%;
+            border-radius: ${v.borderRadius.small};
+
+            & .button-icon-and-text span {
+                    font-size: ${v.fontSize.small};
             }
         }
     }

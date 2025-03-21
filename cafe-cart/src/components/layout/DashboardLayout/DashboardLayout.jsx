@@ -96,6 +96,7 @@ const initialPaymentFieldset = [
                 value: "",
                 type: "radio",
                 isRequired: false,
+                data: method,
                 dataAttributes: {
                     "data-index": index
                 }
@@ -137,6 +138,8 @@ const DashboardLayout = ({header, sidebar}) => {
     const [subtotal, setSubtotal] = useState(0);
     const [addressBank,setAddressBank] = useState(initialAddressBank);
     const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);
+    const [paymentMethod, setPaymentMehod] = useState(paymentMethods)
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("")
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
     const [transactionTypeCount, setTransactionTypeCount] = useState(0)
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
@@ -149,7 +152,7 @@ const DashboardLayout = ({header, sidebar}) => {
 
     useEffect(() => {
         setPaymentFieldSet((prevPaymentFieldSet) => 
-            prevPaymentFieldSet.map((fieldEntry, fieldIndex) => {
+            prevPaymentFieldSet.map((fieldEntry) => {
                 if(fieldEntry.legend === "Address") {
                     return {...fieldEntry, 
                     inputs: addressBank.map((addressEntry, index) => ({
@@ -174,11 +177,38 @@ const DashboardLayout = ({header, sidebar}) => {
                             }
                     }))
                 };
-                }
+                } 
                 return fieldEntry
             })
         )
     }, [addressBank])
+
+    useEffect(() => {
+        setPaymentFieldSet((prevPaymentFieldSet) => 
+            prevPaymentFieldSet.map((fieldEntry) => {
+                if (fieldEntry.legend === "Payment Option") {
+                    return {...fieldEntry, 
+                        inputs:  paymentMethod.map((method, index) => ({
+                            labelText: `${method.name}`,
+                            labelDirection: "row",
+                            id: `payment-option-${index}`,
+                            placeholderText: "",
+                            image: method.image,
+                            mainOnChange: checkedPaymentMethod,
+                            value: "",
+                            type: "radio",
+                            isRequired: false,
+                            data: method,
+                            dataAttributes: {
+                                "data-index": index
+                            }
+                    }))
+                    };
+                }
+                return fieldEntry
+            })
+        )
+    }, [paymentMethod])
     
     useEffect(() => {
         setTransactionType(transactionTypes[transactionTypeCount]);
@@ -259,23 +289,28 @@ const DashboardLayout = ({header, sidebar}) => {
 
         if(currentFieldset) {
             const inputs = currentFieldset.querySelectorAll("div input");
-            inputs.forEach(input => {
-                const {key, index} = input.dataset;
+            console.log(inputs)     
+            const noneIsBlank =  Array.from(inputs).every(input => input.value !== "" && input.value !== null && input.value !== undefined)
 
-                if(input.value === "" || input.value === null || input.value === undefined) {
-                    alert(`Please provide ${key.charAt(0).toUpperCase() + key.slice(1)} of Address ${parseInt(index)+1} entry`)
-                } else if (input.value !== "" || input.value !== null || input.value !== undefined) {
-                    setAddressBank((prevAddressBank) =>  {
-                        const updatedBank = prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false}))
-            
-                        localStorage.setItem("savedAddressBank", JSON.stringify(updatedBank));
-            
-                        return updatedBank;
-                    })
-                        
-                    setAddressBankBackup((prevBackup) => [...addressBank]);
-                }
-            });
+            if(noneIsBlank) {
+                setAddressBank((prevAddressBank) =>  {
+                    const updatedBank = prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false}))
+        
+                    localStorage.setItem("savedAddressBank", JSON.stringify(updatedBank));
+        
+                    return updatedBank;
+                })
+                    
+                setAddressBankBackup((prevBackup) => [...addressBank]);
+            } else {
+                inputs.forEach(input => {
+                    const {key, index} = input.dataset;
+    
+                    if(input.value === "" || input.value === null || input.value === undefined) {
+                        alert(`Please provide ${key.charAt(0).toUpperCase() + key.slice(1)} of Address ${parseInt(index)+1} entry`)
+                    }
+                });
+            }
         }
     }
 
@@ -308,6 +343,20 @@ const DashboardLayout = ({header, sidebar}) => {
                 (addressInfoIndex == index)
                 ? {...addressInfo, ['checked']: true}
                 : {...addressInfo, ['checked']: false}
+            ))
+        )
+    }
+
+    const checkedPaymentMethod = (e) => {
+        const { index } = e.currentTarget.dataset;
+        setPaymentMehod((prevPaymentMethod) => 
+            prevPaymentMethod.map((method, methodIndex) => (
+                (methodIndex === parseInt(index)) 
+                ? (() => {
+                    setSelectedPaymentMethod(method.name);
+                    return { ...method, checked: true };
+                })() //first () is function logic, second () function call
+                : {...method, ['checked']: false}
             ))
         )
     }
