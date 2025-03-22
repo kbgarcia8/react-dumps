@@ -105,6 +105,8 @@ export const CheckoutForm = styled(GenericForm)`
         flex-wrap: wrap;
         overflow-y: auto;
         align-items: center;
+        border: 2px solid yellow;
+        margin: 0;
     }
 
     & .payment-label {
@@ -115,23 +117,26 @@ export const CheckoutForm = styled(GenericForm)`
         max-height: 90%;
         margin: 0;
         & span {
-            margin-left: ${v.spacing.xxxsmall};
+            margin-left: ${v.spacing.xxsmall};
             width: 100%;
+        }
+        & .main-label {
+            font-size: ${v.fontSize.xsmall};
+            font-weight: ${v.fontWeight.bold};
+        }
+        & .additional-info{
+            font-size: ${v.fontSize.xxsmall};
         }
         & .label-image-container svg {
             height: 100%;
         }
     }
 
-    & .additional-info{
-        font-size: ${v.fontSize.xxsmall};
-    }
-
     & .label-input-container{
         flex-direction: row;
         border: 2px solid violet;
         margin-inline: ${v.spacing.xxxsmall};
-        margin-block: ${v.spacing.small};
+        margin-block: ${v.spacing.xxxsmall};
         width: 47.5%;
         padding-inline: ${v.spacing.xxxsmall};
         max-height: 100%;
@@ -155,6 +160,8 @@ export const CheckoutForm = styled(GenericForm)`
         justify-content: center;
         width: 100%;
         padding: ${v.spacing.xxxsmall};
+        height: 10%;
+        border: 2px solid blue;
     
         & .submit-form-btn {
             width: 35%;
@@ -166,9 +173,11 @@ export const CheckoutForm = styled(GenericForm)`
         margin-left: ${v.spacing.large};
         margin-bottom: ${v.spacing.large};
         width: 40%;
+        height: max-content;
         display: flex;
         justify-content: center;
         align-items: center;
+        border: 2px solid red;
         
         & legend {
             font-size: ${v.fontSize.xsmall};
@@ -197,6 +206,7 @@ export const CheckoutForm = styled(GenericForm)`
     & .add-input-button-space {
         border: 2px solid red;
         width: 100%;
+        height: 15%;
         display: flex;
         justify-content: center;
         margin-top: ${v.spacing.xxsmall};

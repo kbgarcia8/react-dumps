@@ -10,7 +10,8 @@ const CartPage =({}) => {
 
     const {
         state, 
-        clearCart, 
+        clearCart,
+        checkout, 
         transactionType,
         nextTransactionType,
         prevTransactionType,
@@ -72,7 +73,7 @@ const CartPage =({}) => {
                         id={"checkout"}
                         editableOnChange={handleAddressBankChange}
                         addInputFunction={addAddressEntry}
-                        handleSubmit={(e) => {e.preventDefault(); console.log("Form submitted")}}
+                        handleSubmit={checkout}
                 />
             </styled.CheckoutInformationContainer>                        
         </styled.CartPageWrapper>

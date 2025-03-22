@@ -74,6 +74,8 @@ const initialPaymentFieldset = [
             editIcon: <EditIcon/>,
             onClickDelete: () => {},
             deleteIcon: <DeleteIcon/>,
+            onClickSave: () => {},
+            onClickCancel: () => {},
             type: "radio",
             isRequired: true,
             data: addressEntry,
@@ -81,7 +83,7 @@ const initialPaymentFieldset = [
                 "data-index": index
             }
         })),
-        height: "25vh",
+        height: "47.5%",
         expandable: true //indicates if fieldset entry can be added that will add inputs
     },
     {
@@ -101,7 +103,7 @@ const initialPaymentFieldset = [
                     "data-index": index
                 }
         })),
-        height: "35vh",
+        height: "35%",
         expandable: false
     }
 ]
@@ -110,7 +112,6 @@ function reducer(state, action){
     const {size, price, quantity, index} = action.data || {};
     switch (action.type) {        
         case "addToCart":
-        console.log('added to cart')
         return [...state].indexOf(state.find((entry => entry.name === `${action.databaseItem.name}` && entry.size === `${size}` ))) === -1
                 ? [...state, {name: `${action.databaseItem.name}`, thumbnail: `${action.databaseItem.image}`, size: `${size}`,price: `${price}`, quantity: 1, total: parseInt(price)}]
                 : state.map((entry) => (entry.name === `${action.databaseItem.name}` && entry.size === `${size}`) ? {...entry, quantity: entry.quantity + 1, total: entry.total + parseInt(price)} : entry);
@@ -139,10 +140,24 @@ const DashboardLayout = ({header, sidebar}) => {
     const [addressBank,setAddressBank] = useState(initialAddressBank);
     const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);
     const [paymentMethod, setPaymentMehod] = useState(paymentMethods)
-    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("")
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
     const [transactionTypeCount, setTransactionTypeCount] = useState(0)
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
+    const [checkoutDetails, setCheckoutDetails] = useState({});
+
+    useEffect(() => {
+        console.log(checkoutDetails)
+    },[checkoutDetails])
+    //ensure that previously saved data are loaded properly or a preset data is provided if no saved info
+    useEffect(() => {
+        if(localStorage.getItem("savedAddressBank") === null) {
+            localStorage.setItem("savedAddressBank", JSON.stringify(addressBank)); //just change addressBank to [] in useState to remove presets
+        } else if(localStorage.getItem("savedAddressBank") !== null) {
+            const retrievedAddressBankData = localStorage.getItem("savedAddressBank");
+            const parsedAddressBankData = JSON.parse(retrievedAddressBankData);
+            setAddressBank(parsedAddressBankData);
+        }
+    },[])
 
     useEffect(() => {
         const currentTotal = [];        
@@ -352,13 +367,40 @@ const DashboardLayout = ({header, sidebar}) => {
         setPaymentMehod((prevPaymentMethod) => 
             prevPaymentMethod.map((method, methodIndex) => (
                 (methodIndex === parseInt(index)) 
-                ? (() => {
-                    setSelectedPaymentMethod(method.name);
-                    return { ...method, checked: true };
-                })() //first () is function logic, second () function call
+                ? {...method, ['checked']: true}
                 : {...method, ['checked']: false}
             ))
         )
+    }
+
+    const checkout = (e) => {
+        e.preventDefault();
+        const checkedAddress = addressBank.find((address) => address.checked === true);
+        const checkedPayment = paymentMethod.find((method) => method.checked === true);
+        const currentCart = state;
+        const currentTransactionType = transactionType;
+        const currentSubtotal = subtotal;
+
+        if(checkedAddress && checkedPayment && currentCart.length !== 0) {
+            setCheckoutDetails({
+                address: checkedAddress,
+                payment: checkedPayment,
+                cart: currentCart,
+                transactionType: currentTransactionType,
+                subtotal: currentSubtotal
+            })
+            alert("Thank you for your purchase!")
+            dispatch({ type: "reset" })
+        } else if(currentCart.length === 0 || checkedAddress === undefined || checkedPayment === undefined) {
+            currentCart.length === 0 
+                ? alert("Please add items to cart first before checking out")
+                : addressBank.length ===0
+                    ? alert("Please provide atleast one address detail before checking out")
+                    : checkedAddress === undefined 
+                        ? alert("Please select an address before checking out")
+                        : checkedPayment === undefined
+                            && alert("Please select a payment method before checking out")
+        }
     }
 
     return (
@@ -372,7 +414,8 @@ const DashboardLayout = ({header, sidebar}) => {
                     incrementItem, 
                     decrementItem, 
                     removeFromCart, 
-                    clearCart, 
+                    clearCart,
+                    checkout,
                     transactionType,
                     nextTransactionType,
                     prevTransactionType,
