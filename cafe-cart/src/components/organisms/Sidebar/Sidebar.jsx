@@ -22,8 +22,8 @@ const Sidebar =({}) => {
         {name: "Home", path:"", icon: <HomeIcon/>},
         {name: "Menu", path:"/menu", icon: <MenuIcon/>},
         {name: "Cart", path:"/cart", icon: <CartIcon/>},
-        {name: "Orders", path:"/orders", icon: <ClipboardIcon/>},
         {name: "Pending", path:"/pending", icon: <TimerIcon/>},
+        {name: "Orders", path:"/orders", icon: <ClipboardIcon/>},        
     ]
 
     const settingControls = [

@@ -206,36 +206,47 @@ const validateEditableData = (props, propName, componentName) => {
     }
     return null;
 };
-
+/*
+    PropTypes by default are considered function that takes argument as follows: function/PropTypes (props, propName, componentName, location, propFullName)
+*/
 GenericForm.propTypes = {
-    fieldsets: PropTypes.arrayOf(
-        PropTypes.shape({
-            legend: PropTypes.string.isRequired,
-            inputs: PropTypes.arrayOf(PropTypes.shape({
-                    labelText: PropTypes.string,
-                    additionalInfo: PropTypes.string,
-                    labelDirection: PropTypes.string.isRequired,
-                    id: PropTypes.string.isRequired,
-                    placeholderText: PropTypes.string,
-                    editable: PropTypes.bool, 
-                    mainOnChange: PropTypes.func,
-                    onClickEdit: PropTypes.func,
-                    editIcon: PropTypes.element,
-                    onClickDelete: PropTypes.func,
-                    deleteIcon: PropTypes.element,
-                    onClickSave: PropTypes.func,
-                    onClickCancel: PropTypes.func,
-                    type: PropTypes.string,
-                    isRequired: PropTypes.bool,
-                    data: PropTypes.object,
-                    dataAttributes: PropTypes.object
-                })
-            ),
-            height: PropTypes.string,
-            expandable: PropTypes.bool
-        })
-    ),
-    fieldsets: validateEditableData,
+    fieldsets: (props, propName, componentName) => {
+        const propTypeValidation = PropTypes.arrayOf(
+            PropTypes.shape({
+                legend: PropTypes.string.isRequired,
+                inputs: PropTypes.arrayOf(
+                    PropTypes.shape({
+                        labelText: PropTypes.string,
+                        additionalInfo: PropTypes.string,
+                        labelDirection: PropTypes.string.isRequired,
+                        id: PropTypes.string.isRequired,
+                        placeholderText: PropTypes.string,
+                        editable: PropTypes.bool, 
+                        mainOnChange: PropTypes.func,
+                        onClickEdit: PropTypes.func,
+                        editIcon: PropTypes.element,
+                        onClickDelete: PropTypes.func,
+                        deleteIcon: PropTypes.element,
+                        onClickSave: PropTypes.func,
+                        onClickCancel: PropTypes.func,
+                        type: PropTypes.string,
+                        isRequired: PropTypes.bool,
+                        data: PropTypes.object,
+                        dataAttributes: PropTypes.object,
+                    })
+                ),
+                height: PropTypes.string,
+                expandable: PropTypes.bool
+            })
+        );
+
+        const propTypeError = propTypeValidation(props, propName, componentName); //Checks if there will be an error or null
+        if (propTypeError) return propTypeError;
+
+        // Run custom validation if code above throws no error
+        return validateEditableData(props, propName, componentName);
+    },
+
     legendText: PropTypes.string,
     id: PropTypes.string,
     formInputs: PropTypes.array,
@@ -248,6 +259,7 @@ GenericForm.propTypes = {
     handleSubmit: PropTypes.func,
     handleCancel: PropTypes.func,
     handleDelete: PropTypes.func,
-}
+};
+
 
 export default GenericForm;

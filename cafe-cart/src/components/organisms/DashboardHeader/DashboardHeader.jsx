@@ -8,7 +8,7 @@ const DashboardHeader =({}) => {
     
     return(
         <styled.DashboardHeaderWrapper>
-            <p>Welcome, User! This is the temporary dashboard header</p>
+            <styled.DashboardWelcomeMessage>Welcome, User! This is the temporary dashboard header</styled.DashboardWelcomeMessage>
         </styled.DashboardHeaderWrapper>
     )
 }

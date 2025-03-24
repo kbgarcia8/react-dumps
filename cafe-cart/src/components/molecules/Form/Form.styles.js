@@ -9,7 +9,6 @@ export const FormLabel = styled(GenericLabel).attrs(props => ({
 `;
 
 export const EditableInputButtonContainer = styled.div`
-    border: 2px solid black;
     display: flex;
     height: 50%;
     width: 20%;
@@ -50,11 +49,11 @@ export const FieldsetNoEntryMessage = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid blue;
     width: 100%;
     height: 100%;
     font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
     font-size: ${v.fontSize.xsmall};
+    font-weight: ${v.fontWeight.bold};
 `
 
 export const Form = styled.form`

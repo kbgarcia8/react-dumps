@@ -16,7 +16,6 @@ export const DashboardLayoutHeader = styled.div`
     position: relative;
     top: 0;
     grid-area: 1/2/2/3;
-    border: 1px solid red;
 `;
 
 export const DashboardLayoutSidebar = styled.div`
@@ -25,15 +24,11 @@ export const DashboardLayoutSidebar = styled.div`
     position: relative;
     top: 0;
     grid-area: 1/1/3/2;
-    border: 1px solid blue;
-`;
+    `;
 
 export const DashboardLayoutContent = styled.main`
     width: 100%;
     min-height: 100%;
     overflow-y: auto;
     grid-area: 2/2/3/3;
-    border: 1px solid violet;
 `;
-
-export default { DashboardLayoutWrapper, DashboardLayoutHeader, DashboardLayoutSidebar, DashboardLayoutContent };

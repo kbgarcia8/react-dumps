@@ -423,7 +423,8 @@ const DashboardLayout = ({header, sidebar}) => {
                     addressBank, 
                     paymentFieldSet,
                     handleAddressBankChange,
-                    addAddressEntry
+                    addAddressEntry,
+                    checkoutDetails
                 }}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>

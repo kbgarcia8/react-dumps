@@ -1,10 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
-import { useGlobalProvider } from "../../../../context/ContextProvider";
 import * as styled from "./CartPage.styles";
 import CartItem from "../../../organisms/CartItem/CartItem";
-import GenericForm from "../../../molecules/Form";
 
 const CartPage =({}) => {
 
@@ -49,11 +47,11 @@ const CartPage =({}) => {
                 ))}
             </styled.CartListContainer>
             <styled.CartTotalSpace>
-                <styled.CartTotalInfo $width={"33%"}>{"Total Items:"}</styled.CartTotalInfo>
-                <styled.CartTotalInfo $width={"33%"}>{"Transaction Type:"}</styled.CartTotalInfo>
-                <styled.CartTotalInfo $width={"33%"}>{"Subtotal:"}</styled.CartTotalInfo>
-                {state.length !== 0 ? <styled.CartTotalInfo $width={"33%"}>{`${state.length} items`}</styled.CartTotalInfo> : <styled.CartTotalInfo $width={"33%"}>{'0 items'}</styled.CartTotalInfo>}
-                <styled.CartTotalInfo $width={"33%"}>
+                <styled.CartTotalInfoHeader $width={"30%"}>{"Total Items:"}</styled.CartTotalInfoHeader>
+                <styled.CartTotalInfoHeader $width={"30%"}>{"Transaction Type:"}</styled.CartTotalInfoHeader>
+                <styled.CartTotalInfoHeader $width={"30%"}>{"Subtotal:"}</styled.CartTotalInfoHeader>
+                {state.length !== 0 ? <styled.CartTotalInfo $width={"30%"}>{`${state.length} items`}</styled.CartTotalInfo> : <styled.CartTotalInfo $width={"30%"}>{'0 items'}</styled.CartTotalInfo>}
+                <styled.CartTotalInfo $width={"30%"}>
                     <styled.TransactionTypeStepper
                         stepperState={transactionType}
                         increment={nextTransactionType}
@@ -62,7 +60,7 @@ const CartPage =({}) => {
                         decrementButtonText={"<"}
                     />
                 </styled.CartTotalInfo>
-                <styled.CartTotalInfo $width={"33%"}>{subtotal}</styled.CartTotalInfo>
+                <styled.CartTotalInfo $width={"30%"}>{subtotal}</styled.CartTotalInfo>
             </styled.CartTotalSpace>
             <styled.CheckoutInformationContainer>
                 <styled.CheckoutForm 

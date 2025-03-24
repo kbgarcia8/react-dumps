@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { v } from '../../../styles/variables.js'
+import { v } from '../../../styles/variables';
 import { Link } from 'react-router-dom';
 
 export const SidebarWrapper = styled.div`
@@ -9,6 +9,7 @@ export const SidebarWrapper = styled.div`
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    border-right: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor};
 `;
 
 export const SidebarLogoSpace = styled.div`
@@ -25,10 +26,11 @@ export const SidebarLogo = styled.img`
     height: 100%;
 `;
 
-export const SidebarMainControlsSpace = styled(SidebarWrapper)`
+export const SidebarMainControlsSpace = styled.div`
     height: 45%;
     width: 100%;
-    isplay: flex;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 `
@@ -48,12 +50,3 @@ export const StyledLinkWithImage = styled(Link)`
 export const SidebarSettingsSpace = styled(SidebarMainControlsSpace)`
     height: 20%;
 `
-
-export default { 
-    SidebarWrapper,
-    SidebarLogoSpace,
-    SidebarLogo,
-    SidebarMainControlsSpace,
-    StyledLinkWithImage,
-    SidebarSettingsSpace
-};

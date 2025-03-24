@@ -12,29 +12,27 @@ export const CartPageWrapper = styled.div`
     width: 100%;
     height: 100%;
     padding: ${v.spacing.small};
-    border: 2px solid violet;
 `
 export const CartListHeaderSpace = styled.div`
     grid-area: 1/1/2/2;
     padding: ${v.spacing.xxsmall};
-    border: 2px solid green;
+    border-bottom: ${v.borderThickness.medium} solid ${({theme}) => theme.borderColor1};
     display: flex;
     align-items: center;
     justify-content: space-between;
 `;
 export const OrderQuantityHeader = styled.h4`
     padding: ${v.spacing.xxsmall};
-    border: 2px solid orange;
     width: 25%;
 `;
 export const ClearCartButton = styled(GenericButton)`
     width: 25%;
+    border-radius: ${v.borderRadius.small};
 `;
 export const CartItemsHeaderSpace = styled.div`
     grid-area: 2/1/3/2;
     padding-block: ${v.spacing.xxsmall};
     padding-inline: ${v.spacing.medium};
-    border: 2px solid indigo;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,7 +41,7 @@ export const CartListHeader = styled.h6.attrs(props => ({
     width: props.width
 }))`
     padding-block: ${v.spacing.xsmall};
-    border: 2px solid orange;
+    border-bottom: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
     width: ${(props) => props.$width || "25%"};
     display: flex;
     align-items: center;
@@ -53,31 +51,36 @@ export const CartListContainer = styled.div`
     grid-area: 3/1/4/2;
     width: 100%;
     height: 100%;
-    border: 2px solid red;
     padding: ${v.spacing.xxsmall};
     overflow-y: auto;
 `;
 export const CartTotalSpace = styled.div`
     grid-area: 4/1/5/2;
-    border: 2px solid black;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 `;
-export const CartTotalInfo = styled.span.attrs(props => ({
-    width: props.width
+export const CartTotalInfoHeader = styled.span.attrs(props => ({
+    $width: props.$width
 }))`
     padding-block: ${v.spacing.xsmall};
-    border: 2px solid orange;
     width: ${(props) => props.$width || "25%"};
     height: 45%;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
     font-size: ${v.fontSize.xsmall};
     font-weight: ${v.fontWeight.light};
+`;
+
+export const CartTotalInfo = styled(CartTotalInfoHeader).attrs(props => ({
+    $width: props.$width
+}))`
+    width: ${(props) => props.$width || "25%"};
+    border: none;
 `;
 export const TransactionTypeStepper = styled(Stepper)`
     width: 80%;
@@ -89,10 +92,11 @@ export const TransactionTypeStepper = styled(Stepper)`
 export const CheckoutInformationContainer = styled.div`
     grid-area: 1/2/5/3;
     padding: ${v.spacing.xxsmall};
-    border: 2px solid green;
+    border: ${v.borderThickness.light} solid black;
+    border-radius: ${v.borderRadius.small};
+    margin-inline: ${v.spacing.xxsmall};
 `;
 export const CheckoutForm = styled(GenericForm)`
-    border: 2px solid black;
     height: 100%;
     padding: 0;
     display: flex;
@@ -105,12 +109,19 @@ export const CheckoutForm = styled(GenericForm)`
         flex-wrap: wrap;
         overflow-y: auto;
         align-items: center;
-        border: 2px solid yellow;
         margin: 0;
+        padding: ${v.spacing.xxsmall};
+    }
+
+    & legend {
+        font-size: ${v.fontSize.small};
+        font-weight: ${v.fontWeight.bold};
+        font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+        text-align: center;
+        margin-bottom: ${v.spacing.xxsmall};
     }
 
     & .payment-label {
-        border: 2px solid yellow;
         display: flex;
         white-space: pre-line;
         width: 100%;
@@ -129,16 +140,17 @@ export const CheckoutForm = styled(GenericForm)`
         }
         & .label-image-container svg {
             height: 100%;
+            margin: ${v.spacing.xxxsmall};
         }
     }
 
     & .label-input-container{
         flex-direction: row;
-        border: 2px solid violet;
+        border: ${v.borderThickness.thin} solid black;
         margin-inline: ${v.spacing.xxxsmall};
         margin-block: ${v.spacing.xxxsmall};
         width: 47.5%;
-        padding-inline: ${v.spacing.xxxsmall};
+        padding: ${v.spacing.xxxsmall};
         max-height: 100%;
     }
     
@@ -161,7 +173,6 @@ export const CheckoutForm = styled(GenericForm)`
         width: 100%;
         padding: ${v.spacing.xxxsmall};
         height: 10%;
-        border: 2px solid blue;
     
         & .submit-form-btn {
             width: 35%;
@@ -177,7 +188,6 @@ export const CheckoutForm = styled(GenericForm)`
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px solid red;
         
         & legend {
             font-size: ${v.fontSize.xsmall};
@@ -204,7 +214,6 @@ export const CheckoutForm = styled(GenericForm)`
     }
     
     & .add-input-button-space {
-        border: 2px solid red;
         width: 100%;
         height: 15%;
         display: flex;
