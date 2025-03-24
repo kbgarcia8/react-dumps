@@ -1,9 +1,12 @@
 import styled from "styled-components";
 import { v } from "../../../../styles/variables";
+import { Link } from "react-router-dom";
+import ListItem from "../../../atoms/ListItem";
 
 export const PendingPageWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    column-gap: ${v.spacing.medium};
     width: 100%;
     height: 100%;
     padding: ${v.spacing.small};
@@ -42,7 +45,7 @@ export const PendingMessage = styled.h5`
     border: 2px solid yellow;
     text-align: center;
 `;
-
+export const StyledLink = styled(Link)``;
 export const CurrentOrderContainer = styled.div`
     grid-column: 2/3;
     border: 2px solid violet;
@@ -51,3 +54,20 @@ export const CurrentOrderContainer = styled.div`
     justify-content: center;
     align-items: center;
 `;
+export const CurrentOrderHeader = styled.h5`
+    border: 2px solid orange;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: ${v.spacing.small};
+`;
+export const CurrentOrderItemListing = styled.div`
+    border: 2px solid pink;
+    width: 100%;
+    height: 58%;
+    overflow-y: auto;
+`;
+export const ItemList = styled.li`
+
+`;
+export const Item = styled(ListItem)``;

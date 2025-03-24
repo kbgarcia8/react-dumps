@@ -1,6 +1,6 @@
 import {React, useState, useReducer, useEffect} from "react";
 import PropTypes from "prop-types";
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useGlobalProvider } from "../../../context/ContextProvider";
 import * as styled from "./DashboardLayout.styles";
 import DeleteIcon from "../../atoms/SVG/DeleteIcon";
@@ -133,7 +133,7 @@ function reducer(state, action){
 }
 
 const DashboardLayout = ({header, sidebar}) => {
-
+    const navigate = useNavigate();
     const {database} = useGlobalProvider();
     const [state, dispatch] = useReducer(reducer, initialCart);
     const [subtotal, setSubtotal] = useState(0);
@@ -377,7 +377,7 @@ const DashboardLayout = ({header, sidebar}) => {
         e.preventDefault();
         const checkedAddress = addressBank.find((address) => address.checked === true);
         const checkedPayment = paymentMethod.find((method) => method.checked === true);
-        const currentCart = state;
+        const currentCart = [...state];
         const currentTransactionType = transactionType;
         const currentSubtotal = subtotal;
 
@@ -391,6 +391,7 @@ const DashboardLayout = ({header, sidebar}) => {
             })
             alert("Thank you for your purchase!")
             dispatch({ type: "reset" })
+            navigate("../dashboard/pending")
         } else if(currentCart.length === 0 || checkedAddress === undefined || checkedPayment === undefined) {
             currentCart.length === 0 
                 ? alert("Please add items to cart first before checking out")

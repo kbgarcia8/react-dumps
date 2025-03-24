@@ -9,13 +9,17 @@ import orderupGIF from "../../../../assets/orderup.gif";
 
 const PendingPage =({}) => {
 
-    const [isPending, setIsPending] = useState(false);
-
+    const [isPending, setIsPending] = useState(true);
+    //tempoarary useEffect to simulate a pending state after 5 seconds
     useEffect(() => {
-        
+        setTimeout(() => {
+            setIsPending(false);
+        }, 5000);
+        clearTimeout();
     },[]);
-
+    
     const { checkoutDetails } = useOutletContext();
+    console.dir(checkoutDetails, { depth: null });
     return(
         <styled.PendingPageWrapper>
             <styled.PendingPageAestheticsContainer>
@@ -25,7 +29,10 @@ const PendingPage =({}) => {
                 <styled.PendingMessageContainer>
                     <styled.PendingMessage>
                         {Object.keys(checkoutDetails).length === 0
-                         ? "It looks like you're still thinking of what to order. Go to Menu to start ordering now!"
+                         ? 
+                         <>
+                            It looks like you're still thinking of what to order. Go to <styled.StyledLink  to={`../menu`}>{"Menu"}</styled.StyledLink> to start ordering now!
+                         </>
                          : isPending
                             ? "Your order is being processed"
                             : "Your order is ready for pickup"}
@@ -33,7 +40,18 @@ const PendingPage =({}) => {
                 </styled.PendingMessageContainer>
             </styled.PendingPageAestheticsContainer>
             <styled.CurrentOrderContainer>
-                
+                <styled.CurrentOrderHeader>{"Current Order Summary"}</styled.CurrentOrderHeader>
+                <styled.CurrentOrderItemListing>
+                    <styled.ItemList>
+                    {Object.keys(checkoutDetails).length === 0 
+                        ? 
+                        <>Nothing here yet, once you checked out your order will appear here!</>
+                        : (checkoutDetails['cart'].map((item, index) => (
+                            <styled.Item key={`${item.name}-${index}`} listText={`${item.name} - ${item.quantity} - ${item.size}`} />
+                        )))
+                    }
+                    </styled.ItemList>
+                </styled.CurrentOrderItemListing>
             </styled.CurrentOrderContainer>
         </styled.PendingPageWrapper>
     )

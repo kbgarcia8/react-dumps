@@ -13,6 +13,7 @@ export const CartItemWrapper = styled.div`
     padding: ${v.spacing.xxsmall};
     border: ${v.borderThickness.light} solid ${({theme}) => theme.backgroundColor1};
     border-radius: ${v.borderRadius.small};
+    margin-block: ${v.spacing.xxsmall};
 `;
 export const CartImageContainer = styled.div`
     display: flex;

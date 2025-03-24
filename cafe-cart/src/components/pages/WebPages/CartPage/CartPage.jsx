@@ -18,11 +18,11 @@ const CartPage =({}) => {
         handleAddressBankChange,
         addAddressEntry
     } = useOutletContext();
-    {/*console.dir(paymentFieldSet, { depth: null });*/}
+    console.dir(state, { depth: null });
     return(
         <styled.CartPageWrapper>
             <styled.CartListHeaderSpace>
-                <styled.OrderQuantityHeader>Your Orders:</styled.OrderQuantityHeader>                
+                <styled.OrderQuantityHeader>{"Your Cart:"}</styled.OrderQuantityHeader>                
                 <styled.ClearCartButton text={"Clear Cart"} onClick={clearCart}/>
             </styled.CartListHeaderSpace>
             <styled.CartItemsHeaderSpace>
