@@ -3,32 +3,30 @@ import PropTypes from "prop-types";
 import ListItem from "./ListItem.styles";
 
 export const GenericListItem = ({
-    key, 
     id,
     dataValue,
     dataIndex,
-    listText,
+    children,
     className
 }) => {
     return(
         <>
             <ListItem
-                key={key}
                 id={id}
                 data-value={dataValue}
                 data-index={dataIndex}
                 className={className}
-            >{listText}</ListItem>
+            >{children}</ListItem>
         </>
     )
 }
 
 GenericListItem.propTypes = {
-    key: PropTypes.string,
     id: PropTypes.string,
     dataValue: PropTypes.string,
     dataIndex: PropTypes.number,
-    className: PropTypes.string
+    className: PropTypes.string,
+    children: PropTypes.node
 }
 
 export default GenericListItem;

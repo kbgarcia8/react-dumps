@@ -40,18 +40,53 @@ const PendingPage =({}) => {
                 </styled.PendingMessageContainer>
             </styled.PendingPageAestheticsContainer>
             <styled.CurrentOrderContainer>
+                <styled.OrderSummaryLogoSpace>
+                    <styled.OrderSummaryLogo src={"/src/assets/pic-only-logo.png"} alt="logo" />
+                    <styled.OrderSummaryHeaderSpan>{"Kain at Kape"}</styled.OrderSummaryHeaderSpan>
+                    <styled.OrderSummaryHeaderSpan>{"Unit 3B, Sunshine Apartments\n1234 Mabini Street, Barangay Poblacion\nMakati City, Metro Manila\n1226, Philippines"}</styled.OrderSummaryHeaderSpan>
+                </styled.OrderSummaryLogoSpace>
                 <styled.CurrentOrderHeader>{"Current Order Summary"}</styled.CurrentOrderHeader>
                 <styled.CurrentOrderItemListing>
                     <styled.ItemList>
                     {Object.keys(checkoutDetails).length === 0 
                         ? 
-                        <>Nothing here yet, once you checked out your order will appear here!</>
-                        : (checkoutDetails['cart'].map((item, index) => (
-                            <styled.Item key={`${item.name}-${index}`} listText={`${item.name} - ${item.quantity} - ${item.size}`} />
-                        )))
+                        (<styled.Item>
+                            <styled.NoItemMessage>
+                                Nothing here yet, once you checked out your order will appear here!
+                            </styled.NoItemMessage>
+                        </styled.Item>)
+                        : (
+                            checkoutDetails['cart'].map((item, index) => (
+                                <styled.Item 
+                                    key={`${item.name}-${index}`}                                      
+                                >
+                                {`${item.quantity}x ${item.size} ${item.name} - ${item.total}`}
+                                </styled.Item>
+                            ))
+                        )
                     }
-                    </styled.ItemList>
+                    </styled.ItemList>                    
                 </styled.CurrentOrderItemListing>
+                <styled.CheckoutTotalDetails>
+                        <styled.CheckoutTotalDetailsSpan>
+                            <styled.CheckoutTotalDetailsSpanMarker>{"Subtotal: "}</styled.CheckoutTotalDetailsSpanMarker>
+                            {`${Object.keys(checkoutDetails).length === 0 ? "       0" : `      ${checkoutDetails.subtotal}`}`}
+                        </styled.CheckoutTotalDetailsSpan>
+                        <styled.CheckoutTotalDetailsSpan>
+                            <styled.CheckoutTotalDetailsSpanMarker>{"Transaction Type: "}</styled.CheckoutTotalDetailsSpanMarker>
+                            {`${Object.keys(checkoutDetails).length === 0 ? "" : `      ${checkoutDetails.transactionType}`}`}
+                        </styled.CheckoutTotalDetailsSpan>
+                        {checkoutDetails.transactionType === "Delivery" && 
+                            <styled.CheckoutTotalDetailsSpan>
+                                <styled.CheckoutTotalDetailsSpanMarker>{"Delivery Address: "}</styled.CheckoutTotalDetailsSpanMarker>
+                                {`      ${checkoutDetails.address}`}
+                            </styled.CheckoutTotalDetailsSpan>
+                        }
+                        <styled.CheckoutTotalDetailsSpan>
+                            <styled.CheckoutTotalDetailsSpanMarker>{"Payment Method: "}</styled.CheckoutTotalDetailsSpanMarker>
+                            {`${Object.keys(checkoutDetails).length === 0 ? "" : `      ${checkoutDetails.payment}`}`}
+                        </styled.CheckoutTotalDetailsSpan>
+                </styled.CheckoutTotalDetails>
             </styled.CurrentOrderContainer>
         </styled.PendingPageWrapper>
     )
