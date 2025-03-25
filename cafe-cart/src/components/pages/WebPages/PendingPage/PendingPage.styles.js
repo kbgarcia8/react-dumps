@@ -61,15 +61,16 @@ export const OrderSummaryLogoSpace = styled.div`
     height: 32.5%;    
 `;
 export const OrderSummaryLogo = styled.img`
-    width: 5%;
-    height: 100%;
+    width: 10%;
+    height: 50%;
 `;
 export const OrderSummaryHeaderSpan = styled.span`
     font-size: ${v.fontSize.xxsmall};
     font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+    font-weight: ${v.fontWeight.bold};
     text-align: center;
     white-space: pre-wrap;
-    padding: ${v.spacing.xsmall};
+    padding: ${v.spacing.xxxsmall};
     margin: 0;
 `;
 export const CurrentOrderHeader = styled.h5`
@@ -89,7 +90,6 @@ export const ItemList = styled.ul`
     padding: ${v.spacing.small};
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
     width: 100%;
     height: auto;
@@ -107,6 +107,8 @@ export const CheckoutTotalDetails = styled.div`
     border-top: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 30%;
     overflow-y: auto;

@@ -145,6 +145,40 @@ const DashboardLayout = ({header, sidebar}) => {
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
     const [checkoutDetails, setCheckoutDetails] = useState({});
 
+     const [isPending, setIsPending] = useState(true);
+     {/*Fixed simulattion of isPending and checkout reset after checkout
+        useEffect(() => {
+        if (Object.keys(checkoutDetails).length === 0) return; // Prevents running if empty
+        
+        const timeout = setTimeout(() => {
+            setIsPending(false);
+        }, 15000);
+    
+        return () => clearTimeout(timeout);
+    }, [checkoutDetails]);
+    
+    // Toggle pending state back to true
+    useEffect(() => {
+        if (Object.keys(checkoutDetails).length === 0) return; // Prevents unnecessary runs
+    
+        const timeout = setTimeout(() => {
+            setIsPending(true);
+        }, 20000);
+    
+        return () => clearTimeout(timeout);
+    }, [checkoutDetails]);
+    
+    // Delete checkout details after 45 seconds
+    useEffect(() => {
+        if (!isPending) return; // Only trigger when isPending is true
+        
+        const timeout = setTimeout(() => {
+            setCheckoutDetails({});
+        }, 45000);
+    
+        return () => clearTimeout(timeout);
+    }, [isPending]); */}
+
     useEffect(() => {
         console.log(checkoutDetails)
     },[checkoutDetails])
@@ -347,8 +381,7 @@ const DashboardLayout = ({header, sidebar}) => {
         setAddressBank((prevAddressBank) => [
             ...prevAddressBank,
             newAddAddressEntry,
-          ]);
-          
+        ]);
     }
 
     const checkedAddress = (e) => {
@@ -381,7 +414,9 @@ const DashboardLayout = ({header, sidebar}) => {
         const currentTransactionType = transactionType;
         const currentSubtotal = subtotal;
 
-        if(checkedAddress && checkedPayment && currentCart.length !== 0) {
+        if(
+            ((currentTransactionType === "Delivery" && checkedAddress) && checkedPayment && currentCart.length !== 0)
+            ||((currentTransactionType !== "Delivery" && checkedAddress === undefined) && checkedPayment && currentCart.length !== 0)) {
             setCheckoutDetails({
                 address: checkedAddress,
                 payment: checkedPayment,
@@ -397,7 +432,7 @@ const DashboardLayout = ({header, sidebar}) => {
                 ? alert("Please add items to cart first before checking out")
                 : addressBank.length ===0
                     ? alert("Please provide atleast one address detail before checking out")
-                    : checkedAddress === undefined 
+                    : (currentTransactionType === "Delivery" && checkedAddress === undefined) 
                         ? alert("Please select an address before checking out")
                         : checkedPayment === undefined
                             && alert("Please select a payment method before checking out")
@@ -425,7 +460,8 @@ const DashboardLayout = ({header, sidebar}) => {
                     paymentFieldSet,
                     handleAddressBankChange,
                     addAddressEntry,
-                    checkoutDetails
+                    checkoutDetails,
+                    isPending
                 }}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>

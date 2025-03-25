@@ -6,20 +6,13 @@ import thinkingGIF from "../../../../assets/thinking.gif";
 import cookingGIF from "../../../../assets/cooking.gif";
 import deliveryGIF from "../../../../assets/delivery.gif";
 import orderupGIF from "../../../../assets/orderup.gif";
+import { formatDate } from "../../../../utils/utils.js";
 
 const PendingPage =({}) => {
 
-    const [isPending, setIsPending] = useState(true);
-    //tempoarary useEffect to simulate a pending state after 5 seconds
-    useEffect(() => {
-        setTimeout(() => {
-            setIsPending(false);
-        }, 5000);
-        clearTimeout();
-    },[]);
-    
-    const { checkoutDetails } = useOutletContext();
-    console.dir(checkoutDetails, { depth: null });
+    const { checkoutDetails, isPending } = useOutletContext();
+    //console.dir(checkoutDetails, { depth: null });
+    console.log(isPending);
     return(
         <styled.PendingPageWrapper>
             <styled.PendingPageAestheticsContainer>
@@ -34,8 +27,10 @@ const PendingPage =({}) => {
                             It looks like you're still thinking of what to order. Go to <styled.StyledLink  to={`../menu`}>{"Menu"}</styled.StyledLink> to start ordering now!
                          </>
                          : isPending
-                            ? "Your order is being processed"
-                            : "Your order is ready for pickup"}
+                            ? "Your order is being prepared"
+                            : checkoutDetails.transactionType === "Delivery" 
+                                ? "Your order is on its way" 
+                                : "Your order is ready for pickup"}
                     </styled.PendingMessage>
                 </styled.PendingMessageContainer>
             </styled.PendingPageAestheticsContainer>
@@ -44,6 +39,7 @@ const PendingPage =({}) => {
                     <styled.OrderSummaryLogo src={"/src/assets/pic-only-logo.png"} alt="logo" />
                     <styled.OrderSummaryHeaderSpan>{"Kain at Kape"}</styled.OrderSummaryHeaderSpan>
                     <styled.OrderSummaryHeaderSpan>{"Unit 3B, Sunshine Apartments\n1234 Mabini Street, Barangay Poblacion\nMakati City, Metro Manila\n1226, Philippines"}</styled.OrderSummaryHeaderSpan>
+                    <styled.OrderSummaryHeaderSpan>{formatDate(Date.now())}</styled.OrderSummaryHeaderSpan>
                 </styled.OrderSummaryLogoSpace>
                 <styled.CurrentOrderHeader>{"Current Order Summary"}</styled.CurrentOrderHeader>
                 <styled.CurrentOrderItemListing>
@@ -79,12 +75,12 @@ const PendingPage =({}) => {
                         {checkoutDetails.transactionType === "Delivery" && 
                             <styled.CheckoutTotalDetailsSpan>
                                 <styled.CheckoutTotalDetailsSpanMarker>{"Delivery Address: "}</styled.CheckoutTotalDetailsSpanMarker>
-                                {`      ${checkoutDetails.address}`}
+                                {`      (${checkoutDetails.address['name']} - ${checkoutDetails.address['number']})   ${checkoutDetails.address['location']}`}
                             </styled.CheckoutTotalDetailsSpan>
                         }
                         <styled.CheckoutTotalDetailsSpan>
                             <styled.CheckoutTotalDetailsSpanMarker>{"Payment Method: "}</styled.CheckoutTotalDetailsSpanMarker>
-                            {`${Object.keys(checkoutDetails).length === 0 ? "" : `      ${checkoutDetails.payment}`}`}
+                            {`${Object.keys(checkoutDetails).length === 0 ? "" : `      ${checkoutDetails.payment['name']}`}`}
                         </styled.CheckoutTotalDetailsSpan>
                 </styled.CheckoutTotalDetails>
             </styled.CurrentOrderContainer>
