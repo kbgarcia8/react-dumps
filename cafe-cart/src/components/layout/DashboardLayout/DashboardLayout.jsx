@@ -8,6 +8,7 @@ import EditIcon from "../../atoms/SVG/EditIcon";
 import CashIcon from "../../atoms/SVG/CashIcon";
 import CardIcon from "../../atoms/SVG/CardIcon";
 import GCashIcon from "../../atoms/SVG/GCashIcon";
+import { formatDate } from "../../../utils/utils.js"
 
 const initialCart = [];
 
@@ -146,42 +147,52 @@ const DashboardLayout = ({header, sidebar}) => {
     const [checkoutDetails, setCheckoutDetails] = useState({});
 
      const [isPending, setIsPending] = useState(true);
-     {/*Fixed simulattion of isPending and checkout reset after checkout
+     const [orderHistory, setOrderHistory] = useState([]);
+     //Simulation of isPending and checkout reset after checkout
         useEffect(() => {
-        if (Object.keys(checkoutDetails).length === 0) return; // Prevents running if empty
-        
-        const timeout = setTimeout(() => {
-            setIsPending(false);
-        }, 15000);
-    
-        return () => clearTimeout(timeout);
+        if (Object.keys(checkoutDetails).length === 0) {return;} // Prevents running if empty
+        if (Object.keys(checkoutDetails).length !== 0 && isPending) {
+            const timeout = setTimeout(() => {
+                setIsPending(false);
+                setOrderHistory((prevHistory) => [...prevHistory, checkoutDetails])
+            }, 10000);
+            console.log("Pending changed to false")
+            return () => clearTimeout(timeout);
+        }
     }, [checkoutDetails]);
-    
-    // Toggle pending state back to true
-    useEffect(() => {
-        if (Object.keys(checkoutDetails).length === 0) return; // Prevents unnecessary runs
-    
-        const timeout = setTimeout(() => {
-            setIsPending(true);
-        }, 20000);
-    
-        return () => clearTimeout(timeout);
-    }, [checkoutDetails]);
-    
+
     // Delete checkout details after 45 seconds
     useEffect(() => {
-        if (!isPending) return; // Only trigger when isPending is true
+        //if (!isPending) return;
         
-        const timeout = setTimeout(() => {
-            setCheckoutDetails({});
-        }, 45000);
+        if (Object.keys(checkoutDetails).length !== 0 && !isPending) {
+            const timeout = setTimeout(() => {
+                setCheckoutDetails({});
+                setIsPending(true);                
+            }, 10000);
+            console.log("Checkout details cleared")
+            return () => {
+                clearTimeout(timeout);
+            }
+        }
+        
+    }, [isPending]);
     
-        return () => clearTimeout(timeout);
-    }, [isPending]); */}
+    // Reset isPending when checkoutDetails is cleared, avoiding unnecessary updates
+    {/*useEffect(() => {
+        if (Object.keys(checkoutDetails).length === 0) return; // Prevents running if empty
 
-    useEffect(() => {
-        console.log(checkoutDetails)
-    },[checkoutDetails])
+        if (Object.keys(checkoutDetails).length !== 0 && !isPending) {
+            const timeout = setTimeout(() => {
+                setIsPending(true);
+            }, 6000);
+            console.log("Pending changed to true")
+            return () => {
+                clearTimeout(timeout);
+            }
+        }
+    }, [checkoutDetails]);*/}
+
     //ensure that previously saved data are loaded properly or a preset data is provided if no saved info
     useEffect(() => {
         if(localStorage.getItem("savedAddressBank") === null) {
@@ -413,6 +424,7 @@ const DashboardLayout = ({header, sidebar}) => {
         const currentCart = [...state];
         const currentTransactionType = transactionType;
         const currentSubtotal = subtotal;
+        const currentDateAndTime = formatDate(Date.now())
 
         if(
             ((currentTransactionType === "Delivery" && checkedAddress) && checkedPayment && currentCart.length !== 0)
@@ -422,7 +434,8 @@ const DashboardLayout = ({header, sidebar}) => {
                 payment: checkedPayment,
                 cart: currentCart,
                 transactionType: currentTransactionType,
-                subtotal: currentSubtotal
+                subtotal: currentSubtotal,
+                dateAndTime: currentDateAndTime
             })
             alert("Thank you for your purchase!")
             dispatch({ type: "reset" })

@@ -6,13 +6,12 @@ import thinkingGIF from "../../../../assets/thinking.gif";
 import cookingGIF from "../../../../assets/cooking.gif";
 import deliveryGIF from "../../../../assets/delivery.gif";
 import orderupGIF from "../../../../assets/orderup.gif";
-import { formatDate } from "../../../../utils/utils.js";
 
 const PendingPage =({}) => {
 
     const { checkoutDetails, isPending } = useOutletContext();
     //console.dir(checkoutDetails, { depth: null });
-    console.log(isPending);
+    //console.log(isPending);
     return(
         <styled.PendingPageWrapper>
             <styled.PendingPageAestheticsContainer>
@@ -39,7 +38,7 @@ const PendingPage =({}) => {
                     <styled.OrderSummaryLogo src={"/src/assets/pic-only-logo.png"} alt="logo" />
                     <styled.OrderSummaryHeaderSpan>{"Kain at Kape"}</styled.OrderSummaryHeaderSpan>
                     <styled.OrderSummaryHeaderSpan>{"Unit 3B, Sunshine Apartments\n1234 Mabini Street, Barangay Poblacion\nMakati City, Metro Manila\n1226, Philippines"}</styled.OrderSummaryHeaderSpan>
-                    <styled.OrderSummaryHeaderSpan>{formatDate(Date.now())}</styled.OrderSummaryHeaderSpan>
+                    <styled.OrderSummaryHeaderSpan>{`${checkoutDetails.dateAndTime}`}</styled.OrderSummaryHeaderSpan>
                 </styled.OrderSummaryLogoSpace>
                 <styled.CurrentOrderHeader>{"Current Order Summary"}</styled.CurrentOrderHeader>
                 <styled.CurrentOrderItemListing>
