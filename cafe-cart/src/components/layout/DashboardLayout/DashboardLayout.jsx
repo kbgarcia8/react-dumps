@@ -148,8 +148,13 @@ const DashboardLayout = ({header, sidebar}) => {
 
      const [isPending, setIsPending] = useState(true);
      const [orderHistory, setOrderHistory] = useState([]);
-     //Simulation of isPending and checkout reset after checkout
-        useEffect(() => {
+    //useEffect for console.log
+    useEffect(() => {
+        console.log(orderHistory)
+    }, [orderHistory]);
+
+    //Simulation of isPending and checkout reset after checkout
+    useEffect(() => {
         if (Object.keys(checkoutDetails).length === 0) {return;} // Prevents running if empty
         if (Object.keys(checkoutDetails).length !== 0 && isPending) {
             const timeout = setTimeout(() => {
@@ -177,21 +182,6 @@ const DashboardLayout = ({header, sidebar}) => {
         }
         
     }, [isPending]);
-    
-    // Reset isPending when checkoutDetails is cleared, avoiding unnecessary updates
-    {/*useEffect(() => {
-        if (Object.keys(checkoutDetails).length === 0) return; // Prevents running if empty
-
-        if (Object.keys(checkoutDetails).length !== 0 && !isPending) {
-            const timeout = setTimeout(() => {
-                setIsPending(true);
-            }, 6000);
-            console.log("Pending changed to true")
-            return () => {
-                clearTimeout(timeout);
-            }
-        }
-    }, [checkoutDetails]);*/}
 
     //ensure that previously saved data are loaded properly or a preset data is provided if no saved info
     useEffect(() => {
@@ -206,7 +196,7 @@ const DashboardLayout = ({header, sidebar}) => {
 
     useEffect(() => {
         const currentTotal = [];        
-        state.map((entry,index) => currentTotal.push(parseInt(entry.total)));
+        state.map((entry) => currentTotal.push(parseInt(entry.total)));
         currentTotal.length !== 0 ? setSubtotal(currentTotal.reduce((total, itemTotal) => total + itemTotal,0)) : setSubtotal(0);        
     }, [state])
 
@@ -450,6 +440,8 @@ const DashboardLayout = ({header, sidebar}) => {
                         : checkedPayment === undefined
                             && alert("Please select a payment method before checking out")
         }
+
+        console.log(state)
     }
 
     return (

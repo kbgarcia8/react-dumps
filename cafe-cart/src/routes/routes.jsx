@@ -17,7 +17,7 @@ import Sidebar from "../components/organisms/Sidebar";
 import DashboardHomepage from "../components/pages/WebPages/DashboardHomePage";
 import MenuPage from "../components/pages/WebPages/MenuPage";
 import CartPage from "../components/pages/WebPages/CartPage/CartPage";
-import OrdersPage from "../components/pages/WebPages/OrdersPage/OrdersPage";
+import OrderHistoryPage from "../components/pages/WebPages/OrderHistoryPage/OrderHistoryPage";
 import PendingPage from "../components/pages/WebPages/PendingPage/PendingPage";
 import SettingsPage from "../components/pages/WebPages/SettingsPage/SettingsPage";
 
@@ -46,7 +46,7 @@ const routes = [
       {index: true, element: <DashboardHomepage/>}, //Default route of '/' due to index: true
       {path: "menu", element: <MenuPage/>},
       {path: "cart", element: <CartPage/>},
-      {path: "orders", element: <OrdersPage/>},
+      {path: "orders", element: <OrderHistoryPage/>},
       {path: "pending", element: <PendingPage/>},
       {path: "settings", element: <SettingsPage/>},
       {path: "login", element: <LoginPage/>}

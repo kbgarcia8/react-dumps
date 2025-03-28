@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const OrdersPage =({}) => {
+const OrderHistoryPage =({}) => {
 
     return(
         <h1>
@@ -10,4 +10,4 @@ const OrdersPage =({}) => {
     )
 }
 
-export default OrdersPage;
+export default OrderHistoryPage;
