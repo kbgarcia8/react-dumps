@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { v } from "../../../../styles/variables";
 import { Link } from "react-router-dom";
-import GenericListItem from "../../../atoms/ListItem";
 
 export const PendingPageWrapper = styled.div`
     display: grid;

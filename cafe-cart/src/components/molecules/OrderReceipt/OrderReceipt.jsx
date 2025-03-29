@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as styled from "./OrderReceipt.styles"
 
 const OrderReceipt = ({
     shopLogo, //shopLogo
@@ -15,7 +16,7 @@ const OrderReceipt = ({
                 <styled.OrderSummaryLogo src={shopLogo} alt="logo" />
                 <styled.OrderSummaryHeaderSpan>{shopName}</styled.OrderSummaryHeaderSpan>
                 <styled.OrderSummaryHeaderSpan>{shopAddress}</styled.OrderSummaryHeaderSpan>
-                <styled.OrderSummaryHeaderSpan>{dateAndTime === undefined ? "--- -- ---- --:--" : `${dateAndTimee}`}</styled.OrderSummaryHeaderSpan>
+                <styled.OrderSummaryHeaderSpan>{dateAndTime === undefined ? "--- -- ---- --:--" : `${dateAndTime}`}</styled.OrderSummaryHeaderSpan>
             </styled.OrderSummaryLogoSpace>
             <styled.CurrentOrderHeader className={'receipt-header'}>{"Current Order Summary"}</styled.CurrentOrderHeader>
             <styled.CurrentOrderItemListing className={'receipt-order-list'}>

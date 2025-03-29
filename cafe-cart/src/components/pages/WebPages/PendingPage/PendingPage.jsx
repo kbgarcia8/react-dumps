@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
 import * as styled from "./PendingPage.styles";
-import shopLogo from "../../../../assets/assets/pic-only-logo.png"
+import shopLogo from "../../../../assets/pic-only-logo.png"
 import thinkingGIF from "../../../../assets/thinking.gif";
 import cookingGIF from "../../../../assets/cooking.gif";
 import deliveryGIF from "../../../../assets/delivery.gif";

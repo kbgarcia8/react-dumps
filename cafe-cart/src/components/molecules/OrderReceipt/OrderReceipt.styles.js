@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { v } from '../../../styles/variables';
+import GenericListItem from '../../atoms/ListItem'
 
 export const OrderReceiptWrapper = styled.div`
     display: flex;
