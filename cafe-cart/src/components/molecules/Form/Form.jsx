@@ -1,14 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import GenericLabel from "../../atoms/Label";
-import GenericInput from "../../atoms/Input";
 import GenericButton from "../../atoms/Button";
 import * as styled from "./Form.styles";
-import { data } from "react-router-dom";
 
 const GenericForm = ({
     fieldsets = null, // if form has differrent fieldsets
     legendText, // if form has no fieldsets this is required
+    fieldHeight, // if form has no fieldsets this is required
+    isExpandable = false, // if form has no fieldsets this is required
     id, 
     formInputs, //object that contains the input fields information to make it reusable
     labelClassName,
@@ -92,9 +91,9 @@ const GenericForm = ({
                         </styled.ButtonContainer>}
                     </styled.FieldsetWrapper>
                 ))
-                : <styled.FieldsetWrapper $fieldHeight={field.height}>
-                    <styled.FormFieldset id={`${id}-form-fieldset-${fieldIndex}`}>
-                        <styled.FormLegend>{field.legend}</styled.FormLegend>
+                : <styled.FieldsetWrapper $fieldHeight={fieldHeight}>
+                    <styled.FormFieldset id={`${id}-form-fieldset`}>
+                        <styled.FormLegend>{legendText}</styled.FormLegend>
                         {formInputs.length !== 0
                         ? formInputs.map((input, inputIndex) => (
                             <React.Fragment key={`form-${id}-${inputIndex}`}>
@@ -148,10 +147,11 @@ const GenericForm = ({
                                     </styled.FormFieldset>}
                             </React.Fragment>
                         ))
-                        : <styled.FieldsetNoEntryMessage>{`No entry yet on ${field.legend}. Please click "+" button to add`}</styled.FieldsetNoEntryMessage>}
+                        : (isExpandable ? (<styled.FieldsetNoEntryMessage>{`No entry yet on ${legendText}. Please click "+" button to add`}</styled.FieldsetNoEntryMessage>) : "")
+                        }
                     </styled.FormFieldset>
-                    {field.expandable && <styled.ButtonContainer className={"add-input-button-space"}>
-                        <GenericButton id={`expand-${field.legend}-inputs`} buttonType={"button"} text={"+"} onClick={addInputFunction} className={`add-input-entry`}/>
+                    {isExpandable && <styled.ButtonContainer className={"add-input-button-space"}>
+                        <GenericButton id={`expand-${legendText}-inputs`} buttonType={"button"} text={"+"} onClick={addInputFunction} className={`add-input-entry`}/>
                     </styled.ButtonContainer>}
                 </styled.FieldsetWrapper>
             }
