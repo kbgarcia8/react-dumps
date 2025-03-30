@@ -147,7 +147,204 @@ const DashboardLayout = ({header, sidebar}) => {
     const [checkoutDetails, setCheckoutDetails] = useState({});
 
      const [isPending, setIsPending] = useState(true);
-     const [orderHistory, setOrderHistory] = useState([]);
+     const [orderHistory, setOrderHistory] = useState([
+        {
+            "payment": {
+                "name": "Cash/COD",
+                "image": {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+                },
+                "checked": true
+            },
+            "cart": [
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                },
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                },
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                },
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                },
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                },
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                }
+            ],
+            "transactionType": "Dine-In",
+            "subtotal": 120,
+            "dateAndTime": "Mar 30 2025, 09:07 PM"
+        },
+        {
+            "payment": {
+                "name": "Cash/COD",
+                "image": {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+                },
+                "checked": true
+            },
+            "cart": [
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                }
+            ],
+            "transactionType": "Dine-In",
+            "subtotal": 120,
+            "dateAndTime": "Mar 30 2025, 09:07 PM"
+        },
+        {
+            "payment": {
+                "name": "Cash/COD",
+                "image": {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+                },
+                "checked": true
+            },
+            "cart": [
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                }
+            ],
+            "transactionType": "Dine-In",
+            "subtotal": 120,
+            "dateAndTime": "Mar 30 2025, 09:07 PM"
+        },
+        {
+            "payment": {
+                "name": "Cash/COD",
+                "image": {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+                },
+                "checked": true
+            },
+            "cart": [
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                }
+            ],
+            "transactionType": "Dine-In",
+            "subtotal": 120,
+            "dateAndTime": "Mar 30 2025, 09:07 PM"
+        },
+        {
+            "payment": {
+                "name": "Cash/COD",
+                "image": {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+                },
+                "checked": true
+            },
+            "cart": [
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                }
+            ],
+            "transactionType": "Dine-In",
+            "subtotal": 120,
+            "dateAndTime": "Mar 30 2025, 09:07 PM"
+        },
+        {
+            "payment": {
+                "name": "Cash/COD",
+                "image": {
+                    "key": null,
+                    "ref": null,
+                    "props": {},
+                    "_owner": null,
+                    "_store": {}
+                },
+                "checked": true
+            },
+            "cart": [
+                {
+                    "name": "Caramel Macchiato",
+                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
+                    "size": "Regular",
+                    "price": "120",
+                    "quantity": 1,
+                    "total": 120
+                }
+            ],
+            "transactionType": "Dine-In",
+            "subtotal": 120,
+            "dateAndTime": "Mar 30 2025, 09:07 PM"
+        }
+     ]);
     //useEffect for console.log
     useEffect(() => {
         console.log(orderHistory)
@@ -440,8 +637,6 @@ const DashboardLayout = ({header, sidebar}) => {
                         : checkedPayment === undefined
                             && alert("Please select a payment method before checking out")
         }
-
-        console.log(state)
     }
 
     return (
@@ -466,7 +661,8 @@ const DashboardLayout = ({header, sidebar}) => {
                     handleAddressBankChange,
                     addAddressEntry,
                     checkoutDetails,
-                    isPending
+                    isPending,
+                    orderHistory
                 }}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>

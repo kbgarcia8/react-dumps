@@ -41,6 +41,7 @@ const PendingPage =({}) => {
                     shopName={"Kain at Kape"}
                     shopAddress={"Unit 3B, Sunshine Apartments\n1234 Mabini Street, Barangay Poblacion\nMakati City, Metro Manila\n1226, Philippines"}
                     dateAndTime={`${checkoutDetails.dateAndTime}`}
+                    receiptHeader={"Current Order Summary"}
                     receiptDetails={checkoutDetails}
                 />
             </styled.CurrentOrderContainer>

@@ -5,8 +5,9 @@ import GenericListItem from '../../atoms/ListItem'
 export const OrderReceiptWrapper = styled.div`
     display: flex;
     width: 100%;
+    height: 100%;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 8px 0 ${({theme}) => theme.shadow};
     padding: ${v.spacing.xsmall};
@@ -40,8 +41,7 @@ export const CurrentOrderHeader = styled.h5`
     padding: ${v.spacing.small};
     border-bottom: ${v.borderThickness.light} dashed ${({theme}) => theme.borderColor1};
 `;
-export const CurrentOrderItemListing = styled.div`
-    border-bottom: ${v.borderThickness.light} dashed ${({theme}) => theme.borderColor1};
+export const CurrentOrderItemListing = styled.div`    
     width: 100%;
     height: 37.5%;
     overflow-y: auto;
@@ -64,7 +64,7 @@ export const Item = styled(GenericListItem)`
 `;
 export const CheckoutTotalDetails = styled.div`
     border: ${v.borderThickness.light} dotted ${({theme}) => theme.borderColor1};
-    border-top: none;
+    border-top: ${v.borderThickness.light} dashed ${({theme}) => theme.borderColor1};
     display: flex;
     flex-direction: column;
     align-items: center;

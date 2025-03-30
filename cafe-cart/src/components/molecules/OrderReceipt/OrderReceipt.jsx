@@ -3,22 +3,24 @@ import PropTypes from "prop-types";
 import * as styled from "./OrderReceipt.styles"
 
 const OrderReceipt = ({
-    shopLogo, //shopLogo
-    shopName, //"Kain at Kape"
-    shopAddress, //"Unit 3B, Sunshine Apartments\n1234 Mabini Street, Barangay Poblacion\nMakati City, Metro Manila\n1226, Philippines"
-    dateAndTime, //checkoutDetails.dateAndTime
+    shopLogo, 
+    shopName, 
+    shopAddress, 
+    dateAndTime, 
+    receiptHeader,
     receiptDetails, //checkoutDetails
-    className 
+    className,
+    children
 }) => {
     return (
         <styled.OrderReceiptWrapper className={className}>
             <styled.OrderSummaryLogoSpace className={'logo-space'}>
                 <styled.OrderSummaryLogo src={shopLogo} alt="logo" />
-                <styled.OrderSummaryHeaderSpan>{shopName}</styled.OrderSummaryHeaderSpan>
-                <styled.OrderSummaryHeaderSpan>{shopAddress}</styled.OrderSummaryHeaderSpan>
-                <styled.OrderSummaryHeaderSpan>{dateAndTime === undefined ? "--- -- ---- --:--" : `${dateAndTime}`}</styled.OrderSummaryHeaderSpan>
+                <styled.OrderSummaryHeaderSpan className={"shop-details"}>{shopName}</styled.OrderSummaryHeaderSpan>
+                <styled.OrderSummaryHeaderSpan className={"shop-details"}>{shopAddress}</styled.OrderSummaryHeaderSpan>
+                <styled.OrderSummaryHeaderSpan className={"shop-details"}>{dateAndTime === undefined ? "--- -- ---- --:--" : `${dateAndTime}`}</styled.OrderSummaryHeaderSpan>
             </styled.OrderSummaryLogoSpace>
-            <styled.CurrentOrderHeader className={'receipt-header'}>{"Current Order Summary"}</styled.CurrentOrderHeader>
+            <styled.CurrentOrderHeader className={'receipt-header'}>{receiptHeader}</styled.CurrentOrderHeader>
             <styled.CurrentOrderItemListing className={'receipt-order-list'}>
                 <styled.ItemList>
                 {Object.keys(receiptDetails).length === 0 
@@ -61,6 +63,7 @@ const OrderReceipt = ({
                         {`${Object.keys(receiptDetails).length === 0 ? "" : `      ${receiptDetails.payment['name']}`}`}
                     </styled.CheckoutTotalDetailsSpan>
             </styled.CheckoutTotalDetails>
+            {children}
         </styled.OrderReceiptWrapper>
     )
 }
@@ -71,7 +74,8 @@ OrderReceipt.propTypes = {
     shopAddress: PropTypes.string,
     dateAndTime: PropTypes.string,
     receiptDetails: PropTypes.object,
-    className: PropTypes.string
+    className: PropTypes.string,
+    children: PropTypes.element
 };
 
 export default OrderReceipt;

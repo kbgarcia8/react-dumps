@@ -40,7 +40,17 @@ export const PendingMessageContainer = styled.div`
 export const PendingMessage = styled.h5`
     text-align: center;
 `;
-export const StyledLink = styled(Link)``;
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    padding: 10px;
+
+    &:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+`;
 export const CurrentOrderContainer = styled.div`
     grid-column: 2/3;
     display: flex;
