@@ -52,7 +52,17 @@ export const SummaryEntry = styled(OrderReceipt)`
 `;
 export const OrderHistoryButtonSpace = styled.div`
     display: flex;
-    border: 2px solid red;
+    flex-direction: row;
+    justify-content: center;
     height: 7.5%;
     width: 100%;
+    margin-top: ${v.spacing.xxxsmall};
+
+    & button {
+        width: 35%;
+        border-radius: ${v.borderRadius.small};
+    }
+    & .button-icon-and-text span{
+        font-size: ${v.fontSize.xxsmall};
+    }
 `;

@@ -11,16 +11,16 @@ const emptyHisory = () => (
     </styled.EmptyOrderHistoryMessageContainer>
 )
 
-const orderHistoryButtons = () => (
+const orderHistoryButtons = (history,index,deleteOrderHistoryEntry,orderAgain) => (
     <styled.OrderHistoryButtonSpace>
-        <GenericButton text={"Delete"}/>
-        <GenericButton text={"Order Again"}/>
+        <GenericButton onClick={deleteOrderHistoryEntry} text={"Delete"} id={`delete-order-history-${history.dateAndTime}}`} dataAttributes={{"data-index": index}} />
+        <GenericButton onClick={orderAgain} id={`order-again-history-${history.dateAndTime}}`} text={"Order Again"} dataAttributes={{"data-index": index}}/>
     </styled.OrderHistoryButtonSpace>
 )
 
 const OrderHistoryPage =({}) => {
 
-    const {orderHistory} = useOutletContext();    
+    const {orderHistory,deleteOrderHistoryEntry,orderAgain} = useOutletContext();    
 
     return(
         <styled.OrderHistoryPageWrapper>
@@ -36,7 +36,7 @@ const OrderHistoryPage =({}) => {
                             dateAndTime={`${history.dateAndTime}`}
                             receiptHeader={"Order Summary"}
                             receiptDetails={history}
-                            children={orderHistoryButtons()}
+                            children={orderHistoryButtons(history, index,deleteOrderHistoryEntry,orderAgain)}
                         />
                     </styled.OrderHistoryCardSpace>
                     )

@@ -18,7 +18,7 @@ const CartPage =({}) => {
         handleAddressBankChange,
         addAddressEntry
     } = useOutletContext();
-    //console.dir(state, { depth: null });
+    console.dir(state, { depth: null });
     return(
         <styled.CartPageWrapper>
             <styled.CartListHeaderSpace>

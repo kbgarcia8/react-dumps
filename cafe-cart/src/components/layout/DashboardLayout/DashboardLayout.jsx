@@ -1,4 +1,5 @@
-import {React, useState, useReducer, useEffect} from "react";
+import {React, useState, useReducer, useEffect, useMemo} from "react";
+import { useDeepCompareEffect } from 'use-deep-compare';
 import PropTypes from "prop-types";
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useGlobalProvider } from "../../../context/ContextProvider";
@@ -48,15 +49,18 @@ const initialAddressBank = [
 const paymentMethods = [
     {
         name: "Cash/COD",
-        image: <CashIcon/>
+        image: <CashIcon/>,
+        checked: false
     },
     {
         name: "GCash/E-wallet",
-        image: <GCashIcon/>
+        image: <GCashIcon/>,
+        checked: false
     },
     {
         name: "Credit/Debit Card",
-        image: <CardIcon/>
+        image: <CardIcon/>,
+        checked: false
     },
 ]
 
@@ -109,7 +113,7 @@ const initialPaymentFieldset = [
     }
 ]
 
-function reducer(state, action){
+const  reducer = (state, action) => {
     const {size, price, quantity, index} = action.data || {};
     switch (action.type) {        
         case "addToCart":
@@ -120,12 +124,14 @@ function reducer(state, action){
             return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity + 1, total: parseInt(entry.total) + parseInt(entry.price)} : entry);
         case "decrement":
                 if(parseInt(quantity) === 1) {            
-                    return state.filter((entry, idx) => idx !== parseInt(index));
+                    return state.filter((_, idx) => idx !== parseInt(index));
                 } else {
                     return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity -1, total: parseInt(entry.total) - parseInt(entry.price)} : entry);
                 }
         case "remove":
-            return state.filter((entry, idx) => idx !== parseInt(index)); 
+            return state.filter((_, idx) => idx !== parseInt(index)); 
+        case "orderAgain":
+            return state.concat(action.currentCart)
         case "reset":
             return initialCart;
         default:
@@ -140,247 +146,20 @@ const DashboardLayout = ({header, sidebar}) => {
     const [subtotal, setSubtotal] = useState(0);
     const [addressBank,setAddressBank] = useState(initialAddressBank);
     const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);
-    const [paymentMethod, setPaymentMehod] = useState(paymentMethods)
+    const [paymentMethod, setPaymentMethod] = useState(paymentMethods)
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
     const [transactionTypeCount, setTransactionTypeCount] = useState(0)
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
     const [checkoutDetails, setCheckoutDetails] = useState({});
 
      const [isPending, setIsPending] = useState(true);
-     const [orderHistory, setOrderHistory] = useState([
-        {
-            "payment": {
-                "name": "Cash/COD",
-                "image": {
-                    "key": null,
-                    "ref": null,
-                    "props": {},
-                    "_owner": null,
-                    "_store": {}
-                },
-                "checked": true
-            },
-            "cart": [
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                },
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                },
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                },
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                },
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                },
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                }
-            ],
-            "transactionType": "Dine-In",
-            "subtotal": 120,
-            "dateAndTime": "Mar 30 2025, 09:07 PM"
-        },
-        {
-            "payment": {
-                "name": "Cash/COD",
-                "image": {
-                    "key": null,
-                    "ref": null,
-                    "props": {},
-                    "_owner": null,
-                    "_store": {}
-                },
-                "checked": true
-            },
-            "cart": [
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                }
-            ],
-            "transactionType": "Dine-In",
-            "subtotal": 120,
-            "dateAndTime": "Mar 30 2025, 09:07 PM"
-        },
-        {
-            "payment": {
-                "name": "Cash/COD",
-                "image": {
-                    "key": null,
-                    "ref": null,
-                    "props": {},
-                    "_owner": null,
-                    "_store": {}
-                },
-                "checked": true
-            },
-            "cart": [
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                }
-            ],
-            "transactionType": "Dine-In",
-            "subtotal": 120,
-            "dateAndTime": "Mar 30 2025, 09:07 PM"
-        },
-        {
-            "payment": {
-                "name": "Cash/COD",
-                "image": {
-                    "key": null,
-                    "ref": null,
-                    "props": {},
-                    "_owner": null,
-                    "_store": {}
-                },
-                "checked": true
-            },
-            "cart": [
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                }
-            ],
-            "transactionType": "Dine-In",
-            "subtotal": 120,
-            "dateAndTime": "Mar 30 2025, 09:07 PM"
-        },
-        {
-            "payment": {
-                "name": "Cash/COD",
-                "image": {
-                    "key": null,
-                    "ref": null,
-                    "props": {},
-                    "_owner": null,
-                    "_store": {}
-                },
-                "checked": true
-            },
-            "cart": [
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                }
-            ],
-            "transactionType": "Dine-In",
-            "subtotal": 120,
-            "dateAndTime": "Mar 30 2025, 09:07 PM"
-        },
-        {
-            "payment": {
-                "name": "Cash/COD",
-                "image": {
-                    "key": null,
-                    "ref": null,
-                    "props": {},
-                    "_owner": null,
-                    "_store": {}
-                },
-                "checked": true
-            },
-            "cart": [
-                {
-                    "name": "Caramel Macchiato",
-                    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCBo20LWPuGzYwqRETGMAQS7WUOg0lpW3Quw&s",
-                    "size": "Regular",
-                    "price": "120",
-                    "quantity": 1,
-                    "total": 120
-                }
-            ],
-            "transactionType": "Dine-In",
-            "subtotal": 120,
-            "dateAndTime": "Mar 30 2025, 09:07 PM"
-        }
-     ]);
+     const [orderHistory, setOrderHistory] = useState([]);
     //useEffect for console.log
     useEffect(() => {
         console.log(orderHistory)
     }, [orderHistory]);
-
-    //Simulation of isPending and checkout reset after checkout
-    useEffect(() => {
-        if (Object.keys(checkoutDetails).length === 0) {return;} // Prevents running if empty
-        if (Object.keys(checkoutDetails).length !== 0 && isPending) {
-            const timeout = setTimeout(() => {
-                setIsPending(false);
-                setOrderHistory((prevHistory) => [...prevHistory, checkoutDetails])
-            }, 10000);
-            console.log("Pending changed to false")
-            return () => clearTimeout(timeout);
-        }
-    }, [checkoutDetails]);
-
-    // Delete checkout details after 45 seconds
-    useEffect(() => {
-        //if (!isPending) return;
-        
-        if (Object.keys(checkoutDetails).length !== 0 && !isPending) {
-            const timeout = setTimeout(() => {
-                setCheckoutDetails({});
-                setIsPending(true);                
-            }, 10000);
-            console.log("Checkout details cleared")
-            return () => {
-                clearTimeout(timeout);
-            }
-        }
-        
-    }, [isPending]);
-
-    //ensure that previously saved data are loaded properly or a preset data is provided if no saved info
+    //useEffect with no dependecy and onMount only
+    //ensure that previously saved data are loaded prope rly or a preset data is provided if no saved info
     useEffect(() => {
         if(localStorage.getItem("savedAddressBank") === null) {
             localStorage.setItem("savedAddressBank", JSON.stringify(addressBank)); //just change addressBank to [] in useState to remove presets
@@ -391,75 +170,94 @@ const DashboardLayout = ({header, sidebar}) => {
         }
     },[])
 
-    useEffect(() => {
-        const currentTotal = [];        
-        state.map((entry) => currentTotal.push(parseInt(entry.total)));
-        currentTotal.length !== 0 ? setSubtotal(currentTotal.reduce((total, itemTotal) => total + itemTotal,0)) : setSubtotal(0);        
-    }, [state])
+    //Simulation of isPending and checkout reset after checkout
+    useDeepCompareEffect(() => {
+        if (Object.keys(checkoutDetails).length === 0) return; // Prevents unnecessary execution
+    
+        const timeout = setTimeout(() => {
+            setIsPending(false);
+            setOrderHistory((prevHistory) => [...prevHistory, checkoutDetails]);
+    
+            setTimeout(() => {
+                setCheckoutDetails({});
+                setIsPending(true);
+                console.log("Checkout details cleared");
+            }, 45000); // 45 seconds after isPending is false
+        }, 10000); // 10 seconds timeout for isPending
+    
+        return () => clearTimeout(timeout);
+    }, [checkoutDetails]);
 
-    useEffect(() => {
-        setPaymentFieldSet((prevPaymentFieldSet) => 
-            prevPaymentFieldSet.map((fieldEntry) => {
-                if(fieldEntry.legend === "Address") {
-                    return {...fieldEntry, 
-                    inputs: addressBank.map((addressEntry, index) => ({
-                            labelText: `${addressEntry.name}\n`,
-                            additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
-                            labelDirection: "column",
-                            id: `address-entry-${index}`,
-                            placeholderText: "",
-                            editable: true,
-                            mainOnChange: checkedAddress,
-                            onClickEdit: openEditAddressEntryPanel,
-                            editIcon: <EditIcon/>,
-                            onClickDelete: deleteAddressEntry,
-                            deleteIcon: <DeleteIcon/>,
-                            onClickSave: saveAddressEntryEdit,
-                            onClickCancel: cancelAddressEntryEdit,
-                            type: "radio",
-                            isRequired: true,
-                            data: addressEntry,
-                            dataAttributes: {
-                                "data-index": index
-                            }
-                    }))
-                };
-                } 
-                return fieldEntry
-            })
-        )
+    const subtotalMemo = useMemo(() => {
+        if (state.length === 0) return 0;
+        return state.reduce((total, entry) => total + parseInt(entry.total), 0);
+    }, [state]);
+
+    const addressFieldInputs = useMemo(()=> {
+        return addressBank.map((addressEntry, index) => ({
+            labelText: `${addressEntry.name}\n`,
+            additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
+            labelDirection: "column",
+            id: `address-entry-${index}`,
+            placeholderText: "",
+            editable: true,
+            mainOnChange: checkedAddress,
+            onClickEdit: openEditAddressEntryPanel,
+            editIcon: <EditIcon/>,
+            onClickDelete: deleteAddressEntry,
+            deleteIcon: <DeleteIcon/>,
+            onClickSave: saveAddressEntryEdit,
+            onClickCancel: cancelAddressEntryEdit,
+            type: "radio",
+            isRequired: true,
+            data: addressEntry,
+            dataAttributes: {
+                "data-index": index
+            }
+        }))
     }, [addressBank])
 
-    useEffect(() => {
+    useDeepCompareEffect(() => {
         setPaymentFieldSet((prevPaymentFieldSet) => 
             prevPaymentFieldSet.map((fieldEntry) => {
-                if (fieldEntry.legend === "Payment Option") {
-                    return {...fieldEntry, 
-                        inputs:  paymentMethod.map((method, index) => ({
-                            labelText: `${method.name}`,
-                            labelDirection: "row",
-                            id: `payment-option-${index}`,
-                            placeholderText: "",
-                            image: method.image,
-                            mainOnChange: checkedPaymentMethod,
-                            value: "",
-                            type: "radio",
-                            isRequired: false,
-                            data: method,
-                            dataAttributes: {
-                                "data-index": index
-                            }
-                    }))
-                    };
-                }
-                return fieldEntry
+                fieldEntry.legend === "Address"
+                    ? {...fieldEntry, inputs: addressFieldInputs}
+                    : fieldEntry
             })
         )
+    }, [addressFieldInputs])
+
+    const paymentFieldInputs = useMemo(()=> {
+        return paymentMethod.map((method, index) => ({
+            labelText: `${method.name}`,
+            labelDirection: "row",
+            id: `payment-option-${index}`,
+            placeholderText: "",
+            image: method.image,
+            mainOnChange: checkedPaymentMethod,
+            value: "",
+            type: "radio",
+            isRequired: false,
+            data: method,
+            dataAttributes: {
+                "data-index": index
+            }
+        }))
     }, [paymentMethod])
+
+    useDeepCompareEffect(() => {
+        setPaymentFieldSet((prevPaymentFieldSet) => 
+            prevPaymentFieldSet.map((fieldEntry) => {
+                fieldEntry.legend === "Payment Option"
+                ?  {...fieldEntry, inputs: paymentFieldInputs}
+                : fieldEntry
+            })
+        )
+    }, [paymentFieldInputs])
     
     useEffect(() => {
         setTransactionType(transactionTypes[transactionTypeCount]);
-    }, [transactionTypeCount]); 
+    }, [transactionTypeCount, transactionTypes]); 
 
     const addToCart = (e) => {
         const {size, price, category, index} = e.currentTarget.dataset;
@@ -501,11 +299,10 @@ const DashboardLayout = ({header, sidebar}) => {
         setAddressBank((prevAddressBank) => 
             prevAddressBank.map((addressInfo, addressInfoIndex) => (
                 addressInfoIndex == index
-                ? {...addressInfo, [key]: e.target.value}
+                ? addressInfo[key] == e.target.value ? addressInfo : {...addressInfo, [key]: e.target.value}
                 : addressInfo
             ))
         )
-        console.dir(addressBank, { depth: null });
     }
 
     const openEditAddressEntryPanel = (e) => {
@@ -524,7 +321,7 @@ const DashboardLayout = ({header, sidebar}) => {
         e.preventDefault();
         const { index } = e.currentTarget.dataset;
         setAddressBank((prevAddressBank) => 
-            prevAddressBank.filter((entry, idx) => (
+            prevAddressBank.filter((_, idx) => (
                 idx !== parseInt(index)
             )
         ))
@@ -548,7 +345,7 @@ const DashboardLayout = ({header, sidebar}) => {
                     return updatedBank;
                 })
                     
-                setAddressBankBackup((prevBackup) => [...addressBank]);
+                setAddressBankBackup([...addressBank]);
             } else {
                 inputs.forEach(input => {
                     const {key, index} = input.dataset;
@@ -584,23 +381,28 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const checkedAddress = (e) => {
         const { index } = e.currentTarget.dataset;
-        setAddressBank((prevAddressBank) => 
-            prevAddressBank.map((addressInfo, addressInfoIndex) => (
-                (addressInfoIndex == index)
-                ? {...addressInfo, ['checked']: true}
-                : {...addressInfo, ['checked']: false}
-            ))
-        )
+        setAddressBank((prevAddressBank) =>
+            prevAddressBank.map((addressInfo, addressInfoIndex) => {
+                if (addressInfoIndex == index) {
+                    return addressInfo.checked ? addressInfo : { ...addressInfo, checked: true }; 
+                } else {
+                    return addressInfo.checked ? { ...addressInfo, checked: false } : addressInfo;
+                }
+            })
+        );
     }
 
     const checkedPaymentMethod = (e) => {
         const { index } = e.currentTarget.dataset;
-        setPaymentMehod((prevPaymentMethod) => 
-            prevPaymentMethod.map((method, methodIndex) => (
-                (methodIndex === parseInt(index)) 
-                ? {...method, ['checked']: true}
-                : {...method, ['checked']: false}
-            ))
+        console.log(index)
+        setPaymentMethod((prevPaymentMethod) => 
+            prevPaymentMethod.map((method, methodIndex) => {
+                if (methodIndex == index) {
+                  return method.checked ? method : {...method, ['checked']: true}
+                } else {
+                    return method.checked ? {...method, ['checked']: false} : method
+                }
+            })
         )
     }
 
@@ -639,6 +441,28 @@ const DashboardLayout = ({header, sidebar}) => {
         }
     }
 
+    const deleteOrderHistoryEntry = (e) => {
+        const {index} = e.currentTarget.dataset
+        setOrderHistory((prevHistory) => prevHistory.filter((_, idx) => idx !== parseInt(index)))
+    }
+
+    const orderAgain = (e) => {
+        const {index} = e.currentTarget.dataset
+        if (state.length === 0) {
+            dispatch({ type: "orderAgain" , currentCart: orderHistory[index]['cart']})
+            navigate("../dashboard/cart")
+        } else {
+            //Can be improved into a modal in the future
+            if (window.confirm("Current cart is not empty, confirming will replace all current cart items. Proceed?")) {
+                console.log("Cart Items replaced!");
+                dispatch({ type: "orderAgain" , currentCart: orderHistory[index]['cart']})
+                navigate("../dashboard/cart")
+            } else {
+                console.log("Order again action and cart replacement canceled");
+            }
+        }
+    }
+
     return (
         <styled.DashboardLayoutWrapper>
             <styled.DashboardLayoutHeader>{header}</styled.DashboardLayoutHeader>
@@ -662,7 +486,9 @@ const DashboardLayout = ({header, sidebar}) => {
                     addAddressEntry,
                     checkoutDetails,
                     isPending,
-                    orderHistory
+                    orderHistory,
+                    deleteOrderHistoryEntry,
+                    orderAgain
                 }}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>

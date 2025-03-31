@@ -75,7 +75,7 @@ OrderReceipt.propTypes = {
     dateAndTime: PropTypes.string,
     receiptDetails: PropTypes.object,
     className: PropTypes.string,
-    children: PropTypes.element
+    children: PropTypes.node
 };
 
 export default OrderReceipt;
