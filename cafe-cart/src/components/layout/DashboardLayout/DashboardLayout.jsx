@@ -143,7 +143,6 @@ const DashboardLayout = ({header, sidebar}) => {
     const navigate = useNavigate();
     const {database} = useGlobalProvider();
     const [state, dispatch] = useReducer(reducer, initialCart);
-    const [subtotal, setSubtotal] = useState(0);
     const [addressBank,setAddressBank] = useState(initialAddressBank);
     const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);
     const [paymentMethod, setPaymentMethod] = useState(paymentMethods)
@@ -156,7 +155,7 @@ const DashboardLayout = ({header, sidebar}) => {
      const [orderHistory, setOrderHistory] = useState([]);
     //useEffect for console.log
     useEffect(() => {
-        console.log(orderHistory)
+        console.log(paymentFieldSet)
     }, [orderHistory]);
     //useEffect with no dependecy and onMount only
     //ensure that previously saved data are loaded prope rly or a preset data is provided if no saved info
@@ -188,121 +187,23 @@ const DashboardLayout = ({header, sidebar}) => {
         return () => clearTimeout(timeout);
     }, [checkoutDetails]);
 
-    const subtotalMemo = useMemo(() => {
-        if (state.length === 0) return 0;
-        return state.reduce((total, entry) => total + parseInt(entry.total), 0);
+    const subtotal = useMemo(() => {
+        return state.length > 0 
+            ? state.reduce((total, entry) => total + parseInt(entry.total), 0) 
+            : 0;
     }, [state]);
 
-    const addressFieldInputs = useMemo(()=> {
-        return addressBank.map((addressEntry, index) => ({
-            labelText: `${addressEntry.name}\n`,
-            additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
-            labelDirection: "column",
-            id: `address-entry-${index}`,
-            placeholderText: "",
-            editable: true,
-            mainOnChange: checkedAddress,
-            onClickEdit: openEditAddressEntryPanel,
-            editIcon: <EditIcon/>,
-            onClickDelete: deleteAddressEntry,
-            deleteIcon: <DeleteIcon/>,
-            onClickSave: saveAddressEntryEdit,
-            onClickCancel: cancelAddressEntryEdit,
-            type: "radio",
-            isRequired: true,
-            data: addressEntry,
-            dataAttributes: {
-                "data-index": index
-            }
-        }))
-    }, [addressBank])
-
-    useDeepCompareEffect(() => {
-        setPaymentFieldSet((prevPaymentFieldSet) => 
-            prevPaymentFieldSet.map((fieldEntry) => {
-                fieldEntry.legend === "Address"
-                    ? {...fieldEntry, inputs: addressFieldInputs}
-                    : fieldEntry
+    const checkedAddress = (e) => {
+        const { index } = e.currentTarget.dataset;
+        setAddressBank((prevAddressBank) =>
+            prevAddressBank.map((addressInfo, addressInfoIndex) => {
+                if (addressInfoIndex == index) {
+                    return addressInfo.checked ? addressInfo : { ...addressInfo, checked: true }; 
+                } else {
+                    return addressInfo.checked ? { ...addressInfo, checked: false } : addressInfo;
+                }
             })
-        )
-    }, [addressFieldInputs])
-
-    const paymentFieldInputs = useMemo(()=> {
-        return paymentMethod.map((method, index) => ({
-            labelText: `${method.name}`,
-            labelDirection: "row",
-            id: `payment-option-${index}`,
-            placeholderText: "",
-            image: method.image,
-            mainOnChange: checkedPaymentMethod,
-            value: "",
-            type: "radio",
-            isRequired: false,
-            data: method,
-            dataAttributes: {
-                "data-index": index
-            }
-        }))
-    }, [paymentMethod])
-
-    useDeepCompareEffect(() => {
-        setPaymentFieldSet((prevPaymentFieldSet) => 
-            prevPaymentFieldSet.map((fieldEntry) => {
-                fieldEntry.legend === "Payment Option"
-                ?  {...fieldEntry, inputs: paymentFieldInputs}
-                : fieldEntry
-            })
-        )
-    }, [paymentFieldInputs])
-    
-    useEffect(() => {
-        setTransactionType(transactionTypes[transactionTypeCount]);
-    }, [transactionTypeCount, transactionTypes]); 
-
-    const addToCart = (e) => {
-        const {size, price, category, index} = e.currentTarget.dataset;
-        const itemInDatabase = database[category][index];
-        
-        dispatch({ type: "addToCart" , data: {size, price, category, index}, databaseItem: itemInDatabase})
-    }
-
-    const incrementItem = (e) => {
-        const {index} = e.currentTarget.dataset;
-        dispatch({ type: "increment" , data: {index}})
-    }
-
-    const decrementItem = (e) => {
-        const {index,quantity} = e.currentTarget.dataset;
-        dispatch({ type: "decrement" , data: {index, quantity}})
-    }
-    
-    const removeFromCart = (e) => {
-        const {index} = e.currentTarget.dataset;
-        dispatch({ type: "remove" , data: {index}})
-    }
-
-    const clearCart = () => {
-        dispatch({ type: "reset" })
-    }
-
-    const nextTransactionType = () => {
-        setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 3 ? prevTransactionCount + 1 : 0) 
-    }
-
-    const prevTransactionType = () => {
-        setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 0 ? prevTransactionCount - 1 : 3) 
-    }
-
-    const handleAddressBankChange = (e) => {
-        const {index, key} = e.currentTarget.dataset;
-
-        setAddressBank((prevAddressBank) => 
-            prevAddressBank.map((addressInfo, addressInfoIndex) => (
-                addressInfoIndex == index
-                ? addressInfo[key] == e.target.value ? addressInfo : {...addressInfo, [key]: e.target.value}
-                : addressInfo
-            ))
-        )
+        );
     }
 
     const openEditAddressEntryPanel = (e) => {
@@ -365,32 +266,41 @@ const DashboardLayout = ({header, sidebar}) => {
         setAddressBank(parsedAddressBankData);
     }
 
-    const addAddressEntry = () => {
-        const newAddAddressEntry = {
-            name: "",
-            number: "",
-            location: "",
-            editing: true,
-            checked: false
-        }
-        setAddressBank((prevAddressBank) => [
-            ...prevAddressBank,
-            newAddAddressEntry,
-        ]);
-    }
+    const addressFieldInputs = useMemo(()=> {
+        return addressBank.map((addressEntry, index) => ({
+            labelText: `${addressEntry.name}\n`,
+            additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
+            labelDirection: "column",
+            id: `address-entry-${index}`,
+            placeholderText: "",
+            editable: true,
+            mainOnChange: checkedAddress,
+            onClickEdit: openEditAddressEntryPanel,
+            editIcon: <EditIcon/>,
+            onClickDelete: deleteAddressEntry,
+            deleteIcon: <DeleteIcon/>,
+            onClickSave: saveAddressEntryEdit,
+            onClickCancel: cancelAddressEntryEdit,
+            type: "radio",
+            isRequired: true,
+            data: addressEntry,
+            dataAttributes: {
+                "data-index": index
+            }
+        }))
+    }, [addressBank])
 
-    const checkedAddress = (e) => {
-        const { index } = e.currentTarget.dataset;
-        setAddressBank((prevAddressBank) =>
-            prevAddressBank.map((addressInfo, addressInfoIndex) => {
-                if (addressInfoIndex == index) {
-                    return addressInfo.checked ? addressInfo : { ...addressInfo, checked: true }; 
-                } else {
-                    return addressInfo.checked ? { ...addressInfo, checked: false } : addressInfo;
-                }
-            })
+    useDeepCompareEffect(() => {
+        console.log("prevPaymentFieldSet before update:", paymentFieldSet);
+    
+        setPaymentFieldSet((prevPaymentFieldSet) => 
+            (Array.isArray(prevPaymentFieldSet) ? prevPaymentFieldSet : []).map((fieldEntry) => //always check first if element to be mapped is an array and provide fallback to prevent error
+                fieldEntry.legend === "Address"
+                    ? { ...fieldEntry, inputs: addressFieldInputs }
+                    : fieldEntry
+            )
         );
-    }
+    }, [addressFieldInputs])
 
     const checkedPaymentMethod = (e) => {
         const { index } = e.currentTarget.dataset;
@@ -404,6 +314,100 @@ const DashboardLayout = ({header, sidebar}) => {
                 }
             })
         )
+    }
+
+    const paymentFieldInputs = useMemo(()=> {
+        return paymentMethod.map((method, index) => ({
+            labelText: `${method.name}`,
+            labelDirection: "row",
+            id: `payment-option-${index}`,
+            placeholderText: "",
+            image: method.image,
+            mainOnChange: checkedPaymentMethod,
+            value: "",
+            type: "radio",
+            isRequired: false,
+            data: method,
+            dataAttributes: {
+                "data-index": index
+            }
+        }))
+    }, [paymentMethod])
+
+    useDeepCompareEffect(() => {
+        console.log("prevPaymentFieldSet before update:", paymentFieldSet);
+    
+        setPaymentFieldSet((prevPaymentFieldSet) => 
+            (Array.isArray(prevPaymentFieldSet) ? prevPaymentFieldSet : []).map((fieldEntry) =>
+                fieldEntry.legend === "Payment Option"
+                    ? { ...fieldEntry, inputs: paymentFieldInputs }
+                    : fieldEntry
+            )
+        );
+    }, [paymentFieldInputs]);
+    
+    useEffect(() => {
+        setTransactionType(transactionTypes[transactionTypeCount]);
+    }, [transactionTypeCount, transactionTypes]); 
+
+    const addToCart = (e) => {
+        const {size, price, category, index} = e.currentTarget.dataset;
+        const itemInDatabase = database[category][index];
+        
+        dispatch({ type: "addToCart" , data: {size, price, category, index}, databaseItem: itemInDatabase})
+    }
+
+    const incrementItem = (e) => {
+        const {index} = e.currentTarget.dataset;
+        dispatch({ type: "increment" , data: {index}})
+    }
+
+    const decrementItem = (e) => {
+        const {index,quantity} = e.currentTarget.dataset;
+        dispatch({ type: "decrement" , data: {index, quantity}})
+    }
+    
+    const removeFromCart = (e) => {
+        const {index} = e.currentTarget.dataset;
+        dispatch({ type: "remove" , data: {index}})
+    }
+
+    const clearCart = () => {
+        dispatch({ type: "reset" })
+    }
+
+    const nextTransactionType = () => {
+        setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 3 ? prevTransactionCount + 1 : 0) 
+    }
+
+    const prevTransactionType = () => {
+        setTransactionTypeCount((prevTransactionCount) => prevTransactionCount !== 0 ? prevTransactionCount - 1 : 3) 
+    }
+
+    const handleAddressBankChange = (e) => {
+        const {index, key} = e.currentTarget.dataset;
+
+        setAddressBank((prevAddressBank) => 
+            prevAddressBank.map((addressInfo, addressInfoIndex) => (
+                addressInfoIndex == index
+                ? addressInfo[key] == e.target.value ? addressInfo : {...addressInfo, [key]: e.target.value}
+                : addressInfo
+            ))
+        )
+    }
+
+    const addAddressEntry = () => {
+        const newAddAddressEntry = {
+            name: "",
+            number: "",
+            location: "",
+            editing: true,
+            checked: false
+        }
+        setAddressBank((prevAddressBank) => [
+            ...prevAddressBank,
+            newAddAddressEntry,
+        ]);
     }
 
     const checkout = (e) => {
@@ -479,7 +483,7 @@ const DashboardLayout = ({header, sidebar}) => {
                     transactionType,
                     nextTransactionType,
                     prevTransactionType,
-                    subtotal, 
+                    subtotal,
                     addressBank, 
                     paymentFieldSet,
                     handleAddressBankChange,
