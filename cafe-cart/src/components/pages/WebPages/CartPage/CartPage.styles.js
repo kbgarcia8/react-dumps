@@ -146,12 +146,21 @@ export const CheckoutForm = styled(GenericForm)`
 
     & .label-input-container{
         flex-direction: row;
+        border: 2px solid red;
         border: ${v.borderThickness.thin} solid black;
         margin-inline: ${v.spacing.xxxsmall};
         margin-block: ${v.spacing.xxxsmall};
         width: 47.5%;
         padding: ${v.spacing.xxxsmall};
         max-height: 100%;
+    }
+    
+    & .selected {
+        background-color: ${({theme}) => theme.backgroundColor2};
+    }
+    
+    & .selected > * {
+        color: ${({theme}) => theme.textColor3};
     }
     
     & .input-edit-buttons{

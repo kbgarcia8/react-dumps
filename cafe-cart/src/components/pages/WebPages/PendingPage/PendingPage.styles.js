@@ -42,12 +42,12 @@ export const PendingMessage = styled.h5`
 `;
 export const StyledLink = styled(Link)`
     text-decoration: none;
-    color: #007bff;
+    color: ${({theme}) => theme.backgroundColor1};
     font-weight: bold;
-    padding: 10px;
+    padding: ${v.spacing.xxxsmall};
 
     &:hover {
-        color: #0056b3;
+        color: ${({theme}) => theme.backgroundColor2};
         text-decoration: underline;
     }
 `;

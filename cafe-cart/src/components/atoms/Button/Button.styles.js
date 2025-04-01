@@ -6,12 +6,19 @@ export const Button = styled.button`
     align-items: center;
     justify-items: center;
     background-color: ${({theme}) => theme.backgroundColor1};
-    color: #FFFFFF;
+    color: ${({theme}) => theme.textColor3};
+    border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor2};
     border-radius: ${v.borderRadius.xlarge};
     padding: ${v.spacing.xxxsmall} ${v.spacing.small};
     margin: 0.125rem;
     width: 100%;
     cursor: pointer;
+
+    &:hover {
+        background-color: ${({theme}) => theme.backgroundColor2};
+        border: ${v.borderThickness.light} solid ${({theme}) => theme.textColor3};
+    }
+
     & .button-icon-and-text { //default styling for icon and text inside button
         width: 100%;
         display: flex;

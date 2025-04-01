@@ -57,6 +57,7 @@ export const darkTheme = {//utilize light text
     backgroundColor1: palette.primary2,
     backgroundColor2: palette.primary3,
     backgroundColor3: palette.secondary1,
+    backgroundColor4: palette.secondary2,
     borderColor1: palette.neutral2,
     borderColor2: palette.neutral3,
     textColor1: palette.neutral1,

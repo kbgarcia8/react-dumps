@@ -9,7 +9,7 @@ const GenericForm = ({
     legendText, // if form has no fieldsets this is required
     fieldHeight, // if form has no fieldsets this is required
     isExpandable = false, // if form has no fieldsets this is required
-    id, 
+    id,
     formInputs, //object that contains the input fields information to make it reusable
     labelClassName,
     inputClassName,
@@ -35,7 +35,7 @@ const GenericForm = ({
                             {field['inputs'].length !== 0
                             ? field['inputs'].map((input, inputIndex) => (
                                 <React.Fragment key={`form-${id}-${inputIndex}`}>
-                                <styled.LabelAndInputContainer className={"label-input-container"}>                        
+                                <styled.LabelAndInputContainer className={`label-input-container ${!!input.data?.checked ? "selected" : ""}`}>
                                     {input.type !== "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} additionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.svg} className={labelClassName} />}
                                         <GenericInput
                                             id={input.id}
@@ -45,8 +45,11 @@ const GenericForm = ({
                                             type={input.type}
                                             isRequired={input.isRequired}
                                             dataAttributes={input.dataAttributes}
-                                            className={inputClassName}
-                                            checked={!!input.data?.checked}
+                                            className={`${inputClassName || ""}`}
+                                            checked={!!input.data?.checked} 
+                                            /*!! - (Double negation) converts value into a boolean If input.data?.checked is truthy (e.g., true, "some string", 1), it becomes true.
+                                                If input.data?.checked is falsy (e.g., false, null, undefined, 0, ""), it becomes false.*/
+                                            // .? - (Optional chaining) if variable is null or undefined wont throw an error and will be false instead
                                         />
                                     {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
                                     {(input.editable && input.type ==="radio") &&
@@ -98,7 +101,7 @@ const GenericForm = ({
                         {formInputs.length !== 0
                         ? formInputs.map((input, inputIndex) => (
                             <React.Fragment key={`form-${id}-${inputIndex}`}>
-                            <styled.LabelAndInputContainer className={"label-input-container"}>                        
+                            <styled.LabelAndInputContainer className={`label-input-container ${!!input.data?.checked ? "selected" : ""}`}>
                                 {input.type !== "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} additionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.svg} className={labelClassName} />}
                                     <GenericInput
                                         id={input.id}
@@ -108,7 +111,7 @@ const GenericForm = ({
                                         type={input.type}
                                         isRequired={input.isRequired}
                                         dataAttributes={input.dataAttributes}
-                                        className={inputClassName}
+                                        className={`${inputClassName || ""}`}
                                         checked={!!input.data?.checked}
                                     />
                                 {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}

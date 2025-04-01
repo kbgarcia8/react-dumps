@@ -147,7 +147,7 @@ const DashboardLayout = ({header, sidebar}) => {
     const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);
     const [paymentMethod, setPaymentMethod] = useState(paymentMethods)
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
-    const [transactionTypeCount, setTransactionTypeCount] = useState(0)
+    const [transactionTypeCount, setTransactionTypeCount] = useState(0);
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
     const [checkoutDetails, setCheckoutDetails] = useState({});
 
@@ -158,10 +158,10 @@ const DashboardLayout = ({header, sidebar}) => {
         console.log(paymentFieldSet)
     }, [orderHistory]);
     //useEffect with no dependecy and onMount only
-    //ensure that previously saved data are loaded prope rly or a preset data is provided if no saved info
+    //ensure that previously saved data are loaded properly or a preset data is provided if no saved info
     useEffect(() => {
         if(localStorage.getItem("savedAddressBank") === null) {
-            localStorage.setItem("savedAddressBank", JSON.stringify(addressBank)); //just change addressBank to [] in useState to remove presets
+            localStorage.setItem("savedAddressBank", JSON.stringify([]));
         } else if(localStorage.getItem("savedAddressBank") !== null) {
             const retrievedAddressBankData = localStorage.getItem("savedAddressBank");
             const parsedAddressBankData = JSON.parse(retrievedAddressBankData);
