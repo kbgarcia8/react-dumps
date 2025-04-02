@@ -17,7 +17,6 @@ export const MainLayoutHeader = styled.div`
     position: relative;
     top: 0;
     grid-row: 1/2;
-    border: 1px solid red;
 `;
 
 export const MainLayoutContent = styled.main`
@@ -25,7 +24,6 @@ export const MainLayoutContent = styled.main`
     min-height: 100vh;
     overflow-y: auto;
     grid-row: 2/3;
-    border: 1px solid violet;
     padding: ${v.spacing.small};
 `;
 
@@ -34,7 +32,6 @@ export const MainLayoutFooter = styled(MainLayoutHeader)`
     position: relative;
     bottom: 0;
     grid-row: 3/4;
-    border: 1px solid black;
 `;
 
 export default { MainLayoutWrapper, MainLayoutHeader, MainLayoutContent, MainLayoutFooter };

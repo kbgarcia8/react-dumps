@@ -34,9 +34,9 @@ const MainHeader =({}) => {
             </styled.MainHeaderLogoSpace>
                 <Navbar isSigning={isSigning}/>
             <styled.ButtonWrapper>
-                <styled.MainHeaderButton2 text={"Sign Up"} onClick={handleButtonNavigate}/>
-                <styled.MainHeaderButton1 text={"Login"} onClick={handleButtonNavigate}/>
-                <styled.MainHeaderButton1 text={"Dashboard"} onClick={handleButtonNavigate}/>
+                <styled.SignUpButton text={"Sign Up"} onClick={handleButtonNavigate}/>
+                <styled.LoginButton text={"Login"} onClick={handleButtonNavigate}/>
+                <styled.LoginButton text={"Dashboard"} onClick={handleButtonNavigate}/>
             </styled.ButtonWrapper>
         </styled.MainHeaderWrapper>
     )

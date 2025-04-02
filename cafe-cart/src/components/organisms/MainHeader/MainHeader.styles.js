@@ -8,6 +8,9 @@ export const MainHeaderWrapper = styled.div`
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.3);
 `;
 
 export const MainHeaderLogoSpace = styled.div`
@@ -32,7 +35,7 @@ export const ButtonWrapper = styled.div`
     margin: 0;
 `;
 
-export const MainHeaderButton1 = styled(GenericButton)`
+export const LoginButton = styled(GenericButton)`
     background-color: ${({theme}) => theme.backgroundColor1};
     color: ${({theme}) => theme.textColor3};
     border: 2px solid ${({theme}) => theme.borderColor2};
@@ -49,7 +52,7 @@ export const MainHeaderButton1 = styled(GenericButton)`
     }
 `;
 
-export const MainHeaderButton2 = styled(MainHeaderButton1)`
+export const SignUpButton = styled(LoginButton)`
     background-color: ${({theme}) => theme.backgroundColor3};
     color: ${({theme}) => theme.textColor1};
     border: 2px solid ${({theme}) => theme.textColor1};    
@@ -64,11 +67,3 @@ export const MainHeaderButton2 = styled(MainHeaderButton1)`
         color: ${({theme}) => theme.textColor1};
     }
 `;
-
-export default { 
-    MainHeaderWrapper,
-    MainHeaderLogoSpace,
-    MainHeaderLogo,
-    MainHeaderButton1,
-    MainHeaderButton2
-};

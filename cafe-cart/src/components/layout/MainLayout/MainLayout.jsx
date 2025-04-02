@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { getScrollbarWidth } from '../../../utils/utils.js'
 import * as styled from "./MainLayout.styles";
 
-const MainLayout = ({header, sidebar, footer}) => {
+const MainLayout = ({header, footer}) => {
 
     const [scrollbarWidth, setScrollbarWidth] = useState(0);
 

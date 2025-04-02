@@ -5,16 +5,16 @@ import GenericInput from "../../atoms/Input"
 import * as styled from "./Form.styles";
 
 const GenericForm = ({
-    fieldsets = null, // if form has differrent fieldsets
+    fieldsets = null, // if a form has differrent fieldsets
     legendText, // if form has no fieldsets this is required
     fieldHeight, // if form has no fieldsets this is required
-    isExpandable = false, // if form has no fieldsets this is required
+    isExpandable = false, // if form has no fieldsets this is default to false
     id,
     formInputs, //object that contains the input fields information to make it reusable
     labelClassName,
     inputClassName,
-    editableOnChange,
-    addInputFunction,
+    handleEditableInputEntryChange,
+    handleAddingInputEntry,
     hasSubmit = false,
     hasCancel = false,
     hasDelete = false,
@@ -68,7 +68,7 @@ const GenericForm = ({
                                                     <GenericInput
                                                         id={`editable-input-${keydataIndex}`}
                                                         placeholderText={keydata.charAt(0).toUpperCase() + keydata.slice(1)}
-                                                        onChange={editableOnChange}
+                                                        onChange={handleEditableInputEntryChange}
                                                         value={input['data'][keydata]}
                                                         type={"text"}
                                                         isRequired={true}
@@ -88,10 +88,11 @@ const GenericForm = ({
                                         </styled.FormFieldset>}
                                 </React.Fragment>
                             ))
-                            : <styled.FieldsetNoEntryMessage>{`No entry yet on ${field.legend}. Please click "+" button to add`}</styled.FieldsetNoEntryMessage>}
+                            : (field.expandable ? <styled.FieldsetNoEntryMessage>{`No entry yet on ${field.legend}. Please click "+" button to add`}</styled.FieldsetNoEntryMessage> : "")
+                            }
                         </styled.FormFieldset>
                         {field.expandable && <styled.ButtonContainer className={"add-input-button-space"}>
-                            <GenericButton id={`expand-${field.legend}-inputs`} buttonType={"button"} text={"+"} onClick={addInputFunction} className={`add-input-entry`}/>
+                            <GenericButton id={`expand-${field.legend}-inputs`} buttonType={"button"} text={"+"} onClick={handleAddingInputEntry} className={`add-input-entry`}/>
                         </styled.ButtonContainer>}
                     </styled.FieldsetWrapper>
                 ))
@@ -131,7 +132,7 @@ const GenericForm = ({
                                                 <GenericInput
                                                     id={`editable-input-${keydataIndex}`}
                                                     placeholderText={keydata.charAt(0).toUpperCase() + keydata.slice(1)}
-                                                    onChange={editableOnChange}
+                                                    onChange={handleEditableInputEntryChange}
                                                     value={input['data'][keydata]}
                                                     type={"text"}
                                                     isRequired={true}
@@ -155,7 +156,7 @@ const GenericForm = ({
                         }
                     </styled.FormFieldset>
                     {isExpandable && <styled.ButtonContainer className={"add-input-button-space"}>
-                        <GenericButton id={`expand-${legendText}-inputs`} buttonType={"button"} text={"+"} onClick={addInputFunction} className={`add-input-entry`}/>
+                        <GenericButton id={`expand-${legendText}-inputs`} buttonType={"button"} text={"+"} onClick={handleAddingInputEntry} className={`add-input-entry`}/>
                     </styled.ButtonContainer>}
                 </styled.FieldsetWrapper>
             }
@@ -213,6 +214,28 @@ const validateEditableData = (props, propName, componentName) => {
 /*
     PropTypes by default are considered function that takes argument as follows: function/PropTypes (props, propName, componentName, location, propFullName)
 */
+const inputShape = PropTypes.arrayOf(
+    PropTypes.shape({
+    labelText: PropTypes.string,
+    additionalInfo: PropTypes.string,
+    labelDirection: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    placeholderText: PropTypes.string,
+    editable: PropTypes.bool, 
+    mainOnChange: PropTypes.func,
+    onClickEdit: PropTypes.func,
+    editIcon: PropTypes.element,
+    onClickDelete: PropTypes.func,
+    deleteIcon: PropTypes.element,
+    onClickSave: PropTypes.func,
+    onClickCancel: PropTypes.func,
+    type: PropTypes.string,
+    isRequired: PropTypes.bool,
+    data: PropTypes.object,
+    dataAttributes: PropTypes.object,
+    })
+)
+
 GenericForm.propTypes = {
     fieldsets: (props, propName, componentName) => {
         //PropTypes.checkPropTypes(propTypes, props, propName, componentName, location, propFullName);
@@ -221,27 +244,7 @@ GenericForm.propTypes = {
                 fieldsets: PropTypes.arrayOf(
                     PropTypes.shape({
                         legend: PropTypes.string.isRequired,
-                        inputs: PropTypes.arrayOf(
-                            PropTypes.shape({
-                                labelText: PropTypes.string,
-                                additionalInfo: PropTypes.string,
-                                labelDirection: PropTypes.string.isRequired,
-                                id: PropTypes.string.isRequired,
-                                placeholderText: PropTypes.string,
-                                editable: PropTypes.bool, 
-                                mainOnChange: PropTypes.func,
-                                onClickEdit: PropTypes.func,
-                                editIcon: PropTypes.element,
-                                onClickDelete: PropTypes.func,
-                                deleteIcon: PropTypes.element,
-                                onClickSave: PropTypes.func,
-                                onClickCancel: PropTypes.func,
-                                type: PropTypes.string,
-                                isRequired: PropTypes.bool,
-                                data: PropTypes.object,
-                                dataAttributes: PropTypes.object,
-                            })
-                        ),
+                        inputs: inputShape,
                         height: PropTypes.string,
                         expandable: PropTypes.bool,
                     })
@@ -261,10 +264,14 @@ GenericForm.propTypes = {
         return validateEditableData(props, propName, componentName);
     },
     legendText: PropTypes.string,
+    fieldHeight: PropTypes.string, 
+    isExpandable: PropTypes.bool,
     id: PropTypes.string,
-    formInputs: PropTypes.array,
+    formInputs: inputShape,
     labelClassName: PropTypes.string,
     inputClassName: PropTypes.string,
+    handleEditableInputEntryChange: PropTypes.func,
+    handleAddingInputEntry: PropTypes.func,
     hasSubmit: PropTypes.bool,
     hasCancel: PropTypes.bool,
     hasDelete: PropTypes.bool,
