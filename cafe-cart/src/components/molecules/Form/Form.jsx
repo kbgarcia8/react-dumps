@@ -13,14 +13,16 @@ const GenericForm = ({
     formInputs, //object that contains the input fields information to make it reusable
     labelClassName,
     inputClassName,
-    handleEditableInputEntryChange,
+    handleEditableInputEntryChange, //handles change on editable input
     handleAddingInputEntry,
     hasSubmit = false,
     hasCancel = false,
     hasDelete = false,
     submitText,
     handleSubmit,
+    cancelText,
     handleCancel,
+    deleteText,
     handleDelete,
     className
 }) => {
@@ -31,7 +33,7 @@ const GenericForm = ({
                 ? fieldsets.map((field, fieldIndex) => (
                     <styled.FieldsetWrapper key={`${field.legend}-${fieldIndex}`} $fieldHeight={field.height}>
                         <styled.FormFieldset id={`${id}-form-fieldset-${fieldIndex}`}>
-                            <styled.FormLegend>{field.legend}</styled.FormLegend>
+                            {field.legend && <styled.FormLegend>{field.legend}</styled.FormLegend>}
                             {field['inputs'].length !== 0
                             ? field['inputs'].map((input, inputIndex) => (
                                 <React.Fragment key={`form-${id}-${inputIndex}`}>
@@ -98,7 +100,7 @@ const GenericForm = ({
                 ))
                 : <styled.FieldsetWrapper $fieldHeight={fieldHeight}>
                     <styled.FormFieldset id={`${id}-form-fieldset`}>
-                        <styled.FormLegend>{legendText}</styled.FormLegend>
+                        {legendText && <styled.FormLegend>{legendText}</styled.FormLegend>}
                         {formInputs.length !== 0
                         ? formInputs.map((input, inputIndex) => (
                             <React.Fragment key={`form-${id}-${inputIndex}`}>
@@ -161,9 +163,9 @@ const GenericForm = ({
                 </styled.FieldsetWrapper>
             }
             <styled.ButtonContainer className={"form-main-button-container"}>
-                {hasSubmit && <GenericButton id={`form-${id}-submit`} buttonType={"submit"} text={submitText} onClick={handleSubmit} className={"submit-form-btn"}/>}
-                {hasCancel && <GenericButton id={`form-${id}-cancel`} buttonType={"button"} text={"Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}
-                {hasDelete && <GenericButton id={`form-${id}-delete`} buttonType={"button"} text={"Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
+                {hasSubmit && <GenericButton id={`form-${id}-submit`} buttonType={"submit"} text={submitText ? submitText : "Submit"} onClick={handleSubmit} className={"submit-form-btn"}/>}
+                {hasCancel && <GenericButton id={`form-${id}-cancel`} buttonType={"button"} text={cancelText ? cancelText : "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}
+                {hasDelete && <GenericButton id={`form-${id}-delete`} buttonType={"button"} text={deleteText ? deleteText : "Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
             </styled.ButtonContainer>
         </styled.Form>
     );
@@ -222,16 +224,18 @@ const inputShape = PropTypes.arrayOf(
     id: PropTypes.string.isRequired,
     placeholderText: PropTypes.string,
     editable: PropTypes.bool, 
-    mainOnChange: PropTypes.func,
+    mainOnChange: PropTypes.func, //handles change of main inputs (non-editable)
+    //Make all props below required when input is editable
     onClickEdit: PropTypes.func,
     editIcon: PropTypes.element,
     onClickDelete: PropTypes.func,
     deleteIcon: PropTypes.element,
     onClickSave: PropTypes.func,
     onClickCancel: PropTypes.func,
+    //Make all props above required when input is editable
     type: PropTypes.string,
     isRequired: PropTypes.bool,
-    data: PropTypes.object,
+    data: PropTypes.object, //when there is an object data that needs to be incorporated in the input when clicked. Usually needed for radio inputs
     dataAttributes: PropTypes.object,
     })
 )
@@ -277,7 +281,9 @@ GenericForm.propTypes = {
     hasDelete: PropTypes.bool,
     submitText: PropTypes.string,
     handleSubmit: PropTypes.func,
+    cancelText: PropTypes.string,
     handleCancel: PropTypes.func,
+    deleteText: PropTypes.string,
     handleDelete: PropTypes.func,
 };
 
