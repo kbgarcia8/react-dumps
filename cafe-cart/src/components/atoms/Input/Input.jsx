@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import Input from "./Input.styles";
 
-export const GenericInput = ({ 
+const GenericInput = forwardRef(({ 
     id,
     placeholderText,
     onChange,
@@ -12,24 +12,23 @@ export const GenericInput = ({
     dataAttributes,
     checked,
     className
-}) => {
+}, ref) => {
     return (
-        <>
-            <Input
-                id={id}
-                name={id}
-                placeholder={placeholderText}
-                onChange={onChange}
-                value={value}
-                type={type}
-                required={isRequired}
-                {...dataAttributes}
-                className={className}
-                checked={checked}
-            />
-        </>
-    )
-}
+        <Input
+            id={id}
+            name={id}
+            placeholder={placeholderText}
+            onChange={onChange}
+            value={value}
+            type={type}
+            required={isRequired}
+            {...dataAttributes}
+            className={className}
+            ref={ref}
+            checked={checked}
+        />
+    );
+});
 
 GenericInput.propTypes = {
     id: PropTypes.string.isRequired,
@@ -38,8 +37,13 @@ GenericInput.propTypes = {
     value: PropTypes.string,
     type: PropTypes.string,
     isRequired: PropTypes.bool,
-    dataKey: PropTypes.string,
-    dataIndex: PropTypes.number
-}
+    dataAttributes: PropTypes.object, 
+    checked: PropTypes.bool,
+    className: PropTypes.string,
+    ref: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.any })
+    ])
+};
 
 export default GenericInput;

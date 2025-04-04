@@ -1,36 +1,41 @@
 import {React, useState, useEffect, useMemo} from "react";
 import PropTypes from "prop-types";
+import { useOutletContext } from "react-router-dom";
 import * as styled from './LoginPage.styles'
 
-const LoginPage =({}) => {
+const LoginPage =({}) => {    
 
     const loginPageInputHeaders = [
         {
             label: "Email or Username",
-            type: "text"
+            type: "text",
         }, 
         {
             label: "Password",
-            type: "password"
+            type: "password",
         }];
 
-    const loginPageInputs = useMemo(()=> {
-        return loginPageInputHeaders.map((loginInput, index) => ({
+    const {
+        usernameRef,
+        passwordRef,
+        handleLogin
+    } = useOutletContext();
+
+    const loginPageInputs = loginPageInputHeaders.map((loginInput, index) => ({
             labelText: `${loginInput.label}\n`,
             //additionalInfo: '',
             labelDirection: "column",
             id: `login-${loginInput.label}-input`,
             placeholderText: loginInput.label,
             editable: false,
-            mainOnChange: () => {},
+            mainOnChange: handleLogin, //use useRef in login then use useState in sign up
             type: loginInput.type,
             isRequired: true,
-            //data: addressEntry,
+            ref: loginInput.label.includes("Email") ? usernameRef : passwordRef,
             dataAttributes: {
-                "data-input": index
+                "data-input": `${loginInput.label}`
             }
         }))
-    }, [])
 
     return(
         <styled.LoginPageWrapper>

@@ -48,6 +48,7 @@ const GenericForm = ({
                                             isRequired={input.isRequired}
                                             dataAttributes={input.dataAttributes}
                                             className={`${inputClassName || ""}`}
+                                            ref={input.ref}
                                             checked={!!input.data?.checked} 
                                             /*!! - (Double negation) converts value into a boolean If input.data?.checked is truthy (e.g., true, "some string", 1), it becomes true.
                                                 If input.data?.checked is falsy (e.g., false, null, undefined, 0, ""), it becomes false.*/
@@ -74,7 +75,7 @@ const GenericForm = ({
                                                         value={input['data'][keydata]}
                                                         type={"text"}
                                                         isRequired={true}
-                                                        className={"editable-input"}
+                                                        className={"editable-input"}                                                        
                                                         dataAttributes={{
                                                             "data-index": inputIndex, //should be inputIndex to correspond to radio button index and not with input increment
                                                             "data-key": keydata
@@ -115,6 +116,7 @@ const GenericForm = ({
                                         isRequired={input.isRequired}
                                         dataAttributes={input.dataAttributes}
                                         className={`${inputClassName || ""}`}
+                                        ref={input.ref}
                                         checked={!!input.data?.checked}
                                     />
                                 {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
@@ -235,6 +237,10 @@ const inputShape = PropTypes.arrayOf(
     //Make all props above required when input is editable
     type: PropTypes.string,
     isRequired: PropTypes.bool,
+    ref: PropTypes.oneOfType([
+        PropTypes.func,
+        PropTypes.shape({ current: PropTypes.any })
+    ]),
     data: PropTypes.object, //when there is an object data that needs to be incorporated in the input when clicked. Usually needed for radio inputs
     dataAttributes: PropTypes.object,
     })
