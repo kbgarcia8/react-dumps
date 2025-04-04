@@ -151,8 +151,8 @@ const DashboardLayout = ({header, sidebar}) => {
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
     const [checkoutDetails, setCheckoutDetails] = useState({});
 
-     const [isPending, setIsPending] = useState(true);
-     const [orderHistory, setOrderHistory] = useState([]);
+    const [isPending, setIsPending] = useState(true);
+    const [orderHistory, setOrderHistory] = useState([]);
     //useEffect for console.log
     useEffect(() => {
         console.log(paymentFieldSet)
@@ -308,7 +308,7 @@ const DashboardLayout = ({header, sidebar}) => {
         setPaymentMethod((prevPaymentMethod) => 
             prevPaymentMethod.map((method, methodIndex) => {
                 if (methodIndex == index) {
-                  return method.checked ? method : {...method, ['checked']: true}
+                    return method.checked ? method : {...method, ['checked']: true}
                 } else {
                     return method.checked ? {...method, ['checked']: false} : method
                 }

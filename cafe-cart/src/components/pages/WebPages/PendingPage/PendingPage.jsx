@@ -23,11 +23,11 @@ const PendingPage =({}) => {
                 <styled.PendingMessageContainer>
                     <styled.PendingMessage>
                         {Object.keys(checkoutDetails).length === 0
-                         ? 
-                         <>
+                        ? 
+                        <>
                             It looks like you're still thinking of what to order. Go to <styled.StyledLink  to={`../menu`}>{"Menu"}</styled.StyledLink> to start ordering now!
-                         </>
-                         : isPending
+                        </>
+                        : isPending
                             ? "Your order is being prepared"
                             : checkoutDetails.transactionType === "Delivery" 
                                 ? "Your order is on its way" 
