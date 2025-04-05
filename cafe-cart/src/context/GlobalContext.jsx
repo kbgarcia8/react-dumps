@@ -1,10 +1,11 @@
 import React, { createContext, useState, useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import axios from "axios";
+import { createContext } from "react";
 
-const Context = createContext();
+const GlobalContext = createContext();
 //https://cafe-cart-db.vercel.app/ API link
-export const ContextProvider = ({children}) => {
+export const GlobalContextProvider = ({children}) => {
     /*Global States*/
     const [database, setDatabase] = useState(null)
     /*'use' prefixed functions are custom hooks */
@@ -39,17 +40,17 @@ export const ContextProvider = ({children}) => {
     }, []);
 
     return (
-    <Context.Provider value={{useMediaQuery, database}}> 
+    <GlobalContext.Provider value={{useMediaQuery, database}}> 
         {children}
-    </Context.Provider> 
+    </GlobalContext.Provider> 
     )
         
 }
 
-export const useGlobalProvider = () => {return useContext(Context)}
+export const useGlobal = () => {return useContext(GlobalContext)}
 
-ContextProvider.propTypes = {
+GlobalContextProvider.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export default {ContextProvider, useGlobalProvider};
+export default {GlobalContextProvider, useGlobal};
