@@ -25,5 +25,3 @@ export const useTheme = () => {return useContext(ThemeContext)} //example of 'cu
 ThemeContextProvider.propTypes = {
   children: PropTypes.node.isRequired
 }
-
-export default {ThemeContextProvider, useTheme};

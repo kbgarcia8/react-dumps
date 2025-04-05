@@ -1,41 +1,45 @@
 import {React, useState, useEffect, useMemo} from "react";
 import PropTypes from "prop-types";
-import { useOutletContext } from "react-router-dom";
+import { useAuth } from "../../../../context/UserAuthContext";
 import * as styled from './LoginPage.styles'
 
-const LoginPage =({}) => {    
+const LoginPage =({}) => {
+    const {
+        usernameRef,
+        passwordRef,
+        handleUsernameEmailChange,
+        handlePasswordChange,
+    } = useAuth();
 
     const loginPageInputHeaders = [
         {
             label: "Email or Username",
             type: "text",
+            refType: "username",
+            handlechange: handleUsernameEmailChange
         }, 
         {
             label: "Password",
             type: "password",
+            refType: "password",
+            handlechange: handlePasswordChange
         }];
 
-    const {
-        usernameRef,
-        passwordRef,
-        handleLogin
-    } = useOutletContext();
-
-    const loginPageInputs = loginPageInputHeaders.map((loginInput, index) => ({
+    const loginPageInputs = loginPageInputHeaders.map((loginInput) => ({
             labelText: `${loginInput.label}\n`,
             //additionalInfo: '',
             labelDirection: "column",
             id: `login-${loginInput.label}-input`,
             placeholderText: loginInput.label,
             editable: false,
-            mainOnChange: handleLogin, //use useRef in login then use useState in sign up
+            mainOnChange: loginInput.handlechange, //use useRef in login then use useState in sign up
             type: loginInput.type,
             isRequired: true,
-            ref: loginInput.label.includes("Email") ? usernameRef : passwordRef,
+            ref: loginInput.refType === "username" ? usernameRef : passwordRef,
             dataAttributes: {
                 "data-input": `${loginInput.label}`
             }
-        }))
+    }))
 
     return(
         <styled.LoginPageWrapper>

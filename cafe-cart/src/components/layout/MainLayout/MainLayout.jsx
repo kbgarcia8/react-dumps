@@ -12,18 +12,12 @@ const MainLayout = ({header, footer}) => {
         setScrollbarWidth(getScrollbarWidth());        
     }, []);
 
-    const usernameRef = useRef(null)
-    const passwordRef = useRef(null)
-    const handleLogin = (e) => {console.log(usernameRef.current.value)}
-
     return (
         <styled.MainLayoutWrapper $scrollbarWidth={scrollbarWidth}>
             <styled.MainLayoutHeader>{header}</styled.MainLayoutHeader>
             <styled.MainLayoutContent>
                 <Outlet context={{
-                    usernameRef,
-                    passwordRef,
-                    handleLogin
+                    
                 }}/>
             </styled.MainLayoutContent>
             <styled.MainLayoutFooter>{footer}</styled.MainLayoutFooter>

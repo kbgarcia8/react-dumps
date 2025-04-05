@@ -5,16 +5,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import routes from "./routes/routes"
 import { GlobalContextProvider } from './context/GlobalContext';
 import { ThemeContextProvider } from './context/ThemeContext';
+import { UserAuthContextProvider } from './context/UserAuthContext';
 
 const router = createBrowserRouter(routes);
 
 createRoot(document.getElementById("root")).render(
-  //<StrictMode>
+  <StrictMode>
   <GlobalContextProvider>
     <ThemeContextProvider>
-      <GlobalStyle />
-      <RouterProvider router={router} />
+      <UserAuthContextProvider>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </UserAuthContextProvider>
     </ThemeContextProvider>
   </GlobalContextProvider>
-  //</StrictMode>,
+  </StrictMode>,
 );

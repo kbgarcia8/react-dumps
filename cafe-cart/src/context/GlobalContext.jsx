@@ -51,5 +51,3 @@ export const useGlobal = () => {return useContext(GlobalContext)}
 GlobalContextProvider.propTypes = {
   children: PropTypes.node.isRequired
 }
-
-export default {GlobalContextProvider, useGlobal};
