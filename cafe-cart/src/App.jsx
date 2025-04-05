@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
-import { useTheme } from './context/ThemeProvider'
+import { useTheme } from './context/ThemeContext'
 import axios from 'axios';
 import styled from 'styled-components';
 import { v } from './styles/variables'
 import { palette, lightTheme, darkTheme } from './styles/theme'
-import Context from './context/ContextProvider';
+import {useGlobal} from './context/GlobalContext';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
 import GenericLabel from './components/atoms/Label';
@@ -21,7 +21,7 @@ import MobileLayout from './components/layout/MobileLayout';
 function App() {
   const {theme, toggleTheme} = useTheme()
   const [pastries, setPastries] = useState([])
-  const {useMediaQuery} = useContext(Context)
+  const {useMediaQuery} = useGlobal();
   const isMobile = useMediaQuery("(max-width: 768px)")
   const [count, setCount] = useState(0)
 

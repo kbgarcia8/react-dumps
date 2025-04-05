@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { DividerContainer, DividerLine, DividerText } from "./Divider.styles";
-import { useTheme } from '../../../context/ThemeProvider';
+import { useTheme } from '../../../context/ThemeContext';
 
 
 const Divider = ({ dividerText, lineColor, textColor, screenColor, className }) => {

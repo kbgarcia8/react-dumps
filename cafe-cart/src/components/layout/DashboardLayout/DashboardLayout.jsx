@@ -2,7 +2,7 @@ import {React, useState, useReducer, useEffect, useMemo} from "react";
 import { useDeepCompareEffect } from 'use-deep-compare';
 import PropTypes from "prop-types";
 import { Outlet, useNavigate } from 'react-router-dom';
-import { useGlobalProvider } from "../../../context/ContextProvider";
+import { useGlobal } from "../../../context/GlobalContext.jsx";
 import * as styled from "./DashboardLayout.styles";
 import DeleteIcon from "../../atoms/SVG/DeleteIcon";
 import EditIcon from "../../atoms/SVG/EditIcon";
@@ -141,7 +141,7 @@ const  reducer = (state, action) => {
 
 const DashboardLayout = ({header, sidebar}) => {
     const navigate = useNavigate();
-    const {database} = useGlobalProvider();
+    const {database} = useGlobal();
     const [state, dispatch] = useReducer(reducer, initialCart);
     const [addressBank,setAddressBank] = useState(initialAddressBank);
     const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);

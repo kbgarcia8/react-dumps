@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
-import { useTheme } from './context/ThemeProvider'
+import { useTheme } from './context/ThemeContext'
 import axios from 'axios';
 import styled from 'styled-components';
 import { v } from './styles/variables'
 import { palette, lightTheme, darkTheme } from './styles/theme'
-import { useGlobalProvider } from './context/ContextProvider';
+import { useGlobal } from './context/GlobalContext';
 import ComponentTester from './utils/ComponentTester';
 import GenericButton from './components/atoms/Button';
 import GenericLabel from './components/atoms/Label';
@@ -259,7 +259,7 @@ const SimpleDropdown = styled.select`
 function DesignSystem() {
   const {theme, toggleTheme} = useTheme()
   const [pastries, setPastries] = useState([])
-  const {useMediaQuery} = useGlobalProvider();
+  const {useMediaQuery} = useGlobal();
   const isMobile = useMediaQuery(`(max-width: ${v.breakpoints.mobile})`)
   const [count, setCount] = useState(0)
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "../../../context/ThemeProvider";
+import { useTheme } from "../../../context/ThemeContext";
 import { palette, lightTheme } from "../../../styles/theme";
 import * as styled from "./ProductCard.styles";
 

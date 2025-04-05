@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react"
 import PropTypes from "prop-types"
 import axios from "axios";
-import { createContext } from "react";
 
 const GlobalContext = createContext();
 //https://cafe-cart-db.vercel.app/ API link

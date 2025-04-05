@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "../../../context/ThemeProvider";
+import { useTheme } from "../../../context/ThemeContext";
 import { notificationPalette, lightTheme } from "../../../styles/theme";
 import * as styled from "./NotificationCard.styles";
 import errorIcon from '../../../assets/error.png'
