@@ -23,11 +23,11 @@ const LoginPage =({}) => {
             type: "password",
             refType: "password",
             handlechange: handlePasswordChange
-        }];
+        }
+    ];
 
     const loginPageInputs = loginPageInputHeaders.map((loginInput) => ({
             labelText: `${loginInput.label}\n`,
-            //additionalInfo: '',
             labelDirection: "column",
             id: `login-${loginInput.label}-input`,
             placeholderText: loginInput.label,
