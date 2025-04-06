@@ -1,28 +1,26 @@
-import {React, useState, useEffect, useMemo} from "react";
+import {React, useState, useEffect, useRef} from "react";
 import PropTypes from "prop-types";
 import { useAuth } from "../../../../context/UserAuthContext";
+import GoogleButton from 'react-google-button';
 import * as styled from './LoginPage.styles'
 
 const LoginPage =({}) => {
-    const {
-        usernameRef,
-        passwordRef,
-        handleUsernameEmailChange,
-        handlePasswordChange,
-    } = useAuth();
+
+    const loginUsernameRef = useRef(null);
+    const loginPasswordRef = useRef(null);
 
     const loginPageInputHeaders = [
         {
             label: "Email or Username",
             type: "text",
-            refType: "username",
-            handlechange: handleUsernameEmailChange
+            refType: loginUsernameRef,
+            handlechange: () => {}
         }, 
         {
             label: "Password",
             type: "password",
-            refType: "password",
-            handlechange: handlePasswordChange
+            refType: loginPasswordRef,
+            handlechange: () => {}
         }
     ];
 
@@ -30,16 +28,36 @@ const LoginPage =({}) => {
             labelText: `${loginInput.label}\n`,
             labelDirection: "column",
             id: `login-${loginInput.label}-input`,
-            placeholderText: loginInput.label,
+            placeholderText: `Your ${loginInput.label}`,
             editable: false,
             mainOnChange: loginInput.handlechange, //use useRef in login then use useState in sign up
             type: loginInput.type,
             isRequired: true,
-            ref: loginInput.refType === "username" ? usernameRef : passwordRef,
+            ref: loginInput.refType,
             dataAttributes: {
                 "data-input": `${loginInput.label}`
             }
     }))
+
+    const GoogleLoginButton = () => (
+        <GoogleButton
+            className="g-btn"
+            type="dark"
+            onClick={handleGoogleSignIn}
+        />
+    )
+    //for submit of non-google login credentials
+    const handleLoginSubmit = async (e) => {}
+
+    const handleGoogleSignIn = async (e) => {
+        e.preventDefault();
+        try {
+          await googleSignIn();
+          navigate("/home");
+        } catch (error) {
+          console.log(error.message);
+        }
+    };
 
     return(
         <styled.LoginPageWrapper>
@@ -51,12 +69,16 @@ const LoginPage =({}) => {
                 id={"main-login-form"}
                 formInputs={loginPageInputs}
                 labelClassName={"login-inputs-label"}
-                inputClassName={"login-inputs"}
                 hasSubmit
                 submitText={"Login"}
-                hasCancel
-                cancelText={"Sign Up"}
+                handleSubmit={handleLoginSubmit}
+                children={GoogleLoginButton()}
             />
+            <styled.SignUpMessageSpace>
+                <styled.SignUpMessage>
+                    Don't have an account yet? <styled.SignUpLink  to={`../signup`}>{"Sign Up"}</styled.SignUpLink> 
+                </styled.SignUpMessage>
+            </styled.SignUpMessageSpace>
         </styled.LoginPageWrapper>
     )
 }

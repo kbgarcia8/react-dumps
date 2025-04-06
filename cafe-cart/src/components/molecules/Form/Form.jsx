@@ -24,7 +24,8 @@ const GenericForm = ({
     handleCancel,
     deleteText,
     handleDelete,
-    className
+    className,
+    children //if there are nodes to be inserted after submit buttons usually in login or signup forms
 }) => {
     {/*console.dir(paymentFieldSet, { depth: null });*/}
     return (
@@ -169,6 +170,9 @@ const GenericForm = ({
                 {hasCancel && <GenericButton id={`form-${id}-cancel`} buttonType={"button"} text={cancelText ? cancelText : "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}
                 {hasDelete && <GenericButton id={`form-${id}-delete`} buttonType={"button"} text={deleteText ? deleteText : "Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
             </styled.ButtonContainer>
+            <styled.ChildrenContainer className={"children-container"}>
+                {children}
+            </styled.ChildrenContainer>
         </styled.Form>
     );
 }

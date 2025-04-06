@@ -89,7 +89,7 @@ const SignUpPage =({}) => {
             labelText: `${signUpInput.label}\n`,
             labelDirection: "column",
             id: `signup-${signUpInput.label}-input`,
-            placeholderText: signUpInput.label,
+            placeholderText: signUpInput.label === "Confirm Password" ? "Re-type Password" : `Your ${signUpInput.label}`,
             editable: false,
             mainOnChange: signUpInput.handlechange, //use useRef in signup then use useState in sign up
             type: signUpInput.type,
@@ -126,11 +126,14 @@ const SignUpPage =({}) => {
                 formInputs={signUpPageInputs}
                 labelClassName={"signup-inputs-label"}
                 hasSubmit
-                submitText={"Confirm"}
+                submitText={"Sign Up"}
                 handleSubmit={handleSignupSubmit}
-                hasCancel
-                cancelText={"Login"}
             />
+            <styled.LoginMessageSpace>
+                <styled.LoginMessage>
+                    Already have an account? <styled.LoginLink  to={`../login`}>{"Login"}</styled.LoginLink> 
+                </styled.LoginMessage>
+            </styled.LoginMessageSpace>
         </styled.SignUpPageWrapper>
     )
 }

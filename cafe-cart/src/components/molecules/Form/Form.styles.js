@@ -67,3 +67,10 @@ export const ButtonContainer = styled.div`
     justify-content: space-between;
     width: 100%;
 `;
+export const ChildrenContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;

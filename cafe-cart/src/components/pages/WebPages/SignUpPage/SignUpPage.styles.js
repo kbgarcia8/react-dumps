@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import GenericForm from '../../../molecules/Form';
 import { v } from '../../../../styles/variables';
+import { Link } from "react-router-dom";
 
 export const SignUpPageWrapper = styled.div`
     padding: ${v.spacing.medium};
@@ -10,7 +11,6 @@ export const SignUpPageWrapper = styled.div`
     justify-content: space-evenly;
     max-width: 100%;
     height: 100%;
-    border: 2px solid red;
 `;
 
 export const SignUpPageHeader =  styled.h3`
@@ -22,7 +22,7 @@ export const SignUpForm = styled(GenericForm)`
     border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
     border-radius: ${v.borderRadius.small};
     width: 30%;
-    height: 75%;
+    height: 70%;
 
     & fieldset {
         display: flex;
@@ -38,17 +38,42 @@ export const SignUpForm = styled(GenericForm)`
     & .signup-inputs-label {
         display: flex;
         align-items: flex-start;
+        font-size: ${v.fontSize.small};
     }
     
     & .form-main-button-container {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-block: ${v.spacing.small};
+        margin-block: ${v.spacing.xsmall};
 
         & button {
             width: 50%;
             border-radius: ${v.borderRadius.medium};
+            margin-block: ${v.spacing.xxxsmall};
         }
+    }
+`;
+
+export const LoginMessageSpace = styled.div`
+    border: 2px solid black;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+`;
+export const LoginMessage = styled.span`
+    font-size: ${v.fontSize.small};
+    font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+`;
+export const LoginLink = styled(Link)`
+    text-decoration: none;
+    color: ${({theme}) => theme.backgroundColor1};
+    font-weight: bold;
+    padding: ${v.spacing.xxxsmall};
+
+    &:hover {
+        color: ${({theme}) => theme.backgroundColor2};
+        text-decoration: underline;
     }
 `;
