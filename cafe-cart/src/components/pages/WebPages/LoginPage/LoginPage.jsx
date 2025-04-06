@@ -51,6 +51,7 @@ const LoginPage =({}) => {
                 id={"main-login-form"}
                 formInputs={loginPageInputs}
                 labelClassName={"login-inputs-label"}
+                inputClassName={"login-inputs"}
                 hasSubmit
                 submitText={"Login"}
                 hasCancel
