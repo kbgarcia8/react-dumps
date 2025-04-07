@@ -1,10 +1,13 @@
 import {React, useState, useEffect, useRef} from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context/UserAuthContext";
 import GoogleButton from 'react-google-button';
 import * as styled from './LoginPage.styles'
 
 const LoginPage =({}) => {
+    const { logIn, googleSignIn } = useAuth();
+    let navigate = useNavigate();
 
     const loginUsernameRef = useRef(null);
     const loginPasswordRef = useRef(null);
@@ -47,15 +50,28 @@ const LoginPage =({}) => {
         />
     )
     //for submit of non-google login credentials
-    const handleLoginSubmit = async (e) => {}
+    const handleLoginSubmit = async (e) => {
+        e.preventDefault();
+        const email = loginUsernameRef.current.value;
+        const password = loginPasswordRef.current.value;
+        try {
+            await logIn(email, password);
+            navigate("../dashboard");
+        } catch (error) {
+            alert(error.message);
+        }
+        //Clear input fields after login
+        loginUsernameRef.current.value = "";
+        loginPasswordRef.current.value = "";
+    }
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();
         try {
           await googleSignIn();
-          navigate("/home");
+          navigate("../dashboard");
         } catch (error) {
-          console.log(error.message);
+          alert(error.message);
         }
     };
 

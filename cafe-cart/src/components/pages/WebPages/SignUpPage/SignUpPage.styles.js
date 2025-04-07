@@ -56,11 +56,11 @@ export const SignUpForm = styled(GenericForm)`
 `;
 
 export const LoginMessageSpace = styled.div`
-    border: 2px solid black;
     width: 30%;
     align-items: center;
     justify-content: center;
     display: flex;
+    padding-bottom: ${v.spacing.medium};
 `;
 export const LoginMessage = styled.span`
     font-size: ${v.fontSize.small};

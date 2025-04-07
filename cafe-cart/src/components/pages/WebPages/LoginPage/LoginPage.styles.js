@@ -21,6 +21,7 @@ export const LoginPageHeader =  styled.h3`
 export const LoginForm = styled(GenericForm)`
     border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
     border-radius: ${v.borderRadius.small};
+    padding-block: ${v.spacing.large};
     width: 30%;
     height: 70%;
 
@@ -61,7 +62,8 @@ export const LoginForm = styled(GenericForm)`
     
     & .children-container {
         margin-block: ${v.spacing.xxxsmall};
-        height: 10%;
+        
+        height: 7.5%;
         & div[role="button"] {
             display: flex !important;
             align-items: center !important;
@@ -73,19 +75,20 @@ export const LoginForm = styled(GenericForm)`
             font-weight: ${v.fontWeight.bold} !important;
             width: 50% !important;
             height: 100% !important;
+            padding: ${v.spacing.xxxsmall} !important;    
         }
         & div[role="button"]:hover {
             background-color: ${({theme}) => theme.backgroundColor2} !important;
             border: ${v.borderThickness.light} solid ${({theme}) => theme.textColor3} !important;
         }
         & div[role="button"] > div {
-            border: 2px solid green !important;
             width: 20% !important;
-            height: 95% !important;
+            height: 100% !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
             border-radius: ${v.borderRadius.medium} !important;
+            margin-block: ${v.spacing.xxxsmall} !important;
         }
         & div[role="button"] > span {
             width: 80%;
@@ -94,11 +97,11 @@ export const LoginForm = styled(GenericForm)`
 `;
 
 export const SignUpMessageSpace = styled.div`
-    border: 2px solid black;
     width: 30%;
     align-items: center;
     justify-content: center;
     display: flex;
+    padding-bottom: ${v.spacing.medium};
 `;
 export const SignUpMessage = styled.span`
     font-size: ${v.fontSize.small};
