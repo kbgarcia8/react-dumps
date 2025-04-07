@@ -1,5 +1,6 @@
 import {React, useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context/UserAuthContext";
 import * as styled from './SignUpPage.styles'
@@ -20,7 +21,7 @@ const SignUpPage =({}) => {
         password: "",
         confirmpassword: "",
     });
-    const { signUp } = useAuth();
+    const { signUp, verifyEmail } = useAuth();
     let navigate = useNavigate();
 
     const handleUsernameEmailSignUpChange = (e) => {
@@ -103,15 +104,33 @@ const SignUpPage =({}) => {
     const handleSignupSubmit = async (e) => {
         e.preventDefault();
         setError("");
+
+        if (password !== confirmpass) {
+            setError("Password does not match!")
+            return;
+        }
+
         try {
-            if(password === confirmpass) {
-                await signUp(email, password);
-                navigate("/");
-            } else if (password !== confirmpass) {
-                setError("Password does not match!")
-            }
+                const signupCredentials = await signUp(email, password);
+                const signedupUser = signupCredentials.user;
+
+                await verifyEmail(signedupUser);
+
+                toast.success("Verification email sent! Please check your inbox and confirm to Login!");
+
+                navigate("../login");
+            
         } catch (err) {
-            setError(err.message);
+            if (err.code === 'auth/invalid-email') {
+              setError("Invalid Email Format");
+            } else if (err.code === 'auth/email-already-in-use') {
+              setError("Email already registered");
+            } else if (err.code === 'auth/weak-password') {
+              setError("Password too weak");
+            } else {
+              setError(err.message);
+            }
+            toast.error(`${err.message}`);
         }
     };
 

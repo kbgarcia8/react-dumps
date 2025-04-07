@@ -55,10 +55,16 @@ const LoginPage =({}) => {
         const email = loginUsernameRef.current.value;
         const password = loginPasswordRef.current.value;
         try {
-            await logIn(email, password);
+            const loggedInCredential = await logIn(email, password);
+            const loggedInUser = loggedInCredential.user;
+
+            if (!loggedInUser.emailVerified) {
+            setError("Please verify your email before logging in.");
+            return;
+            }
             navigate("../dashboard");
         } catch (error) {
-            alert(error.message);
+            toast.error(`${error.message}`);
         }
         //Clear input fields after login
         loginUsernameRef.current.value = "";
