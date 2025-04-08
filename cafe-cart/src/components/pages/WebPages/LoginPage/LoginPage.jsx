@@ -1,6 +1,7 @@
 import {React, useState, useEffect, useRef} from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../../../../context/UserAuthContext";
 import GoogleButton from 'react-google-button';
 import * as styled from './LoginPage.styles'
@@ -54,22 +55,36 @@ const LoginPage =({}) => {
         e.preventDefault();
         const email = loginUsernameRef.current.value;
         const password = loginPasswordRef.current.value;
+    
         try {
-            const loggedInCredential = await logIn(email, password);
-            const loggedInUser = loggedInCredential.user;
-
-            if (!loggedInUser.emailVerified) {
-            setError("Please verify your email before logging in.");
-            return;
-            }
+            await toast.promise(
+                (async () => {
+                    const loggedInCredential = await logIn(email, password);
+                    const loggedInUser = loggedInCredential.user;
+    
+                    if (!loggedInUser.emailVerified) {
+                        throw new Error("Please verify your email before logging in.");
+                    }
+    
+                    return loggedInCredential;
+                })(),
+                {
+                    loading: 'Logging in...',
+                    success: 'User Login successful',
+                    error: (err) => err.message || 'Login failed'
+                }
+            );
+    
+            await new Promise((resolve) => setTimeout(resolve, 500));
             navigate("../dashboard");
+
+            loginUsernameRef.current.value = "";
+            loginPasswordRef.current.value = "";
+    
         } catch (error) {
-            toast.error(`${error.message}`);
+            toast.error(error.message);//custom message for every error.code just like in Sign Up
         }
-        //Clear input fields after login
-        loginUsernameRef.current.value = "";
-        loginPasswordRef.current.value = "";
-    }
+    }    
 
     const handleGoogleSignIn = async (e) => {
         e.preventDefault();

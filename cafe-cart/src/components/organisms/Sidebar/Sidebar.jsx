@@ -1,6 +1,7 @@
 import {React, useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../../context/UserAuthContext";
 import sidebarLogo from '../../../assets/pic-only-logo.png'
 import HomeIcon from "../../atoms/SVG/HomeIcon";
 import MenuIcon from "../../atoms/SVG/MenuIcon";
@@ -13,6 +14,7 @@ import LogoutIcon from "../../atoms/SVG/LogoutIcon";
 import * as styled from "./Sidebar.styles";
 
 const Sidebar =({}) => {
+    const { logOut } = useAuth();
     const navigate = useNavigate();
     const handleLogoClick = (e) => {
         navigate('/');
@@ -40,7 +42,7 @@ const Sidebar =({}) => {
                 {mainControls.map((mainControl,index) => (
                     <styled.StyledLinkWithImage
                         key={`${mainControl.name}-${index}`}
-                        to={`../dashboard${mainControl.path}`}
+                        to={`../dashboard${mainControl.path}`}                        
                     >
                         {mainControl.icon}
                     </styled.StyledLinkWithImage>
@@ -51,6 +53,7 @@ const Sidebar =({}) => {
                     <styled.StyledLinkWithImage 
                         key={`${settingControl.name}-${index}`}
                         to={settingControl.name=="Settings" ? `../dashboard${settingControl.path}` : `${settingControl.path}`}
+                        onClick={settingControl.name=="Logout" && logOut}
                     >
                         {settingControl.icon}
                     </styled.StyledLinkWithImage>

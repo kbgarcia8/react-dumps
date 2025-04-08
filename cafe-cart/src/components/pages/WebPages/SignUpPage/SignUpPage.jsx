@@ -12,7 +12,6 @@ const SignUpPage =({}) => {
     const signUpConfirmPasswordRef = useRef(null);
 
     const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpass, setConfirmpass] = useState("");
     //To properly trigger debounce UseEffects
@@ -103,34 +102,40 @@ const SignUpPage =({}) => {
 
     const handleSignupSubmit = async (e) => {
         e.preventDefault();
-        setError("");
 
         if (password !== confirmpass) {
-            setError("Password does not match!")
-            return;
+            toast.error("Password does not match!");
+            return
         }
 
         try {
-                const signupCredentials = await signUp(email, password);
-                const signedupUser = signupCredentials.user;
+            await toast.promise(
+                (async () => {
+                    const signupCredentials = await signUp(email, password);
+                    const signedupUser = signupCredentials.user;
 
-                await verifyEmail(signedupUser);
+                    await verifyEmail(signedupUser);
 
-                toast.success("Verification email sent! Please check your inbox and confirm to Login!");
-
-                navigate("../login");
-            
-        } catch (err) {
-            if (err.code === 'auth/invalid-email') {
-              setError("Invalid Email Format");
-            } else if (err.code === 'auth/email-already-in-use') {
-              setError("Email already registered");
-            } else if (err.code === 'auth/weak-password') {
-              setError("Password too weak");
-            } else {
-              setError(err.message);
-            }
-            toast.error(`${err.message}`);
+                    return signupCredentials;
+                    
+                })(),{
+                    loading: 'Signing Up...',
+                    success: 'Verification email sent! Please check your inbox and confirm to Login!',
+                    error: (err) => err || "Signup failed"
+                }
+            )
+        } catch(error) {
+            console.log(error.message)
+            //toast.error(error.code)
+            if (error.code === 'auth/invalid-email') {
+                toast.error("Invalid Email Format");
+              } else if (error.code === 'auth/email-already-in-use') {
+                toast.error("Email already registered");
+              } else if (error.code === 'auth/weak-password') {
+                toast.error("Password too weak");
+              } else {
+                toast.error("Signup failed");
+              }
         }
     };
 
