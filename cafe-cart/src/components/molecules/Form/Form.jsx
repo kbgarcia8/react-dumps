@@ -53,10 +53,12 @@ const GenericForm = ({
                                             dataAttributes={input.dataAttributes}
                                             className={`${inputClassName || ""}`}
                                             ref={input.ref}
-                                            checked={!!input.data?.checked} 
+                                            checked={!!input.data?.checked}
                                             /*!! - (Double negation) converts value into a boolean If input.data?.checked is truthy (e.g., true, "some string", 1), it becomes true.
                                                 If input.data?.checked is falsy (e.g., false, null, undefined, 0, ""), it becomes false.*/
                                             // .? - (Optional chaining) if variable is null or undefined wont throw an error and will be false instead
+                                            disabled={!!input.data?.disabled || !!input?.disabled}
+                                            pattern={input.pattern}
                                         />
                                     {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
                                     {(input.editable && input.type ==="radio") &&
@@ -122,6 +124,8 @@ const GenericForm = ({
                                         className={`${inputClassName || ""}`}
                                         ref={input.ref}
                                         checked={!!input.data?.checked}
+                                        disabled={!!input.data?.disabled || !!input?.disabled}
+                                        pattern={input.pattern}
                                     />
                                 {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
                                 {(input.editable && input.type ==="radio") &&
@@ -249,6 +253,9 @@ const inputShape = PropTypes.arrayOf(
         PropTypes.func,
         PropTypes.shape({ current: PropTypes.any })
     ]),
+    //disabled are up-ed here from data in inputShape of formInputs since it is applicable even if input is not radio which is usually the only type that requires a data attribute
+    disabled: PropTypes.bool,
+    pattern: PropTypes.string,
     data: PropTypes.object, //when there is an object data that needs to be incorporated in the input when clicked. Usually needed for radio inputs
     dataAttributes: PropTypes.object,
     })
@@ -285,7 +292,7 @@ GenericForm.propTypes = {
     fieldHeight: PropTypes.string, 
     isExpandable: PropTypes.bool,
     id: PropTypes.string,
-    formInputs: inputShape,
+    formInputs: inputShape,    
     labelClassName: PropTypes.string,
     inputClassName: PropTypes.string,
     handleEditableInputEntryChange: PropTypes.func,

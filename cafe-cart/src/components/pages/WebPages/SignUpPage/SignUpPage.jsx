@@ -7,7 +7,7 @@ import * as styled from './SignUpPage.styles'
 
 const SignUpPage =({}) => {
     
-    const signupUsernameRef = useRef(null);
+    const signupEmailRef = useRef(null);
     const signUpPasswordRef = useRef(null);
     const signUpConfirmPasswordRef = useRef(null);
 
@@ -16,17 +16,17 @@ const SignUpPage =({}) => {
     const [confirmpass, setConfirmpass] = useState("");
     //To properly trigger debounce UseEffects
     const [inputValues, setInputValues] = useState({
-        emailorusername: "",
+        email: "",
         password: "",
         confirmpassword: "",
     });
     const { signUp, verifyEmail } = useAuth();
     let navigate = useNavigate();
 
-    const handleUsernameEmailSignUpChange = (e) => {
+    const handleEmailSignUpChange = (e) => {
         const { input } = e.currentTarget.dataset;
-        signupUsernameRef.current = e.target.value;
-        setInputValues((prevInputValues) => ({...prevInputValues, [input]: signupUsernameRef.current}))
+        signupEmailRef.current = e.target.value;
+        setInputValues((prevInputValues) => ({...prevInputValues, [input]: signupEmailRef.current}))
     };
     const handlePasswordSignUpChange = (e) => {
         const { input } = e.currentTarget.dataset;
@@ -42,11 +42,11 @@ const SignUpPage =({}) => {
     // Debounce effect → Only update state if user stops typing for 1000ms
     useEffect(() => {
     const timeout = setTimeout(() => {
-        setEmail(signupUsernameRef.current);
+        setEmail(signupEmailRef.current);
     }, 1000);
     
     return () => clearTimeout(timeout);
-    }, [inputValues.emailorusername]);
+    }, [inputValues.email]);
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -66,10 +66,10 @@ const SignUpPage =({}) => {
 
     const signUpPageInputHeaders = [
         {
-            label: "Email or Username",
+            label: "Email",
             type: "text",
-            refType: signupUsernameRef,
-            handlechange: handleUsernameEmailSignUpChange
+            refType: signupEmailRef,
+            handlechange: handleEmailSignUpChange
         }, 
         {
             label: "Password",
@@ -124,6 +124,9 @@ const SignUpPage =({}) => {
                     error: (err) => err || "Signup failed"
                 }
             )
+
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            navigate("../login");
         } catch(error) {
             console.log(error.message)
             //toast.error(error.code)

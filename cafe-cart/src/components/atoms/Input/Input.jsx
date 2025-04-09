@@ -11,6 +11,8 @@ const GenericInput = forwardRef(({
     isRequired,
     dataAttributes,
     checked,
+    disabled,
+    pattern,
     className
 }, ref) => {
     return (
@@ -26,6 +28,8 @@ const GenericInput = forwardRef(({
             className={className}
             ref={ref}
             checked={checked}
+            disabled={disabled}
+            pattern={pattern}
         />
     );
 });

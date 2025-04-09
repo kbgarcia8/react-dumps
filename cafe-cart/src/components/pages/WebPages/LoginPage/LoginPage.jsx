@@ -10,21 +10,57 @@ const LoginPage =({}) => {
     const { logIn, googleSignIn } = useAuth();
     let navigate = useNavigate();
 
-    const loginUsernameRef = useRef(null);
+    const loginEmailRef = useRef(null);
     const loginPasswordRef = useRef(null);
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [inputValues, setInputValues] = useState({
+        email: "",
+        password: "",
+    });
+
+    const handleEmailLoginChange = (e) => {
+        const { input } = e.currentTarget.dataset;
+        loginEmailRef.current = e.target.value;
+        setInputValues((prevInputValues) => ({...prevInputValues, [input]: loginEmailRef.current}))
+    };
+    const handlePasswordLoginChange = (e) => {
+        const { input } = e.currentTarget.dataset;
+        loginPasswordRef.current = e.target.value;
+        setInputValues((prevInputValues) => ({...prevInputValues, [input]: loginPasswordRef.current}))
+    };
+    
+    // Debounce effect → Only update state if user stops typing for 1000ms
+    useEffect(() => {
+    const timeout = setTimeout(() => {
+        setEmail(loginEmailRef.current);
+    }, 1000);
+    
+    return () => clearTimeout(timeout);
+    }, [inputValues.email]);
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setPassword(loginPasswordRef.current);
+        }, 1000);
+        
+        return () => clearTimeout(timeout);
+    }, [inputValues.password]);
 
     const loginPageInputHeaders = [
         {
-            label: "Email or Username",
+            label: "Email",
             type: "text",
-            refType: loginUsernameRef,
-            handlechange: () => {}
+            refType: loginEmailRef,
+            handlechange: handleEmailLoginChange
         }, 
         {
             label: "Password",
             type: "password",
             refType: loginPasswordRef,
-            handlechange: () => {}
+            handlechange: handlePasswordLoginChange
         }
     ];
 
@@ -34,7 +70,7 @@ const LoginPage =({}) => {
             id: `login-${loginInput.label}-input`,
             placeholderText: `Your ${loginInput.label}`,
             editable: false,
-            mainOnChange: loginInput.handlechange, //use useRef in login then use useState in sign up
+            mainOnChange: loginInput.handlechange, 
             type: loginInput.type,
             isRequired: true,
             ref: loginInput.refType,
@@ -53,7 +89,7 @@ const LoginPage =({}) => {
     //for submit of non-google login credentials
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        const email = loginUsernameRef.current.value;
+        const email = loginEmailRef.current.value;
         const password = loginPasswordRef.current.value;
     
         try {
@@ -78,7 +114,7 @@ const LoginPage =({}) => {
             await new Promise((resolve) => setTimeout(resolve, 500));
             navigate("../dashboard");
 
-            loginUsernameRef.current.value = "";
+            loginEmailRef.current.value = "";
             loginPasswordRef.current.value = "";
     
         } catch (error) {

@@ -400,7 +400,6 @@ const DashboardLayout = ({header, sidebar}) => {
     }
 
     const addAddressEntry = () => {
-        console.log("TEST")
         const newAddAddressEntry = {
             name: "",
             number: "",
