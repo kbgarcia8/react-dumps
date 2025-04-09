@@ -18,12 +18,15 @@ const GenericForm = ({
     hasSubmit = false,
     hasCancel = false,
     hasDelete = false,
+    hasEdit = false,
     submitText,
     handleSubmit,
     cancelText,
     handleCancel,
     deleteText,
     handleDelete,
+    editText,
+    handleEdit,
     className,
     children //if there are nodes to be inserted after submit buttons usually in login or signup forms
 }) => {
@@ -168,6 +171,7 @@ const GenericForm = ({
             <styled.ButtonContainer className={"form-main-button-container"}>
                 {hasSubmit && <GenericButton id={`form-${id}-submit`} buttonType={"submit"} text={submitText ? submitText : "Submit"} onClick={handleSubmit} className={"submit-form-btn"}/>}
                 {hasCancel && <GenericButton id={`form-${id}-cancel`} buttonType={"button"} text={cancelText ? cancelText : "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}
+                {hasEdit && <GenericButton id={`form-${id}-edit`} buttonType={"button"} text={editText ? editText : "Edit"} onClick={handleEdit} className={"edit-form-btn"}/>}
                 {hasDelete && <GenericButton id={`form-${id}-delete`} buttonType={"button"} text={deleteText ? deleteText : "Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
             </styled.ButtonContainer>
             <styled.ChildrenContainer className={"children-container"}>
@@ -289,12 +293,15 @@ GenericForm.propTypes = {
     hasSubmit: PropTypes.bool,
     hasCancel: PropTypes.bool,
     hasDelete: PropTypes.bool,
+    hasEdit: PropTypes.bool,
     submitText: PropTypes.string,
     handleSubmit: PropTypes.func,
     cancelText: PropTypes.string,
     handleCancel: PropTypes.func,
     deleteText: PropTypes.string,
     handleDelete: PropTypes.func,
+    editText: PropTypes.string,
+    handleEdit: PropTypes.func,
 };
 
 
