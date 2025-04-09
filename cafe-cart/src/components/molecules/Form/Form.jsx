@@ -174,8 +174,8 @@ const GenericForm = ({
             }
             <styled.ButtonContainer className={"form-main-button-container"}>
                 {hasSubmit && <GenericButton id={`form-${id}-submit`} buttonType={"submit"} text={submitText ? submitText : "Submit"} onClick={handleSubmit} className={"submit-form-btn"}/>}
-                {hasCancel && <GenericButton id={`form-${id}-cancel`} buttonType={"button"} text={cancelText ? cancelText : "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}
                 {hasEdit && <GenericButton id={`form-${id}-edit`} buttonType={"button"} text={editText ? editText : "Edit"} onClick={handleEdit} className={"edit-form-btn"}/>}
+                {hasCancel && <GenericButton id={`form-${id}-cancel`} buttonType={"button"} text={cancelText ? cancelText : "Cancel"} onClick={handleCancel} className={"cancel-form-btn"}/>}                
                 {hasDelete && <GenericButton id={`form-${id}-delete`} buttonType={"button"} text={deleteText ? deleteText : "Delete"} onClick={handleDelete} className={"delete-form-btn"}/>}
             </styled.ButtonContainer>
             <styled.ChildrenContainer className={"children-container"}>

@@ -7,8 +7,9 @@ export const SettingsPageWrapper = styled.div`
     padding: ${v.spacing.xxxsmall};
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(5%,max-content);
     column-gap: ${v.spacing.medium};
-    min-height: 100%;
+    height: 100%;
 `;
 
 export const SettingsButtonSpace = styled.div`
@@ -17,6 +18,7 @@ export const SettingsButtonSpace = styled.div`
     height: 100%;
     margin-bottom: ${v.spacing.small};
     grid-column: 1/3;
+    border: 2px solid blue;
 `;
 
 export const SettingsPanelButton = styled(GenericButton)`
@@ -41,7 +43,6 @@ export const UserInfoSpace = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-grow: 1;
     align-items: center;
     height: 100%;
     margin: 0;
@@ -53,30 +54,37 @@ export const UserInfoForm = styled(GenericForm)`
     border-radius: ${v.borderRadius.small};
     padding-block: ${v.spacing.xxxsmall};
     width: 85%;
+    height: 100%;
 
     & fieldset {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: minmax(5%,max-content);
+        place-items: center;
         border: 2px solid blue;
         padding: 0;
     }
 
     & .label-input-container {
-        margin-block: ${v.spacing.xxsmall};
+        margin-block: ${v.spacing.small};
+        width: 95%;
     }
 
-    & .login-inputs-label {
+    & .user-inputs-label {
         display: flex;
         align-items: flex-start;
         font-size: ${v.fontSize.small};
+    }
+
+    & .user-info-input {
+        font-size: ${v.fontSize.xsmall};
     }
     
     & .form-main-button-container {
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        margin-block: ${v.spacing.xsmall};
+        margin-block: ${v.spacing.xxsmall};
 
         & button {
             width: 25%;

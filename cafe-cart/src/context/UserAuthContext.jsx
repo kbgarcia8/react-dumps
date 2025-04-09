@@ -8,7 +8,7 @@ const UserAuthContext = createContext();
 
 export const UserAuthContextProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
-    const [userProfile, setUserProfile] = useState(null);
+    const [userProfile, setUserProfile] = useState(null); //check if null to determine if new user to set tbe save button only present when directed to user information page
     const [loading, setLoading] = useState(true);
 
     //Login using registered and verified email
@@ -66,8 +66,8 @@ export const UserAuthContextProvider = ({children}) => {
     return (
         <UserAuthContext.Provider 
             value={{ 
-                logIn, signUp, verifyEmail, logOut, googleSignIn, saveUserProfile, getUserProfile //firebase functions
-                //declared states, custom usehooks and functions
+                logIn, signUp, verifyEmail, logOut, googleSignIn, saveUserProfile, getUserProfile, //firebase functions
+                loading, currentUser, userProfile //declared states, custom usehooks and functions
             }}
         > 
             {children}

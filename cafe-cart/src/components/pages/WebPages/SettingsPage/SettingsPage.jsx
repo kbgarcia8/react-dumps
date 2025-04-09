@@ -1,91 +1,103 @@
-import {React, useState, useEffect, useRef} from "react";
+import {React, useState, useEffect, useMemo} from "react";
+import { useDeepCompareEffect } from 'use-deep-compare';
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../context/UserAuthContext";
-import GoogleButton from 'react-google-button';
 import * as styled from './SettingsPage.styles'
 
+const settingsPageInputHeaders = [
+    {
+        label: "Username",
+        type: "text",
+        disabled: false
+    }, 
+    {
+        label: "Full Name",
+        type: "text",
+        disabled: false
+    },
+    {
+        label: "Main Address",
+        type: "text",
+        disabled: false
+    },
+    {
+        label: "Main Contact Number",
+        type: "text",
+        placeholder: "09XX-XXX-XXXX",
+        disabled: false,
+        pattern: "[0-9]{4}-[0-9]{3}-[0-9]{4}"
+    },
+    {
+        label: "Birthdate",
+        type: "date",
+        disabled: false
+    },
+    {
+        label: "Email",
+        type: "text",
+        disabled: true,
+        value: ""
+    }
+];
+
 const SettingsPage =({}) => {
-    const { logIn, googleSignIn } = useAuth();
+    const { saveUserProfile, userProfile } = useAuth();
     let navigate = useNavigate();
+    //console.log(userProfile);
+    const [settingsPageInputBase, setSettingsPageInputBase] = useState(settingsPageInputHeaders)
+    const [inputValues, setInputValues] = useState({
+            username: "",
+            fullname: "",
+            mainaddress: "",
+            maincontactnumber: "",
+            birthdate: ""
+    });
 
-    const profileUsernameRef = useRef(null);
-    const profileNameRef = useRef(null);
-    const profileBirthdateRef = useRef(null);
-    const profileMainAddressRef = useRef(null);
-    const profileMainContactNumberRef = useRef(null);
+    const handleSettingsInputChange = (e) => {
+        const {index, input} = e.currentTarget.dataset;
+        const currentValue = e.currentTarget.value;
+        setSettingsPageInputBase((prevSettingsPageInputBase) =>
+            prevSettingsPageInputBase.map((inputbase,idx)=>
+                idx === parseInt(index) ? {...inputbase, value: currentValue} : inputbase
+            )
+        )
 
-    const settingsPageInputHeaders = [
-        {
-            label: "Username",
-            type: "text",
-            refType: profileUsernameRef,
-            handlechange: () => {},
-            disabled: false
-        }, 
-        {
-            label: "Full Name",
-            type: "text",
-            refType: profileNameRef,
-            handlechange: () => {},
-            disabled: false
-        },
-        {
-            label: "Main Address",
-            type: "text",
-            refType: profileMainAddressRef,
-            handlechange: () => {},
-            disabled: false
-        },
-        {
-            label: "Main Contact Number",
-            type: "text",
-            placeholder: "09XX-XXX-XXXX",
-            refType: profileMainContactNumberRef,
-            handlechange: () => {},
-            disabled: false,
-            pattern: "[0-9]{4}-[0-9]{3}-[0-9]{4}"
-        },
-        {
-            label: "Birthdate",
-            type: "date",
-            refType: profileBirthdateRef,
-            handlechange: () => {},
-            disabled: false
-        },
-        {
-            label: "Email",
-            type: "text",
-            disabled: true,
-            value: ""
-        }
-    ];
+        setInputValues((prevInputValues) => ({
+            ...prevInputValues,
+            [input]: currentValue
+        }))
+    }
 
-    const settingsPageInputs = settingsPageInputHeaders.map((settingsInput) => ({
+    const settingsPageInputs = useMemo(()=> {
+        return settingsPageInputBase.map((settingsInput,index) => ({
             labelText: `${settingsInput.label}\n`,
             labelDirection: "column",
             id: `login-${settingsInput.label}-input`,
             placeholderText: settingsInput.placeholder ? settingsInput.placeholder : `Your ${settingsInput.label}`,
             pattern: settingsInput.pattern,
             editable: false,
-            mainOnChange: settingsInput.handlechange,
+            mainOnChange: handleSettingsInputChange,
             type: settingsInput.type,
             disabled: settingsInput.disabled,
-            value: settingsInput.value ? settingsInput.value : null,
-            ref: settingsInput.refType,
+            value: settingsInput.value ? settingsInput.value : "",
             dataAttributes: {
-                "data-input": `${settingsInput.label}`
+                "data-input": `${settingsInput.label.toLowerCase().replace(/\s+/g, '')}`,
+                "data-index": index
             }
-    }))
+        }))
+    },[settingsPageInputBase])
 
-    //for submit of non-google login credentials
-    const handleLoginSubmit = async (e) => {
-        e.preventDefault();
-        const email = loginUsernameRef.current.value;
-        const password = loginPasswordRef.current.value;
+    //const [settingsInputSet,setSettingsInputSet] = useState(settingsPageInputs)
+    const [isEditing, setIsEditing] = useState(false);
     
-        try {
+    //for submit of user info
+    const handleUserInfoSave = async (e) => {
+        e.preventDefault();
+
+    
+        /*try {
             await toast.promise(
                 (async () => {
                     const loggedInCredential = await logIn(email, password);
@@ -112,37 +124,28 @@ const SettingsPage =({}) => {
     
         } catch (error) {
             toast.error(error.message);//custom message for every error.code just like in Sign Up
-        }
-    }    
-
-    const handleGoogleSignIn = async (e) => {
-        e.preventDefault();
-        try {
-          await googleSignIn();
-          navigate("../dashboard");
-        } catch (error) {
-          alert(error.message);
-        }
-    };
+        }*/
+    }
 
     return(
         <styled.SettingsPageWrapper>
             <styled.SettingsButtonSpace>
-                <styled.SettingsPanelButton />
-                <styled.SettingsPanelButton />
+                <styled.SettingsPanelButton text={"User Information"}/>
+                <styled.SettingsPanelButton text={"User Settings"}/>
             </styled.SettingsButtonSpace>
             <styled.UserInfoSpace>
                 <styled.UserInfoForm
-                    fieldHeight={"75vh"}
+                    fieldHeight={"70vh"}
                     id={"user-info-form"}
                     formInputs={settingsPageInputs}
-                    labelClassName={"login-inputs-label"}
-                    hasSubmit
+                    labelClassName={"user-inputs-label"}
+                    inputClassName={"user-info-input"}
+                    hasSubmit={userProfile === null ? true : isEditing ? true : false}
                     submitText={"Save"}
-                    handleSubmit={handleLoginSubmit}
-                    hasCancel
+                    handleSubmit={handleUserInfoSave}
+                    hasCancel={userProfile === null ? false : isEditing ? true : false}
                     cancelText={"Cancel"}
-                    hasEdit
+                    hasEdit={userProfile === null ? false : true}
                     editText={"Edit"}
                 />
             </styled.UserInfoSpace>
