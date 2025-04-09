@@ -26,7 +26,11 @@ export const MenuFilterButton = styled(GenericButton)`
         font-size: ${v.fontSize.xsmall};
         font-family: ${v.fonts.secondary};
         font-weight: ${v.fontWeight.bold};
-    }    
+    }
+    
+    &:hover {
+        color: ${({theme}) => theme.textColor3};
+    }
 `;
 
 export const MenuCardContainer = styled.div`

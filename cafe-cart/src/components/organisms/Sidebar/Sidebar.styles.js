@@ -42,6 +42,11 @@ export const StyledLinkWithImage = styled(Link)`
     width: 100%;
     height: fit-content;
     color: ${({theme}) => theme.backgroundColor1};
+    
+    &:hover{
+        color: ${({theme}) => theme.backgroundColor3};
+    }
+
     & svg {
         width: 100%;
     }
