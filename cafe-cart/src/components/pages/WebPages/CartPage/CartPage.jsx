@@ -69,8 +69,8 @@ const CartPage =({}) => {
                         hasSubmit={true}
                         submitText={"Checkout"}
                         id={"checkout"}
-                        editableOnChange={handleAddressBankChange}
-                        addInputFunction={addAddressEntry}
+                        handleEditableInputEntryChange={handleAddressBankChange}
+                        handleAddingInputEntry={addAddressEntry}
                         handleSubmit={checkout}
                 />
             </styled.CheckoutInformationContainer>                        

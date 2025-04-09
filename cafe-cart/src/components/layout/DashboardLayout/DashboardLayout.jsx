@@ -10,6 +10,7 @@ import CashIcon from "../../atoms/SVG/CashIcon";
 import CardIcon from "../../atoms/SVG/CardIcon";
 import GCashIcon from "../../atoms/SVG/GCashIcon";
 import { formatDate } from "../../../utils/utils.js"
+import { toast } from "react-toastify";
 
 const initialCart = [];
 
@@ -252,7 +253,7 @@ const DashboardLayout = ({header, sidebar}) => {
                     const {key, index} = input.dataset;
     
                     if(input.value === "" || input.value === null || input.value === undefined) {
-                        alert(`Please provide ${key.charAt(0).toUpperCase() + key.slice(1)} of Address ${parseInt(index)+1} entry`)
+                        toast.error(`Please provide ${key.charAt(0).toUpperCase() + key.slice(1)} of Address ${parseInt(index)+1} entry`)
                     }
                 });
             }
@@ -355,6 +356,7 @@ const DashboardLayout = ({header, sidebar}) => {
         const itemInDatabase = database[category][index];
         
         dispatch({ type: "addToCart" , data: {size, price, category, index}, databaseItem: itemInDatabase})
+        toast.success("Item successfully added to cart")
     }
 
     const incrementItem = (e) => {
@@ -374,6 +376,7 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const clearCart = () => {
         dispatch({ type: "reset" })
+        toast.warn('Cart was cleared')
     }
 
     const nextTransactionType = () => {
@@ -397,6 +400,7 @@ const DashboardLayout = ({header, sidebar}) => {
     }
 
     const addAddressEntry = () => {
+        console.log("TEST")
         const newAddAddressEntry = {
             name: "",
             number: "",
@@ -430,18 +434,18 @@ const DashboardLayout = ({header, sidebar}) => {
                 subtotal: currentSubtotal,
                 dateAndTime: currentDateAndTime
             })
-            alert("Thank you for your purchase!")
+            toast.success("Thank you for your purchase!")
             dispatch({ type: "reset" })
             navigate("../dashboard/pending")
         } else if(currentCart.length === 0 || checkedAddress === undefined || checkedPayment === undefined) {
             currentCart.length === 0 
-                ? alert("Please add items to cart first before checking out")
+                ? toast.error("Please add items to cart first before checking out")
                 : addressBank.length ===0
-                    ? alert("Please provide atleast one address detail before checking out")
+                    ? toast.error("Please provide atleast one address detail before checking out")
                     : (currentTransactionType === "Delivery" && checkedAddress === undefined) 
-                        ? alert("Please select an address before checking out")
+                        ? toast.error("Please select an address before checking out")
                         : checkedPayment === undefined
-                            && alert("Please select a payment method before checking out")
+                            && toast.error("Please select a payment method before checking out")
         }
     }
 

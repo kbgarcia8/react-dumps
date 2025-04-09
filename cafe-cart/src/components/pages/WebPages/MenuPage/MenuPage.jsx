@@ -1,9 +1,7 @@
 import {React, useState, useEffect, Fragment} from "react";
 import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
-import { useGlobal } from "../../../../context/GlobalContext";
-import ProductCard from "../../../molecules/ProductCard";
-import Divider from "../../../atoms/Divider";
+import { useGlobal } from "../../../../context/GlobalContext"
 import * as styled from './MenuPage.styles'
 
 const MenuPage =({}) => {
