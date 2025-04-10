@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { auth, db } from "../backend/firebase/firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const UserAuthContext = createContext();
 
@@ -37,8 +38,13 @@ export const UserAuthContextProvider = ({children}) => {
 
     // Save User Profile to Firestore
     const saveUserProfile = async (data) => {
-        const uid = auth.currentUser.uid;
-        await setDoc(doc(db, "users", uid), data, { merge: true }); //merge: true updates only the data that are touched
+        try {
+            const uid = auth.currentUser.uid;
+            await setDoc(doc(db, "users", uid), data, { merge: true }); //merge: true updates only the data that are touched
+        } catch (error) {
+            toast.error("Failed to save user profile.");
+        }
+        
       };
 
     // Get User Profile from Firestore

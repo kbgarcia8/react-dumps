@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import GenericForm from '../../../molecules/Form';
 import GenericButton from '../../../atoms/Button';
 import { v } from '../../../../styles/variables';
+import Divider from '../../../atoms/Divider';
 
 export const SettingsPageWrapper = styled.div`
     padding: ${v.spacing.xxxsmall};
@@ -9,6 +10,7 @@ export const SettingsPageWrapper = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: minmax(5%,max-content);
     column-gap: ${v.spacing.medium};
+    row-gap: ${v.spacing.small};
     height: 100%;
 `;
 
@@ -16,9 +18,8 @@ export const SettingsButtonSpace = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    margin-bottom: ${v.spacing.small};
+    margin-bottom: ${v.spacing.xsmall};
     grid-column: 1/3;
-    border: 2px solid blue;
 `;
 
 export const SettingsPanelButton = styled(GenericButton)`
@@ -37,8 +38,95 @@ export const SettingsPanelButton = styled(GenericButton)`
     }
 `;
 
-export const UserInfoSpace = styled.div`
-    border: 2px solid red;
+export const UserInfoDisplaySpace = styled.div`
+    grid-column: 1/2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+`;
+
+export const UserInfoSpace = styled(UserInfoDisplaySpace)`
+    height: 57.5%;
+    width: 100%;
+    justify-content: center;
+`;
+
+export const ProfilePictureContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60%;
+    & .lucide{
+        width: 100%;
+        height: 100%;
+    }
+`;
+
+export const ProfilePicture = styled.img`
+    width: 100%;
+    height: 100%;
+`;
+
+export const UserFullnameSpan = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: ${v.fontSize.large};
+    font-weight: ${v.fontWeight.bold};
+    font-family: ${v.fonts.primary}, ${v.fonts.fallback};
+`;
+export const DetailSpanMarker = styled(UserFullnameSpan)`
+    font-size: ${v.fontSize.small};
+    color: ${({theme}) => theme.borderColor2};
+    margin-left: ${v.spacing.small};
+    width: 35%;
+`;
+export const DetailSpan = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-block: ${v.spacing.xxxsmall};
+    font-size: ${v.fontSize.small};
+    font-weight: ${v.fontWeight.bolder};
+    font-family: ${v.fonts.primary}, ${v.fonts.fallback};
+`;
+export const RewardsCardSpace = styled(UserInfoDisplaySpace)`
+    height: 45%;
+    width: 70%;
+    justify-content: space-evenly;
+    border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor2};
+    border-radius: ${v.borderRadius.medium};
+    background-color: ${({theme}) => theme.backgroundColor1};
+    padding: ${v.spacing.medium};
+`;
+export const RewardCardHeader = styled.h3`
+    justify-content: flex-start;
+    width: 100%;
+    height: 10%;
+    color: ${({theme}) => theme.textColor3};
+`;
+export const CardDivider = styled(Divider)`
+    height: 10%;
+`;
+export const RewardCardDetailSpace = styled.div`
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+export const RewardCardDetails = styled.span`
+    font-style: italic;
+    font-size: ${v.fontSize.large};
+    font-weight: ${v.fontWeight.bold};
+    font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+    color: ${({theme}) => theme.textColor3};
+`;
+export const UserInfoEditSpace = styled.div`
     grid-column: 2/3;
     display: flex;
     flex-direction: column;
@@ -48,7 +136,6 @@ export const UserInfoSpace = styled.div`
     margin: 0;
     padding: 0;
 `;
-
 export const UserInfoForm = styled(GenericForm)`
     border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
     border-radius: ${v.borderRadius.small};
@@ -61,8 +148,8 @@ export const UserInfoForm = styled(GenericForm)`
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: minmax(5%,max-content);
         place-items: center;
-        border: 2px solid blue;
-        padding: 0;
+        border: none;
+        padding-top: ${v.spacing.xlarge};
     }
 
     & .label-input-container {
