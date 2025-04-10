@@ -159,9 +159,8 @@ const SettingsPage =({}) => {
             try {
                 await toast.promise(
                     (async () => {
-                        const getCurrentUserProfile = await getUserProfile(currentUser.uid);
-        
-                        return getCurrentUserProfile;
+                        const currentUserProfile = await getUserProfile(currentUser.uid);
+                        return currentUserProfile;
                     })(),
                     {
                         loading: 'Fetching user information...',

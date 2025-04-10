@@ -7,7 +7,7 @@ import GoogleButton from 'react-google-button';
 import * as styled from './LoginPage.styles'
 
 const LoginPage =({}) => {
-    const { logIn, googleSignIn } = useAuth();
+    const { logIn, googleSignIn, userProfile } = useAuth();
     let navigate = useNavigate();
 
     const loginEmailRef = useRef(null);
@@ -93,23 +93,19 @@ const LoginPage =({}) => {
         const password = loginPasswordRef.current.value;
     
         try {
-            await toast.promise(
-                (async () => {
-                    const loggedInCredential = await logIn(email, password);
-                    const loggedInUser = loggedInCredential.user;
-    
-                    if (!loggedInUser.emailVerified) {
-                        throw new Error("Please verify your email before logging in.");
+                const loggedInCredential = await toast.promise(
+                    logIn(email, password),                
+                    {
+                        loading: 'Logging in...',
+                        success: 'User Login successful',
+                        error: (err) => err.message || 'Login failed'
                     }
+                )
+            const loggedInUser = loggedInCredential.user;
     
-                    return loggedInCredential;
-                })(),
-                {
-                    loading: 'Logging in...',
-                    success: 'User Login successful',
-                    error: (err) => err.message || 'Login failed'
-                }
-            );
+            if (!loggedInUser.emailVerified) {
+                throw new Error("Please verify your email before logging in.");
+            }
     
             await new Promise((resolve) => setTimeout(resolve, 500));
             navigate("../dashboard");
@@ -126,7 +122,7 @@ const LoginPage =({}) => {
         e.preventDefault();
         try {
           await googleSignIn();
-          navigate("../dashboard");
+          userProfile === null? navigate("../dashboard/settings") : navigate("../dashboard");
         } catch (error) {
           alert(error.message);
         }

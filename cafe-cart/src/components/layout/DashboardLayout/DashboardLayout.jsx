@@ -2,7 +2,9 @@ import {React, useState, useReducer, useEffect, useMemo} from "react";
 import { useDeepCompareEffect } from 'use-deep-compare';
 import PropTypes from "prop-types";
 import { Outlet, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 import { useGlobal } from "../../../context/GlobalContext.jsx";
+import { useAuth } from "../../../context/UserAuthContext.jsx";
 import * as styled from "./DashboardLayout.styles";
 import DeleteIcon from "../../atoms/SVG/DeleteIcon";
 import EditIcon from "../../atoms/SVG/EditIcon";
@@ -10,13 +12,12 @@ import CashIcon from "../../atoms/SVG/CashIcon";
 import CardIcon from "../../atoms/SVG/CardIcon";
 import GCashIcon from "../../atoms/SVG/GCashIcon";
 import { formatDate } from "../../../utils/utils.js"
-import { toast } from "react-toastify";
 
 const initialCart = [];
 
 const transactionTypes = ["Dine-In", "Take-out", "Drive Thru", "Delivery"];
 
-const initialAddressBank = [
+{/*const initialAddressBank = [
     {
         name: "KB Garcia",
         number: "09123456789",
@@ -45,7 +46,7 @@ const initialAddressBank = [
         editing: false,
         checked: false
     }
-];
+];*/}
 
 const paymentMethods = [
     {
@@ -68,29 +69,9 @@ const paymentMethods = [
 const initialPaymentFieldset = [
     {
         legend: "Address",
-        inputs: initialAddressBank.map((addressEntry, index) => ({
-            labelText: `${addressEntry.name}\n`,
-            additionalInfo: `${addressEntry.number}\n${addressEntry.location}`,
-            labelDirection: "column",
-            id: `address-entry-${index}`,
-            placeholderText: "",
-            editable: true, //if editable is true data structure must have an editing key with a boolean value
-            mainOnChange: () => {},
-            onClickEdit: () => {},
-            editIcon: <EditIcon/>,
-            onClickDelete: () => {},
-            deleteIcon: <DeleteIcon/>,
-            onClickSave: () => {},
-            onClickCancel: () => {},
-            type: "radio",
-            isRequired: true,
-            data: addressEntry,
-            dataAttributes: {
-                "data-index": index
-            }
-        })),
+        inputs: [],
         height: "47.5%",
-        expandable: true //indicates if fieldset entry can be added that will add inputs
+        expandable: true
     },
     {
         legend: "Payment Option",
@@ -141,17 +122,20 @@ const  reducer = (state, action) => {
 }
 
 const DashboardLayout = ({header, sidebar}) => {
+    //custom hooks/contexts
     const navigate = useNavigate();
     const {database} = useGlobal();
+    const { currentUser , saveUserProfile, userProfile, getUserProfile } = useAuth();
+    //reducer
     const [state, dispatch] = useReducer(reducer, initialCart);
-    const [addressBank,setAddressBank] = useState(initialAddressBank);
-    const [addressBankBackup,setAddressBankBackup] = useState(initialAddressBank);
+    //states
+    const [addressBank,setAddressBank] = useState([]);
+    const [addressBankBackup,setAddressBankBackup] = useState([]);
     const [paymentMethod, setPaymentMethod] = useState(paymentMethods)
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
     const [transactionTypeCount, setTransactionTypeCount] = useState(0);
     const [transactionType, setTransactionType] = useState(transactionTypes[0]);
     const [checkoutDetails, setCheckoutDetails] = useState({});
-
     const [isPending, setIsPending] = useState(true);
     const [orderHistory, setOrderHistory] = useState([]);
     //useEffect for console.log
@@ -161,14 +145,32 @@ const DashboardLayout = ({header, sidebar}) => {
     //useEffect with no dependecy and onMount only
     //ensure that previously saved data are loaded properly or a preset data is provided if no saved info
     useEffect(() => {
-        if(localStorage.getItem("savedAddressBank") === null) {
-            localStorage.setItem("savedAddressBank", JSON.stringify([]));
-        } else if(localStorage.getItem("savedAddressBank") !== null) {
-            const retrievedAddressBankData = localStorage.getItem("savedAddressBank");
-            const parsedAddressBankData = JSON.parse(retrievedAddressBankData);
-            setAddressBank(parsedAddressBankData);
-        }
-    },[])
+            const fetchUserProfile = async () => {
+                try {
+                    await toast.promise(
+                        (async () => {
+                            const currentUserProfile = await getUserProfile(currentUser.uid);                            
+                            return currentUserProfile;
+                        })(),
+                        {
+                            loading: 'Fetching user information...',
+                            success: 'User information fetched successfully',
+                            error: (err) => err.message || 'User has no existing data'
+                        }
+                    );
+            
+                    await new Promise((resolve) => setTimeout(resolve, 500));
+                    if(currentUserProfile) {
+                        setAddressBank(currentUserProfile.addressBank)
+                    } else if (currentUserProfile !== null) {
+                        setAddressBank([]);
+                    }
+                } catch (error) {
+                    console.error(error.message);//custom message for every error.code just like in Sign Up
+                }
+            }
+            fetchUserProfile();
+    }, [currentUser, userProfile])
 
     //Simulation of isPending and checkout reset after checkout
     useDeepCompareEffect(() => {
@@ -213,8 +215,8 @@ const DashboardLayout = ({header, sidebar}) => {
         setAddressBank((prevAddressBank) => 
             prevAddressBank.map((addressInfo, addressInfoIndex) => (
                 (addressInfoIndex == index)
-                ? addressInfo['editing'] === false ? {...addressInfo, ['editing']: true} : {...addressInfo, ['editing']: false}
-                : {...addressInfo, ['editing']: false}
+                ? {...addressInfo, editing: !addressInfo['editing']} 
+                : addressInfo
             ))
         )
     }
@@ -229,23 +231,37 @@ const DashboardLayout = ({header, sidebar}) => {
         ))
     }
 
-    const saveAddressEntryEdit = (e) => {
+    const saveAddressEntryEdit = async (e) => {
         e.preventDefault();
         const currentFieldset = e.target.closest("fieldset")
 
         if(currentFieldset) {
             const inputs = currentFieldset.querySelectorAll("div input");
-            console.log(inputs)     
             const noneIsBlank =  Array.from(inputs).every(input => input.value !== "" && input.value !== null && input.value !== undefined)
 
             if(noneIsBlank) {
-                setAddressBank((prevAddressBank) =>  {
-                    const updatedBank = prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false}))
-        
-                    localStorage.setItem("savedAddressBank", JSON.stringify(updatedBank));
-        
-                    return updatedBank;
-                })
+                const updatedBank = addressBank.map((addressInfo) => ({...addressInfo, ['editing']: false}))
+                setAddressBank(updatedBank)
+
+                    try {
+                        await toast.promise(
+                            (async () => {
+                                const saveUserInfo = await saveUserProfile({ "addressBank": updatedBank});
+                
+                                return saveUserInfo;
+                            })(),
+                            {
+                                loading: 'Saving updated user addressBank...',
+                                success: 'User addressBank saved successfully',
+                                error: (err) => err.message || 'Saving Failed'
+                            }
+                        );
+                
+                        await new Promise((resolve) => setTimeout(resolve, 500));
+                        
+                    } catch (error) {
+                        console.error(error.message);//custom message for every error.code just like in Sign Up
+                    }
                     
                 setAddressBankBackup([...addressBank]);
             } else {
@@ -262,9 +278,13 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const cancelAddressEntryEdit = () => {
         setAddressBank((prevAddressBank) =>  prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false})))
-        const retrievedAddressBankData = localStorage.getItem("savedAddressBank");
-        const parsedAddressBankData = JSON.parse(retrievedAddressBankData) || addressBankBackup;
-        setAddressBank(parsedAddressBankData);
+        const fetchedAddressBankData = async () => { 
+            const fetchUserProfile = await getUserProfile(currentUser.uid);
+            const addressData = fetchUserProfile.addressBank;
+            return addressData
+        }
+        const retrievedAddressBankData = fetchedAddressBankData || addressBankBackup;
+        setAddressBank(retrievedAddressBankData);
     }
 
     const addressFieldInputs = useMemo(()=> {
@@ -448,9 +468,29 @@ const DashboardLayout = ({header, sidebar}) => {
         }
     }
 
-    const deleteOrderHistoryEntry = (e) => {
-        const {index} = e.currentTarget.dataset
-        setOrderHistory((prevHistory) => prevHistory.filter((_, idx) => idx !== parseInt(index)))
+    const deleteOrderHistoryEntry = async (e) => {
+        const {index} = e.currentTarget.dataset;
+        const filteredHistory = orderHistory.filter((_, idx) => idx !== parseInt(index));
+        setOrderHistory(filteredHistory);
+        try {
+            await toast.promise(
+                (async () => {
+                    const saveUserInfo = await saveUserProfile({ "orderHistory": filteredHistory});
+    
+                    return saveUserInfo;
+                })(),
+                {
+                    loading: 'Saving updated user addressBank...',
+                    success: 'User addressBank saved successfully',
+                    error: (err) => err.message || 'Saving Failed'
+                }
+            );
+    
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            
+        } catch (error) {
+            console.error(error.message);//custom message for every error.code just like in Sign Up
+        }
     }
 
     const orderAgain = (e) => {
