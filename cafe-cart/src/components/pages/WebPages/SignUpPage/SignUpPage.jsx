@@ -20,7 +20,7 @@ const SignUpPage =({}) => {
         password: "",
         confirmpassword: "",
     });
-    const { signUp, verifyEmail } = useAuth();
+    const { signUp, verifyEmail, logOut } = useAuth();
     let navigate = useNavigate();
 
     const handleEmailSignUpChange = (e) => {
@@ -126,6 +126,7 @@ const SignUpPage =({}) => {
             )
 
             await new Promise((resolve) => setTimeout(resolve, 500));
+            await logOut(); //for the user to be logged out first after sign out and confirm email first
             navigate("../login");
         } catch(error) {
             console.log(error.message)

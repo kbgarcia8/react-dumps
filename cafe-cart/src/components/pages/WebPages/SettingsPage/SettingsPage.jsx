@@ -40,7 +40,7 @@ const settingsPageInputHeaders = [
 ];
 
 const SettingsPage =({}) => {
-    const { currentUser , saveUserProfile, userProfile, getUserProfile } = useAuth();
+    const { currentUser , saveUserProfile, userProfile, getUserProfile, isProfileIncompleteOrNull } = useAuth();
     const { theme } = useTheme();
     let navigate = useNavigate();
     const inputValuesRef = useRef({
@@ -60,48 +60,44 @@ const SettingsPage =({}) => {
         }, 500),
         []
     )
+    useEffect(() => {
+        return () => {
+            debounceSetInputValues.cancel();
+        }
+    }, [debounceSetInputValues]);
     const handleSettingsInputChange = (e) => {
         const {index, input} = e.currentTarget.dataset;
         const currentValue = e.currentTarget.value;
 
         if (inputValues[input] !== currentValue) {
-            setInputValues((prevInputValues) => {
-                const updatedValues = { ...prevInputValues, [input]: currentValue };
-                inputValuesRef.current = updatedValues;  // Update the ref as well to avoid future mismatches
-                return updatedValues;
-            })
+            const updatedValues = { ...inputValues, [input]: currentValue };
+            inputValuesRef.current = updatedValues;
+            setInputValues(updatedValues);
         }
-
-        setSettingsPageInputBase((prevSettingsPageInputBase) =>
-            prevSettingsPageInputBase.map((inputbase,idx)=>
-                idx !== parseInt(index) 
-                ? inputbase
-                : inputbase['value'] !== currentValue
-                    ? {...inputbase, value: currentValue}
-                    : inputbase['value']
-            )
-        )
 
         debounceSetInputValues();
     }
-    //re-map settingsPageInputs each time there is change in settingsPageInputBase which initializes from settingsPageInputHeaders
+    //re-map settingsPageInputs each time there is change in inputValues for values and settingsPageInputBase for disabled
     const settingsPageInputs = useMemo(()=> {
-        return settingsPageInputBase.map((settingsInput,index) => ({
-            labelText: `${settingsInput.label}\n`,
-            labelDirection: "column",
-            id: `login-${settingsInput.label}-input`,
-            placeholderText: settingsInput.placeholder ? settingsInput.placeholder : `Your ${settingsInput.label}`,
-            pattern: settingsInput.pattern,
-            mainOnChange: handleSettingsInputChange,
-            type: settingsInput.type,
-            disabled: settingsInput.disabled,
-            value: settingsInput.value ? settingsInput.value : "",
-            dataAttributes: {
-                "data-input": `${settingsInput.label.toLowerCase().replace(/\s+/g, '')}`,
-                "data-index": index
-            }
-        }))
-    },[settingsPageInputBase, userProfile])
+        return settingsPageInputBase.map((settingsInput,index) => {
+            const labelTextTokey = settingsInput.label.toLowerCase().replace(/\s+/g, '')
+            return {
+                labelText: `${settingsInput.label}\n`,
+                labelDirection: "column",
+                id: `login-${settingsInput.label}-input`,
+                placeholderText: settingsInput.placeholder ? settingsInput.placeholder : `Your ${settingsInput.label}`,
+                pattern: settingsInput.pattern,
+                mainOnChange: handleSettingsInputChange,
+                type: settingsInput.type,
+                disabled: settingsInput.disabled,
+                value: inputValues[labelTextTokey] || "",
+                dataAttributes: {
+                    "data-input": labelTextTokey,
+                    "data-index": index
+                }
+            }            
+        })
+    },[settingsPageInputBase, inputValues])
     
     //for submit of user info
     const handleUserInfoSave = async (e) => {
@@ -125,7 +121,7 @@ const SettingsPage =({}) => {
             setSettingsPageInputBase((prevSettingsPageInputBase) =>
                 prevSettingsPageInputBase.map((inputbase)=>({
                     ...inputbase,
-                    disabled: false
+                    disabled: true
                 }))
             )
             setIsEditing(false);
@@ -142,7 +138,7 @@ const SettingsPage =({}) => {
         )
         setSettingsPageInputBase((prevSettingsPageInputBase) =>
             prevSettingsPageInputBase.map((inputbase)=>(
-                inputbase['label'] !== Email
+                inputbase['label'] !== "Email"
                     ? {...inputbase,disabled: false}
                     : inputbase
             ))
@@ -155,13 +151,11 @@ const SettingsPage =({}) => {
     },[inputValues, settingsPageInputs])
 
     useEffect(() => {
+        console.log("Fetching user data...")
         const fetchUserProfile = async () => {
             try {
-                await toast.promise(
-                    (async () => {
-                        const currentUserProfile = await getUserProfile(currentUser.uid);
-                        return currentUserProfile;
-                    })(),
+                const fetchedData = await toast.promise(
+                    getUserProfile(currentUser.uid),
                     {
                         loading: 'Fetching user information...',
                         success: 'User information fetched successfully',
@@ -170,9 +164,28 @@ const SettingsPage =({}) => {
                 );
         
                 await new Promise((resolve) => setTimeout(resolve, 500));
+
+                if (fetchedData) {
+                    const updatedValues = {
+                        username: userProfile.username || "",
+                        fullname: userProfile.fullname || "",
+                        mainaddress: userProfile.mainaddress || "",
+                        maincontactnumber: userProfile.maincontactnumber || "",
+                        birthdate: userProfile.birthdate || "",
+                    };
+            
+                    inputValuesRef.current = updatedValues;
+                    setInputValues(updatedValues);
+                    setSettingsPageInputBase(prev =>
+                        prev.map(input => ({
+                            ...input,
+                            value: updatedValues[input.label.toLowerCase().replace(/\s+/g, '')]
+                        }))
+                    );
+                }
         
             } catch (error) {
-                console.error(error.message);//custom message for every error.code just like in Sign Up
+                console.error(error.message);
             }
         }
         fetchUserProfile();
@@ -208,10 +221,10 @@ const SettingsPage =({}) => {
                     formInputs={settingsPageInputs}
                     labelClassName={"user-inputs-label"}
                     inputClassName={"user-info-input"}
-                    hasSubmit={userProfile === null ? true : isEditing ? true : false}
+                    hasSubmit={userProfile === null  || isProfileIncompleteOrNull(userProfile) ? true : isEditing ? true : false}
                     submitText={"Save"}
                     handleSubmit={handleUserInfoSave}
-                    hasCancel={userProfile === null ? false : isEditing ? true : false}
+                    hasCancel={userProfile === null  || isProfileIncompleteOrNull(userProfile) ? false : isEditing ? true : false}
                     cancelText={"Cancel"}
                     hasEdit={userProfile === null ? false : true}
                     editText={"Edit"}

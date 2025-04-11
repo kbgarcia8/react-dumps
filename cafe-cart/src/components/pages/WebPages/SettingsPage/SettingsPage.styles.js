@@ -137,7 +137,7 @@ export const UserInfoEditSpace = styled.div`
     padding: 0;
 `;
 export const UserInfoForm = styled(GenericForm)`
-    border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
+    box-shadow: 0 4px 8px 0 ${({theme}) => theme.shadow};
     border-radius: ${v.borderRadius.small};
     padding-block: ${v.spacing.xxxsmall};
     width: 85%;

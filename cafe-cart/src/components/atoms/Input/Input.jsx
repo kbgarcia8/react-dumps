@@ -43,11 +43,7 @@ GenericInput.propTypes = {
     isRequired: PropTypes.bool,
     dataAttributes: PropTypes.object, 
     checked: PropTypes.bool,
-    className: PropTypes.string,
-    ref: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.shape({ current: PropTypes.any })
-    ])
+    className: PropTypes.string
 };
 
 export default GenericInput;

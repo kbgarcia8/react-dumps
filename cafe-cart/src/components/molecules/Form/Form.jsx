@@ -249,10 +249,6 @@ const inputShape = PropTypes.arrayOf(
     //Make all props above required when input is editable
     type: PropTypes.string,
     isRequired: PropTypes.bool,
-    ref: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.shape({ current: PropTypes.any })
-    ]),
     //disabled are up-ed here from data in inputShape of formInputs since it is applicable even if input is not radio which is usually the only type that requires a data attribute
     disabled: PropTypes.bool,
     pattern: PropTypes.string,

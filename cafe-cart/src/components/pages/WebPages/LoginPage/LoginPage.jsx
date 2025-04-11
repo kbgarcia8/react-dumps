@@ -24,12 +24,12 @@ const LoginPage =({}) => {
     const handleEmailLoginChange = (e) => {
         const { input } = e.currentTarget.dataset;
         loginEmailRef.current = e.target.value;
-        setInputValues((prevInputValues) => ({...prevInputValues, [input]: loginEmailRef.current}))
+        setInputValues((prevInputValues) => ({...prevInputValues, [`${input.toLowerCase()}`]: loginEmailRef.current}))
     };
     const handlePasswordLoginChange = (e) => {
         const { input } = e.currentTarget.dataset;
         loginPasswordRef.current = e.target.value;
-        setInputValues((prevInputValues) => ({...prevInputValues, [input]: loginPasswordRef.current}))
+        setInputValues((prevInputValues) => ({...prevInputValues, [`${input.toLowerCase()}`]: loginPasswordRef.current}))
     };
     
     // Debounce effect → Only update state if user stops typing for 1000ms
@@ -89,29 +89,27 @@ const LoginPage =({}) => {
     //for submit of non-google login credentials
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
-        const email = loginEmailRef.current.value;
-        const password = loginPasswordRef.current.value;
-    
-        try {
-                const loggedInCredential = await toast.promise(
-                    logIn(email, password),                
-                    {
-                        loading: 'Logging in...',
-                        success: 'User Login successful',
-                        error: (err) => err.message || 'Login failed'
-                    }
-                )
-            const loggedInUser = loggedInCredential.user;
-    
-            if (!loggedInUser.emailVerified) {
-                throw new Error("Please verify your email before logging in.");
-            }
-    
-            await new Promise((resolve) => setTimeout(resolve, 500));
-            navigate("../dashboard");
+        const currentEmail = inputValues.email;
+        const currentPassword = inputValues.password;
 
-            loginEmailRef.current.value = "";
-            loginPasswordRef.current.value = "";
+        try {
+            const {userCredential, profileIncomplete} = await toast.promise(
+                 logIn(currentEmail, currentPassword),                
+                {
+                    loading: 'Logging in...',
+                    success: 'User Login successful',
+                    error: (err) => err.message || 'Login failed'
+                }
+            )
+            //await new Promise((resolve) => setTimeout(resolve, 500));
+            //if(profileIncomplete) {
+                //navigate("../dashboard/settings");
+            //} else if (!profileIncomplete) {
+                //navigate("../dashboard")
+            //}
+
+            loginEmailRef.current = "";
+            loginPasswordRef.current = "";
     
         } catch (error) {
             toast.error(error.message);//custom message for every error.code just like in Sign Up

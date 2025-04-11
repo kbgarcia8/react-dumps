@@ -147,11 +147,8 @@ const DashboardLayout = ({header, sidebar}) => {
     useEffect(() => {
             const fetchUserProfile = async () => {
                 try {
-                    await toast.promise(
-                        (async () => {
-                            const currentUserProfile = await getUserProfile(currentUser.uid);                            
-                            return currentUserProfile;
-                        })(),
+                    const currentUserProfile = await toast.promise(
+                            getUserProfile(currentUser.uid),
                         {
                             loading: 'Fetching user information...',
                             success: 'User information fetched successfully',
@@ -170,7 +167,7 @@ const DashboardLayout = ({header, sidebar}) => {
                 }
             }
             fetchUserProfile();
-    }, [currentUser, userProfile])
+    }, [currentUser])
 
     //Simulation of isPending and checkout reset after checkout
     useDeepCompareEffect(() => {
