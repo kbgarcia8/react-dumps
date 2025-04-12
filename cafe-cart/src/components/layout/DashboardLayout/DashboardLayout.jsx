@@ -111,7 +111,9 @@ const  reducer = (state, action) => {
                     return state.map((entry, idx) => idx === parseInt(index) ? {...entry, quantity: entry.quantity -1, total: parseInt(entry.total) - parseInt(entry.price)} : entry);
                 }
         case "remove":
-            return state.filter((_, idx) => idx !== parseInt(index)); 
+            return state.filter((_, idx) => idx !== parseInt(index));
+        case "restoreSessionCart":
+            return action.payload;
         case "orderAgain":
             return state.concat(action.currentCart)
         case "reset":
@@ -125,12 +127,11 @@ const DashboardLayout = ({header, sidebar}) => {
     //custom hooks/contexts
     const navigate = useNavigate();
     const {database} = useGlobal();
-    const { currentUser , saveUserProfile, userProfile, getUserProfile } = useAuth();
+    const { currentUser , saveUserProfile, userProfile } = useAuth();
     //reducer
     const [state, dispatch] = useReducer(reducer, initialCart);
     //states
     const [addressBank,setAddressBank] = useState([]);
-    const [addressBankBackup,setAddressBankBackup] = useState([]);
     const [paymentMethod, setPaymentMethod] = useState(paymentMethods)
     const [paymentFieldSet, setPaymentFieldSet] = useState(initialPaymentFieldset);
     const [transactionTypeCount, setTransactionTypeCount] = useState(0);
@@ -138,44 +139,66 @@ const DashboardLayout = ({header, sidebar}) => {
     const [checkoutDetails, setCheckoutDetails] = useState({});
     const [isPending, setIsPending] = useState(true);
     const [orderHistory, setOrderHistory] = useState([]);
-    //useEffect for console.log
-    useEffect(() => {
-        console.log(paymentFieldSet)
-    }, [orderHistory]);
+    
     //useEffect with no dependecy and onMount only
-    //ensure that previously saved data are loaded properly or a preset data is provided if no saved info
+    //ensure that previously saved data are loaded properly through onSnapshot
     useEffect(() => {
-            const fetchUserProfile = async () => {
-                try {
-                    const currentUserProfile = await toast.promise(
-                            getUserProfile(currentUser.uid),
-                        {
-                            loading: 'Fetching user information...',
-                            success: 'User information fetched successfully',
-                            error: (err) => err.message || 'User has no existing data'
-                        }
-                    );
-            
-                    await new Promise((resolve) => setTimeout(resolve, 500));
-                    if(currentUserProfile) {
-                        setAddressBank(currentUserProfile.addressBank)
-                    } else if (currentUserProfile !== null) {
-                        setAddressBank([]);
+        if (userProfile?.addressBank) setAddressBank(userProfile.addressBank);
+
+        if(userProfile?.orderHistoryBank) setOrderHistory(userProfile.orderHistory)
+
+        if (userProfile?.savedCart) {
+            dispatch({ type: "restoreSessionCart", payload: userProfile.savedCart });
+        }
+    }, [userProfile]);
+
+    useEffect(() => {
+        const persistCart = async()=> {
+            try {
+                await toast.promise(
+                    saveUserProfile({ "savedCart": state}),
+                    {
+                        loading: 'Saving updated savedCart...',
+                        success: 'User savedCart saved successfully',
+                        error: (err) => err.message || 'Saving savedCart Failed'
                     }
-                } catch (error) {
-                    console.error(error.message);//custom message for every error.code just like in Sign Up
-                }
+                );
+        
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                
+            } catch (error) {
+                console.error(error.message);
             }
-            fetchUserProfile();
-    }, [currentUser])
+        }
+        if (state && Object.keys(state).length > 0) {
+            persistCart();
+        }
+    }, [state])
 
     //Simulation of isPending and checkout reset after checkout
+    //This logic should be refactored once there is an admin side that confirms pennding, ready and delivered orders
     useDeepCompareEffect(() => {
         if (Object.keys(checkoutDetails).length === 0) return; // Prevents unnecessary execution
     
-        const timeout = setTimeout(() => {
+        const timeout = setTimeout(async () => {
             setIsPending(false);
-            setOrderHistory((prevHistory) => [...prevHistory, checkoutDetails]);
+            const orderHistoryUpdate = [...orderHistory, checkoutDetails]
+            setOrderHistory(orderHistoryUpdate);
+            try {
+                await toast.promise(
+                    saveUserProfile({ "orderHistoryBank": orderHistoryUpdate}),
+                    {
+                        loading: 'Saving updated orderHistoryBank...',
+                        success: 'User orderHistoryBank saved successfully',
+                        error: (err) => err.message || 'Saving orderHistoryBank Failed'
+                    }
+                );
+        
+                await new Promise((resolve) => setTimeout(resolve, 500));
+                
+            } catch (error) {
+                console.error(error.message);
+            }
     
             setTimeout(() => {
                 setCheckoutDetails({});
@@ -250,17 +273,15 @@ const DashboardLayout = ({header, sidebar}) => {
                             {
                                 loading: 'Saving updated user addressBank...',
                                 success: 'User addressBank saved successfully',
-                                error: (err) => err.message || 'Saving Failed'
+                                error: (err) => err.message || 'Saving addressBank Failed'
                             }
                         );
                 
                         await new Promise((resolve) => setTimeout(resolve, 500));
                         
                     } catch (error) {
-                        console.error(error.message);//custom message for every error.code just like in Sign Up
-                    }
-                    
-                setAddressBankBackup([...addressBank]);
+                        console.error(error.message);
+                    }                    
             } else {
                 inputs.forEach(input => {
                     const {key, index} = input.dataset;
@@ -274,15 +295,14 @@ const DashboardLayout = ({header, sidebar}) => {
     }
 
     const cancelAddressEntryEdit = () => {
-        setAddressBank((prevAddressBank) =>  prevAddressBank.map((addressInfo) => ({...addressInfo, ['editing']: false})))
-        const fetchedAddressBankData = async () => { 
-            const fetchUserProfile = await getUserProfile(currentUser.uid);
-            const addressData = fetchUserProfile.addressBank;
-            return addressData
+        setAddressBank(prev => 
+            prev.map(address => ({ ...address, editing: false }))
+        );
+    
+        if (userProfile?.addressBank) {
+            setAddressBank(userProfile.addressBank); // Trust the real-time Firestore snapshot
         }
-        const retrievedAddressBankData = fetchedAddressBankData || addressBankBackup;
-        setAddressBank(retrievedAddressBankData);
-    }
+    };
 
     const addressFieldInputs = useMemo(()=> {
         return addressBank.map((addressEntry, index) => ({
@@ -374,6 +394,8 @@ const DashboardLayout = ({header, sidebar}) => {
         
         dispatch({ type: "addToCart" , data: {size, price, category, index}, databaseItem: itemInDatabase})
         toast.success("Item successfully added to cart")
+
+
     }
 
     const incrementItem = (e) => {
@@ -472,14 +494,14 @@ const DashboardLayout = ({header, sidebar}) => {
         try {
             await toast.promise(
                 (async () => {
-                    const saveUserInfo = await saveUserProfile({ "orderHistory": filteredHistory});
+                    const saveUserInfo = await saveUserProfile({ "orderHistoryBank": filteredHistory});
     
                     return saveUserInfo;
                 })(),
                 {
-                    loading: 'Saving updated user addressBank...',
-                    success: 'User addressBank saved successfully',
-                    error: (err) => err.message || 'Saving Failed'
+                    loading: 'Saving updated orderHistoryBank...',
+                    success: 'User orderHistoryBank saved successfully',
+                    error: (err) => err.message || 'Saving orderHistoryBank Failed'
                 }
             );
     

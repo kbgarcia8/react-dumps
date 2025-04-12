@@ -166,6 +166,10 @@ export const UserInfoForm = styled(GenericForm)`
     & .user-info-input {
         font-size: ${v.fontSize.xsmall};
     }
+    & .user-info-input:disabled {
+        background-color: ${({theme}) => theme.borderColor2};
+        color: ${({theme}) => theme.textColor2};
+    }
     
     & .form-main-button-container {
         flex-direction: row;

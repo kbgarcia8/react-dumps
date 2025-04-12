@@ -126,11 +126,10 @@ const SignUpPage =({}) => {
             )
 
             await new Promise((resolve) => setTimeout(resolve, 500));
-            await logOut(); //for the user to be logged out first after sign out and confirm email first
+            await logOut();
             navigate("../login");
         } catch(error) {
-            console.log(error.message)
-            //toast.error(error.code)
+            
             if (error.code === 'auth/invalid-email') {
                 toast.error("Invalid Email Format");
               } else if (error.code === 'auth/email-already-in-use') {

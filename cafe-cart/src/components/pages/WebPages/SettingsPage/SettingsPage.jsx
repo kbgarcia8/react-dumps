@@ -1,6 +1,5 @@
 import {React, useState, useEffect, useMemo, useRef, useCallback} from "react";
-import { useDeepCompareEffect } from 'use-deep-compare';
-import PropTypes from "prop-types";
+import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { debounce } from 'lodash'
@@ -40,9 +39,10 @@ const settingsPageInputHeaders = [
 ];
 
 const SettingsPage =({}) => {
-    const { currentUser , saveUserProfile, userProfile, getUserProfile, isProfileIncompleteOrNull } = useAuth();
+    const { currentUser , saveUserProfile, userProfile, isProfileIncompleteOrNull } = useAuth();
     const { theme } = useTheme();
     let navigate = useNavigate();
+    const { addressBank } = useOutletContext();
     const inputValuesRef = useRef({
         username: "",
         fullname: "",
@@ -65,6 +65,7 @@ const SettingsPage =({}) => {
             debounceSetInputValues.cancel();
         }
     }, [debounceSetInputValues]);
+
     const handleSettingsInputChange = (e) => {
         const {index, input} = e.currentTarget.dataset;
         const currentValue = e.currentTarget.value;
@@ -80,7 +81,7 @@ const SettingsPage =({}) => {
     //re-map settingsPageInputs each time there is change in inputValues for values and settingsPageInputBase for disabled
     const settingsPageInputs = useMemo(()=> {
         return settingsPageInputBase.map((settingsInput,index) => {
-            const labelTextTokey = settingsInput.label.toLowerCase().replace(/\s+/g, '')
+            const labelTextToKey = settingsInput.label.toLowerCase().replace(/\s+/g, '')
             return {
                 labelText: `${settingsInput.label}\n`,
                 labelDirection: "column",
@@ -90,12 +91,13 @@ const SettingsPage =({}) => {
                 mainOnChange: handleSettingsInputChange,
                 type: settingsInput.type,
                 disabled: settingsInput.disabled,
-                value: inputValues[labelTextTokey] || "",
+                isRequired: true,
+                value: inputValues[labelTextToKey] || "",
                 dataAttributes: {
-                    "data-input": labelTextTokey,
+                    "data-input": labelTextToKey,
                     "data-index": index
                 }
-            }            
+            }
         })
     },[settingsPageInputBase, inputValues])
     
@@ -125,6 +127,30 @@ const SettingsPage =({}) => {
                 }))
             )
             setIsEditing(false);
+            if(inputValues.fullname !== "" && inputValues.mainaddress !== "" && inputValues.maincontactnumber !=="") {
+                const updatedAddressBank = [
+                    {
+                        name: inputValues.fullname,
+                        number: inputValues.maincontactnumber,
+                        location: inputValues.mainaddress,
+                        editing: false,
+                        checked: true
+                    },
+                    ...userProfile.addressBank
+                ];
+                await toast.promise(
+                    (async () => {
+                        const saveUserInfo = await saveUserProfile({ "addressBank": updatedAddressBank});
+        
+                        return saveUserInfo;
+                    })(),
+                    {
+                        loading: 'Saving updated user info...',
+                        success: 'User information saved successfully',
+                        error: (err) => err.message || 'Saving Failed'
+                    }
+                );
+            }
         } catch (error) {
             console.error(error.message);//custom message for every error.code just like in Sign Up
         }
@@ -146,50 +172,37 @@ const SettingsPage =({}) => {
     }
     //useEffect for console.log checking
     useEffect(()=>{
-        console.dir(inputValues, { depth: null, colors: true })
-        console.dir(settingsPageInputs, { depth: null, colors: true })
+        {/*console.dir(inputValues, { depth: null, colors: true })
+        console.dir(settingsPageInputs, { depth: null, colors: true })*/}
+        console.dir(userProfile, { depth: null, colors: true })
     },[inputValues, settingsPageInputs])
 
     useEffect(() => {
-        console.log("Fetching user data...")
-        const fetchUserProfile = async () => {
-            try {
-                const fetchedData = await toast.promise(
-                    getUserProfile(currentUser.uid),
-                    {
-                        loading: 'Fetching user information...',
-                        success: 'User information fetched successfully',
-                        error: (err) => err.message || 'User has no existing data'
-                    }
-                );
-        
-                await new Promise((resolve) => setTimeout(resolve, 500));
-
-                if (fetchedData) {
-                    const updatedValues = {
-                        username: userProfile.username || "",
-                        fullname: userProfile.fullname || "",
-                        mainaddress: userProfile.mainaddress || "",
-                        maincontactnumber: userProfile.maincontactnumber || "",
-                        birthdate: userProfile.birthdate || "",
-                    };
+        if (userProfile) {
+            const updatedValues = {
+                username: userProfile.username || "",
+                fullname: userProfile.fullname || "",
+                mainaddress: userProfile.mainaddress || "",
+                maincontactnumber: userProfile.maincontactnumber || "",
+                birthdate: userProfile.birthdate || "",
+                lastEdit: new Date()
+            };
             
-                    inputValuesRef.current = updatedValues;
-                    setInputValues(updatedValues);
-                    setSettingsPageInputBase(prev =>
-                        prev.map(input => ({
-                            ...input,
-                            value: updatedValues[input.label.toLowerCase().replace(/\s+/g, '')]
-                        }))
-                    );
-                }
-        
-            } catch (error) {
-                console.error(error.message);
-            }
+            inputValuesRef.current = updatedValues;
+            setInputValues(updatedValues);
+            setSettingsPageInputBase(prev =>
+                prev.map(input => ({
+                    ...input,
+                    value: updatedValues[input.label.toLowerCase().replace(/\s+/g, '')]
+                }))
+            );
         }
-        fetchUserProfile();
-    }, [currentUser, userProfile])
+
+    }, [userProfile]);
+
+    useEffect(() => {
+        setIsEditing(true);
+    }, [])
 
     return(
         <styled.SettingsPageWrapper>
@@ -202,7 +215,7 @@ const SettingsPage =({}) => {
                     <styled.ProfilePictureContainer>                    
                     {userProfile?.photoURL ? <styled.ProfilePicture src={userProfile?.photoURL}/> : <NoProfilePicIcon/>}
                     </styled.ProfilePictureContainer>
-                    <styled.UserFullnameSpan>{userProfile?.name ? userProfile.name : "-"}</styled.UserFullnameSpan>
+                    <styled.UserFullnameSpan>{`${userProfile?.fullname ? userProfile.fullname: "-"}`}</styled.UserFullnameSpan>
                     <styled.DetailSpan><styled.DetailSpanMarker>{"Contact Number: "}</styled.DetailSpanMarker>{`${userProfile?.maincontactnumber ? userProfile.maincontactnumber : "- - -"}`}</styled.DetailSpan>
                     <styled.DetailSpan><styled.DetailSpanMarker>{"Main Address: "}</styled.DetailSpanMarker>{`${userProfile?.mainaddress ? userProfile.mainaddress : "- - -"}`}</styled.DetailSpan>
                 </styled.UserInfoSpace>
@@ -226,7 +239,7 @@ const SettingsPage =({}) => {
                     handleSubmit={handleUserInfoSave}
                     hasCancel={userProfile === null  || isProfileIncompleteOrNull(userProfile) ? false : isEditing ? true : false}
                     cancelText={"Cancel"}
-                    hasEdit={userProfile === null ? false : true}
+                    hasEdit={isEditing ? false : true}
                     editText={"Edit"}
                     handleEdit={editUserInfo}
                 />

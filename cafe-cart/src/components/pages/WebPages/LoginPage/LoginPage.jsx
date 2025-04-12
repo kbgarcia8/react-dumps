@@ -101,12 +101,12 @@ const LoginPage =({}) => {
                     error: (err) => err.message || 'Login failed'
                 }
             )
-            //await new Promise((resolve) => setTimeout(resolve, 500));
-            //if(profileIncomplete) {
-                //navigate("../dashboard/settings");
-            //} else if (!profileIncomplete) {
-                //navigate("../dashboard")
-            //}
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            if(profileIncomplete) {
+                navigate("../dashboard/settings");
+            } else if (!profileIncomplete) {
+                navigate("../dashboard")
+            }
 
             loginEmailRef.current = "";
             loginPasswordRef.current = "";

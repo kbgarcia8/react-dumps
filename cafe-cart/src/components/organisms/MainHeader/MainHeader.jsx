@@ -7,24 +7,22 @@ import * as styled from "./MainHeader.styles";
 
 const MainHeader =({}) => {
     const navigate = useNavigate();
-    const [isSigning, setIsSigning] = useState(false);
+    const [isSignedIn, setIsSignedIn] = useState(false);
 
-
-    const handleLogoClick = (e) => {        
-        //navigate('/design');
+    const handleLogoClick = (e) => {
         navigate('/');
-        setIsSigning(false)
+        setIsSignedIn(false)
     }
 
     const handleButtonNavigate = (e) => { 
         const textToLink = {
             "Sign Up": "signup",
             "Login": "login",
-            "Dashboard": "dashboard" //tempoarary logged in
+            //"Dashboard": "dashboard" //tempoarary logged in
         }       
         const buttonText = e.target.textContent
         navigate(`/${textToLink[buttonText]}`)
-        setIsSigning(true)
+        setIsSignedIn(true)
     }
     
     return(
@@ -32,11 +30,10 @@ const MainHeader =({}) => {
             <styled.MainHeaderLogoSpace>
                 <styled.MainHeaderLogo onClick={handleLogoClick} src={headerLogo} />
             </styled.MainHeaderLogoSpace>
-                <Navbar isSigning={isSigning}/>
+                <Navbar isSigning={isSignedIn}/>
             <styled.ButtonWrapper>
                 <styled.SignUpButton text={"Sign Up"} onClick={handleButtonNavigate}/>
                 <styled.LoginButton text={"Login"} onClick={handleButtonNavigate}/>
-                <styled.LoginButton text={"Dashboard"} onClick={handleButtonNavigate}/>
             </styled.ButtonWrapper>
         </styled.MainHeaderWrapper>
     )

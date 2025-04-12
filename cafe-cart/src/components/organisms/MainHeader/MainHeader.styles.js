@@ -39,7 +39,7 @@ export const LoginButton = styled(GenericButton)`
     background-color: ${({theme}) => theme.backgroundColor1};
     color: ${({theme}) => theme.textColor3};
     border: 2px solid ${({theme}) => theme.borderColor2};
-    width: 30%;
+    width: 45%;
     border-radius: ${v.spacing.xxsmall};
 
     &:hover{

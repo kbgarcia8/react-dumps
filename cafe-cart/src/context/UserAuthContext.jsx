@@ -14,8 +14,9 @@ export const UserAuthContextProvider = ({children}) => {
     const [userProfile, setUserProfile] = useState(null); 
     const [loading, setLoading] = useState(true);
 
-    const isProfileIncompleteOrNull = profile => {
-        return Object.values(profile).some(value => value === "")
+    const isProfileIncompleteOrNull = (profile) => {
+        const profileKeysNeeded = Object.keys(profile).filter((entry) => entry != "photoURL")
+        return profileKeysNeeded.some((profileKey) => profile[profileKey] === "")
     }
 
     useEffect(()=>{
@@ -28,31 +29,25 @@ export const UserAuthContextProvider = ({children}) => {
 
     //Login using registered and verified email
     const logIn = async (email, password) => {        
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const loggedUser = userCredential.user
-            if (!loggedUser.emailVerified) {
-                throw new Error("Please verify your email before logging in.");
-              }
-            
-            const uid = loggedUser.uid;
-            
-            // Check if user profile exists
-            const profile = await getUserProfile(uid);
-            
-            if (isProfileIncompleteOrNull(profile)) {
-                console.log("test")
-                toast.warn("Profile is incomplete. Redirecting to settings to complete your information.");
-                setUserProfile(profile); // Keep it as-is so the user data still exists                
-                return {userCredential, profileIncomplete: true};
-            }
-            console.log(profile)
-            setUserProfile(profile); // Set user profile if exists
-            return {userCredential, profileIncomplete: false}; // Return the user credential after successful login
-        } catch (error) {
-            toast.error(error.message || "Login failed");
-            throw error; // Rethrow error to be handled by caller
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const loggedUser = userCredential.user
+      if (!loggedUser.emailVerified) {
+          throw new Error("Please verify your email before logging in.");
         }
+      
+      const uid = loggedUser.uid;
+      
+      // Check if user profile exists
+      const profile = await getUserProfile(uid);
+      
+      if (isProfileIncompleteOrNull(profile)) {
+          toast.warn("Profile is incomplete. Redirecting to settings to complete your information.");
+          setUserProfile(profile); // Keep it as-is so the user data still exists                
+          return {userCredential, profileIncomplete: true};
+      }
+
+      setUserProfile(profile); // Set user profile if exists
+      return {userCredential, profileIncomplete: false}; // Return the user credential after successful login
     };
     //Sign up using email
     const signUp = async (email, password) => {
@@ -64,11 +59,11 @@ export const UserAuthContextProvider = ({children}) => {
             uid: currentUser.uid || "",
             email: currentUser.email || "",
             photoURL: currentUser.photoURL || "",
-            displayName: currentUser.displayName || "",
             fullname: "",
             birthdate: "",
             username: "",
-            createdAt: new Date()
+            createdAt: new Date(),
+            lastEdit: ""
         });
       
         return userCredential;
@@ -115,23 +110,21 @@ export const UserAuthContextProvider = ({children}) => {
         } catch (error) {
             toast.error("Failed to save user profile or merge provided data");
         }
-        
     };
 
     // Get User Profile from Firestore
     const getUserProfile = async (uid) => {
         const docRef = doc(db, "users", uid);
-      
         try {
           const cachedSnap = await getDoc(docRef, { source: "cache" });
           if (cachedSnap.exists()) {
-            console.log("✅ From cache:", cachedSnap.data());
+            console.log("From cache:", cachedSnap.data());
             return cachedSnap.data();
           } else {
-            console.warn("⚠️ No profile in cache");
+            console.warn("No profile in cache");
           }
         } catch (error) {
-          console.warn("❌ Cache fetch failed:", error.message);
+          console.warn("Cache fetch failed:", error.message);
         }
       
         if (!navigator.onLine) {
@@ -141,7 +134,7 @@ export const UserAuthContextProvider = ({children}) => {
         try {
           const serverSnap = await getDoc(docRef);
           if (serverSnap.exists()) {
-            console.log("✅ From server:", serverSnap.data());
+            console.log("From server:", serverSnap.data());
             return serverSnap.data();
           } else {
             throw new Error("User profile not found.");
@@ -161,7 +154,7 @@ export const UserAuthContextProvider = ({children}) => {
         return unsubscribe; // cleanup listener on component unmount
     }, []);
 
-    //for snapshot, to omit dependency on userProfile of useEffect
+    //onSnapshot() itself — once set — keeps running and watching the Firestore document in real time
     useEffect(() => {
         if (!currentUser?.uid || !navigator.onLine) return;
       
@@ -171,7 +164,7 @@ export const UserAuthContextProvider = ({children}) => {
             setUserProfile(docSnap.data());
           }
         }, (error) => {
-          console.error("Realtime listener failed:", error);
+          toast.error("Realtime listener failed:", error);
         });
       
         return () => unsubscribe();

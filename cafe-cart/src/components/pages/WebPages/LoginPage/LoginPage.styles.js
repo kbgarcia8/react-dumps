@@ -4,7 +4,7 @@ import { v } from '../../../../styles/variables';
 import { Link } from "react-router-dom";
 
 export const LoginPageWrapper = styled.div`
-    padding: ${v.spacing.medium};
+    padding: ${v.spacing.xxxsmall};
     display: flex;
     flex-direction: column;
     align-items: center;
