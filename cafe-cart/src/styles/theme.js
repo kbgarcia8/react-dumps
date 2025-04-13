@@ -36,6 +36,7 @@ export const notificationPalette = {
 }
 
 export const lightTheme = {//utilize dark text
+    name: "lightTheme",
     screenColor: palette.neutral2,
     backgroundColor1: palette.primary1,
     backgroundColor2: palette.primary2,
@@ -53,6 +54,7 @@ export const lightTheme = {//utilize dark text
 }
 
 export const darkTheme = {//utilize light text
+    name: "darkTheme",
     screenColor: palette.neutral5,
     backgroundColor1: palette.primary2,
     backgroundColor2: palette.primary3,

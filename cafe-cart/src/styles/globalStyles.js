@@ -3,6 +3,7 @@ import { v } from './variables';
 import oswald from "../fonts/Oswald-Regular.ttf";
 import trirong from "../fonts/Trirong-Regular.ttf";
 import arvo from "../fonts/Arvo-Regular.ttf";
+import { notificationPalette } from './theme';
 
 //test screen-width: 1440
 //test screen-height: 900
@@ -117,6 +118,7 @@ u {
     place-content: center;
 }
 
+/* Styles for Design system */
 .component-tester {
     min-height: 100vh;
     width: 100vw;
@@ -220,6 +222,51 @@ u {
     width: 45vw;
     height: 100%;
 }
+
+/* Style for toast-react */
+    .Toastify__toast {
+        border-radius: ${v.borderRadius.small};
+        padding: ${v.spacing.small};
+        font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+    }
+    
+    ${({ theme }) => theme.name === 'lightTheme' && `
+    .Toastify__toast--success {
+      background-color: ${notificationPalette.successDark};
+      color: ${notificationPalette.successLight};
+    }
+    .Toastify__toast--error {
+      background-color: ${notificationPalette.errorDark};
+      color: ${notificationPalette.errorLight};
+    }
+    .Toastify__toast--warning {
+      background-color: ${notificationPalette.warningDark};
+      color: ${notificationPalette.warningLight};
+    }
+    .Toastify__toast--info {
+      background-color: ${notificationPalette.infoDark};
+      color: ${notificationPalette.infoLight};
+    }
+  `}
+
+  ${({ theme }) => theme.name === 'darkTheme' && `
+    .Toastify__toast--success {
+      background-color: ${notificationPalette.successLight};
+      color: ${notificationPalette.successDark};
+    }
+    .Toastify__toast--error {
+      background-color: ${notificationPalette.errorLight};
+      color: ${notificationPalette.errorDark};
+    }
+    .Toastify__toast--warning {
+      background-color: ${notificationPalette.warningLight};
+      color: ${notificationPalette.warningDark};
+    }
+    .Toastify__toast--info {
+      background-color: ${notificationPalette.infoLight};
+      color: ${notificationPalette.infoDark};
+    }
+  `}
 `;
 
 export default GlobalStyle;

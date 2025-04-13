@@ -63,7 +63,9 @@ export const UserAuthContextProvider = ({children}) => {
             birthdate: "",
             username: "",
             createdAt: new Date(),
-            lastEdit: ""
+            lastEdit: "",
+            userAddressBank: [],
+            orderHistoryBank: []
         });
       
         return userCredential;
@@ -104,12 +106,17 @@ export const UserAuthContextProvider = ({children}) => {
 
     // Save User Profile to Firestore
     const saveUserProfile = async (data) => {
-        try {
-            const uid = auth.currentUser.uid;
-            await setDoc(doc(db, "users", uid), data, { merge: true }); //merge: true updates only the data that are touched
-        } catch (error) {
-            toast.error("Failed to save user profile or merge provided data");
-        }
+      try {
+        const user = auth.currentUser;
+        if (!user || !user.uid) throw new Error("No authenticated user found.");
+        if (!data || typeof data !== 'object') throw new Error("Invalid data to save");
+    
+        await setDoc(doc(db, "users", user.uid), data, { merge: true });
+      } catch (error) {
+        //toast.error("Failed to save user profile or merge provided data");
+        toast.error(error.message);
+        throw error; // Let toast.promise catch this too
+      }
     };
 
     // Get User Profile from Firestore

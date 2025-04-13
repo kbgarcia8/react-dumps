@@ -136,11 +136,11 @@ const SettingsPage =({}) => {
                         editing: false,
                         checked: true
                     },
-                    ...userProfile.addressBank
+                    ...userProfile.userAddressBank
                 ];
                 await toast.promise(
                     (async () => {
-                        const saveUserInfo = await saveUserProfile({ "addressBank": updatedAddressBank});
+                        const saveUserInfo = await saveUserProfile({ "userAddressBank": updatedAddressBank});
         
                         return saveUserInfo;
                     })(),

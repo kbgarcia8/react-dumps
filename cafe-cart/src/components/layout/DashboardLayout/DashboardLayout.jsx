@@ -143,9 +143,9 @@ const DashboardLayout = ({header, sidebar}) => {
     //useEffect with no dependecy and onMount only
     //ensure that previously saved data are loaded properly through onSnapshot
     useEffect(() => {
-        if (userProfile?.addressBank) setAddressBank(userProfile.addressBank);
+        if (userProfile?.userAddressBank) setAddressBank(userProfile.userAddressBank);
 
-        if(userProfile?.orderHistoryBank) setOrderHistory(userProfile.orderHistory)
+        if(userProfile?.orderHistoryBank) setOrderHistory(userProfile.orderHistoryBank)
 
         if (userProfile?.savedCart) {
             dispatch({ type: "restoreSessionCart", payload: userProfile.savedCart });
@@ -170,8 +170,26 @@ const DashboardLayout = ({header, sidebar}) => {
                 console.error(error.message);
             }
         }
-        if (state && Object.keys(state).length > 0) {
+
+        const clearSavedCart = async()=> {
+            try {
+                await toast.promise(
+                    saveUserProfile({ "savedCart": []}),
+                    {
+                        loading: 'Clearing savedCart...',
+                        success: 'savedCart cleared successfully',
+                        error: (err) => err.message || 'Clearing savedCart Failed'
+                    }
+                );                
+            } catch (error) {
+                console.error(error.message);
+            }
+        }
+
+        if (state && state.length > 0) {
             persistCart();
+        } else if (state.length === 0) {
+            clearSavedCart();
         }
     }, [state])
 
@@ -183,6 +201,7 @@ const DashboardLayout = ({header, sidebar}) => {
         const timeout = setTimeout(async () => {
             setIsPending(false);
             const orderHistoryUpdate = [...orderHistory, checkoutDetails]
+            console.dir(orderHistoryUpdate, { depth: null })
             setOrderHistory(orderHistoryUpdate);
             try {
                 await toast.promise(
@@ -203,9 +222,10 @@ const DashboardLayout = ({header, sidebar}) => {
             setTimeout(() => {
                 setCheckoutDetails({});
                 setIsPending(true);
+                dispatch({ type: "restoreSessionCart", payload: [] });
                 console.log("Checkout details cleared");
-            }, 45000); // 45 seconds after isPending is false
-        }, 10000); // 10 seconds timeout for isPending
+            }, 1000); // 45 seconds after isPending is false
+        }, 1000); // 10 seconds timeout for isPending
     
         return () => clearTimeout(timeout);
     }, [checkoutDetails]);
@@ -216,17 +236,34 @@ const DashboardLayout = ({header, sidebar}) => {
             : 0;
     }, [state]);
 
-    const checkedAddress = (e) => {
+    const checkedAddress = async (e) => {
         const { index } = e.currentTarget.dataset;
-        setAddressBank((prevAddressBank) =>
-            prevAddressBank.map((addressInfo, addressInfoIndex) => {
-                if (addressInfoIndex == index) {
-                    return addressInfo.checked ? addressInfo : { ...addressInfo, checked: true }; 
-                } else {
-                    return addressInfo.checked ? { ...addressInfo, checked: false } : addressInfo;
+        const updatedBank = addressBank.map((addressEntry, idx) => {
+            if (idx == index) {
+                return addressEntry.checked ? addressEntry : {...addressEntry, checked: true};
+            } else {
+                return addressEntry.checked ? {...addressEntry, checked: false} : addressEntry;
+            }
+        })
+        try {
+            await toast.promise(
+                (async () => {
+                    const saveUserInfo = await saveUserProfile({ "userAddressBank": updatedBank});
+    
+                    return saveUserInfo;
+                })(),
+                {
+                    loading: 'Saving updated user userAddressBank...',
+                    success: 'User userAddressBank saved successfully',
+                    error: (err) => err.message || 'Saving userAddressBank Failed'
                 }
-            })
-        );
+            );
+    
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            
+        } catch (error) {
+            console.error(error.message);
+        }  
     }
 
     const openEditAddressEntryPanel = (e) => {
@@ -241,14 +278,31 @@ const DashboardLayout = ({header, sidebar}) => {
         )
     }
 
-    const deleteAddressEntry = (e) => {
+    const deleteAddressEntry = async (e) => {
         e.preventDefault();
         const { index } = e.currentTarget.dataset;
-        setAddressBank((prevAddressBank) => 
-            prevAddressBank.filter((_, idx) => (
-                idx !== parseInt(index)
-            )
+        const updatedBank = addressBank.filter((_,idx) => (
+            idx !== parseInt(index)
         ))
+        try {
+            await toast.promise(
+                (async () => {
+                    const saveUserInfo = await saveUserProfile({ "userAddressBank": updatedBank});
+    
+                    return saveUserInfo;
+                })(),
+                {
+                    loading: 'Saving updated user userAddressBank...',
+                    success: 'User userAddressBank saved successfully',
+                    error: (err) => err.message || 'Saving userAddressBank Failed'
+                }
+            );
+    
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            
+        } catch (error) {
+            console.error(error.message);
+        }
     }
 
     const saveAddressEntryEdit = async (e) => {
@@ -266,14 +320,14 @@ const DashboardLayout = ({header, sidebar}) => {
                     try {
                         await toast.promise(
                             (async () => {
-                                const saveUserInfo = await saveUserProfile({ "addressBank": updatedBank});
+                                const saveUserInfo = await saveUserProfile({ "userAddressBank": updatedBank});
                 
                                 return saveUserInfo;
                             })(),
                             {
-                                loading: 'Saving updated user addressBank...',
-                                success: 'User addressBank saved successfully',
-                                error: (err) => err.message || 'Saving addressBank Failed'
+                                loading: 'Saving updated user userAddressBank...',
+                                success: 'User userAddressBank saved successfully',
+                                error: (err) => err.message || 'Saving userAddressBank Failed'
                             }
                         );
                 
@@ -294,15 +348,18 @@ const DashboardLayout = ({header, sidebar}) => {
         }
     }
 
-    const cancelAddressEntryEdit = () => {
-        setAddressBank(prev => 
-            prev.map(address => ({ ...address, editing: false }))
-        );
-    
-        if (userProfile?.addressBank) {
-            setAddressBank(userProfile.addressBank); // Trust the real-time Firestore snapshot
-        }
-    };
+    const cancelAddressEntryEdit = async () => {
+    if (userProfile?.userAddressBank) {
+        // Map the addresses and set 'editing' to false
+        const updatedAddressBank = userProfile.userAddressBank.map(address => ({
+            ...address,
+            editing: false
+        }));
+
+        // Now set the updated address bank
+        await setAddressBank(updatedAddressBank);
+    }
+};
 
     const addressFieldInputs = useMemo(()=> {
         return addressBank.map((addressEntry, index) => ({
@@ -452,7 +509,7 @@ const DashboardLayout = ({header, sidebar}) => {
         ]);
     }
 
-    const checkout = (e) => {
+    const checkout = (e) => {        
         e.preventDefault();
         const checkedAddress = addressBank.find((address) => address.checked === true);
         const checkedPayment = paymentMethod.find((method) => method.checked === true);
@@ -460,21 +517,21 @@ const DashboardLayout = ({header, sidebar}) => {
         const currentTransactionType = transactionType;
         const currentSubtotal = subtotal;
         const currentDateAndTime = formatDate(Date.now())
-
+        //console.log(checkedAddress, checkedPayment, currentCart, currentTransactionType, currentSubtotal, currentDateAndTime)
         if(
             ((currentTransactionType === "Delivery" && checkedAddress) && checkedPayment && currentCart.length !== 0)
-            ||((currentTransactionType !== "Delivery" && checkedAddress === undefined) && checkedPayment && currentCart.length !== 0)) {
-            setCheckoutDetails({
-                address: checkedAddress,
-                payment: checkedPayment,
-                cart: currentCart,
-                transactionType: currentTransactionType,
-                subtotal: currentSubtotal,
-                dateAndTime: currentDateAndTime
-            })
-            toast.success("Thank you for your purchase!")
-            dispatch({ type: "reset" })
-            navigate("../dashboard/pending")
+            ||(currentTransactionType !== "Delivery" && checkedPayment && currentCart.length !== 0)) {
+                setCheckoutDetails({
+                    address: checkedAddress,
+                    payment: checkedPayment,
+                    cart: currentCart,
+                    transactionType: currentTransactionType,
+                    subtotal: currentSubtotal,
+                    dateAndTime: currentDateAndTime
+                })
+                toast.success("Thank you for your purchase!")
+                dispatch({ type: "reset" })
+                navigate("../dashboard/pending")
         } else if(currentCart.length === 0 || checkedAddress === undefined || checkedPayment === undefined) {
             currentCart.length === 0 
                 ? toast.error("Please add items to cart first before checking out")

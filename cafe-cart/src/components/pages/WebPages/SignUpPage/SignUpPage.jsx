@@ -126,7 +126,6 @@ const SignUpPage =({}) => {
             )
 
             await new Promise((resolve) => setTimeout(resolve, 500));
-            await logOut();
             navigate("../login");
         } catch(error) {
             
