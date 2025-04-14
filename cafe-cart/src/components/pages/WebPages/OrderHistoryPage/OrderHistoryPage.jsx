@@ -36,7 +36,7 @@ const OrderHistoryPage =({}) => {
                             dateAndTime={`${history.dateAndTime}`}
                             receiptHeader={"Order Summary"}
                             receiptDetails={history}
-                            children={orderHistoryButtons(history, index,deleteOrderHistoryEntry,orderAgain)}
+                            children={orderHistoryButtons(history, index, deleteOrderHistoryEntry, orderAgain)}
                         />
                     </styled.OrderHistoryCardSpace>
                     )

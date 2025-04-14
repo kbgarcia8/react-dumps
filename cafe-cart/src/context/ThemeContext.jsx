@@ -5,15 +5,29 @@ import {ThemeProvider as StyledThemeProvider} from 'styled-components'
 
 const ThemeContext = createContext();
 
-export const ThemeContextProvider = ({children}) => {    
+export const ThemeContextProvider = ({children}) => {  
     const [theme, setTheme] = useState(lightTheme);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === lightTheme ? darkTheme : lightTheme));
-  };    
+  };
+
+  const retreviedUserPrefferedTheme = (profile) => {
+    console.log(profile.preferredTheme)
+    if (!profile?.preferredTheme) return;
+    
+    if (profile.preferredTheme === "lightTheme") {
+      setTheme(lightTheme);
+    } else if (profile.preferredTheme === "darkTheme") {
+      console.log('test')
+      setTheme(darkTheme);
+    } else {
+      console.warn("Unknown preferredTheme value:", profile.preferredTheme);
+    }
+  };
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme, retreviedUserPrefferedTheme }}>
             <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
         </ThemeContext.Provider>
     )

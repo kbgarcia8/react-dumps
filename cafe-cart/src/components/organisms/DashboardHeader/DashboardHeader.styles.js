@@ -8,6 +8,7 @@ export const DashboardHeaderWrapper = styled.div`
     width: 100%;
     height: 100%;
     padding: ${v.spacing.xxsmall};
+    background-color: ${({theme}) => theme.screenColor};
 `;
 
 export const DashboardWelcomeMessage = styled.h4`

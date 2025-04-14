@@ -5,6 +5,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { useGlobal } from "../../../context/GlobalContext.jsx";
 import { useAuth } from "../../../context/UserAuthContext.jsx";
+import { useTheme } from "../../../context/ThemeContext.jsx";
 import * as styled from "./DashboardLayout.styles";
 import DeleteIcon from "../../atoms/SVG/DeleteIcon";
 import EditIcon from "../../atoms/SVG/EditIcon";
@@ -22,27 +23,6 @@ const transactionTypes = ["Dine-In", "Take-out", "Drive Thru", "Delivery"];
         name: "KB Garcia",
         number: "09123456789",
         location: "Metro, Manila",
-        editing: false,
-        checked: false
-    },
-    {
-        name: "Mark Sylvestre",
-        number: "091241246571",
-        location: "Muntinlupa, Philippines",
-        editing: false,
-        checked: false
-    },
-    {
-        name: "Rosie Jackson",
-        number: "09658512314",
-        location: "Pampanga, Philippines",
-        editing: false,
-        checked: false
-    },
-    {
-        name: "John Doe",
-        number: "09876543210",
-        location: "Cebu, Philippines",
         editing: false,
         checked: false
     }
@@ -127,7 +107,8 @@ const DashboardLayout = ({header, sidebar}) => {
     //custom hooks/contexts
     const navigate = useNavigate();
     const {database} = useGlobal();
-    const { currentUser , saveUserProfile, userProfile } = useAuth();
+    const { authLoading , saveUserProfile, userProfile } = useAuth();
+    const { theme, toggleTheme, retreviedUserPrefferedTheme } = useTheme();
     //reducer
     const [state, dispatch] = useReducer(reducer, initialCart);
     //states
@@ -139,10 +120,13 @@ const DashboardLayout = ({header, sidebar}) => {
     const [checkoutDetails, setCheckoutDetails] = useState({});
     const [isPending, setIsPending] = useState(true);
     const [orderHistory, setOrderHistory] = useState([]);
+    const [themeSwitchChecked, setThemeSwitchChecked] = useState(false); // store value
     
     //useEffect with no dependecy and onMount only
     //ensure that previously saved data are loaded properly through onSnapshot
     useEffect(() => {
+        if (authLoading) return; // Firebase auth still initializing
+
         if (userProfile?.userAddressBank) setAddressBank(userProfile.userAddressBank);
 
         if(userProfile?.orderHistoryBank) setOrderHistory(userProfile.orderHistoryBank)
@@ -150,7 +134,19 @@ const DashboardLayout = ({header, sidebar}) => {
         if (userProfile?.savedCart) {
             dispatch({ type: "restoreSessionCart", payload: userProfile.savedCart });
         }
-    }, [userProfile]);
+
+        if(userProfile?.preferredTheme) {
+            retreviedUserPrefferedTheme(userProfile);
+            setThemeSwitchChecked(userProfile.preferredTheme === "darkTheme" ? true : false);
+        }
+    }, [userProfile, authLoading]);
+
+    const handleThemeSwitch = (e) => {
+        console.log("Theme switch")
+        setThemeSwitchChecked(e.target.checked)
+        toggleTheme();
+        saveUserProfile({ "preferredTheme": theme.name === "lightTheme" ? "darkTheme" : "lightTheme"  });
+    }
 
     useEffect(() => {
         const persistCart = async()=> {
@@ -386,7 +382,7 @@ const DashboardLayout = ({header, sidebar}) => {
     }, [addressBank])
 
     useDeepCompareEffect(() => {
-        console.log("prevPaymentFieldSet before update:", paymentFieldSet);
+        //console.log("prevPaymentFieldSet before update:", paymentFieldSet);
     
         setPaymentFieldSet((prevPaymentFieldSet) => 
             (Array.isArray(prevPaymentFieldSet) ? prevPaymentFieldSet : []).map((fieldEntry) => //always check first if element to be mapped is an array and provide fallback to prevent error
@@ -399,7 +395,6 @@ const DashboardLayout = ({header, sidebar}) => {
 
     const checkedPaymentMethod = (e) => {
         const { index } = e.currentTarget.dataset;
-        console.log(index)
         setPaymentMethod((prevPaymentMethod) => 
             prevPaymentMethod.map((method, methodIndex) => {
                 if (methodIndex == index) {
@@ -430,7 +425,7 @@ const DashboardLayout = ({header, sidebar}) => {
     }, [paymentMethod])
 
     useDeepCompareEffect(() => {
-        console.log("prevPaymentFieldSet before update:", paymentFieldSet);
+        //console.log("prevPaymentFieldSet before update:", paymentFieldSet);
     
         setPaymentFieldSet((prevPaymentFieldSet) => 
             (Array.isArray(prevPaymentFieldSet) ? prevPaymentFieldSet : []).map((fieldEntry) =>
@@ -470,9 +465,20 @@ const DashboardLayout = ({header, sidebar}) => {
         dispatch({ type: "remove" , data: {index}})
     }
 
-    const clearCart = () => {
-        dispatch({ type: "reset" })
-        toast.warn('Cart was cleared')
+    const clearCart = () => {        
+        
+        if (state.length === 0) {
+            dispatch({ type: "reset" });
+            toast.warn('Cart was cleared with existing items');
+        } else {
+            //Can be improved into a modal in the future
+            if (window.confirm("Current cart is not empty, confirming will clear all current cart items. Proceed?")) {
+                toast.warn('Cart was cleared with existing items');
+                dispatch({ type: "reset" })
+            } else {
+                toast.info("Clear cart was cancelled, items are still in cart");
+            }
+        }
     }
 
     const nextTransactionType = () => {
@@ -517,13 +523,13 @@ const DashboardLayout = ({header, sidebar}) => {
         const currentTransactionType = transactionType;
         const currentSubtotal = subtotal;
         const currentDateAndTime = formatDate(Date.now())
-        //console.log(checkedAddress, checkedPayment, currentCart, currentTransactionType, currentSubtotal, currentDateAndTime)
+
         if(
             ((currentTransactionType === "Delivery" && checkedAddress) && checkedPayment && currentCart.length !== 0)
             ||(currentTransactionType !== "Delivery" && checkedPayment && currentCart.length !== 0)) {
                 setCheckoutDetails({
                     address: checkedAddress,
-                    payment: checkedPayment,
+                    payment: checkedPayment.name,
                     cart: currentCart,
                     transactionType: currentTransactionType,
                     subtotal: currentSubtotal,
@@ -573,6 +579,10 @@ const DashboardLayout = ({header, sidebar}) => {
         const {index} = e.currentTarget.dataset
         if (state.length === 0) {
             dispatch({ type: "orderAgain" , currentCart: orderHistory[index]['cart']})
+            setPaymentMethod((prevPaymentMethod) => prevPaymentMethod.map((method) => (
+                orderHistory[index]['payment'] === method.name ? {...method, checked: true} : method
+                ))
+            )
             navigate("../dashboard/cart")
         } else {
             //Can be improved into a modal in the future
@@ -581,7 +591,7 @@ const DashboardLayout = ({header, sidebar}) => {
                 dispatch({ type: "orderAgain" , currentCart: orderHistory[index]['cart']})
                 navigate("../dashboard/cart")
             } else {
-                console.log("Order again action and cart replacement canceled");
+                toast.info("Order again action and cart replacement canceled");
             }
         }
     }
@@ -611,7 +621,9 @@ const DashboardLayout = ({header, sidebar}) => {
                     isPending,
                     orderHistory,
                     deleteOrderHistoryEntry,
-                    orderAgain
+                    orderAgain,
+                    themeSwitchChecked,
+                    handleThemeSwitch
                 }}/>
             </styled.DashboardLayoutContent>
         </styled.DashboardLayoutWrapper>

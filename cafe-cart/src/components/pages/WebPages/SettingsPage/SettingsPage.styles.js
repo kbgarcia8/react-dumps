@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import GenericForm from '../../../molecules/Form';
 import GenericButton from '../../../atoms/Button';
+import GenericLabel from '../../../atoms/Label';
+import GenericInput from '../../../atoms/Input';
 import { v } from '../../../../styles/variables';
 import Divider from '../../../atoms/Divider';
 
@@ -188,4 +190,61 @@ export const UserInfoForm = styled(GenericForm)`
             }            
         }
     }
+`;
+export const UserSettingsDisplaySpace = styled.div`
+    grid-column: 1/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+`;
+export const ThemeSwitcherContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px 0 ${({theme}) => theme.shadow};
+    border-radius: ${v.borderRadius.small};
+    padding: ${v.spacing.small};
+    width: 100%;
+`;
+export const ThemeSwitchHeader = styled.h5`
+    display: flex;
+    width: 100%;
+`;
+export const ThemeSwitchLabel = styled(GenericLabel)`
+    cursor: pointer;
+    gap: 10px;
+`;
+export const ThemeSwitch = styled.div`
+    position: relative;
+    width: 60px;
+    height: 28px;
+    background: #b3b3b3;
+    border-radius: 32px;
+    padding: 4px;
+    transition: 300ms all;
+
+  &::before {
+        transition: 300ms all;
+        content: "";
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        border-radius: 35px;
+        top: 50%;
+        left: 4px;
+        background: white;
+        transform: translate(0, -50%);
+    }
+`;
+export const ThemeSwitchInput = styled(GenericInput)`
+    display: none;
+
+    &:checked + ${ThemeSwitch} {
+        background: ${({theme}) => theme.backgroundColor1};
+
+    &::before {
+        transform: translate(32px, -50%);
+    }
+  }
 `;

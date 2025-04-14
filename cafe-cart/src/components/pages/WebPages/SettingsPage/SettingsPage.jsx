@@ -7,6 +7,7 @@ import { useAuth } from "../../../../context/UserAuthContext";
 import { useTheme } from "../../../../context/ThemeContext";
 import * as styled from './SettingsPage.styles'
 import NoProfilePicIcon from "../../../atoms/SVG/NoProfilePicIcon";
+import { lightTheme } from "../../../../styles/theme";
 
 const settingsPageInputHeaders = [
     {
@@ -38,11 +39,50 @@ const settingsPageInputHeaders = [
     }
 ];
 
+const UserInformationTab = (userProfile, theme, settingsPageInputs, isProfileIncompleteOrNull, isEditing, handleUserInfoSave, editUserInfo) => (
+    <>
+        <styled.UserInfoDisplaySpace>
+            <styled.UserInfoSpace>
+                <styled.ProfilePictureContainer>                    
+                {userProfile?.photoURL ? <styled.ProfilePicture src={userProfile?.photoURL}/> : <NoProfilePicIcon/>}
+                </styled.ProfilePictureContainer>
+                <styled.UserFullnameSpan>{`${userProfile?.fullname ? userProfile.fullname: "-"}`}</styled.UserFullnameSpan>
+                <styled.DetailSpan><styled.DetailSpanMarker>{"Contact Number: "}</styled.DetailSpanMarker>{`${userProfile?.maincontactnumber ? userProfile.maincontactnumber : "- - -"}`}</styled.DetailSpan>
+                <styled.DetailSpan><styled.DetailSpanMarker>{"Main Address: "}</styled.DetailSpanMarker>{`${userProfile?.mainaddress ? userProfile.mainaddress : "- - -"}`}</styled.DetailSpan>
+            </styled.UserInfoSpace>
+            <styled.RewardsCardSpace>
+                <styled.RewardCardHeader>{"Reward Points Card"}</styled.RewardCardHeader>
+                <styled.CardDivider lineColor={theme.backgroundColor3}/>
+                <styled.RewardCardDetailSpace>
+                    <styled.RewardCardDetails>{"Feature Coming Soon!"}</styled.RewardCardDetails>
+                </styled.RewardCardDetailSpace>
+            </styled.RewardsCardSpace>
+        </styled.UserInfoDisplaySpace>
+        <styled.UserInfoEditSpace>
+            <styled.UserInfoForm
+                fieldHeight={"70vh"}
+                id={"user-info-form"}
+                formInputs={settingsPageInputs}
+                labelClassName={"user-inputs-label"}
+                inputClassName={"user-info-input"}
+                hasSubmit={userProfile === null  || isProfileIncompleteOrNull(userProfile) ? true : isEditing ? true : false}
+                submitText={"Save"}
+                handleSubmit={handleUserInfoSave}
+                hasCancel={userProfile === null  || isProfileIncompleteOrNull(userProfile) ? false : isEditing ? true : false}
+                cancelText={"Cancel"}
+                hasEdit={isEditing ? false : true}
+                editText={"Edit"}
+                handleEdit={editUserInfo}
+            />
+        </styled.UserInfoEditSpace>
+    </>
+)
+
 const SettingsPage =({}) => {
     const { currentUser , saveUserProfile, userProfile, isProfileIncompleteOrNull } = useAuth();
-    const { theme } = useTheme();
+    const { theme, toggleTheme } = useTheme();
+    const {themeSwitchChecked, handleThemeSwitch} = useOutletContext();
     let navigate = useNavigate();
-    const { addressBank } = useOutletContext();
     const inputValuesRef = useRef({
         username: "",
         fullname: "",
@@ -53,6 +93,7 @@ const SettingsPage =({}) => {
     const [settingsPageInputBase, setSettingsPageInputBase] = useState(settingsPageInputHeaders)
     const [inputValues, setInputValues] = useState(inputValuesRef.current);
     const [isEditing, setIsEditing] = useState(false);
+    const [openedTab, setOpenedTab] = useState(0);
     
     const debounceSetInputValues = useCallback(
         debounce(() => {
@@ -170,11 +211,20 @@ const SettingsPage =({}) => {
             ))
         )
     }
+    //tab switcher
+    const switchTab = (e) => {
+        const {index} = e.currentTarget.dataset;
+        setOpenedTab((prevTab) =>
+            prevTab != index
+            ? index
+            : prevTab
+        );
+    }
     //useEffect for console.log checking
     useEffect(()=>{
         {/*console.dir(inputValues, { depth: null, colors: true })
-        console.dir(settingsPageInputs, { depth: null, colors: true })*/}
-        console.dir(userProfile, { depth: null, colors: true })
+        console.dir(settingsPageInputs, { depth: null, colors: true })
+        console.dir(userProfile, { depth: null, colors: true })*/}
     },[inputValues, settingsPageInputs])
 
     useEffect(() => {
@@ -201,49 +251,37 @@ const SettingsPage =({}) => {
     }, [userProfile]);
 
     useEffect(() => {
-        setIsEditing(true);
+        if(userProfile.lastEdit !== "") {
+            setIsEditing(false);
+            setSettingsPageInputBase((prevSettingsPageInputBase) =>
+                prevSettingsPageInputBase.map((inputbase)=>(
+                    inputbase['label'] !== "Email"
+                        ? {...inputbase,disabled: true}
+                        : inputbase
+                ))
+            )
+        }        
     }, [])
 
     return(
         <styled.SettingsPageWrapper>
             <styled.SettingsButtonSpace>
-                <styled.SettingsPanelButton text={"User Information"}/>
-                <styled.SettingsPanelButton text={"User Settings"}/>
+                <styled.SettingsPanelButton onClick={switchTab} text={"User Information"} dataAttributes={{"data-index": 0}}/>
+                <styled.SettingsPanelButton onClick={switchTab} text={"User Settings"} dataAttributes={{"data-index": 1}}/>
             </styled.SettingsButtonSpace>
-            <styled.UserInfoDisplaySpace>
-                <styled.UserInfoSpace>
-                    <styled.ProfilePictureContainer>                    
-                    {userProfile?.photoURL ? <styled.ProfilePicture src={userProfile?.photoURL}/> : <NoProfilePicIcon/>}
-                    </styled.ProfilePictureContainer>
-                    <styled.UserFullnameSpan>{`${userProfile?.fullname ? userProfile.fullname: "-"}`}</styled.UserFullnameSpan>
-                    <styled.DetailSpan><styled.DetailSpanMarker>{"Contact Number: "}</styled.DetailSpanMarker>{`${userProfile?.maincontactnumber ? userProfile.maincontactnumber : "- - -"}`}</styled.DetailSpan>
-                    <styled.DetailSpan><styled.DetailSpanMarker>{"Main Address: "}</styled.DetailSpanMarker>{`${userProfile?.mainaddress ? userProfile.mainaddress : "- - -"}`}</styled.DetailSpan>
-                </styled.UserInfoSpace>
-                <styled.RewardsCardSpace>
-                    <styled.RewardCardHeader>{"Reward Points Card"}</styled.RewardCardHeader>
-                    <styled.CardDivider lineColor={theme.backgroundColor3}/>
-                    <styled.RewardCardDetailSpace>
-                        <styled.RewardCardDetails>{"Feature Coming Soon!"}</styled.RewardCardDetails>
-                    </styled.RewardCardDetailSpace>
-                </styled.RewardsCardSpace>
-            </styled.UserInfoDisplaySpace>
-            <styled.UserInfoEditSpace>
-                <styled.UserInfoForm
-                    fieldHeight={"70vh"}
-                    id={"user-info-form"}
-                    formInputs={settingsPageInputs}
-                    labelClassName={"user-inputs-label"}
-                    inputClassName={"user-info-input"}
-                    hasSubmit={userProfile === null  || isProfileIncompleteOrNull(userProfile) ? true : isEditing ? true : false}
-                    submitText={"Save"}
-                    handleSubmit={handleUserInfoSave}
-                    hasCancel={userProfile === null  || isProfileIncompleteOrNull(userProfile) ? false : isEditing ? true : false}
-                    cancelText={"Cancel"}
-                    hasEdit={isEditing ? false : true}
-                    editText={"Edit"}
-                    handleEdit={editUserInfo}
-                />
-            </styled.UserInfoEditSpace>
+            { openedTab == 0 
+                ? UserInformationTab(userProfile, theme, settingsPageInputs, isProfileIncompleteOrNull, isEditing, handleUserInfoSave, editUserInfo)
+                : 
+                <styled.UserSettingsDisplaySpace>
+                    <styled.ThemeSwitcherContainer>
+                        <styled.ThemeSwitchHeader>{"Theme Switch: "}</styled.ThemeSwitchHeader>
+                        <styled.ThemeSwitchLabel textLabel={theme === lightTheme ? "Light Mode": "Dark Mode"} htmlFor={"theme-switch"}>
+                            <styled.ThemeSwitchInput checked={themeSwitchChecked} onChange={handleThemeSwitch} type={"checkbox"} id={"theme-switch"}/>
+                            <styled.ThemeSwitch></styled.ThemeSwitch>
+                        </styled.ThemeSwitchLabel>
+                    </styled.ThemeSwitcherContainer>
+                </styled.UserSettingsDisplaySpace>
+            }
         </styled.SettingsPageWrapper>
     )
 }

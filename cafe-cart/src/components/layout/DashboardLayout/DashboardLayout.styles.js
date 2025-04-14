@@ -8,6 +8,7 @@ export const DashboardLayoutWrapper = styled.div`
     height: 100vh;
     width: 100vw;
     gap: 0;
+    background-color: ${({theme}) => theme.screenColor};
 `;
 
 export const DashboardLayoutHeader = styled.div`

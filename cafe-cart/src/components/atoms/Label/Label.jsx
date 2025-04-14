@@ -2,7 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import Label from "./Label.styles";
 
-const GenericLabel = ({htmlFor, textLabel, addtionalInfo, labelDireciton, source, svg, className}) => {
+const GenericLabel = ({
+    htmlFor, 
+    textLabel, 
+    addtionalInfo, 
+    labelDireciton, 
+    source, 
+    svg, 
+    className,
+    children
+}) => {
     return(
         <Label htmlFor={htmlFor} className={className} $labelDireciton={labelDireciton}>
             {(source || svg) && <div className={"label-image-container"}>
@@ -10,6 +19,7 @@ const GenericLabel = ({htmlFor, textLabel, addtionalInfo, labelDireciton, source
             </div>}
             <span className={"main-label"}>{textLabel}</span>
             {addtionalInfo && <span className={"additional-info"} >{addtionalInfo}</span>}
+            {children}
         </Label>
     )
 }

@@ -5,13 +5,14 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVe
 import { doc, setDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { toast } from "react-toastify";
 
-console.log(firebaseConfig)
+//console.log(firebaseConfig)
 
 const UserAuthContext = createContext();
 
 export const UserAuthContextProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [userProfile, setUserProfile] = useState(null); 
+    const [authLoading, setAuthLoading] = useState(true); //state for Firebase initialization
     const [loading, setLoading] = useState(true);
 
     const isProfileIncompleteOrNull = (profile) => {
@@ -20,10 +21,10 @@ export const UserAuthContextProvider = ({children}) => {
     }
 
     useEffect(()=>{
-            console.log("userProfile:");
+            {/*console.log("userProfile:");
             console.dir(userProfile, { depth: null, colors: true });
             console.log("currentUser:");
-            console.dir(currentUser, { depth: null, colors: true })
+            console.dir(currentUser, { depth: null, colors: true })*/}
     },[userProfile, currentUser])
       
 
@@ -155,7 +156,8 @@ export const UserAuthContextProvider = ({children}) => {
         const unsubscribe = onAuthStateChanged(auth, async (user) => {
             setCurrentUser(user); //object when user is logged in else null
             if (user) await getUserProfile(user.uid); //If there is a user getUserProfile of its uid
-            setLoading(false); //Stop any loaders
+            setLoading(false); 
+            setAuthLoading(false);
         });
     
         return unsubscribe; // cleanup listener on component unmount
@@ -182,10 +184,10 @@ export const UserAuthContextProvider = ({children}) => {
         <UserAuthContext.Provider 
             value={{ 
                 logIn, signUp, verifyEmail, logOut, googleSignIn, saveUserProfile, getUserProfile, //firebase functions
-                loading, currentUser, userProfile, isProfileIncompleteOrNull //declared states, custom usehooks and functions
+                authLoading, loading, currentUser, userProfile, isProfileIncompleteOrNull //declared states, custom usehooks and functions
             }}
         > 
-            {children}
+            {!authLoading && children}
         </UserAuthContext.Provider>
     )
 }

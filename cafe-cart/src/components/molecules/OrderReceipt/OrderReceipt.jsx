@@ -60,7 +60,7 @@ const OrderReceipt = ({
                     }
                     <styled.CheckoutTotalDetailsSpan className={'receipt-total-span'}>
                         <styled.CheckoutTotalDetailsSpanMarker className={'receipt-total-marker'}>{"Payment Method: "}</styled.CheckoutTotalDetailsSpanMarker>
-                        {`${Object.keys(receiptDetails).length === 0 ? "" : `      ${receiptDetails.payment['name']}`}`}
+                        {`${Object.keys(receiptDetails).length === 0 ? "" : `      ${receiptDetails.payment}`}`}
                     </styled.CheckoutTotalDetailsSpan>
             </styled.CheckoutTotalDetails>
             {children}
