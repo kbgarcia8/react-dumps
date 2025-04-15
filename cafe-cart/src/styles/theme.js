@@ -49,7 +49,8 @@ export const lightTheme = {//utilize dark text
     textColor3: palette.accent,    
     warning: notificationPalette.warningDark,
     success: notificationPalette.successDark,
-    error: notificationPalette.errorDark,
+    error: notificationPalette.errorLight,
+    errorHover: notificationPalette.errorDark,
     shadow: notificationPalette.shadow1
 }
 
@@ -67,7 +68,8 @@ export const darkTheme = {//utilize light text
     textColor3: palette.neutral2,
     warning: notificationPalette.warningLight,
     success: notificationPalette.successLight,
-    error: notificationPalette.errorLight,
+    error: notificationPalette.errorDark,
+    errorHover: notificationPalette.errorLight,
     shadow: palette.shadow2
 }
 

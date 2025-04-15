@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as styled from "./HomePage.styles"
 
 const HomePage =({}) => {
 
     return(
-        <h1>
+        <styled.HomePageWrapper>
             This is the temporary Home Page! 
-        </h1>
+        </styled.HomePageWrapper>
     )
 }
 

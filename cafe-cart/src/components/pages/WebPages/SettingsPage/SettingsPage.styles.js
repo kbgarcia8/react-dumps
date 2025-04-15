@@ -64,12 +64,14 @@ export const ProfilePictureContainer = styled.div`
     & .lucide{
         width: 100%;
         height: 100%;
+        color: ${({theme}) => theme.borderColor1};
     }
 `;
 
 export const ProfilePicture = styled.img`
     width: 100%;
     height: 100%;
+
 `;
 
 export const UserFullnameSpan = styled.span`
@@ -96,6 +98,7 @@ export const DetailSpan = styled.span`
     font-size: ${v.fontSize.small};
     font-weight: ${v.fontWeight.bolder};
     font-family: ${v.fonts.primary}, ${v.fonts.fallback};
+    color: ${({theme}) => theme.textColor1};
 `;
 export const RewardsCardSpace = styled(UserInfoDisplaySpace)`
     height: 45%;
@@ -167,10 +170,11 @@ export const UserInfoForm = styled(GenericForm)`
 
     & .user-info-input {
         font-size: ${v.fontSize.xsmall};
+        color: ${({theme}) => theme.backgroundColor1};
     }
     & .user-info-input:disabled {
         background-color: ${({theme}) => theme.borderColor2};
-        color: ${({theme}) => theme.textColor2};
+        color: ${({theme}) => theme.backgroundColor3};
     }
     
     & .form-main-button-container {

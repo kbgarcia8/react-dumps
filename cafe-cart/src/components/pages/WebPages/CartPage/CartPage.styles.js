@@ -46,6 +46,7 @@ export const CartListHeader = styled.h6.attrs(props => ({
     display: flex;
     align-items: center;
     justify-content: center;
+    color: ${({theme}) => theme.textColor1};
 `;
 export const CartListContainer = styled.div`
     grid-area: 3/1/4/2;
@@ -74,6 +75,7 @@ export const CartTotalInfoHeader = styled.span.attrs(props => ({
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
     font-size: ${v.fontSize.xsmall};
     font-weight: ${v.fontWeight.light};
+    color: ${({theme}) => theme.textColor1};
 `;
 
 export const CartTotalInfo = styled(CartTotalInfoHeader).attrs(props => ({
@@ -92,7 +94,7 @@ export const TransactionTypeStepper = styled(Stepper)`
 export const CheckoutInformationContainer = styled.div`
     grid-area: 1/2/5/3;
     padding: ${v.spacing.xxsmall};
-    border: ${v.borderThickness.light} solid black;
+    border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
     border-radius: ${v.borderRadius.small};
     margin-inline: ${v.spacing.xxsmall};
 `;
@@ -146,8 +148,7 @@ export const CheckoutForm = styled(GenericForm)`
 
     & .label-input-container{
         flex-direction: row;
-        border: 2px solid red;
-        border: ${v.borderThickness.thin} solid black;
+        border: ${v.borderThickness.thin} solid ${({theme}) => theme.borderColor1};
         margin-inline: ${v.spacing.xxxsmall};
         margin-block: ${v.spacing.xxxsmall};
         width: 47.5%;

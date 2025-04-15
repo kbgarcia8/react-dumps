@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { v } from "../../../../styles/variables";
 import { Link } from "react-router-dom";
+import theme from "../../../../styles/theme";
 
 export const PendingPageWrapper = styled.div`
     display: grid;
@@ -36,6 +37,7 @@ export const PendingMessageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    color: ${({theme}) => theme.textColor1};
 `;
 export const PendingMessage = styled.h5`
     text-align: center;

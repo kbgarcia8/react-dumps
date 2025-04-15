@@ -50,7 +50,7 @@ const OrderReceipt = ({
                     </styled.CheckoutTotalDetailsSpan>
                     <styled.CheckoutTotalDetailsSpan className={'receipt-total-span'}>
                         <styled.CheckoutTotalDetailsSpanMarker className={'receipt-total-marker'}>{"Transaction Type: "}</styled.CheckoutTotalDetailsSpanMarker>
-                        {`${Object.keys(receiptDetails).length === 0 ? "" : `      ${receiptDetails.transactionType}`}`}
+                        {`${Object.keys(receiptDetails).length === 0 ? "- - -" : `      ${receiptDetails.transactionType}`}`}
                     </styled.CheckoutTotalDetailsSpan>
                     {receiptDetails.transactionType === "Delivery" && 
                         <styled.CheckoutTotalDetailsSpan className={'receipt-total-span'}>
@@ -60,7 +60,7 @@ const OrderReceipt = ({
                     }
                     <styled.CheckoutTotalDetailsSpan className={'receipt-total-span'}>
                         <styled.CheckoutTotalDetailsSpanMarker className={'receipt-total-marker'}>{"Payment Method: "}</styled.CheckoutTotalDetailsSpanMarker>
-                        {`${Object.keys(receiptDetails).length === 0 ? "" : `      ${receiptDetails.payment}`}`}
+                        {`${Object.keys(receiptDetails).length === 0 ? "- - -" : `      ${receiptDetails.payment}`}`}
                     </styled.CheckoutTotalDetailsSpan>
             </styled.CheckoutTotalDetails>
             {children}

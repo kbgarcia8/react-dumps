@@ -6,7 +6,7 @@ export const OrderHistoryPageWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(${v.width.fixed_medium}, 1fr));
     grid-auto-rows: minmax(${v.width.third}, auto);
-    column-gap: ${v.spacing.small};
+    column-gap: ${v.spacing.medium};
     row-gap: ${v.spacing.medium};
     padding: ${v.spacing.xsmall};
     width: 100%;

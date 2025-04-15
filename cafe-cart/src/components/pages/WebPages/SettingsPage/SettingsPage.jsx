@@ -169,16 +169,18 @@ const SettingsPage =({}) => {
             )
             setIsEditing(false);
             if(inputValues.fullname !== "" && inputValues.mainaddress !== "" && inputValues.maincontactnumber !=="") {
-                const updatedAddressBank = [
-                    {
-                        name: inputValues.fullname,
-                        number: inputValues.maincontactnumber,
-                        location: inputValues.mainaddress,
-                        editing: false,
-                        checked: true
-                    },
-                    ...userProfile.userAddressBank
-                ];
+                if (userProfile.userAddressBank.find((addressEntry) => addressEntry.name == inputValues.fullname && addressEntry.number == inputValues.maincontactnumber && addressEntry.location == inputValues.mainaddress) === undefined) {
+                    const updatedAddressBank = [
+                        {
+                            name: inputValues.fullname,
+                            number: inputValues.maincontactnumber,
+                            location: inputValues.mainaddress,
+                            editing: false,
+                            checked: true
+                        },
+                        ...userProfile.userAddressBank
+                    ]
+                }
                 await toast.promise(
                     (async () => {
                         const saveUserInfo = await saveUserProfile({ "userAddressBank": updatedAddressBank});

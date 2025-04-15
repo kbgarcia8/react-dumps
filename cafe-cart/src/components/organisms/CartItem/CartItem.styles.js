@@ -33,6 +33,7 @@ export const CartItemName = styled.span`
     height: 100%;
     font-size: ${v.fontSize.small};
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+    color: ${({theme}) => theme.textColor1};
 `;
 export const ItemDetailsContainer = styled.div`
     display: flex;
@@ -48,6 +49,7 @@ export const CartItemPrice = styled.div`
     justify-content: center;
     font-size: ${v.fontSize.xsmall};
     font-weight: ${v.fontWeight.bold};
+    color: ${({theme}) => theme.textColor1};
 `;
 export const StepperContainer = styled.div`
     width: 20%;
@@ -70,4 +72,10 @@ export const RemoveItemButton = styled(GenericButton)`
     margin: 0;
     background-color: ${({theme}) => theme.error};
     border-radius: ${v.borderRadius.small};
+    & svg {
+        color: ${({theme}) => theme.textColor1};
+    }
+    &:hover {
+        background-color: ${({theme}) => theme.errorHover};
+    }
 `;

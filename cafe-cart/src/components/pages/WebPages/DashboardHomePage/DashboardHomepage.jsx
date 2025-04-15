@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import * as styled from "./DashboardHomePage.styles"
 
 const DashboardHomePage =({}) => {
 
     return(
-        <h1>
+        <styled.DashboardHomePageWrapper>
             This is the temporary Dashboard Home Page! 
-        </h1>
+        </styled.DashboardHomePageWrapper>
     )
 }
 
