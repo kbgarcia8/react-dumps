@@ -67,7 +67,7 @@ const SignUpPage =({}) => {
     const signUpPageInputHeaders = [
         {
             label: "Email",
-            type: "text",
+            type: "email",
             refType: signupEmailRef,
             handlechange: handleEmailSignUpChange
         }, 
@@ -144,7 +144,7 @@ const SignUpPage =({}) => {
     return(
         <styled.SignUpPageWrapper>
             <styled.SignUpPageHeader>
-                Welcome to Kain at Kape Website! Please SignUp to continue.
+                Welcome to Kain at Kape Website! Signup now to enjoy faster transaction and exciting promos.
             </styled.SignUpPageHeader>
             <styled.SignUpForm
                 fieldHeight={"50vh"}

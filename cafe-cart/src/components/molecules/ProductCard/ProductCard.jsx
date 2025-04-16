@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "../../../context/ThemeContext";
-import { palette, lightTheme } from "../../../styles/theme";
+import { palette } from "../../../styles/theme";
 import * as styled from "./ProductCard.styles";
 
 const ProductCard = ({
@@ -18,21 +18,21 @@ const ProductCard = ({
     const { theme } = useTheme();
     
     const commonThemeSwitch = {
-        cardShadowColor: theme == lightTheme ? palette.shadow1 : palette.shadow2
+        cardShadowColor: theme.name == "lightTheme" ? palette.shadow1 : palette.shadow2
     }
 
     const lightCardThemeSwitch = {
-        cardBackgroundColor: theme == lightTheme ? palette.accent : palette.neutral5,
-        descriptionTextColor: theme == lightTheme ? palette.primary2 : palette.neutral3,
-        titleTextColor: theme == lightTheme ? palette.primary1 : palette.secondary1,
-        buttonColor: theme == lightTheme ? palette.neutral4 : palette.neutral5
+        cardBackgroundColor: theme.name == "lightTheme" ? palette.accent : palette.neutral5,
+        descriptionTextColor: theme.name == "lightTheme" ? palette.primary2 : palette.neutral3,
+        titleTextColor: theme.name == "lightTheme" ? palette.primary1 : palette.secondary1,
+        buttonColor: theme.name == "lightTheme" ? palette.neutral4 : palette.neutral5
     }
 
     const darkCardThemeSwitch = {
-        cardBackgroundColor: theme == lightTheme ? palette.neutral5 : palette.accent,
-        descriptionTextColor: theme == lightTheme ? palette.neutral3 : palette.primary2,
-        titleTextColor: theme == lightTheme ? palette.secondary1 : palette.primary1,
-        buttonColor: theme == lightTheme ? palette.neutral5 : palette.neutral4
+        cardBackgroundColor: theme.name == "lightTheme" ? palette.neutral5 : palette.accent,
+        descriptionTextColor: theme.name == "lightTheme" ? palette.neutral3 : palette.primary2,
+        titleTextColor: theme.name == "lightTheme" ? palette.secondary1 : palette.primary1,
+        buttonColor: theme.name == "lightTheme" ? palette.neutral5 : palette.neutral4
     }
 
     return (

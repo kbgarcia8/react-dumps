@@ -8,7 +8,6 @@ const Navbar =({anchorTheme, isSigning}) => {
 
     const links = [
         {name: "Home", path:"/"},
-        {name: "About", path:"/about"},
         {name: "Testimonials", path:"/testimonials"},
         {name: "Contact Us", path:"/contact"},
     ];

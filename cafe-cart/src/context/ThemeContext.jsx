@@ -19,7 +19,6 @@ export const ThemeContextProvider = ({children}) => {
     if (profile.preferredTheme === "lightTheme") {
       setTheme(lightTheme);
     } else if (profile.preferredTheme === "darkTheme") {
-      console.log('test')
       setTheme(darkTheme);
     } else {
       console.warn("Unknown preferredTheme value:", profile.preferredTheme);

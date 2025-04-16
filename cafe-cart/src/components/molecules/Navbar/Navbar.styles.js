@@ -35,7 +35,7 @@ export const Navbar = styled.nav`
 export const NavbarLinks = styled.ul`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 100%;
     margin: 0;
 `;
@@ -48,6 +48,7 @@ export const NavbarLink = styled.li`
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
     font-weight: ${v.fontWeight.bolder};
     font-size: ${v.fontSize.medium};
+    color: ${({theme}) => theme.textColor1};
 `;
 
 export const ButtonWrapper = styled.div`

@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
-import Input from "./Input.styles";
+import {Input, TextArea} from "./Input.styles";
 
 const GenericInput = forwardRef(({ 
     id,
@@ -13,10 +13,14 @@ const GenericInput = forwardRef(({
     checked,
     disabled,
     pattern,
-    className
+    className,
+    //needed when input type is textarea
+    rows = 5,
+    cols = 30,
 }, ref) => {
     return (
-        <Input
+        type !== "textarea"
+        ? <Input
             id={id}
             name={id}
             placeholder={placeholderText}
@@ -31,6 +35,18 @@ const GenericInput = forwardRef(({
             disabled={disabled}
             pattern={pattern}
         />
+        : <TextArea
+            id={id}
+            placeholder={placeholderText}
+            onChange={onChange}
+            value={value}
+            rows={rows}
+            cols={cols}
+            {...dataAttributes}
+            className={className}
+            ref={ref}
+            disabled={disabled}
+        />
     );
 });
 
@@ -43,7 +59,9 @@ GenericInput.propTypes = {
     isRequired: PropTypes.bool,
     dataAttributes: PropTypes.object, 
     checked: PropTypes.bool,
-    className: PropTypes.string
+    className: PropTypes.string,
+    rows: PropTypes.string,
+    cols: PropTypes.string,
 };
 
 export default GenericInput;

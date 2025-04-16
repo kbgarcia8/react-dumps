@@ -21,7 +21,8 @@ export const LoginPageHeader =  styled.h3`
 export const LoginForm = styled(GenericForm)`
     border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
     border-radius: ${v.borderRadius.small};
-    padding-block: ${v.spacing.large};
+    padding-top: ${v.spacing.medium};
+    padding-bottom: ${v.spacing.xlarge};
     width: 30%;
     height: 70%;
 
@@ -61,15 +62,19 @@ export const LoginForm = styled(GenericForm)`
     }
     
     & .children-container {
-        margin-block: ${v.spacing.xxxsmall};
-        
-        height: 7.5%;
+        margin-block: ${v.spacing.small};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 8%;
+
         & div[role="button"] {
             display: flex !important;
             align-items: center !important;
             background-color: ${({theme}) => theme.backgroundColor1} !important;
             color: ${({theme}) => theme.textColor3} !important;
             border-radius: ${v.borderRadius.medium} !important;
+            border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1} !important;
             font-size: ${v.fontSize.xsmall} !important;
             font-family: ${v.fonts.primary}, ${v.fonts.fallback} !important;
             font-weight: ${v.fontWeight.bold} !important;
@@ -106,6 +111,7 @@ export const SignUpMessageSpace = styled.div`
 export const SignUpMessage = styled.span`
     font-size: ${v.fontSize.small};
     font-family: ${v.fonts.tertiary}, ${v.fonts.fallback};
+    color: ${({theme}) => theme.textColor1};
 `;
 export const SignUpLink = styled(Link)`
     text-decoration: none;

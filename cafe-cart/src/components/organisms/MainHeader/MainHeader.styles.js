@@ -8,9 +8,8 @@ export const MainHeaderWrapper = styled.div`
     justify-content: space-between;
     width: 100%;
     height: 100%;
-    -webkit-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.3);
-    box-shadow: 0px 10px 5px 0px rgba(0,0,0,0.3);
+    background-color: ${({theme}) => theme.screenColor};
+    border-bottom: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
 `;
 
 export const MainHeaderLogoSpace = styled.div`
@@ -19,6 +18,7 @@ export const MainHeaderLogoSpace = styled.div`
     justify-content: center;
     width: 10%;
     cursor: pointer;
+    background-color: ${({theme}) => theme.screenColor};
 `;
 
 export const MainHeaderLogo = styled.img`
@@ -38,7 +38,7 @@ export const ButtonWrapper = styled.div`
 export const LoginButton = styled(GenericButton)`
     background-color: ${({theme}) => theme.backgroundColor1};
     color: ${({theme}) => theme.textColor3};
-    border: 2px solid ${({theme}) => theme.borderColor2};
+    border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor2};
     width: 45%;
     border-radius: ${v.spacing.xxsmall};
 

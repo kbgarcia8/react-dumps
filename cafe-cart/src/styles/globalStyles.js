@@ -16,21 +16,21 @@ const GlobalStyle = createGlobalStyle`
 }
 
 @font-face {
-  font-family: 'Oswald';
-  font-weight: 400;
-  src: url('${oswald}') format('truetype');
+    font-family: 'Oswald';
+    font-weight: 400;
+    src: url('${oswald}') format('truetype');
 }
 
 @font-face {
-  font-family: 'Trirong';
-  font-weight: 400;
-  src: url('${trirong}') format('truetype');
+    font-family: 'Trirong';
+    font-weight: 400;
+    src: url('${trirong}') format('truetype');
 }
 
 @font-face {
-  font-family: 'Arvo';
-  font-weight: 400;
-  src: url('${arvo}') format('truetype');
+    font-family: 'Arvo';
+    font-weight: 400;
+    src: url('${arvo}') format('truetype');
 }
 
 html, body {
@@ -182,7 +182,7 @@ u {
 .productcard-space {
     display: grid;
     grid-template-columns: repeat(auto-fit,
-              minmax(10vmax, 1fr));
+    minmax(10vmax, 1fr));
     gap: ${v.spacing.small};
     justify-content: center;
     align-items: center;
@@ -231,42 +231,42 @@ u {
     }
     
     ${({ theme }) => theme.name === 'lightTheme' && `
-    .Toastify__toast--success {
-      background-color: ${notificationPalette.successDark};
-      color: ${notificationPalette.successLight};
-    }
-    .Toastify__toast--error {
-      background-color: ${notificationPalette.errorDark};
-      color: ${notificationPalette.errorLight};
-    }
-    .Toastify__toast--warning {
-      background-color: ${notificationPalette.warningDark};
-      color: ${notificationPalette.warningLight};
-    }
-    .Toastify__toast--info {
-      background-color: ${notificationPalette.infoDark};
-      color: ${notificationPalette.infoLight};
-    }
-  `}
+        .Toastify__toast--success {
+            background-color: ${notificationPalette.successDark};
+            color: ${notificationPalette.successLight};
+        }
+        .Toastify__toast--error {
+            background-color: ${notificationPalette.errorDark};
+            color: ${notificationPalette.errorLight};
+        }
+        .Toastify__toast--warning {
+            background-color: ${notificationPalette.warningDark};
+            color: ${notificationPalette.warningLight};
+        }
+        .Toastify__toast--info {
+            background-color: ${notificationPalette.infoDark};
+            color: ${notificationPalette.infoLight};
+        }
+    `}
 
-  ${({ theme }) => theme.name === 'darkTheme' && `
-    .Toastify__toast--success {
-      background-color: ${notificationPalette.successLight};
-      color: ${notificationPalette.successDark};
-    }
-    .Toastify__toast--error {
-      background-color: ${notificationPalette.errorLight};
-      color: ${notificationPalette.errorDark};
-    }
-    .Toastify__toast--warning {
-      background-color: ${notificationPalette.warningLight};
-      color: ${notificationPalette.warningDark};
-    }
-    .Toastify__toast--info {
-      background-color: ${notificationPalette.infoLight};
-      color: ${notificationPalette.infoDark};
-    }
-  `}
+    ${({ theme }) => theme.name === 'darkTheme' && `
+        .Toastify__toast--success {
+            background-color: ${notificationPalette.successLight};
+            color: ${notificationPalette.successDark};
+        }
+        .Toastify__toast--error {
+            background-color: ${notificationPalette.errorLight};
+            color: ${notificationPalette.errorDark};
+        }
+        .Toastify__toast--warning {
+            background-color: ${notificationPalette.warningLight};
+            color: ${notificationPalette.warningDark};
+        }
+        .Toastify__toast--info {
+            background-color: ${notificationPalette.infoLight};
+            color: ${notificationPalette.infoDark};
+        }
+    `}
 `;
 
 export default GlobalStyle;

@@ -10,7 +10,7 @@ export const SignUpPageWrapper = styled.div`
     align-items: center;
     justify-content: space-evenly;
     max-width: 100%;
-    height: 100%;
+    height: 95%;
 `;
 
 export const SignUpPageHeader =  styled.h3`
@@ -61,6 +61,7 @@ export const LoginMessageSpace = styled.div`
     justify-content: center;
     display: flex;
     padding-bottom: ${v.spacing.medium};
+    color: ${({theme}) => theme.textColor1};
 `;
 export const LoginMessage = styled.span`
     font-size: ${v.fontSize.small};

@@ -1,11 +1,9 @@
 import React, { createContext, useState, useEffect, useContext, useRef } from "react"
 import PropTypes from "prop-types"
-import { auth, db, firebaseConfig } from "../backend/firebase/firebase";
+import { auth, db } from "../backend/firebase/firebase";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, setDoc, getDoc, onSnapshot } from "firebase/firestore";
 import { toast } from "react-toastify";
-
-//console.log(firebaseConfig)
 
 const UserAuthContext = createContext();
 

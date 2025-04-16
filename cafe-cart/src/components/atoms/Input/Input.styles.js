@@ -15,4 +15,19 @@ export const Input = styled.input`
     border-radius: ${v.borderRadius.small};
 `;
 
-export default Input;
+export const TextArea = styled.textarea`
+    display: flex;
+    place-content: center;
+    border: ${v.borderThickness.light} solid rgb(94, 94, 94);
+    border-radius: ${v.borderRadius.small};
+    outline: none;
+    line-height: ${v.spacing.small};
+    padding: ${v.spacing.xxxsmall};
+    font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
+    font-size: ${v.fontSize.xsmall};
+    max-width: 100%;
+    resize: none;
+    overflow-y: auto;
+`;
+
+export default {Input, TextArea};

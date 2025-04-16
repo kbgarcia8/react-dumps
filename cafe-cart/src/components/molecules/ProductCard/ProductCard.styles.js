@@ -107,15 +107,3 @@ export const ProductCardContainer = styled.div.attrs(props => ({
     background-color: ${(props) => props.$cardBackgroundColor};
     padding: ${v.spacing.medium};
 `;
-
-export default {
-    ProductImage,
-    ProductTitle,
-    ProductDescription,
-    ProductInfoContainer,
-    PriceContainer,
-    AddToCartButton,
-    ProductSize,
-    ProductPrice,
-    ProductCardContainer
-};

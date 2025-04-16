@@ -52,7 +52,7 @@ const LoginPage =({}) => {
     const loginPageInputHeaders = [
         {
             label: "Email",
-            type: "text",
+            type: "email",
             refType: loginEmailRef,
             handlechange: handleEmailLoginChange
         }, 
@@ -129,7 +129,7 @@ const LoginPage =({}) => {
     return(
         <styled.LoginPageWrapper>
             <styled.LoginPageHeader>
-                Welcome to Kain at Kape Website! Please Login to continue.
+                Welcome to Kain at Kape Website! Login your account to continue.
             </styled.LoginPageHeader>
             <styled.LoginForm
                 fieldHeight={"50vh"}
