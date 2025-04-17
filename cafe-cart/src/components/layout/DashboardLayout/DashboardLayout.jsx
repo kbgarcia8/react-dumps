@@ -522,7 +522,7 @@ const DashboardLayout = ({header, sidebar}) => {
         const currentCart = [...state];
         const currentTransactionType = transactionType;
         const currentSubtotal = subtotal;
-        const currentDateAndTime = formatDate(Date.now())
+        const currentDateAndTime = formatDate(Date.now());
 
         if(
             ((currentTransactionType === "Delivery" && checkedAddress) && checkedPayment && currentCart.length !== 0)

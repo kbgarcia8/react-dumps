@@ -12,6 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@vis.gl/react-google-maps": "^1.5.2",
     "axios": "^1.7.9",
     "concurrently": "^9.1.2",
     "cors": "^2.8.5",

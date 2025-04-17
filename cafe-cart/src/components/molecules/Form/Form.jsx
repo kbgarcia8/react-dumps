@@ -59,6 +59,8 @@ const GenericForm = ({
                                             // .? - (Optional chaining) if variable is null or undefined wont throw an error and will be false instead
                                             disabled={!!input.data?.disabled || !!input?.disabled}
                                             pattern={input.pattern}
+                                            rows={input.rows}
+                                            cols={input.cols}
                                         />
                                     {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
                                     {(input.editable && input.type ==="radio") &&
@@ -126,6 +128,8 @@ const GenericForm = ({
                                         checked={!!input.data?.checked}
                                         disabled={!!input.data?.disabled || !!input?.disabled}
                                         pattern={input.pattern}
+                                        rows={input.rows}
+                                        cols={input.cols}
                                     />
                                 {input.type === "radio" && <styled.FormLabel htmlFor={input.id} textLabel={input.labelText} addtionalInfo={input.additionalInfo} $labelDirection={input.labelDirection} svg={input.image} className={labelClassName} />}
                                 {(input.editable && input.type ==="radio") &&
