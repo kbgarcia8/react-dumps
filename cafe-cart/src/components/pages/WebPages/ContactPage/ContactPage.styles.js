@@ -57,7 +57,7 @@ export const ContactUsEmailForm = styled(GenericForm)`
         font-size: ${v.fontSize.small};
     }
 
-    & input.contact-page-inputs {
+    & input.contact-page-inputs, textarea.contact-page-inputs {
         width: 100%;
         border: none;
         border-bottom: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
@@ -65,9 +65,19 @@ export const ContactUsEmailForm = styled(GenericForm)`
         border-radius: 0;
     }
 
+    & textarea.contact-page-inputs {
+        border: ${v.borderThickness.light} solid ${({theme}) => theme.borderColor1};
+        padding: ${v.spacing.small};
+    }
+
     & input.contact-page-inputs:hover {
         outline: none;
         border-bottom: ${v.borderThickness.light} solid ${({theme}) => theme.backgroundColor2};
+    }
+
+    & textarea.contact-page-inputs:hover {
+        outline: none;
+        border: ${v.borderThickness.light} solid ${({theme}) => theme.backgroundColor2};
     }
 
     

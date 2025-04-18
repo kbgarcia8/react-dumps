@@ -49,11 +49,11 @@ export const StyledLink = styled(Link)`
     padding: ${v.spacing.xxxsmall};
 
     &&:hover{
-        color: ${(props) => props.$anchorTheme.backgroundColor2};
+        color: ${({theme}) => theme.backgroundColor2};
         text-decoration: underline;
     }
     &:active{
-        color: ${(props) => props.$anchorTheme.backgroundColor3};
+        color: ${({theme}) => theme.backgroundColor3};;
     }
 `;
 export const CurrentOrderContainer = styled.div`

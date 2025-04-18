@@ -25,7 +25,6 @@ export const MainLayoutContent = styled.main`
     min-height: 100vh;
     overflow-y: auto;
     grid-row: 2/3;
-    padding: ${v.spacing.small};
 `;
 
 export const MainLayoutFooter = styled(MainLayoutHeader)`

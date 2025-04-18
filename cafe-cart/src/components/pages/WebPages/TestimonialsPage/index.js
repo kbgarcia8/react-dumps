@@ -1,2 +1,2 @@
-import TestimonialPage from "./Testimonials";
+import TestimonialPage from "./TestimonialsPage";
 export default TestimonialPage;

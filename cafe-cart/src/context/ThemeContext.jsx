@@ -13,7 +13,6 @@ export const ThemeContextProvider = ({children}) => {
   };
 
   const retreviedUserPrefferedTheme = (profile) => {
-    console.log(profile.preferredTheme)
     if (!profile?.preferredTheme) return;
     
     if (profile.preferredTheme === "lightTheme") {

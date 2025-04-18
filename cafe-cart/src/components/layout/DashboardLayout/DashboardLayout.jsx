@@ -344,16 +344,14 @@ const DashboardLayout = ({header, sidebar}) => {
         }
     }
 
-    const cancelAddressEntryEdit = async () => {
+    const cancelAddressEntryEdit = () => {
     if (userProfile?.userAddressBank) {
-        // Map the addresses and set 'editing' to false
         const updatedAddressBank = userProfile.userAddressBank.map(address => ({
             ...address,
             editing: false
         }));
 
-        // Now set the updated address bank
-        await setAddressBank(updatedAddressBank);
+        setAddressBank(updatedAddressBank);
     }
 };
 
@@ -382,8 +380,6 @@ const DashboardLayout = ({header, sidebar}) => {
     }, [addressBank])
 
     useDeepCompareEffect(() => {
-        //console.log("prevPaymentFieldSet before update:", paymentFieldSet);
-    
         setPaymentFieldSet((prevPaymentFieldSet) => 
             (Array.isArray(prevPaymentFieldSet) ? prevPaymentFieldSet : []).map((fieldEntry) => //always check first if element to be mapped is an array and provide fallback to prevent error
                 fieldEntry.legend === "Address"

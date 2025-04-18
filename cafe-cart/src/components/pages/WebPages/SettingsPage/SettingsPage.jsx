@@ -39,7 +39,7 @@ const settingsPageInputHeaders = [
     }
 ];
 
-const UserInformationTab = (userProfile, theme, settingsPageInputs, isProfileIncompleteOrNull, isEditing, handleUserInfoSave, editUserInfo) => (
+const UserInformationTab = (  userProfile, theme, settingsPageInputs, isProfileIncompleteOrNull, isEditing, handleUserInfoSave, editUserInfo ) => (
     <>
         <styled.UserInfoDisplaySpace>
             <styled.UserInfoSpace>
@@ -76,6 +76,18 @@ const UserInformationTab = (userProfile, theme, settingsPageInputs, isProfileInc
             />
         </styled.UserInfoEditSpace>
     </>
+)
+
+const UserSettings = ( theme,  themeSwitchChecked, handleThemeSwitch) => (
+    <styled.UserSettingsDisplaySpace>
+        <styled.ThemeSwitcherContainer>
+            <styled.ThemeSwitchHeader>{"Theme Switch: "}</styled.ThemeSwitchHeader>
+            <styled.ThemeSwitchLabel textLabel={theme === lightTheme ? "Light Mode": "Dark Mode"} htmlFor={"theme-switch"}>
+                <styled.ThemeSwitchInput checked={themeSwitchChecked} onChange={handleThemeSwitch} type={"checkbox"} id={"theme-switch"}/>
+                <styled.ThemeSwitch></styled.ThemeSwitch>
+            </styled.ThemeSwitchLabel>
+        </styled.ThemeSwitcherContainer>
+    </styled.UserSettingsDisplaySpace>
 )
 
 const SettingsPage =({}) => {
@@ -222,12 +234,6 @@ const SettingsPage =({}) => {
             : prevTab
         );
     }
-    //useEffect for console.log checking
-    useEffect(()=>{
-        {/*console.dir(inputValues, { depth: null, colors: true })
-        console.dir(settingsPageInputs, { depth: null, colors: true })
-        console.dir(userProfile, { depth: null, colors: true })*/}
-    },[inputValues, settingsPageInputs])
 
     useEffect(() => {
         if (userProfile) {
@@ -273,16 +279,7 @@ const SettingsPage =({}) => {
             </styled.SettingsButtonSpace>
             { openedTab == 0 
                 ? UserInformationTab(userProfile, theme, settingsPageInputs, isProfileIncompleteOrNull, isEditing, handleUserInfoSave, editUserInfo)
-                : 
-                <styled.UserSettingsDisplaySpace>
-                    <styled.ThemeSwitcherContainer>
-                        <styled.ThemeSwitchHeader>{"Theme Switch: "}</styled.ThemeSwitchHeader>
-                        <styled.ThemeSwitchLabel textLabel={theme === lightTheme ? "Light Mode": "Dark Mode"} htmlFor={"theme-switch"}>
-                            <styled.ThemeSwitchInput checked={themeSwitchChecked} onChange={handleThemeSwitch} type={"checkbox"} id={"theme-switch"}/>
-                            <styled.ThemeSwitch></styled.ThemeSwitch>
-                        </styled.ThemeSwitchLabel>
-                    </styled.ThemeSwitcherContainer>
-                </styled.UserSettingsDisplaySpace>
+                : UserSettings( theme,  themeSwitchChecked, handleThemeSwitch)
             }
         </styled.SettingsPageWrapper>
     )

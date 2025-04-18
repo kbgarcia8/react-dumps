@@ -28,7 +28,7 @@ export const notificationPalette = {
     infoLight: '#C9E6F0',
     infoDark: '#202234',
     warningLight: '#FCFFC1',
-    warningDark: '#493323',
+    warningDark: '#F2C265',
     successLight: '#9EDF9C',
     successDark: '#123524',
     errorLight: '#FAD4D4',
@@ -51,7 +51,7 @@ export const lightTheme = {//utilize dark text
     success: notificationPalette.successDark,
     error: notificationPalette.errorLight,
     errorHover: notificationPalette.errorDark,
-    shadow: notificationPalette.shadow1
+    shadow: palette.shadow1
 }
 
 export const darkTheme = {//utilize light text
@@ -67,7 +67,7 @@ export const darkTheme = {//utilize light text
     textColor2: palette.accent,
     textColor3: palette.neutral2,
     warning: notificationPalette.warningLight,
-    success: notificationPalette.successLight,
+    success: notificationPalette.successDark,
     error: notificationPalette.errorDark,
     errorHover: notificationPalette.errorLight,
     shadow: palette.shadow2
