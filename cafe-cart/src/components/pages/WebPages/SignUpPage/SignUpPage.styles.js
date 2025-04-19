@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import GenericForm from '../../../molecules/Form';
 import { v } from '../../../../styles/variables';
 import { Link } from "react-router-dom";
+import { palette } from '../../../../styles/theme';
 
 export const SignUpPageWrapper = styled.div`
     padding: ${v.spacing.medium};
@@ -39,6 +40,10 @@ export const SignUpForm = styled(GenericForm)`
         display: flex;
         align-items: flex-start;
         font-size: ${v.fontSize.small};
+    }
+
+    & .signup-inputs {
+        color: ${palette.neutral5};
     }
     
     & .form-main-button-container {

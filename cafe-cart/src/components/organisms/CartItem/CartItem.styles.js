@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { v } from "../../../styles/variables";
+import { palette, notificationPalette } from "../../../styles/theme";
 import Stepper from "../../molecules/Stepper/Stepper";
 import GenericButton from "../../atoms/Button";
 
@@ -73,9 +74,12 @@ export const RemoveItemButton = styled(GenericButton)`
     background-color: ${({theme}) => theme.error};
     border-radius: ${v.borderRadius.small};
     & svg {
-        color: ${({theme}) => theme.textColor1};
+        color: ${({theme}) => theme.name === "lightTheme" ? palette.neutral1 : palette.neutral5};
     }
     &:hover {
         background-color: ${({theme}) => theme.errorHover};
+        & svg {
+            color: ${({theme}) => theme.textColor1};
+        }
     }
 `;

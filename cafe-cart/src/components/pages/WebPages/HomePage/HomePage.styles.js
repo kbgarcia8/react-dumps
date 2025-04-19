@@ -121,7 +121,7 @@ export const ServicesDescrptionSpace = styled.div`
     margin-top: ${v.spacing.small};
 `;
 export const ServiceIcon = styled.img`
-    width: 25%;
+    width: 35%;
     height: 100%;
 `;
 export const ServicesDescrption = styled.p`
@@ -140,6 +140,11 @@ export const SocialDetailsSpace = styled.div`
     justify-content: space-evenly;
     width: 100%;
     height: 50vh;
+    background-color: ${({theme}) => theme.screenColor};
+`;
+export const SocialDetailsHeader = styled.h4`
+    width: 100%;
+    color: ${({theme}) => theme.textColor1};
 `;
 export const SocialDetailsSpanContainer = styled.div`
     width: 100%;
@@ -155,7 +160,7 @@ export const SocialDetailsSpan = styled.span`
     font-family: ${v.fonts.secondary}, ${v.fonts.fallback};
     white-space: pre;
     padding: ${v.spacing.xxsmall};
-    color: ${({theme}) => theme.textColor1};
+    color: ${({theme}) => theme.name === "lightTheme" ? theme.textColor1 : theme.screenColor};
     background-color: ${({theme}) => theme.textColor3};
     margin-block: ${v.spacing.xxsmall};
 
@@ -170,7 +175,7 @@ export const SocialDetailsImageContainer = styled.div`
     width: 100%;
     height: 100%;
     padding: ${v.spacing.small};
-    background-image: url('https://images.stockcake.com/public/7/0/8/708b409f-0df5-4c28-8abb-f19b34458e0b_large/social-network-visualization-stockcake.jpg');
+    background-image: url('https://img.freepik.com/premium-vector/colorful-flat-icons-red-background-represent-social-media-communication-technology-networking-concepts_657438-47619.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: fill;

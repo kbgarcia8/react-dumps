@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import GenericForm from '../../../molecules/Form';
 import { v } from '../../../../styles/variables';
 import { Link } from "react-router-dom";
+import { palette } from '../../../../styles/theme';
 
 export const LoginPageWrapper = styled.div`
     padding: ${v.spacing.xxxsmall};
@@ -41,6 +42,10 @@ export const LoginForm = styled(GenericForm)`
         display: flex;
         align-items: flex-start;
         font-size: ${v.fontSize.small};
+    }
+
+    & .login-inputs {
+        color: ${palette.neutral5};
     }
     
     & .form-main-button-container {

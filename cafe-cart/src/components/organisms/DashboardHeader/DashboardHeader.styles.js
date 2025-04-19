@@ -8,13 +8,16 @@ export const DashboardHeaderWrapper = styled.div`
     width: 100%;
     height: 100%;
     padding: ${v.spacing.xxsmall};
-    background-color: ${({theme}) => theme.screenColor};
+    background-color: ${({theme}) => theme.backgroundColor3};
 `;
 
 export const DashboardWelcomeMessage = styled.h4`
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 75%;
     height: 100%;
     margin: 0;
+    color: ${({theme}) => theme.textColor1};
+    margin-left: ${v.spacing.medium};
+    font-family: ${v.fonts.primary}, ${v.fonts.fallback};
 `;

@@ -151,6 +151,7 @@ const SignUpPage =({}) => {
                 id={"main-signup-form"}
                 formInputs={signUpPageInputs}
                 labelClassName={"signup-inputs-label"}
+                inputClassName={"signup-inputs"}
                 hasSubmit
                 submitText={"Sign Up"}
                 handleSubmit={handleSignupSubmit}

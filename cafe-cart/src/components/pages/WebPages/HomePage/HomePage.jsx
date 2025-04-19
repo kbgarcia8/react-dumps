@@ -61,8 +61,9 @@ const HomePage =({}) => {
                     </styled.ServicesCard>
                 ))}
             </styled.ServicesSpace>
-            <styled.SocialDetailsSpace>
+            <styled.SocialDetailsSpace>                
                 <styled.SocialDetailsSpanContainer>
+                    <styled.SocialDetailsHeader>{"Follow us on our social medias!"}</styled.SocialDetailsHeader>
                     <styled.SocialDetailsSpan>
                         <FacebookIcon strokeWidth={3}/>
                         {"Kain at Kape - Cafe"}
