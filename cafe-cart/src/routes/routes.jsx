@@ -1,5 +1,4 @@
 import React from "react";
-import App from "../App"
 import DesignSystem from "../DesignSystem.jsx";
 import MainLayout from "../components/layout/MainLayout/index.js";
 import MainHeader from "../components/organisms/MainHeader/index.js";
@@ -31,7 +30,6 @@ const routes = [
     element: <MainLayout header={<MainHeader/>} footer={<Footer/>}/>,
     children: [
       {index: true, element: <HomePage/>}, //Default route of '/' due to index: true
-      {path: "about", element: <AboutPage/>},
       {path: "testimonials", element: <TestimonialPage/>},
       {path: "contact", element: <ContactPage/>},
       {path: "signup", element: <SignUpPage/>},
