@@ -1,2 +1,2 @@
-import DashboardHeader from "./DashboardHeader";
+import DashboardHeader from "./DashboardHeader.jsx";
 export default DashboardHeader;

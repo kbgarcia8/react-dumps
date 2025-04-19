@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { v } from '../../../styles/variables';
+import { v } from '../../../styles/variables.js';
 import GenericListItem from '../../atoms/ListItem'
 
 export const OrderReceiptWrapper = styled.div`

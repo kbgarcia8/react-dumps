@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "../../../context/ThemeContext";
-import { notificationPalette, lightTheme } from "../../../styles/theme";
-import * as styled from "./NotificationCard.styles";
+import { useTheme } from "../../../context/ThemeContext.jsx";
+import { notificationPalette, lightTheme } from "../../../styles/theme.js";
+import * as styled from "./NotificationCard.styles.js";
 import errorIcon from '../../../assets/error.png'
 import warningIcon from '../../../assets/warning.png'
 import successIcon from '../../../assets/success2.png'

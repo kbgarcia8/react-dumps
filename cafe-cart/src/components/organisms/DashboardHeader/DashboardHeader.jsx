@@ -1,6 +1,6 @@
 import { React } from "react";
-import { useAuth } from "../../../context/UserAuthContext";
-import * as styled from "./DashboardHeader.styles";
+import { useAuth } from "../../../context/UserAuthContext.jsx";
+import * as styled from "./DashboardHeader.styles.js";
 
 const DashboardHeader =({}) => {
     

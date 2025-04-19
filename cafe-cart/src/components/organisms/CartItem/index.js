@@ -1,2 +1,2 @@
-import CartItem from "./CartItem";
+import CartItem from "./CartItem.jsx";
 export default CartItem;

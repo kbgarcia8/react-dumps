@@ -3,15 +3,14 @@ import PropTypes from "prop-types";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../../context/UserAuthContext";
 import sidebarLogo from '../../../assets/pic-only-logo.png'
-import HomeIcon from "../../atoms/SVG/HomeIcon";
-import MenuIcon from "../../atoms/SVG/MenuIcon";
-import CartIcon from "../../atoms/SVG/CartIcon";
-import ClipboardIcon from "../../atoms/SVG/ClipboardIcon";
-import TimerIcon from "../../atoms/SVG/TimerIcon";
-import SettingsIcon from "../../atoms/SVG/SettingsIcon";
-import LogoutIcon from "../../atoms/SVG/LogoutIcon";
-
-import * as styled from "./Sidebar.styles";
+import HomeIcon from "../../atoms/SVG/HomeIcon.jsx";
+import MenuIcon from "../../atoms/SVG/MenuIcon.jsx";
+import CartIcon from "../../atoms/SVG/CartIcon.jsx";
+import ClipboardIcon from "../../atoms/SVG/ClipboardIcon.jsx";
+import TimerIcon from "../../atoms/SVG/TimerIcon.jsx";
+import SettingsIcon from "../../atoms/SVG/SettingsIcon.jsx";
+import LogoutIcon from "../../atoms/SVG/LogoutIcon.jsx";
+import * as styled from "./Sidebar.styles.js";
 
 const Sidebar =({}) => {
     const { logOut } = useAuth();

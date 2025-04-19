@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
-import {Input, TextArea} from "./Input.styles";
+import {Input, TextArea} from "./Input.styles.js";
 
 const GenericInput = forwardRef(({ 
     id,

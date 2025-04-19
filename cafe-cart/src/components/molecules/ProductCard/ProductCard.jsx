@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "../../../context/ThemeContext";
-import { palette } from "../../../styles/theme";
-import * as styled from "./ProductCard.styles";
+import { useTheme } from "../../../context/ThemeContext.jsx";
+import { palette } from "../../../styles/theme.js";
+import * as styled from "./ProductCard.styles.js";
+import CartIcon from "../../atoms/SVG/CartIcon.jsx";
 
 const ProductCard = ({
     productImage,
@@ -54,7 +55,7 @@ const ProductCard = ({
             {Object.keys(prices).map((size) => (
                 <styled.PriceContainer key={`${productTitle}-${size}`}>
                     <styled.AddToCartButton 
-                        source={"/shopping-cart.svg"}
+                        svg={<CartIcon/>}
                         $buttonColor={isDarkCard ? lightCardThemeSwitch.buttonColor : darkCardThemeSwitch.buttonColor}
                         dataAttributes={{
                             "data-size": size,

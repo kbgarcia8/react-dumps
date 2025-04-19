@@ -1,9 +1,8 @@
-import { Children, React, useState } from "react";
-import PropTypes from "prop-types";
+import { React, useState } from "react";
 import headerLogo from '../../../assets/horizontal-logo.png'
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../../molecules/Navbar/Navbar";
-import * as styled from "./MainHeader.styles";
+import * as styled from "./MainHeader.styles.js";
 
 const MainHeader =({}) => {
     const navigate = useNavigate();

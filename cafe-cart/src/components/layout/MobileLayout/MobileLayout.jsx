@@ -1,23 +1,23 @@
 import React, { useContext } from "react"
 import PropTypes from "prop-types"
 import { Outlet } from 'react-router-dom';
-import {MobileLayoutContainer, MobileHeader, MobileContent, MobileFooter} from "./MobileLayout.styles"
+import * as styled from "./MobileLayout.styles.js"
 
 const MobileLayout = ({header, footer}) => {
 
     return (
         <>
-            <MobileLayoutContainer>
-                <MobileHeader>
+            <styled.MobileLayoutContainer>
+                <styled.MobileHeader>
                     {header}
-                </MobileHeader>
-                <MobileContent>
+                </styled.MobileHeader>
+                <styled.MobileContent>
                     <Outlet />
-                </MobileContent>
-                <MobileFooter>
+                </styled.MobileContent>
+                <styled.MobileFooter>
                     {footer}
-                </MobileFooter>
-            </MobileLayoutContainer>
+                </styled.MobileFooter>
+            </styled.MobileLayoutContainer>
         </>
     )
 }

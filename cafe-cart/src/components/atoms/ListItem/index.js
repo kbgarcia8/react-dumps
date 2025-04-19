@@ -1,2 +1,2 @@
-import GenericListItem from "./ListItem";
+import GenericListItem from "./ListItem.jsx";
 export default GenericListItem;

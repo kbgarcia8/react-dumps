@@ -1,7 +1,7 @@
 import {React, useState} from "react";
 import PropTypes from "prop-types";
-import * as styled from "./StarRating.styles"
-import StarIcon from "../../atoms/SVG/StarIcon";
+import * as styled from "./StarRating.styles.js"
+import StarIcon from "../../atoms/SVG/StarIcon.jsx";
 
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TextArea from "./TextArea.stlyes";
+import TextArea from "./TextArea.stlyes.js";
 
 export const GenericTextArea = ({
     labelText, 

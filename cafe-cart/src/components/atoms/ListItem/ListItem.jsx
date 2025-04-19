@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ListItem from "./ListItem.styles";
+import ListItem from "./ListItem.styles.js";
 
 export const GenericListItem = ({
     id,

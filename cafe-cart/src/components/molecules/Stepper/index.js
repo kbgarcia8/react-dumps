@@ -1,2 +1,2 @@
-import Stepper from "./Stepper";
+import Stepper from "./Stepper.jsx";
 export default Stepper;

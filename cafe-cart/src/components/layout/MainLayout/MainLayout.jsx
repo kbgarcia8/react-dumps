@@ -1,8 +1,7 @@
-import { React, useState, useRef, useEffect } from "react";
-import PropTypes from "prop-types";
+import { React, useState, useEffect } from "react";
 import { Outlet } from 'react-router-dom';
 import { getScrollbarWidth } from '../../../utils/utils.js'
-import * as styled from "./MainLayout.styles";
+import * as styled from "./MainLayout.styles.js";
 
 const MainLayout = ({header, footer}) => {
 

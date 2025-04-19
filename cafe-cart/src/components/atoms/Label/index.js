@@ -1,2 +1,2 @@
-import GenericLabel from "./Label";
+import GenericLabel from "./Label.jsx";
 export default GenericLabel;

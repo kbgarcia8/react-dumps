@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "./OrderReceipt.styles"
+import * as styled from "./OrderReceipt.styles.js"
 
 const OrderReceipt = ({
     shopLogo, 

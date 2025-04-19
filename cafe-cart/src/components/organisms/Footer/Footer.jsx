@@ -1,7 +1,7 @@
-import {React, useState } from "react";
-import { useTheme } from "../../../context/ThemeContext";
-import { palette } from "../../../styles/theme";
-import * as styled from "./Footer.styles";
+import React from "react";
+import { useTheme } from "../../../context/ThemeContext.jsx";
+import { palette } from "../../../styles/theme.js";
+import * as styled from "./Footer.styles.js";
 
 const Footer =({}) => {
     const { theme } = useTheme();

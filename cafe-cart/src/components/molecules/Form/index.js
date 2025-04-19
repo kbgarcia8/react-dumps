@@ -1,2 +1,2 @@
-import GenericForm from "./Form";
+import GenericForm from "./Form.jsx";
 export default GenericForm;

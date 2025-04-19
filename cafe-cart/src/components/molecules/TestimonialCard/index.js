@@ -1,2 +1,2 @@
-import TestimonialCard from "./TestimonialCard";
+import TestimonialCard from "./TestimonialCard.jsx";
 export default TestimonialCard

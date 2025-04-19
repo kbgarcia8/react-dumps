@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import GenericButton from '../../atoms/Button/Button';
-import { v } from '../../../styles/variables';
+import { v } from '../../../styles/variables.js';
 //Refactor designing of ProductCard component same as ginawa sa Divider
 
 export const ProductImage = styled.img`

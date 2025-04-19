@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Label from "./Label.styles";
+import Label from "./Label.styles.js";
 
 const GenericLabel = ({
     htmlFor, 

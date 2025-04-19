@@ -1,3 +1,3 @@
-import GenericButton from "./Button";
+import GenericButton from "./Button.jsx";
 
 export default GenericButton;

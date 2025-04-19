@@ -1,2 +1,2 @@
-import NotificationCard from "./NotificationCard";
+import NotificationCard from "./NotificationCard.jsx";
 export default NotificationCard;

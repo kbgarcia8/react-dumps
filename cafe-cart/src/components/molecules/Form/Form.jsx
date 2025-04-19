@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import GenericButton from "../../atoms/Button";
 import GenericInput from "../../atoms/Input"
-import * as styled from "./Form.styles";
+import * as styled from "./Form.styles.js";
 
 const GenericForm = ({
     fieldsets = null, // if a form has differrent fieldsets

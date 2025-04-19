@@ -6,12 +6,12 @@ import { toast } from "react-toastify";
 import { useGlobal } from "../../../context/GlobalContext.jsx";
 import { useAuth } from "../../../context/UserAuthContext.jsx";
 import { useTheme } from "../../../context/ThemeContext.jsx";
-import * as styled from "./DashboardLayout.styles";
-import DeleteIcon from "../../atoms/SVG/DeleteIcon";
-import EditIcon from "../../atoms/SVG/EditIcon";
-import CashIcon from "../../atoms/SVG/CashIcon";
-import CardIcon from "../../atoms/SVG/CardIcon";
-import GCashIcon from "../../atoms/SVG/GCashIcon";
+import * as styled from "./DashboardLayout.styles.js";
+import DeleteIcon from "../../atoms/SVG/DeleteIcon.jsx";
+import EditIcon from "../../atoms/SVG/EditIcon.jsx";
+import CashIcon from "../../atoms/SVG/CashIcon.jsx";
+import CardIcon from "../../atoms/SVG/CardIcon.jsx";
+import GCashIcon from "../../atoms/SVG/GCashIcon.jsx";
 import { formatDate } from "../../../utils/utils.js"
 
 const initialCart = [];

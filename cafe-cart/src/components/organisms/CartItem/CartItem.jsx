@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-import  * as styled from "./CartItem.styles";
+import  * as styled from "./CartItem.styles.js";
 import { useOutletContext } from "react-router-dom";
-import DeleteIcon from "../../atoms/SVG/DeleteIcon";
+import DeleteIcon from "../../atoms/SVG/DeleteIcon.jsx";
 
 const CartItem = ({
     itemImage,

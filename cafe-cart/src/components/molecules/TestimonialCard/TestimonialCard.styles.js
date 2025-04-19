@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { v } from '../../../styles/variables';
+import { v } from '../../../styles/variables.js';
 
 export const TestimonialCardWrapper = styled.div`
     display: flex;

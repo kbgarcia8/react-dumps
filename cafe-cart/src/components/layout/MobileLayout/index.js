@@ -1,2 +1,2 @@
-import MobileLayout from "./MobileLayout";
+import MobileLayout from "./MobileLayout.jsx";
 export default MobileLayout;

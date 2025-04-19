@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { v } from '../../../styles/variables';
+import { v } from '../../../styles/variables.js';
 
 export const MainLayoutWrapper = styled.div.attrs(props => ({
     scrollbarWidth: props.scrollbarWidth

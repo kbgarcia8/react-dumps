@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { IconContainer, IconImage } from "./Icon.styles";
+import { IconContainer, IconImage } from "./Icon.styles.js";
 
 const Icon = ({source, alt="no-image", className}) => {
     

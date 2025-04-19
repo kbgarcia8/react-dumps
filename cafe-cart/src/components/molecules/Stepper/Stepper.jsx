@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "../../../context/ThemeContext";
-import { palette, lightTheme } from "../../../styles/theme";
-import * as styled from "./Stepper.styles";
+import { useTheme } from "../../../context/ThemeContext.jsx";
+import { palette, lightTheme } from "../../../styles/theme.js";
+import * as styled from "./Stepper.styles.js";
 
 const Stepper = ({ stepperState, increment, incrementButtonText, decrementButtonText, decrement, dataAttributes, className }) => {
 

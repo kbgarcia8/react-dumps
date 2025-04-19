@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import PropTypes from "prop-types";
-import { useTheme } from '../../../context/ThemeContext';
-import * as styled from "./Navbar.styles";
+import { useTheme } from '../../../context/ThemeContext.jsx';
+import * as styled from "./Navbar.styles.js";
 
 const Navbar =({anchorTheme, isSigning}) => {
     const { theme } = useTheme();

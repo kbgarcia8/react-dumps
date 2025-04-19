@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { v } from "../../../styles/variables";
-import { palette, notificationPalette } from "../../../styles/theme";
+import { v } from "../../../styles/variables.js";
+import { palette, notificationPalette } from "../../../styles/theme.js";
 import Stepper from "../../molecules/Stepper/Stepper";
 import GenericButton from "../../atoms/Button";
 
