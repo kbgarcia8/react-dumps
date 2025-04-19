@@ -1,2 +1,2 @@
-import OrderHistoryPage from "./OrdersPage";
+import OrderHistoryPage from "./OrderHistoryPage.jsx";
 export default OrderHistoryPage;

@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import headerLogo from '../../../assets/horizontal-logo.png'
 import { useNavigate } from 'react-router-dom';
-import Navbar from "../../molecules/Navbar/Navbar";
+import Navbar from "../../molecules/Navbar/index.js";
 import * as styled from "./MainHeader.styles.js";
 
 const MainHeader =({}) => {

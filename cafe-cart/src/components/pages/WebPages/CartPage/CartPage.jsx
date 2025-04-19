@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useOutletContext } from "react-router-dom";
-import * as styled from "./CartPage.styles";
-import CartItem from "../../../organisms/CartItem/CartItem";
+import * as styled from "./CartPage.styles.js";
+import CartItem from "../../../organisms/CartItem/index.js";
 
 const CartPage =({}) => {
 

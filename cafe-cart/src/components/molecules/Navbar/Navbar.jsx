@@ -1,5 +1,4 @@
-import { React, useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { useTheme } from '../../../context/ThemeContext.jsx';
 import * as styled from "./Navbar.styles.js";
 

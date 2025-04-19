@@ -2,7 +2,7 @@ import { React, useMemo} from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "../../../context/ThemeContext.jsx";
 import * as styled from "./TestimonialCard.styles.js"
-import StarRating from "../StarRating/StarRating";
+import StarRating from "../StarRating/index.js";
 
 const starsQuantiy = Array(5).fill(0)
 

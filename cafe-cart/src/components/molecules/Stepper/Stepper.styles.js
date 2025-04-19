@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import GenericButton from '../../atoms/Button';
+import GenericButton from '../../atoms/Button/index.js';
 
 export const StepperButton = styled(GenericButton).attrs(props => ({
     color: props.color,

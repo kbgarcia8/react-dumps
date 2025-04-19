@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { v } from '../../../styles/variables.js';
-import GenericLabel from '../../atoms/Label';
+import GenericLabel from '../../atoms/Label/index.js';
 
 export const FormLabel = styled(GenericLabel).attrs(props => ({
     labelDirection: props.labelDirection

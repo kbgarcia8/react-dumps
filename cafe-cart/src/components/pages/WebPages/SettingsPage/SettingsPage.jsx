@@ -3,11 +3,11 @@ import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { debounce } from 'lodash'
-import { useAuth } from "../../../../context/UserAuthContext";
-import { useTheme } from "../../../../context/ThemeContext";
-import * as styled from './SettingsPage.styles'
-import NoProfilePicIcon from "../../../atoms/SVG/NoProfilePicIcon";
-import { lightTheme } from "../../../../styles/theme";
+import { useAuth } from "../../../../context/UserAuthContext.jsx";
+import { useTheme } from "../../../../context/ThemeContext.jsx";
+import * as styled from './SettingsPage.styles.js'
+import NoProfilePicIcon from "../../../atoms/SVG/NoProfilePicIcon.jsx";
+import { lightTheme } from "../../../../styles/theme.js";
 
 const settingsPageInputHeaders = [
     {

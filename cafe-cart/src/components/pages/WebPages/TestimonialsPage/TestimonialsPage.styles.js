@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { v } from '../../../../styles/variables'
-import TestimonialCard from '../../../molecules/TestimonialCard/TestimonialCard';
+import { v } from '../../../../styles/variables.js'
+import TestimonialCard from '../../../molecules/TestimonialCard/index.js';
 
 export const TestimonialsPageWrapper = styled.div`
     display: grid;

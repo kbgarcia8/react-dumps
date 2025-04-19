@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import * as styled from "./TestimonialsPage.styles"
+import * as styled from "./TestimonialsPage.styles.js"
 import { useOutletContext } from "react-router-dom";
 
 const temporaryTestimonials = [

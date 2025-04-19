@@ -1,2 +1,2 @@
-import TestimonialPage from "./TestimonialsPage";
+import TestimonialPage from "./TestimonialsPage.jsx";
 export default TestimonialPage;

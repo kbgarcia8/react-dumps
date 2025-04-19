@@ -1,2 +1,2 @@
-import MenuPage from "./MenuPage";
+import MenuPage from "./MenuPage.jsx";
 export default MenuPage;

@@ -1,10 +1,9 @@
 import {React, useState, useEffect, useRef} from "react";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../../../context/UserAuthContext";
+import { useAuth } from "../../../../context/UserAuthContext.jsx";
 import GoogleButton from 'react-google-button';
-import * as styled from './LoginPage.styles'
+import * as styled from './LoginPage.styles.js'
 
 const LoginPage =({}) => {
     const { logIn, googleSignIn, userProfile } = useAuth();

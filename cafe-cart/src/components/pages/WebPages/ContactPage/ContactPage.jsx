@@ -1,14 +1,13 @@
 import { React, useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import * as styled from "./ContactPage.styles"
 import emailjs from '@emailjs/browser';
 import { APIProvider, Map, Marker} from "@vis.gl/react-google-maps";
-import { formatDate } from "../../../../utils/utils";
+import { formatDate } from "../../../../utils/utils.js";
 import { toast } from "react-toastify";
-import TelephoneIcon from "../../../atoms/SVG/TelephoneIcon";
-import MobilePhoneIcon from "../../../atoms/SVG/MobilePhoneIcon";
-import EmailIcon from "../../../atoms/SVG/EmailIcon";
-import LocationIcon from "../../../atoms/SVG/LocationIcon";
+import TelephoneIcon from "../../../atoms/SVG/TelephoneIcon.jsx";
+import MobilePhoneIcon from "../../../atoms/SVG/MobilePhoneIcon.jsx";
+import EmailIcon from "../../../atoms/SVG/EmailIcon.jsx";
+import LocationIcon from "../../../atoms/SVG/LocationIcon.jsx";
 
 const ContactPage =({}) => {
 
@@ -141,7 +140,7 @@ const ContactPage =({}) => {
             dateAndTimeSent: formatDate(new Date())
         };
         try {
-            {/*await toast.promise(
+            await toast.promise(
                 emailjs.send(import.meta.env.VITE_EMAILJS_SERVICE_ID, import.meta.env.VITE_EMAILJS_TEMPLATE_ID, templateParams, import.meta.env.VITE_EMAILJS_PUBLIC_KEY),
                 {
                     loading: 'Sending Email...',
@@ -149,7 +148,7 @@ const ContactPage =({}) => {
                     error: (err) => err.message || 'Sending email failed'
                 }
             )
-            await new Promise((resolve) => setTimeout(resolve, 500));*/}
+            await new Promise((resolve) => setTimeout(resolve, 500));
             const currentFieldset = e.target.closest("fieldset")
             const inputs = currentFieldset.querySelectorAll("div input");
             console.log(inputs)

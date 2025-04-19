@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { v } from '../../../styles/variables.js'
-import GenericButton from '../../atoms/Button'
+import GenericButton from '../../atoms/Button/index.js'
 
 export const MainHeaderWrapper = styled.div`
     display: flex;

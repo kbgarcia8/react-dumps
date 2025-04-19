@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import GenericForm from '../../../molecules/Form';
-import GenericButton from '../../../atoms/Button';
-import GenericLabel from '../../../atoms/Label';
-import GenericInput from '../../../atoms/Input';
-import { v } from '../../../../styles/variables';
-import Divider from '../../../atoms/Divider';
+import GenericForm from '../../../molecules/Form/index.js';
+import GenericButton from '../../../atoms/Button/index.js';
+import GenericLabel from '../../../atoms/Label/index.js';
+import GenericInput from '../../../atoms/Input/index.js';
+import { v } from '../../../../styles/variables.js';
+import Divider from '../../../atoms/Divider/index.js';
 
 export const SettingsPageWrapper = styled.div`
     padding: ${v.spacing.xxxsmall};

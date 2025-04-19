@@ -1,2 +1,2 @@
-import SignUpPage from "./SignUpPage";
+import SignUpPage from "./SignUpPage.jsx";
 export default SignUpPage;

@@ -1,2 +1,2 @@
-import DashboardHomePage from "./DashboardHomepage";
+import DashboardHomePage from "./DashboardHomepage.jsx";
 export default DashboardHomePage;

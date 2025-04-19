@@ -1,10 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-import * as styled from "./HomePage.styles"
-import FacebookIcon from "../../../atoms/SVG/FacebookIcon";
-import InstagramIcon from "../../../atoms/SVG/InstagramIcon";
-import XIcon from "../../../atoms/SVG/XIcon";
-import TiktokIcon from "../../../atoms/SVG/TiktokIcon";
+import * as styled from "./HomePage.styles.js"
+import FacebookIcon from "../../../atoms/SVG/FacebookIcon.jsx";
+import InstagramIcon from "../../../atoms/SVG/InstagramIcon.jsx";
+import XIcon from "../../../atoms/SVG/XIcon.jsx";
+import TiktokIcon from "../../../atoms/SVG/TiktokIcon.jsx";
 
 
 const services = [

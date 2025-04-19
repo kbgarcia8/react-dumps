@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { v } from '../../../../styles/variables';
-import GenericForm from '../../../molecules/Form';
+import { v } from '../../../../styles/variables.js';
+import GenericForm from '../../../molecules/Form/index.js';
 
 export const ContactPageWrapper = styled.div`
     display: grid;

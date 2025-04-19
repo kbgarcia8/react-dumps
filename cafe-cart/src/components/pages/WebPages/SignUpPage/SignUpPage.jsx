@@ -1,9 +1,8 @@
 import {React, useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../../context/UserAuthContext";
-import * as styled from './SignUpPage.styles'
+import { useAuth } from "../../../../context/UserAuthContext.jsx";
+import * as styled from './SignUpPage.styles.js'
 
 const SignUpPage =({}) => {
     

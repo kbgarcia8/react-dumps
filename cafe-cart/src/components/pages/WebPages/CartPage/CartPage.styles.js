@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { v } from "../../../../styles/variables";
-import GenericButton from "../../../atoms/Button";
-import GenericForm from "../../../molecules/Form";
-import Stepper from "../../../molecules/Stepper/Stepper";
+import { v } from "../../../../styles/variables.js";
+import GenericButton from "../../../atoms/Button/index.js";
+import GenericForm from "../../../molecules/Form/index.js";
+import Stepper from "../../../molecules/Stepper/index.js";
 
 export const CartPageWrapper = styled.div`
     display: grid;

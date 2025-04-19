@@ -1,9 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
-import { v } from './variables';
+import { v } from './variables.js';
 import oswald from "../fonts/Oswald-Regular.ttf";
 import trirong from "../fonts/Trirong-Regular.ttf";
 import arvo from "../fonts/Arvo-Regular.ttf";
-import { notificationPalette } from './theme';
+import { notificationPalette } from './theme.js';
 
 //test screen-width: 1440
 //test screen-height: 900

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { v } from "../../../styles/variables.js";
 import { palette, notificationPalette } from "../../../styles/theme.js";
-import Stepper from "../../molecules/Stepper/Stepper";
-import GenericButton from "../../atoms/Button";
+import Stepper from "../../molecules/Stepper/index.js";
+import GenericButton from "../../atoms/Button/index.js";
 
 export const CartItemWrapper = styled.div`
     display: flex;

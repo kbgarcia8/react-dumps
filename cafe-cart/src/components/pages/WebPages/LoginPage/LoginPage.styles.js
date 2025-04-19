@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import GenericForm from '../../../molecules/Form';
-import { v } from '../../../../styles/variables';
+import GenericForm from '../../../molecules/Form/index.js';
+import { v } from '../../../../styles/variables.js';
 import { Link } from "react-router-dom";
-import { palette } from '../../../../styles/theme';
+import { palette } from '../../../../styles/theme.js';
 
 export const LoginPageWrapper = styled.div`
     padding: ${v.spacing.xxxsmall};

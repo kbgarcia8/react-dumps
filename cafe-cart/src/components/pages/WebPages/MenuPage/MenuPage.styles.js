@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { v } from "../../../../styles/variables";
-import GenericButton from "../../../atoms/Button";
-import ProductCard from "../../../molecules/ProductCard";
-import Divider from "../../../atoms/Divider";
+import { v } from "../../../../styles/variables.js";
+import GenericButton from "../../../atoms/Button/index.js";
+import ProductCard from "../../../molecules/ProductCard/index.js";
+import Divider from "../../../atoms/Divider/index.js";
 
 export const MenuPageWrapper = styled.div`
     display: flex;

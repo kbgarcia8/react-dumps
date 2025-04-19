@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import GenericButton from '../../atoms/Button/Button';
+import GenericButton from '../../atoms/Button/index.js';
 import { v } from '../../../styles/variables.js';
 
 export const NotificationImage = styled.img`

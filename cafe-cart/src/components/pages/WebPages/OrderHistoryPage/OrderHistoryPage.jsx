@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import shopLogo from "../../../../assets/pic-only-logo.png"
-import GenericButton from "../../../atoms/Button/Button";
-import * as styled from "./OrderHistoryPage.styles"
+import GenericButton from "../../../atoms/Button/index.js";
+import * as styled from "./OrderHistoryPage.styles.js"
 import { useOutletContext } from "react-router-dom";
 
 const emptyHisory = () => (

@@ -1,18 +1,16 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { useOutletContext } from "react-router-dom";
-import * as styled from "./PendingPage.styles";
+import * as styled from "./PendingPage.styles.js";
 import shopLogo from "../../../../assets/pic-only-logo.png"
 import thinkingGIF from "../../../../assets/thinking.gif";
 import cookingGIF from "../../../../assets/cooking.gif";
 import deliveryGIF from "../../../../assets/delivery.gif";
 import orderupGIF from "../../../../assets/orderup.gif";
-import OrderReceipt from "../../../molecules/OrderReceipt/OrderReceipt"
+import OrderReceipt from "../../../molecules/OrderReceipt/index.js"
 
 const PendingPage =({}) => {
 
     const { checkoutDetails, isPending } = useOutletContext();
-    //console.dir(checkoutDetails, { depth: null });
     
     return(
         <styled.PendingPageWrapper>

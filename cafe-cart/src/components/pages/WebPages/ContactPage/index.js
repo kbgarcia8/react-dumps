@@ -1,2 +1,2 @@
-import ContactPage from "./ContactPage";
+import ContactPage from "./ContactPage.jsx";
 export default ContactPage;

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { v } from '../../../../styles/variables';
-import OrderReceipt from '../../../molecules/OrderReceipt/OrderReceipt';
+import { v } from '../../../../styles/variables.js';
+import OrderReceipt from '../../../molecules/OrderReceipt/index.js';
 
 export const OrderHistoryPageWrapper = styled.div`
     display: grid;
