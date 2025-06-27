@@ -35,6 +35,7 @@ export const UserAuthContextProvider = ({children}) => {
         }
       
       const uid = loggedUser.uid;
+      console.log(uid)
       
       // Check if user profile exists
       const profile = await getUserProfile(uid);
@@ -50,14 +51,14 @@ export const UserAuthContextProvider = ({children}) => {
     };
     //Sign up using email
     const signUp = async (email, password) => {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const uid = userCredential.user.uid;
-      
-        // Ensure profile is created in Firestore
-        await setDoc(doc(db, "users", uid), {
-            uid: currentUser.uid || "",
-            email: currentUser.email || "",
-            photoURL: currentUser.photoURL || "",
+        try{
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user; // use this instead of currentUser
+
+          await setDoc(doc(db, "users", user.uid), {
+            uid: user.uid,
+            email: user.email,
+            photoURL: user.photoURL || "",
             fullname: "",
             birthdate: "",
             username: "",
@@ -65,9 +66,14 @@ export const UserAuthContextProvider = ({children}) => {
             lastEdit: "",
             userAddressBank: [],
             orderHistoryBank: []
-        });
-      
-        return userCredential;
+          });
+
+          return userCredential;
+        } catch (error) {
+          console.error("Sign up failed:", error.message);
+          toast.error(error.message || "Sign-up failed. Please try again.");
+          throw error;
+        }
     };
     //Send a verification link to the registered/signed up email
     const verifyEmail = (user) => {
@@ -143,7 +149,8 @@ export const UserAuthContextProvider = ({children}) => {
             console.log("From server:", serverSnap.data());
             return serverSnap.data();
           } else {
-            throw new Error("User profile not found.");
+            //throw new Error("User profile not found.");
+            return null;
           }
         } catch (error) {
           throw new Error("Error fetching user profile: " + error.message);
@@ -151,15 +158,31 @@ export const UserAuthContextProvider = ({children}) => {
     };
     
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-            setCurrentUser(user); //object when user is logged in else null
-            if (user) await getUserProfile(user.uid); //If there is a user getUserProfile of its uid
-            setLoading(false); 
-            setAuthLoading(false);
-        });
-    
-        return unsubscribe; // cleanup listener on component unmount
-    }, []);
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setCurrentUser(user);
+
+      if (user) {
+        try {
+          const profile = await getUserProfile(user.uid);
+
+          if (profile) {
+            setUserProfile(profile);
+          } else {
+            console.warn("User profile missing, handle as needed");
+            // Optionally, redirect or show a message
+          }
+        } catch (error) {
+          console.error("Error fetching user profile:", error.message);
+          toast.error("Unable to load your profile. Please check your internet or try again.");
+        }
+      }
+
+      setLoading(false);
+      setAuthLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
 
     //onSnapshot() itself — once set — keeps running and watching the Firestore document in real time
     useEffect(() => {
